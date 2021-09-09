@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import {UserModel} from "../../model/user.model";
-import {LoginService} from "../../service/login.service";
+import {AuthService} from "../../services/auth.service";
 import {NotRegisteredDialogComponent} from "../not-registered-dialog/not-registered-dialog.component";
 
 
@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private authService: LoginService,
+    private authService: AuthService,
     private router: Router,
     private dialog: MatDialog,
   ) {}
@@ -116,7 +116,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
           this.dialog.closeAll();
         }
       },
-      error =>{
+      (error:any) =>{
         console.log('error')
         this.dialog.open(NotRegisteredDialogComponent, {
           width: '350px',
