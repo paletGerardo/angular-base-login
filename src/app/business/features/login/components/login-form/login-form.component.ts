@@ -1,17 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import {UserModel} from "../../model/user.model";
+import {LoginService} from "../../service/login.service";
+import {NotRegisteredDialogComponent} from "../not-registered-dialog/not-registered-dialog.component";
 
-import { Observable, Subject } from 'rxjs';
-import { take, takeUntil, tap } from 'rxjs/operators';
-
-import { AuthFacade } from '@app/core/auth/auth.facade';
-import { UserDocumentType } from '@app/core/user-information/models/user-document-type.model';
-import { UserInformationService } from '@app/core/user-information/user-information.service';
-import { LoadingService } from '@app/core/loading/loading.service';
-
-import { NotRegisteredDialogComponent } from '../not-registered-dialog/not-registered-dialog.component';
 
 @Component({
   selector: 'ce-login-form',
@@ -19,78 +13,121 @@ import { NotRegisteredDialogComponent } from '../not-registered-dialog/not-regis
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit, OnDestroy {
-  private readonly destroy$ = new Subject<boolean>();
 
-  userDocumentTypes$: Observable<UserDocumentType[]>;
-  loginForm: FormGroup;
+  user: UserModel | undefined;
+  recordarme = false;
   hidePassword = true;
+  loginForm = new FormGroup({});
 
   constructor(
     private fb: FormBuilder,
-    private authFacade: AuthFacade,
-    private userInformationService: UserInformationService,
-    private loadingService: LoadingService,
+    private authService: LoginService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loginForm = this.buildForm();
-
-    this.userDocumentTypes$ = this.userInformationService.getDocumentTypes();
+    if(localStorage.getItem('email')){
+      // @ts-ignore
+      this.user.mail = <string>localStorage.getItem('email');
+      this.recordarme = true;
+    }
   }
 
   buildForm(): FormGroup {
     const form = this.fb.group({
-      documentType: ['', Validators.required],
-      documentNumber: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      password: ['', Validators.required],
+      remember: [false],
     });
-
-    form
-      .get('documentType')
-      .valueChanges.pipe(takeUntil(this.destroy$))
-      .subscribe(() => form.get('documentNumber').reset());
-
     return form;
-  }
-
-  onLoginClick(): void {
-    this.loginForm.markAllAsTouched();
-
-    if (!this.loginForm.valid) {
-      return;
-    }
-
-    this.loadingService.toggleLoading();
-
-    this.authFacade
-      .login(
-        this.loginForm.value.documentType,
-        this.loginForm.value.documentNumber,
-        this.loginForm.value.password
-      )
-      .pipe(
-        tap(() => this.loadingService.toggleLoading()),
-        take(1)
-      )
-      .subscribe((loginResponse) => {
-        if (loginResponse) {
-          this.router.navigate(['/home']);
-        } else {
-          this.dialog.open(NotRegisteredDialogComponent, {
-            restoreFocus: false
-          });
-        }
-      });
   }
 
   onTogglePasswordVisibilityClick(): void {
     this.hidePassword = !this.hidePassword;
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
+
+  validationMessages? = {
+    email:  [
+      {
+        type:  'required',
+        message:  'Ingrese un email correcto'
+      }
+    ],
+    password: [
+      {
+        type: 'required',
+        message: 'La contraseña debe de ser más de 6 letras'
+      }
+    ],
+  };
+
+
+  onLoginClick(): void {
+    console.log(this.authService.login)
+
+    // @ts-ignore
+    this.loginForm.markAsUntouched();
+
+    // @ts-ignore
+    if (!this.loginForm.valid) {
+      const errors: string[] = [];
+
+      // @ts-ignore
+      Object.keys(this.loginForm.controls).forEach((k) => {
+        // @ts-ignore
+        const control = this.loginForm.controls[k];
+        // @ts-ignore
+        const errorMessages = this.validationMessages[k] as {
+          type: string;
+          message: string;
+        }[];
+
+        if (!control.errors) {
+          return;
+        }
+
+        Object.keys(control.errors).forEach((e) => {
+          const errorMessage = errorMessages.find((em) => em.type === e);
+
+          // @ts-ignore
+          errors.push(errorMessage.message);
+        });
+      });
+    }
+
+    //this.loadingService.tryToStartLoading();
+
+    this.authService
+
+      .login(
+        // @ts-ignore
+        this.loginForm.value.email,
+        // @ts-ignore
+        this.loginForm.value.password,
+      ).subscribe((loginResponse : any) => {
+        //this.loadingService.tryToStopLoading()
+        console.log(loginResponse);
+        if(loginResponse.header){
+          console.log(loginResponse)
+          this.router.navigate(['/home']);
+          this.dialog.closeAll();
+        }
+      },
+      error =>{
+        console.log('error')
+        this.dialog.open(NotRegisteredDialogComponent, {
+          width: '350px',
+          data: 'Los datos ingresados no son válidos',
+          restoreFocus: false
+        });
+
+      }
+    );
   }
+
+  ngOnDestroy(): void {}
+
 }

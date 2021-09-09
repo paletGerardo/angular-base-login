@@ -1,6 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatDialogRef } from '@angular/material/dialog';
+import {
+  Component,
+  Inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'ce-not-registered-dialog',
@@ -10,12 +13,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class NotRegisteredDialogComponent {
   constructor(
-    private router: Router,
-    private dialogRef: MatDialogRef<NotRegisteredDialogComponent>
+    @Inject(MAT_DIALOG_DATA)
+    public dialogRef: MatDialogRef<NotRegisteredDialogComponent>,
   ) {}
 
-  onCreateAccountClick() {
-    this.router.navigate(['/create-account']);
+  cerrarPopUp(){
     this.dialogRef.close();
   }
 }

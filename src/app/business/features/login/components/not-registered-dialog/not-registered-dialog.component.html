@@ -1,27 +1,7 @@
-<button
-  mat-icon-button
-  class="close-button"
-  aria-label="Cerrar"
-  mat-dialog-close
-  disableRipple
->
-  <mat-icon class="close-icon">close</mat-icon>
-</button>
-
-<div class="modal-title p-3" mat-dialog-title>
-  <h4>
-    {{ 'LOGIN.NOT_REGISTERED_DIALOG.TITLE' | translate }}
-  </h4>
-</div>
-
-<div class="modal-body p-1" mat-dialog-content>
-  <p>
-    {{ 'LOGIN.NOT_REGISTERED_DIALOG.BODY' | translate }}
-  </p>
-</div>
-
-<mat-dialog-actions class="p-4" align="center">
-  <button class="primary-button" (click)="onCreateAccountClick()">
-    {{ 'LOGIN.NOT_REGISTERED_DIALOG.CONFIRM' | translate }}
-  </button>
+<h2 mat-dialog-title class="textCenter">Error al inicia sesión</h2>
+<mat-dialog-content class="textCenter">La dirección de correo o contraseña introducida es incorrecta.</mat-dialog-content>
+<mat-dialog-content class="textCenter textRecordar">¿Necesitas ayuda para recuperar la contraseña?
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Aceptar</button>
 </mat-dialog-actions>
