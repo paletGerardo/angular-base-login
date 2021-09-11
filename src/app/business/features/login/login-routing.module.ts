@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginRootComponent } from './components/login-root.component';
 import { LoginComponent } from './components/login/login.component';
+import {RegistrationComponent} from './components/registration/registration.component'
 
 const routes: Routes = [
   {
@@ -14,6 +15,13 @@ const routes: Routes = [
         pathMatch: 'full',
         component: LoginComponent,
         data: { title: 'Ingresar' }
+      },
+
+      {
+        path: 'register',
+        pathMatch: 'full',
+        component: RegistrationComponent,
+        data: { title: 'Registro' }
       }
     ]
   }

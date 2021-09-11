@@ -13,6 +13,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from '@angular/material/input';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 
@@ -23,6 +27,8 @@ import {MatInputModule} from '@angular/material/input';
         LoginComponent,
         LoginFormComponent,
       NotRegisteredDialogComponent,
+      RegistrationComponent,
+      RegistrationFormComponent,
     ],
   imports: [SharedModule,
     LoginRoutingModule,
@@ -33,6 +39,9 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatInputModule]
+    MatInputModule,
+    MatCheckboxModule
+  ]
 })
+// @ts-ignore
 export class LoginModule {}

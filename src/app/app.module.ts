@@ -16,7 +16,8 @@ import { NavComponent } from './business/shared/components/nav/nav.component';
   declarations: [
     AppComponent,
     ErrorDialogComponent,
-    NavComponent
+    NavComponent,
+
   ],
   imports: [
     BrowserModule,
