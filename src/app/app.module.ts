@@ -11,12 +11,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { NavComponent } from './business/shared/components/nav/nav.component';
+import { HomeComponent } from './business/features/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorDialogComponent,
-    NavComponent
+    NavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

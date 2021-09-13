@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { PreRequestService } from "./services/pre-request.service";
-import { RequestService } from "./services/request.service";
-import { RegexCommon } from "./services/regex.service";
+import { PreRequestService } from "./request/pre-request.service";
+import { RequestService } from "./request/request.service";
+import { RegexCommon } from "./regx/regex.service";
 import { MaterialModule } from "./material/material.module";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
