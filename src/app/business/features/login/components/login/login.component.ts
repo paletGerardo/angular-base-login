@@ -1,21 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../../../core/animations/route.animations";
+import { ResponseLogin } from "../../model/responseLogin";
+import { INTERNAL_ROUTES } from "../../../../../core/routes/internal.routes";
+import { LoginService } from "../../services/login.service";
+import { NotRegisteredDialogComponent } from "../not-registered-dialog/not-registered-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 
 @Component({
-  selector: 'ce-login',
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
-  constructor(private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private dialog: MatDialog,
+    private router: Router) {}
 
   ngOnInit(): void {}
 
   onCreateAccountClick(): void {
     this.router.navigate(['/create-account']);
+  }
+
+  public loginAndRedirect( data: { email: string, password: string } ): void {
+    this.loginService.login( data.email, data.password )
+      .subscribe( ( loginResponse: ResponseLogin ) => {
+          loginResponse.error ? this.showDialog(loginResponse.message) : this.router.navigateByUrl( INTERNAL_ROUTES.HOME );
+        }
+      );
+  }
+
+  private showDialog( message: string | undefined ): void {
+    this.dialog.open( NotRegisteredDialogComponent, {
+      width: '350px',
+      data: message,
+      restoreFocus: false
+    } );
   }
 }

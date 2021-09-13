@@ -2,5 +2,12 @@
       <div class="grid p-t-10 p-b-15">
         <img src="../../../../assets/images/supervielleLogo.png" style="max-width: 200px;">
       </div>
-    <ce-login-form></ce-login-form>
+  <div class="limiter animated fadeInLeft">
+    <div class="container-login100 p-t-100">
+      <div class="wrap-login100 p-t-50 p-b-90">
+        <app-login-form (dataLoginEmitter) = loginAndRedirect($event)></app-login-form>
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -6,7 +6,7 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'ce-not-registered-dialog',
+  selector: 'app-not-registered-dialog',
   templateUrl: './not-registered-dialog.component.html',
   styleUrls: ['./not-registered-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
