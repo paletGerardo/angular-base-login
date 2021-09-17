@@ -17,7 +17,7 @@
                         <span *ngIf="
                         registerForm?.get('email')!.hasError(validation.type)
                             ">
-                            {{ validation.message! }}
+                            {{ validation.message }}
                           </span>
           </mat-error>
         </mat-form-field>
@@ -27,7 +27,7 @@
             Nombre y Apellido
           </mat-label>
           <input matInput type="text" formControlName="name" autocomplete="off" />
-          <mat-error *ngFor="let validation of validationMessages!.email!">
+          <mat-error *ngFor="let validation of validationMessages!.name!">
                         <span *ngIf="
                         registerForm?.get('name')!.hasError(validation.type)
                             ">
@@ -66,7 +66,7 @@
         </div>
 
         <div class="container-login100-form-btn m-t-17">
-          <button disableRipple class="login100-form-btn" (click)="onSubmit()">
+          <button disableRipple class="login100-form-btn" (click)="OnRegisterClick()">
             Crear cuenta
           </button>
         </div>

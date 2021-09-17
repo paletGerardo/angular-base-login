@@ -2,5 +2,5 @@
   <div class="grid p-t-10 p-b-15">
     <img src="../../../../assets/images/supervielleLogo.png" style="max-width: 200px;">
   </div>
-  <app-registration-form></app-registration-form>
+  <app-registration-form (dataRegisterEmitter) = registerAndRedirect($event)>></app-registration-form>
 </div>

@@ -4,8 +4,10 @@
   <mat-form-field class="w-100">
     <mat-label> Email</mat-label>
     <input matInput type="text" formControlName="email" autocomplete="off"/>
-    <mat-error *ngFor="let validation of validationMessages!.email!">
-      <span *ngIf="loginForm?.get('email')!.hasError(validation!.type!)"> {{ validation.message }} </span>
+    <mat-error *ngFor="let validation of validationMessages.email">
+            <span *ngIf="validations(validation)">
+              {{ validation.message }}
+            </span>
     </mat-error>
   </mat-form-field>
 
@@ -17,20 +19,19 @@
       {{ hidePassword ? 'visibility_off' : 'visibility' }}
     </mat-icon>
     <mat-error *ngFor="let validation of validationMessages!.password!">
-      <span *ngIf="loginForm?.get('password')!.hasError(validation!.type!)"> {{ validation.message! }} </span>
+      <span *ngIf="loginForm?.get('password')!.hasError(validation!.type!)"> {{ validation.message }} </span>
     </mat-error>
   </mat-form-field>
 
   <div class="flex-sb-m w-full p-t-3 p-b-24">
     <div class="contact100-form-checkbox">
       <input formControlName="remember" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-      <label class="label-checkbox100" for="ckb1">
-        Recordar mi usuario
-      </label>
+      <mat-checkbox class="example-margin">Recordar Usuario</mat-checkbox>
+
     </div>
 
     <div>
-      <a routerLink="/registro" class="txt1">
+      <a routerLink="/login/register" class="txt1">
         ¿No tienes cuenta?
       </a>
     </div>
@@ -42,8 +43,4 @@
             Ingresar
           </button>
         </div>
-
       </form>
-    </div>
-  </div>
-</div>

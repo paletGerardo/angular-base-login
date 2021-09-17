@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {AuthService} from "../../services/auth.service";
-import {UserModel} from "../../model/user.model";
+import {AuthService} from "../../../../../core/auth/auth.service";
+import { validationMessages } from "../../consts/validations.const";
+
 
 @Component({
   selector: 'app-registration-form',
@@ -11,7 +12,8 @@ import {UserModel} from "../../model/user.model";
 })
 export class RegistrationFormComponent implements OnInit {
 
-  user!: UserModel;
+  @Output() dataRegisterEmitter = new EventEmitter();
+  public validationMessages = validationMessages;
   recordarme = false;
   registerForm = new FormGroup({});
   hidePassword = true;
@@ -42,31 +44,41 @@ export class RegistrationFormComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
 
-  validationMessages = {
-    email: [
+  private isFormValid(): void {
+    if ( !this.registerForm.valid ) {
+      const errors: string[] = [];
+      Object.keys( this.registerForm.controls ).forEach( ( k ) => {
+        const control = this.registerForm.controls[k];
+//        const errorMessages = this.validationMessages[k] as {
+//          type: string;
+//          message: string;
+//        }[];
+        if ( !control.errors ) {
+          return;
+        }
+
+        Object.keys( control.errors ).forEach( ( e ) => {
+//          const errorMessage = errorMessages.find( ( em ) => em.type === e );
+//          errors.push( errorMessage.message );
+        } );
+      } );
+    }
+  }
+
+
+  OnRegisterClick(): void {
+    this.registerForm.markAsUntouched();
+    this.isFormValid();
+    const email =  this.registerForm.get( 'email' )?.value;
+    const password = this.registerForm.get( 'password' )?.value;
+    const name = this.registerForm.get( 'name' )?.value;
+    this.dataRegisterEmitter.emit(
       {
-        type: 'required',
-        message: 'Ingrese un email correcto'
+        email: email,
+        password: password,
+        name: name,
       }
-    ],
-    password: [
-      {
-        type: 'required',
-        message: 'La contraseña debe de ser más de 6 letras'
-      }
-    ],
-
-    name: [
-      {
-        type: 'required',
-        message: 'El nombre debe requerir al menos 6 letras'
-      }
-    ],
-  };
-
-  onSubmit(){
-
-
+    );
   }
 
 

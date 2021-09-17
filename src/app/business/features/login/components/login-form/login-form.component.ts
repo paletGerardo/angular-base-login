@@ -33,8 +33,8 @@ export class LoginFormComponent implements OnInit {
 
   buildForm(): FormGroup {
     const form = this.fb.group( {
-      email: [ 'nimarchi@angema.com.ar', [ Validators.required, Validators.pattern( REGEX_CONSTANTS.email ) ] ],
-      password: [ '120380.nimarchi', [ Validators.required, Validators.pattern( REGEX_CONSTANTS.password ) ] ],
+      email: [ '', [ Validators.required, Validators.pattern( REGEX_CONSTANTS.email ) ] ],
+      password: [ '', [ Validators.required, Validators.pattern( REGEX_CONSTANTS.password ) ] ],
       remember: [ false ],
     } );
     return form;
@@ -43,6 +43,11 @@ export class LoginFormComponent implements OnInit {
   onTogglePasswordVisibilityClick(): void {
     this.hidePassword = !this.hidePassword;
   }
+
+  public validations(validation: any): any {
+    return this.loginForm?.get('email')!.hasError(validation.type) && (this.loginForm?.get('email')!.dirty || this.loginForm?.get('email')!.touched)
+  }
+
 
   onLoginClick(): void {
     this.loginForm.markAsUntouched();
@@ -63,21 +68,18 @@ export class LoginFormComponent implements OnInit {
   private isFormValid(): void {
     if ( !this.loginForm.valid ) {
       const errors: string[] = [];
-      Object.keys( this.loginForm.controls ).forEach( ( k ) => {
+      this.loginForm.controls.forEach( ( k : string ) => {
         const control = this.loginForm.controls[k];
-//        const errorMessages = this.validationMessages[k] as {
-//          type: string;
-//          message: string;
-//        }[];
+       // @ts-ignore
+        const errorMessages = this.validationMessages[{k}]{
+          type: string;
+          message: string;
+        }[];
 
-        if ( !control.errors ) {
+        if ( this.loginForm.valid ) {
           return;
         }
 
-        Object.keys( control.errors ).forEach( ( e ) => {
-//          const errorMessage = errorMessages.find( ( em ) => em.type === e );
-//          errors.push( errorMessage.message );
-        } );
       } );
     }
   }
