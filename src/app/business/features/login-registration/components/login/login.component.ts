@@ -6,6 +6,9 @@ import { INTERNAL_ROUTES } from "../../../../../core/routes/internal.routes";
 import { LoginService } from "../../services/login.service";
 import { NotRegisteredDialogComponent } from "../not-registered-dialog/not-registered-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { tap } from "rxjs/operators";
+import { LoadingService } from "../../../../../core/loading/loading.service";
+import { LoginFormValues } from "../../model/loginFormValues";
 
 
 @Component({
@@ -19,6 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private dialog: MatDialog,
+    private loadingService: LoadingService,
     private router: Router) {}
 
   ngOnInit(): void {}
@@ -27,8 +31,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/create-account']);
   }
 
-  public loginAndRedirect( data: { email: string, password: string } ): void {
+  public loginAndRedirect( data: LoginFormValues ): void {
     this.loginService.login( data.email, data.password )
+      .pipe(tap(() => this.loadingService.toggleLoading()))
       .subscribe( ( loginResponse: ResponseLogin ) => {
           loginResponse.error ? this.showDialog(loginResponse.message) : this.router.navigateByUrl( INTERNAL_ROUTES.HOME );
         }

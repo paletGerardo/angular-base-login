@@ -5,6 +5,7 @@ import {RegisteredService} from "../../services/registered.service";
 import {NotRegisteredDialogComponent} from "../not-registered-dialog/not-registered-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
+import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../../../core/animations/route.animations";
 
 @Component({
   selector: 'app-registration',
@@ -12,6 +13,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
   constructor(    private RegisteredService: RegisteredService,
                   private dialog: MatDialog,

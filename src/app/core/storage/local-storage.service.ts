@@ -13,7 +13,15 @@ export class LocalStorageService {
 
   getItem<TItem>(key: string): TItem | null {
     const data = localStorage.getItem( `${ APP_PREFIX }${ key }` );
-    return data ? (JSON.parse(data) as TItem) : null;
+    return this.getParse( data );
+  }
+
+  private getParse<TItem>( data: string | null ): TItem | null {
+    if (data !== 'undefined') {
+      return JSON.parse( <string>data ) as TItem;
+    } else {
+      return null;
+    }
   }
 
   updateItem<TItem>(key: string, value: TItem): void {

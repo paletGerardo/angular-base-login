@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {AuthService} from "../../../../../core/auth/auth.service";
-import { validationMessages } from "../../consts/validations.const";
+import { VALIDATION_MESSAGES } from "../../../consts/validations.const";
+import { AuthService } from "../../../../../../core/auth/auth.service";
 
 
 @Component({
@@ -13,7 +13,7 @@ import { validationMessages } from "../../consts/validations.const";
 export class RegistrationFormComponent implements OnInit {
 
   @Output() dataRegisterEmitter = new EventEmitter();
-  public validationMessages = validationMessages;
+  public validationMessages = VALIDATION_MESSAGES;
   recordarme = false;
   registerForm = new FormGroup({});
   hidePassword = true;

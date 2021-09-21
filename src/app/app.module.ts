@@ -12,6 +12,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { NavComponent } from './business/shared/components/nav/nav.component';
 import { HomeComponent } from './business/features/home/home.component';
+import { BlockUIModule } from "ng-block-ui";
 
 @NgModule({
   declarations: [
@@ -20,16 +21,17 @@ import { HomeComponent } from './business/features/home/home.component';
     NavComponent,
     HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatIconModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CoreModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        BlockUIModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

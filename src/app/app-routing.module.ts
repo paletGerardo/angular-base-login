@@ -8,12 +8,12 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadChildren: () =>
-      import('./business/features/login/login.module').then((m) => m.LoginModule),
+      import('./business/features/login-registration/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./business/features/login/login.module').then((m) => m.LoginModule),
+      import('./business/features/login-registration/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'home',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResponseLogin } from "../model/responseLogin";
-import { catchError, map } from "rxjs/operators";
+import { catchError, debounceTime, delay, map } from "rxjs/operators";
 import { Observable, of } from "rxjs";
 import { ERROR_CONSTANTS } from 'src/app/core/errors/errors.const';
 import { AuthService } from "../../../../core/auth/auth.service";
@@ -26,6 +26,7 @@ export class LoginService {
     const { options, body } = this.getOptionAndBody( emailIn, passwordIn );
     return this.http.post( ENDPOINTS_API.AUTH.LOGIN, body, options )
       .pipe(
+        delay(500),
         map( ( res: any ) => {
           response.error = res.status != 200;
           response.message = res.statusText; // todo cambiar por message una vez que cambie el back.

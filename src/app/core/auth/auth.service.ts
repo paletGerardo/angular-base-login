@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RequestService } from '../request/request.service';
-import { UserAuthenticated } from "../../business/features/login/model/userAuthenticated";
 import { BehaviorSubject } from "rxjs";
 import { LocalStorageService } from '../storage/local-storage.service';
+import { UserAuthenticated } from "../../business/features/login-registration/model/userAuthenticated";
 
 
 @Injectable( {

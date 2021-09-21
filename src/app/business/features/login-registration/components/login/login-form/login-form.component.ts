@@ -1,0 +1,79 @@
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { LocalStorageService } from 'src/app/core/storage/local-storage.service';
+import { VALIDATION_MESSAGES } from "../../../consts/validations.const";
+import { LoadingService } from "../../../../../../core/loading/loading.service";
+import { LoginFormValues } from "../../../model/loginFormValues";
+
+@Component( {
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: [ './login-form.component.scss' ]
+} )
+export class LoginFormComponent implements OnInit {
+
+  @Output() dataLoginEmitter = new EventEmitter();
+  hidePassword = true;
+  loginForm = new FormGroup( {} );
+  public validationMessages = VALIDATION_MESSAGES;
+  public remember: FormControl | undefined;
+
+  constructor(
+    private fb: FormBuilder,
+    private localStorageService: LocalStorageService,
+    private loadingService: LoadingService,
+  ) {
+    this.buildForm();
+  }
+
+  ngOnInit() {
+  }
+
+  buildForm(): void {
+    // 120380.gepalet
+    //gepalet@angema.com.ar
+    this.loginForm = this.fb.group( {
+      email: [ 'gepalet@angema.com.ar', [ Validators.required, Validators.email ] ],
+      password: [
+        '120380.gepalet',
+        [
+          Validators.required,
+          Validators.minLength( 6 ),
+          Validators.maxLength( 20 )
+        ]
+      ],
+      remember: [ false ]
+    } );
+    //@ts-ignore
+    this.loginForm.get( 'remember' ).valueChanges.subscribe( ( val: any ) => {
+      if ( val ) {
+        this.localStorageService.setItem( 'user_email', 'gepalet@angema.com.ar' );
+      }
+    } )
+  }
+
+
+  onTogglePasswordVisibilityClick(): void {
+    this.hidePassword = !this.hidePassword;
+  }
+
+  public getValidationFromControl( validation: any, elem: string ): any {
+    //@ts-ignore
+    return this.loginForm.get( elem ).hasError( validation.type ) && ( this.loginForm.get( elem ).dirty || this.loginForm.get( elem ).touched )
+  }
+
+
+  onLoginClick(): void {
+    this.loadingService.toggleLoading();
+    if ( this.loginForm.invalid ) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+    this.emitDataForm();
+  }
+
+  private emitDataForm(): void {
+    const formValueObj: LoginFormValues = this.loginForm.value;
+    this.dataLoginEmitter.emit( formValueObj );
+  }
+}
