@@ -16,7 +16,6 @@ export class LoginFormComponent implements OnInit {
   hidePassword = true;
   loginForm = new FormGroup( {} );
   public validationMessages = VALIDATION_MESSAGES;
-  public remember: FormControl | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +26,13 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loginForm.controls['remember'].valueChanges.subscribe(value => {
+      if ( value ) {
+        this.localStorageService.setItem( 'email', this.loginForm.controls['email'].value );
+      } else {
+        this.localStorageService.removeItem( 'remember' );
+      }
+    } );
   }
 
   buildForm(): void {
@@ -45,11 +51,9 @@ export class LoginFormComponent implements OnInit {
       remember: [ false ]
     } );
     //@ts-ignore
-    this.loginForm.get( 'remember' ).valueChanges.subscribe( ( val: any ) => {
-      if ( val ) {
-        this.localStorageService.setItem( 'user_email', 'gepalet@angema.com.ar' );
-      }
-    } )
+    // subscribe to form changes in remeber me
+
+
   }
 
 

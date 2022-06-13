@@ -10,7 +10,6 @@ import { tap } from "rxjs/operators";
 import { LoadingService } from "../../../../../core/loading/loading.service";
 import { LoginFormValues } from "../../model/loginFormValues";
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
