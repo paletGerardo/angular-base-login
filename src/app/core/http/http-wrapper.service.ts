@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Utils } from "../util/utils";
-import { HttpClientOptions, RequestService } from "./request.service";
+import { HttpClientOptions, HttpService } from "./http.service";
 
 @Injectable()
-export class PreRequestService {
+export class HttpWrapperService {
   constructor(
-    private http: RequestService,
+    private http: HttpService,
   ) { }
 
   public get<T>(resource: string, options?: HttpClientOptions): Observable<T> {

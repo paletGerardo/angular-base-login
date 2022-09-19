@@ -70,7 +70,18 @@ const MATERIAL_MODULES = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatDividerModule,
+  MatDialogModule,
+  MatMenuModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatDialogModule,
+
 ];
 
 const appearance: MatFormFieldDefaultOptions = {

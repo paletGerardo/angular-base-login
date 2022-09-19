@@ -19,7 +19,7 @@ export interface HttpClientOptions {
 }
 
 @Injectable()
-export class RequestService {
+export class HttpService {
 	defaultOptions: HttpClientOptions;
 
 	constructor(private httpClient: HttpClient) {
@@ -80,7 +80,7 @@ export class RequestService {
 					console.log('Forbidden', 'volver a intentar');
 				}
 				if (err.status === 404) {
-					console.log('Bad request');
+					console.log('Bad http');
           throw new Error('error');
 				}
 				if (err.status === 429) {
