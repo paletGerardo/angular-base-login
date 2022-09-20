@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./features/3-footer/footer.component";
 import { NavComponent } from "./features/1-nav/nav.component";
-import { AppRoutingModule } from "../app-root/app-routing.module";
+import { DashboardRoutingModule } from "./dashboard-routing.module";
 
 
 
@@ -13,12 +13,11 @@ import { AppRoutingModule } from "../app-root/app-routing.module";
 
   ],
   exports: [
-    
+
   ],
   imports: [
+    DashboardRoutingModule,
     CommonModule,
-    AppRoutingModule,
-    
   ]
 })
 export class DashboardModule { }

@@ -8,6 +8,11 @@ import {RegistrationComponent} from './components/registration/registration.comp
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'login'
+  },
+  {
+    path: '',
     component: LoginRootComponent,
     children: [
       {
@@ -24,7 +29,12 @@ const routes: Routes = [
         data: { title: 'Registro' }
       }
     ]
-  }
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'login'
+  },
 ];
 
 @NgModule({

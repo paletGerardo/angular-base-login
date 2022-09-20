@@ -6,7 +6,7 @@ export const ROUTES_PATH = {
 
   },
   HOME: {
-    DEFAULT: `home`,
+    DEFAULT: `dashboard`,
   }
 };
 

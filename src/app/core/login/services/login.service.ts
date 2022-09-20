@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResponseLogin } from "../model/responseLogin";
-import { catchError, debounceTime, delay, map } from "rxjs/operators";
+import { catchError, delay, map } from "rxjs/operators";
 import { Observable, of } from "rxjs";
 import { ERROR_CONSTANTS } from 'src/app/core/errors/errors.const';
-import { AuthService } from "../../../../../core/auth/auth.service";
-import { ENDPOINTS_API } from "../../../../../core/routes/api.routes";
+import { AuthService } from "../../auth/auth.service";
+import { ENDPOINTS_API } from "../../routes/api.routes";
 import { UserAuthenticated } from "../model/userAuthenticated";
 
 
@@ -20,8 +20,13 @@ export class LoginService {
   ) {}
 
 
-  login( emailIn: string, passwordIn: string ): Observable<ResponseLogin> {
+  login( emailIn: string, passwordIn: string, isMock = false ): Observable<ResponseLogin> {
     const response: ResponseLogin = { error: true, message: ERROR_CONSTANTS.API.ERROR };
+    if (isMock) {
+      response.error = false;
+      response.message = 'OK';
+      return of( response );
+    }
     //@ts-ignore
     const { options, body } = this.getOptionAndBody( emailIn, passwordIn );
     return this.http.post( ENDPOINTS_API.AUTH.LOGIN, body, options )

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from '../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from "@angular/forms";
-import { HomeComponent } from '../dashboard/features/2-router-outlet/2-home/home.component';
+import { HomeComponent } from '../dashboard/features/2-router-outlet/1-home/home.component';
 import { BlockUIModule } from "ng-block-ui";
 import { DashboardComponent } from '../dashboard/dashboard.component';
 

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ResponseLogin} from "../../model/responseLogin";
-import {INTERNAL_ROUTES} from "../../../../../../core/routes/internal.routes";
+import {INTERNAL_ROUTES} from "../../../routes/internal.routes";
 import {RegisteredService} from "../../services/registered.service";
 import {NotRegisteredDialogComponent} from "../not-registered-dialog/not-registered-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
-import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../../../../core/animations/route.animations";
+import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../animations/route.animations";
 
 @Component({
   selector: 'app-registration',

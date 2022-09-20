@@ -1,29 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { HomeComponent } from '../dashboard/features/2-router-outlet/2-home/home.component';
-import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadChildren: () =>
-      import('../dashboard/features/2-router-outlet/1-login-registration/login.module').then(( m) => m.LoginModule),
+    redirectTo: 'auth/login'
   },
   {
-    path: 'login',
+    path: 'auth/login',
     loadChildren: () =>
-      import('../dashboard/features/2-router-outlet/1-login-registration/login.module').then(( m) => m.LoginModule),
+      import('../core/login/login.module').then(( m) => m.LoginModule),
   },
   {
-    path: '2-home',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
+    path: 'dashboard',
+    loadChildren: () =>
+      import('../dashboard/dashboard.module').then(( m) => m.DashboardModule),
   },
 
+  // Este elelemento siempre tiene que quedar al final.
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'auth/login'
   }
 ];
 
