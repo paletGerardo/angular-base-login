@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard.component';
-import { AppModule } from "../app-root/app.module";
 import { FooterComponent } from "./features/3-footer/footer.component";
+import { NavComponent } from "./features/1-nav/nav.component";
 import { AppRoutingModule } from "../app-root/app-routing.module";
 
 
 
 @NgModule( {
   declarations: [
-    DashboardComponent],
+    FooterComponent,
+    NavComponent
+
+  ],
   exports: [
-    DashboardComponent
+    
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ]
 })
 export class DashboardModule { }
