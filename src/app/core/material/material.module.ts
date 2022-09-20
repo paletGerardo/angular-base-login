@@ -39,7 +39,6 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 const MATERIAL_MODULES = [
   MatCheckboxModule,
-  MatCheckboxModule,
   MatButtonModule,
   MatInputModule,
   MatDividerModule,
@@ -64,22 +63,12 @@ const MATERIAL_MODULES = [
   MatIconModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatDialogModule,
   MatTooltipModule,
   MatSnackBarModule,
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
   MatNativeDateModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatDividerModule,
-  MatDialogModule,
-  MatMenuModule,
-  MatButtonModule,
-  MatFormFieldModule,
-  MatIconModule,
   MatDialogModule,
 
 ];

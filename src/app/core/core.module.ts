@@ -7,6 +7,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { BlockUIModule } from 'ng-block-ui';
+import { ErrorDialogComponent } from "./errors/error-dialog/error-dialog.component";
 
 @NgModule( {
   imports: [
@@ -23,7 +24,9 @@ import { BlockUIModule } from 'ng-block-ui';
     BlockUIModule.forRoot()
   ],
   exports: [],
-  declarations: [],
+  declarations: [
+    ErrorDialogComponent,
+  ],
   providers: [
     HttpWrapperService,
     HttpService,

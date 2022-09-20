@@ -5,28 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from '../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorDialogComponent } from '../dashboard/shared/components/dialogs/error-dialog/error-dialog.component';
 import { ReactiveFormsModule } from "@angular/forms";
-import { NavComponent } from '../dashboard/shared/components/nav/nav.component';
+import { NavComponent } from '../dashboard/features/1-nav/nav.component';
 import { HomeComponent } from '../dashboard/features/home/home.component';
 import { BlockUIModule } from "ng-block-ui";
 
-@NgModule({
+@NgModule( {
   declarations: [
     AppComponent,
-    ErrorDialogComponent,
     NavComponent,
     HomeComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        CoreModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        BlockUIModule
-    ],
+  imports: [
+    AppRoutingModule,
+    BlockUIModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    CoreModule,
+    ReactiveFormsModule
+  ],
   providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+  bootstrap: [ AppComponent ]
+} )
+export class AppModule {
+}
