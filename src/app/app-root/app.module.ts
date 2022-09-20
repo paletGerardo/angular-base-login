@@ -7,8 +7,9 @@ import { CoreModule } from '../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from "@angular/forms";
 import { NavComponent } from '../dashboard/features/1-nav/nav.component';
-import { HomeComponent } from '../dashboard/features/home/home.component';
+import { HomeComponent } from '../dashboard/features/2-router-outlet/2-home/home.component';
 import { BlockUIModule } from "ng-block-ui";
+import { DashboardModule } from "../dashboard/dashboard.module";
 
 @NgModule( {
   declarations: [
@@ -22,9 +23,13 @@ import { BlockUIModule } from "ng-block-ui";
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DashboardModule
   ],
   providers: [],
+  exports: [
+    NavComponent
+  ],
   bootstrap: [ AppComponent ]
 } )
 export class AppModule {

@@ -4,8 +4,8 @@ import { ResponseLogin } from "../model/responseLogin";
 import { catchError, debounceTime, delay, map } from "rxjs/operators";
 import { Observable, of } from "rxjs";
 import { ERROR_CONSTANTS } from 'src/app/core/errors/errors.const';
-import { AuthService } from "../../../../core/auth/auth.service";
-import { ENDPOINTS_API } from "../../../../core/routes/api.routes";
+import { AuthService } from "../../../../../core/auth/auth.service";
+import { ENDPOINTS_API } from "../../../../../core/routes/api.routes";
 import { UserAuthenticated } from "../model/userAuthenticated";
 
 

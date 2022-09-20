@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs";
 import { LocalStorageService } from '../storage/local-storage.service';
-import { UserAuthenticated } from "../../dashboard/features/login-registration/model/userAuthenticated";
+import { UserAuthenticated } from "../../dashboard/features/2-router-outlet/1-login-registration/model/userAuthenticated";
 
 
 @Injectable( {

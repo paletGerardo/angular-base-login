@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UntypedFormGroup, Validators, UntypedFormBuilder, FormControl } from '@angular/forms';
 import { LocalStorageService } from 'src/app/core/storage/local-storage.service';
 import { VALIDATION_MESSAGES } from "../../../consts/validations.const";
-import { LoadingService } from "../../../../../../core/loading/loading.service";
+import { LoadingService } from "../../../../../../../core/loading/loading.service";
 import { LoginFormValues } from "../../../model/loginFormValues";
 
 @Component( {

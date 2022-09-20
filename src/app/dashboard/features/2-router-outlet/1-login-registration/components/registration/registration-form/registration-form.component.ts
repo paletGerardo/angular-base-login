@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { NgForm, UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { VALIDATION_MESSAGES } from "../../../consts/validations.const";
-import { AuthService } from "../../../../../../core/auth/auth.service";
+import { AuthService } from "../../../../../../../core/auth/auth.service";
 
 
 @Component({

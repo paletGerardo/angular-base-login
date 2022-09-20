@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
 import {ResponseLogin} from "../model/responseLogin";
-import {ERROR_CONSTANTS} from "../../../../core/errors/errors.const";
-import {ENDPOINTS_API} from "../../../../core/routes/api.routes";
+import {ERROR_CONSTANTS} from "../../../../../core/errors/errors.const";
+import {ENDPOINTS_API} from "../../../../../core/routes/api.routes";
 import {catchError, map} from "rxjs/operators";
 import { HttpClient } from '@angular/common/http';
-import {AuthService} from "../../../../core/auth/auth.service";
+import {AuthService} from "../../../../../core/auth/auth.service";
 
 
 

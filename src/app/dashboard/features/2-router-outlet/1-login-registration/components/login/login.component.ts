@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../../../core/animations/route.animations";
+import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../../../../core/animations/route.animations";
 import { ResponseLogin } from "../../model/responseLogin";
-import { INTERNAL_ROUTES } from "../../../../../core/routes/internal.routes";
+import { INTERNAL_ROUTES } from "../../../../../../core/routes/internal.routes";
 import { LoginService } from "../../services/login.service";
 import { NotRegisteredDialogComponent } from "../not-registered-dialog/not-registered-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { tap } from "rxjs/operators";
-import { LoadingService } from "../../../../../core/loading/loading.service";
+import { LoadingService } from "../../../../../../core/loading/loading.service";
 import { LoginFormValues } from "../../model/loginFormValues";
 
 @Component({
