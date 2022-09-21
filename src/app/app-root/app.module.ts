@@ -11,6 +11,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { FooterComponent } from "../dashboard/features/3-footer/footer.component";
 import { NavComponent } from '../dashboard/features/1-nav/nav.component';
 import { CarouselComponent } from '../dashboard/features/2-carousel/caurosel.component';
+import { CardsComponent } from '../dashboard/features/3-cards/cards.component';
 
 @NgModule( {
   declarations: [
@@ -19,7 +20,8 @@ import { CarouselComponent } from '../dashboard/features/2-carousel/caurosel.com
     HomeComponent,
     FooterComponent,
     NavComponent,
-    CarouselComponent
+    CarouselComponent,
+    CardsComponent
   ],
   imports: [
     AppRoutingModule,
