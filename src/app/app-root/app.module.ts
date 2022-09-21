@@ -10,6 +10,7 @@ import { BlockUIModule } from "ng-block-ui";
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { FooterComponent } from "../dashboard/features/3-footer/footer.component";
 import { NavComponent } from '../dashboard/features/1-nav/nav.component';
+import { CarouselComponent } from '../dashboard/features/2-carousel/caurosel.component';
 
 @NgModule( {
   declarations: [
@@ -17,7 +18,8 @@ import { NavComponent } from '../dashboard/features/1-nav/nav.component';
     DashboardComponent,
     HomeComponent,
     FooterComponent,
-    NavComponent
+    NavComponent,
+    CarouselComponent
   ],
   imports: [
     AppRoutingModule,
