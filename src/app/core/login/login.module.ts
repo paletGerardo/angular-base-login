@@ -11,11 +11,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatInputModule } from '@angular/material/input';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RegistrationFormComponent } from "./components/registration/registration-form/registration-form.component";
 import { LoginFormComponent } from "./components/login/login-form/login-form.component";
+import { MaterialModule } from "../material/material.module";
 
 
 @NgModule( {
@@ -29,16 +28,10 @@ import { LoginFormComponent } from "./components/login/login-form/login-form.com
   ],
   imports: [
     SharedModule,
+    MaterialModule,
     LoginRoutingModule,
     CommonModule,
-    MatCardModule,
-    MatDividerModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatCheckboxModule
+    ReactiveFormsModule
   ]
 } )
 export class LoginModule {

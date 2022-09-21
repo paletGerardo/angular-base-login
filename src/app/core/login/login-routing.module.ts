@@ -21,14 +21,12 @@ const routes: Routes = [
         component: LoginComponent,
         data: { title: 'Ingresar' }
       },
-
-      {
-        path: 'register',
-        pathMatch: 'full',
-        component: RegistrationComponent,
-        data: { title: 'Registro' }
-      }
     ]
+  },
+  {
+    path: 'register',
+    component: RegistrationComponent,
+    data: { title: 'Registro' }
   },
   {
     path: '**',

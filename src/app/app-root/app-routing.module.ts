@@ -5,10 +5,10 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'auth/login'
+    redirectTo: 'auth'
   },
   {
-    path: 'auth/login',
+    path: 'auth',
     loadChildren: () =>
       import('../core/login/login.module').then(( m) => m.LoginModule),
   },
@@ -21,7 +21,7 @@ const routes: Routes = [
   // Este elelemento siempre tiene que quedar al final.
   {
     path: '**',
-    redirectTo: 'auth/login'
+    redirectTo: 'auth'
   }
 ];
 
