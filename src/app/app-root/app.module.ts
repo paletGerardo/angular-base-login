@@ -8,12 +8,16 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HomeComponent } from '../dashboard/features/2-router-outlet/2-home/home.component';
 import { BlockUIModule } from "ng-block-ui";
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { FooterComponent } from "../dashboard/features/3-footer/footer.component";
+import { NavComponent } from '../dashboard/features/1-nav/nav.component';
 
 @NgModule( {
   declarations: [
     AppComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    NavComponent
   ],
   imports: [
     AppRoutingModule,
@@ -22,6 +26,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
     BrowserModule,
     CoreModule,
     ReactiveFormsModule,
+    
   ],
   providers: [],
   exports: [
