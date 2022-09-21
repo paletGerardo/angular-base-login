@@ -6,13 +6,17 @@ import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { MaterialModule } from "../core/material/material.module";
 import { HomeComponent } from "./features/2-router-outlet/1-home/home.component";
 import { DashboardComponent } from "./dashboard.component";
+import { CarouselComponent } from './features/2-router-outlet/1-home/feature/1-carousel/caurosel.component';
+import { CardsComponent } from './features/2-router-outlet/1-home/feature/2-cards/cards.component';
 
 @NgModule( {
   declarations: [
     DashboardComponent,
     FooterComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    CarouselComponent,
+    CardsComponent
 
   ],
   exports: [
