@@ -24,7 +24,6 @@ import { DashboardComponent } from "./dashboard.component";
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
   ]
 })
 export class DashboardModule { }

@@ -5,13 +5,25 @@ import { TimeoutError } from 'rxjs/internal/util/TimeoutError';
 import { catchError, retry, timeout } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Utils } from "../util/utils";
+import { MatDialog } from "@angular/material/dialog";
+import { ErrorDialogComponent } from "../errors/error-dialog/error-dialog.component";
 
+export interface DialogErrorConfig {
+  showDialog?: boolean,
+  title?: string,
+  body?: string,
+  footer?: string,
+  button1?: string,
+  button2?: string,
+
+}
 
 export interface HttpClientOptions {
 	headers?: { [key: string]: string | number | null } | null;
 	params?: { [key: string]: string | number } | null;
 	body?: { [key: string]: any } | null;
 	config?: {
+    dialog?: DialogErrorConfig
 		bodyType?: 'json' | 'formData', // Default json
 		retry?: number; // Default 0
 	};
@@ -22,7 +34,10 @@ export interface HttpClientOptions {
 export class HttpService {
 	defaultOptions: HttpClientOptions;
 
-	constructor(private httpClient: HttpClient) {
+	constructor(
+    private httpClient: HttpClient,
+    private dialog: MatDialog
+  ) {
 		this.defaultOptions = {
 			headers: {
 				'content-Type': 'application/json; charset=utf-8',
@@ -60,6 +75,18 @@ export class HttpService {
 		return this.xhr('patch', resource, options);
 	}
 
+  private showDialog( config: DialogErrorConfig | undefined ): void {
+    this.dialog.open( ErrorDialogComponent, {
+      width: '350px',
+      data: config,
+      restoreFocus: false
+    } );
+  }
+
+  private returnError( msj: string, err: any ): void {
+    throw new Error(msj + err.message);
+  }
+
 	private xhr<T>(method: string, resource: string, newOptions?: HttpClientOptions): Observable<T> {
 		const options = this.prepareHttpClientOptions(this.defaultOptions, newOptions);
 		// Si se envia "http" significa que es absoluta, de otra manera concatena la api con el resource
@@ -70,39 +97,45 @@ export class HttpService {
 			retry(environment.retry),
 			// @ts-ignore
 			catchError((err: any, caught: Observable<any>): ObservableInput<any> => {
-				if (err instanceof TimeoutError) {
-					console.log('Error de timeout', err);
-				}
+        let msj;
+        let dialog: DialogErrorConfig = options.config.dialog;
+        if (err instanceof TimeoutError) {
+          msj= 'Error de timeout';
+          this.showDialogOrThowError( dialog, msj, err );
+        }
 				if (err.status === 400) {
-					console.log('Error de Validación de datos', 'volver a intentar');
+          msj= 'Error de Validación de datos, volver a intentar';
+          this.showDialogOrThowError( dialog, msj, err );
 				}
 				if (err.status === 403) {
-					console.log('Forbidden', 'volver a intentar');
+          msj= 'Forbidden, volver a intentar';
+          this.showDialogOrThowError( dialog, msj, err );
 				}
 				if (err.status === 404) {
-					console.log('Bad http');
-          throw new Error('error');
+          msj= 'Bad request, recurso no encontrado';
+          this.showDialogOrThowError( dialog, msj, err );
 				}
 				if (err.status === 429) {
-					console.log('Has sido bloqueado', 'Volver');
+          msj= 'Has sido bloqueado';
+          this.showDialogOrThowError( dialog, msj, err );
 				} else if (err.status === 500) {
-					console.log('Error de servidor', 'Volver a intentar');
-					throw new Error(err.message);
+          msj= 'Error en el servidor';
+          this.showDialogOrThowError( dialog, msj, err );
 				} else {
-					if (err.message) {
-						console.log(err.message);
-						throw new Error(err.message);
-					}
-					if (err.error!.message) {
-						console.log(err.error.message);
-						throw new Error(err.error.message);
-					}
+          msj= 'Error desconocido';
+          this.showDialogOrThowError( dialog, msj, err );
 				}
 			})
 		);
 	}
 
-	/**
+  private showDialogOrThowError( dialog: DialogErrorConfig, msj: string, err: any ): void {
+    dialog.body = msj;
+    dialog.showDialog ?
+      this.showDialog( dialog ) : this.returnError( msj, err );
+  }
+
+  /**
 	 * Para borrar un header, enviar con value en `null`
 	 */
 	private setHeaders(optionsMerged: any) {

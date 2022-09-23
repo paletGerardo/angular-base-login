@@ -6,14 +6,15 @@ import { HttpClientOptions, HttpService } from "./http.service";
 @Injectable()
 export class HttpWrapperService {
   constructor(
-    private http: HttpService,
+    private httpService: HttpService,
   ) { }
 
-  public get<T>(resource: string, options?: HttpClientOptions): Observable<T> {
-    return this.http.get(resource, this.setOptions(options));
+  public get<T>(resource: string, configs?: HttpClientOptions): Observable<T> {
+    return this.httpService.get(resource, this.setOptions(configs));
   }
 
-  public post<T>(resource: string, _data?: any): Observable<T> {
+//  public post<T>(resource: string, _data?: any, configs?: HttpClientOptions): Observable<T> {
+  public post<T>(resource: string, _data?: any, configs?: HttpClientOptions): Observable<T> {
     const info = {
       headers: {
         'responseType': 'json',
@@ -21,11 +22,12 @@ export class HttpWrapperService {
       },
       body: _data || ''
     };
-    return this.http.post(resource, info);
+//    return this.httpService.post(resource, info);
+    return this.httpService.post(resource, this.setOptions(configs));
   }
 
   public put<T>(resource: string, options?: HttpClientOptions): Observable<T> {
-    return this.http.put(resource, this.setOptions(options));
+    return this.httpService.put(resource, this.setOptions(options));
   }
 
   public delete<T>(resource: string, options?: HttpClientOptions): Observable<T> {
@@ -33,7 +35,7 @@ export class HttpWrapperService {
     if (!auth) {
       return null;
     }*/
-    return this.http.delete(resource, this.setOptions(options));
+    return this.httpService.delete(resource, this.setOptions(options));
   }
 
   public patch<T>(resource: string, data: any): Observable<T> {
@@ -43,7 +45,7 @@ export class HttpWrapperService {
       },
       body: data
     };
-    return this.http.patch(resource, this.setOptions(info));
+    return this.httpService.patch(resource, this.setOptions(info));
   }
 
   public newPut<T>(resource: string, data: any): Observable<T> {
@@ -53,7 +55,7 @@ export class HttpWrapperService {
       },
       body: data
     };
-    return this.http.put(resource, this.setOptions(info));
+    return this.httpService.put(resource, this.setOptions(info));
   }
 
 
