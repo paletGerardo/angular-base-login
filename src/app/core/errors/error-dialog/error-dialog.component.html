@@ -1,7 +1,7 @@
-<h2 mat-dialog-title class="textCenter">Error al inicia sesión</h2>
-<mat-dialog-content class="textCenter">La dirección de correo o contraseña introducida es incorrecta.</mat-dialog-content>
-<mat-dialog-content class="textCenter textRecordar">¿Necesitas ayuda para recuperar la contraseña?
-</mat-dialog-content>
+<h2 *ngIf="data.title" mat-dialog-title class="textCenter">{{data.title}}</h2>
+<mat-dialog-content *ngIf="data.body" class="textCenter">{{data.body}}</mat-dialog-content>
+<mat-dialog-content *ngIf="data.footer" class="textCenter textRecordar">{{data.footer}}</mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Aceptar</button>
+    <button *ngIf="data.button2" mat-button mat-dialog-close>{{data.button2}}</button>
+    <button *ngIf="data.button1" mat-button mat-dialog-close>{{data.button1}}</button>
 </mat-dialog-actions>

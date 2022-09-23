@@ -28,7 +28,6 @@ import { CardsComponent } from './features/2-router-outlet/1-home/feature/2-card
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
   ]
 })
 export class DashboardModule { }
