@@ -4,9 +4,11 @@
 
 export const environment = {
   production: false,
-  url: 'https://jsonplaceholder.typicode.com',
+  url: 'https://hours-backend-pruebas.herokuapp.com/auth',
   httpTimeout: 3000,
-  retry: 2
+  retry: 2,
+  // auth | dashboard
+  init: 'dashboard'
 };
 /*
  * For easier debugging in development mode, you can import the following file
