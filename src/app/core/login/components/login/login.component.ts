@@ -4,7 +4,7 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../animations/route.animations"
 import { ResponseLogin } from "../../model/responseLogin";
 import { INTERNAL_ROUTES } from "../../../routes/internal.routes";
 import { LoginService } from "../../services/login.service";
-import { catchError, tap } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 import { LoadingService } from "../../../loading/loading.service";
 import { LoginFormValues } from "../../model/loginFormValues";
 import { Observable } from "rxjs";

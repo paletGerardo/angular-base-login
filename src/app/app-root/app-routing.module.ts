@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { environment } from "../../environments/environment";
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'auth'
+    redirectTo: environment.init
   },
   {
     path: 'auth',
@@ -21,7 +22,7 @@ const routes: Routes = [
   // Este elelemento siempre tiene que quedar al final.
   {
     path: '**',
-    redirectTo: 'auth'
+    redirectTo: environment.init
   }
 ];
 
