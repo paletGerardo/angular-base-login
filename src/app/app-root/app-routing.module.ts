@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: environment.init
+    redirectTo: environment.INIT
   },
   {
     path: 'auth',
@@ -22,7 +22,7 @@ const routes: Routes = [
   // Este elelemento siempre tiene que quedar al final.
   {
     path: '**',
-    redirectTo: environment.init
+    redirectTo: environment.INIT
   }
 ];
 

@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  url: 'https://hours-backend-pruebas.herokuapp.com/auth',
-  httpTimeout: 3000,
-  retry: 2,
+  URL_BASE: 'http://localhost:8080',
+  HTTP_TIME_OUT: 3000,
+  RETRY: 0,
   // auth | dashboard
-  init: 'auth'
+  INIT: 'auth'
 };
 /*
  * For easier debugging in development mode, you can import the following file
