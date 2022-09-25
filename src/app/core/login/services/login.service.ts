@@ -22,29 +22,24 @@ export class LoginService {
   ) {}
 
 
-  login( emailIn: string, passwordIn: string, isMock = false ): Observable<ResponseLogin> {
+  login( emailIn: string, passwordIn: string ): Observable<ResponseLogin> {
     const response: ResponseLogin = { error: true, message: ERROR_CONSTANTS.API.ERROR };
-    if ( isMock ) {
-      response.error = false;
-      response.message = 'OK';
-      return of( response );
-    }
     //@ts-ignore
-    const body = {
+    const data = {
       mail: emailIn,
       password: passwordIn,
     }
     let httpClientOptions: HttpClientOptions = {
+      body: data,
       config: {
         dialog: {
-          showDialog: false,
           title: 'Error al inicia sesión',
           body: 'Usuario o password incorrecto.',
           button1: 'Aceptar'
         }
       }
     }
-    return this.httpWrapperService.post( ENDPOINTS_API.AUTH.LOGIN, body, httpClientOptions ).pipe(
+    return this.httpWrapperService.post( ENDPOINTS_API.LOGIN, httpClientOptions ).pipe(
       delay( 500 ),
       map( ( res: any ) => {
         response.error = res.status != 200;

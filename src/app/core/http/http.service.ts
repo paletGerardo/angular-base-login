@@ -3,19 +3,17 @@ import { Observable, ObservableInput } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TimeoutError } from 'rxjs/internal/util/TimeoutError';
 import { catchError, retry, timeout } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment as ENV} from 'src/environments/environment';
 import { Utils } from "../util/utils";
 import { MatDialog } from "@angular/material/dialog";
 import { ErrorDialogComponent } from "../errors/error-dialog/error-dialog.component";
 
 export interface DialogErrorConfig {
-  showDialog?: boolean,
   title?: string,
   body?: string,
   footer?: string,
   button1?: string,
   button2?: string,
-
 }
 
 export interface HttpClientOptions {
@@ -41,15 +39,12 @@ export class HttpService {
 		this.defaultOptions = {
 			headers: {
 				'content-Type': 'application/json; charset=utf-8',
-        'user': `mimail@gmail.com`,
-        'password': `admin`
-
 			},
 			params: {},
 			body: {},
 			config: {
 				bodyType: 'json',
-				retry: 0
+				retry: ENV.RETRY
 			},
 			responseType: 'json'
 		};
@@ -90,49 +85,59 @@ export class HttpService {
 	private xhr<T>(method: string, resource: string, newOptions?: HttpClientOptions): Observable<T> {
 		const options = this.prepareHttpClientOptions(this.defaultOptions, newOptions);
 		// Si se envia "http" significa que es absoluta, de otra manera concatena la api con el resource
-		const endpoint = resource.substring(0, 4) === 'http' ? resource : `${environment.url}${resource}`;
+		const endpoint = resource.substring(0, 4) === 'http' ? resource : `${ENV.URL_BASE}${resource}`;
 		return this.httpClient.request<T>(method, endpoint, options.optionsMerged)
 		.pipe(
-			timeout(environment.httpTimeout),
-			retry(environment.retry),
+			timeout(ENV.HTTP_TIME_OUT),
+			retry(ENV.RETRY),
 			// @ts-ignore
 			catchError((err: any, caught: Observable<any>): ObservableInput<any> => {
         let msj;
         let dialog: DialogErrorConfig = options.config.dialog;
         if (err instanceof TimeoutError) {
           msj= 'Error de timeout';
-          this.showDialogOrThowError( dialog, msj, err );
+          this.resolverResponse( dialog, msj, err );
         }
 				if (err.status === 400) {
           msj= 'Error de Validación de datos, volver a intentar';
-          this.showDialogOrThowError( dialog, msj, err );
+          this.resolverResponse( dialog, msj, err );
+				}
+        if (err.status === 401) {
+          msj= 'Usuario o password invalido.';
+          this.resolverResponse( dialog, msj, err );
 				}
 				if (err.status === 403) {
           msj= 'Forbidden, volver a intentar';
-          this.showDialogOrThowError( dialog, msj, err );
+          this.resolverResponse( dialog, msj, err );
 				}
 				if (err.status === 404) {
           msj= 'Bad request, recurso no encontrado';
-          this.showDialogOrThowError( dialog, msj, err );
+          this.resolverResponse( dialog, msj, err );
 				}
 				if (err.status === 429) {
           msj= 'Has sido bloqueado';
-          this.showDialogOrThowError( dialog, msj, err );
+          this.resolverResponse( dialog, msj, err );
 				} else if (err.status === 500) {
           msj= 'Error en el servidor';
-          this.showDialogOrThowError( dialog, msj, err );
+          this.resolverResponse( dialog, msj, err );
 				} else {
           msj= 'Error desconocido';
-          this.showDialogOrThowError( dialog, msj, err );
+          this.resolverResponse( dialog, msj, err );
 				}
 			})
 		);
 	}
 
-  private showDialogOrThowError( dialog: DialogErrorConfig, msj: string, err: any ): void {
-    dialog.body = msj;
-    dialog.showDialog ?
-      this.showDialog( dialog ) : this.returnError( msj, err );
+  private resolverResponse( dialog: DialogErrorConfig, msj:string, err: TimeoutError ): void {
+    this.showDialogError( dialog, msj );
+    throw new Error( msj + err.message );
+  }
+
+  private showDialogError( dialog: DialogErrorConfig, msj: string ): void {
+    if (dialog) {
+      dialog.body = msj;
+      this.showDialog( dialog );
+    }
   }
 
   /**
