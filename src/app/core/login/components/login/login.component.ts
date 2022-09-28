@@ -4,39 +4,47 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../animations/route.animations"
 import { ResponseLogin } from "../../model/responseLogin";
 import { INTERNAL_ROUTES } from "../../../routes/internal.routes";
 import { LoginService } from "../../services/login.service";
-import { catchError } from "rxjs/operators";
+import { NotRegisteredDialogComponent } from "../not-registered-dialog/not-registered-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
+import { tap } from "rxjs/operators";
 import { LoadingService } from "../../../loading/loading.service";
 import { LoginFormValues } from "../../model/loginFormValues";
-import { Observable } from "rxjs";
 
-@Component( {
+@Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: [ './login.component.scss' ]
-} )
+  styleUrls: ['./login.component.scss']
+})
 export class LoginComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
   constructor(
     private loginService: LoginService,
+    private dialog: MatDialog,
     private loadingService: LoadingService,
-    private router: Router ) {}
+    private router: Router) {}
 
   ngOnInit(): void {}
 
   onCreateAccountClick(): void {
-    this.router.navigate( [ '/create-account' ] );
+    this.router.navigate(['/create-account']);
   }
 
   public loginAndRedirect( data: LoginFormValues ): void {
-    this.loadingService.toggleLoading();
-    this.loginService.login( data.email, data.password ).pipe(
-      catchError((err: any, caught: Observable<any>): any => {
-        console.log(err)
-      })
-    ).subscribe( ( loginResponse: ResponseLogin ) => {
-        if ( !loginResponse.error ) this.router.navigateByUrl( INTERNAL_ROUTES.HOME );
-      }
-    );
+    this.loginService.login( data.email, data.password, true )
+      .pipe(tap(() => this.loadingService.toggleLoading()))
+      .subscribe( ( loginResponse: ResponseLogin ) => {
+        console.log(INTERNAL_ROUTES.HOME);
+          loginResponse.error ? this.showDialog(loginResponse.message) : this.router.navigateByUrl( INTERNAL_ROUTES.HOME );
+        }
+      );
+  }
+
+  private showDialog( message: string | undefined ): void {
+    this.dialog.open( NotRegisteredDialogComponent, {
+      width: '350px',
+      data: message,
+      restoreFocus: false
+    } );
   }
 }

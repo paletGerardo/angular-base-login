@@ -3,25 +3,15 @@ import { Observable, ObservableInput } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TimeoutError } from 'rxjs/internal/util/TimeoutError';
 import { catchError, retry, timeout } from 'rxjs/operators';
-import { environment as ENV} from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { Utils } from "../util/utils";
-import { MatDialog } from "@angular/material/dialog";
-import { ErrorDialogComponent } from "../errors/error-dialog/error-dialog.component";
 
-export interface DialogErrorConfig {
-  title?: string,
-  body?: string,
-  footer?: string,
-  button1?: string,
-  button2?: string,
-}
 
 export interface HttpClientOptions {
 	headers?: { [key: string]: string | number | null } | null;
 	params?: { [key: string]: string | number } | null;
 	body?: { [key: string]: any } | null;
 	config?: {
-    dialog?: DialogErrorConfig
 		bodyType?: 'json' | 'formData', // Default json
 		retry?: number; // Default 0
 	};
@@ -32,19 +22,19 @@ export interface HttpClientOptions {
 export class HttpService {
 	defaultOptions: HttpClientOptions;
 
-	constructor(
-    private httpClient: HttpClient,
-    private dialog: MatDialog
-  ) {
+	constructor(private httpClient: HttpClient) {
 		this.defaultOptions = {
 			headers: {
 				'content-Type': 'application/json; charset=utf-8',
+        'user': `mimail@gmail.com`,
+        'password': `admin`
+
 			},
 			params: {},
 			body: {},
 			config: {
 				bodyType: 'json',
-				retry: ENV.RETRY
+				retry: 0
 			},
 			responseType: 'json'
 		};
@@ -70,77 +60,49 @@ export class HttpService {
 		return this.xhr('patch', resource, options);
 	}
 
-  private showDialog( config: DialogErrorConfig | undefined ): void {
-    this.dialog.open( ErrorDialogComponent, {
-      width: '350px',
-      data: config,
-      restoreFocus: false
-    } );
-  }
-
-  private returnError( msj: string, err: any ): void {
-    throw new Error(msj + err.message);
-  }
-
 	private xhr<T>(method: string, resource: string, newOptions?: HttpClientOptions): Observable<T> {
 		const options = this.prepareHttpClientOptions(this.defaultOptions, newOptions);
 		// Si se envia "http" significa que es absoluta, de otra manera concatena la api con el resource
-		const endpoint = resource.substring(0, 4) === 'http' ? resource : `${ENV.URL_BASE}${resource}`;
+		const endpoint = resource.substring(0, 4) === 'http' ? resource : `${environment.URL_BASE}${resource}`;
 		return this.httpClient.request<T>(method, endpoint, options.optionsMerged)
 		.pipe(
-			timeout(ENV.HTTP_TIME_OUT),
-			retry(ENV.RETRY),
+			timeout(environment.HTTP_TIME_OUT),
+			retry(environment.RETRY),
 			// @ts-ignore
 			catchError((err: any, caught: Observable<any>): ObservableInput<any> => {
-        let msj;
-        let dialog: DialogErrorConfig = options.config.dialog;
-        if (err instanceof TimeoutError) {
-          msj= 'Error de timeout';
-          this.resolverResponse( dialog, msj, err );
-        }
-				if (err.status === 400) {
-          msj= 'Error de Validación de datos, volver a intentar';
-          this.resolverResponse( dialog, msj, err );
+				if (err instanceof TimeoutError) {
+					console.log('Error de timeout', err);
 				}
-        if (err.status === 401) {
-          msj= 'Usuario o password invalido.';
-          this.resolverResponse( dialog, msj, err );
+				if (err.status === 400) {
+					console.log('Error de Validación de datos', 'volver a intentar');
 				}
 				if (err.status === 403) {
-          msj= 'Forbidden, volver a intentar';
-          this.resolverResponse( dialog, msj, err );
+					console.log('Forbidden', 'volver a intentar');
 				}
 				if (err.status === 404) {
-          msj= 'Bad request, recurso no encontrado';
-          this.resolverResponse( dialog, msj, err );
+					console.log('Bad http');
+          throw new Error('error');
 				}
 				if (err.status === 429) {
-          msj= 'Has sido bloqueado';
-          this.resolverResponse( dialog, msj, err );
+					console.log('Has sido bloqueado', 'Volver');
 				} else if (err.status === 500) {
-          msj= 'Error en el servidor';
-          this.resolverResponse( dialog, msj, err );
+					console.log('Error de servidor', 'Volver a intentar');
+					throw new Error(err.message);
 				} else {
-          msj= 'Error desconocido';
-          this.resolverResponse( dialog, msj, err );
+					if (err.message) {
+						console.log(err.message);
+						throw new Error(err.message);
+					}
+					if (err.error!.message) {
+						console.log(err.error.message);
+						throw new Error(err.error.message);
+					}
 				}
 			})
 		);
 	}
 
-  private resolverResponse( dialog: DialogErrorConfig, msj:string, err: TimeoutError ): void {
-    this.showDialogError( dialog, msj );
-    throw new Error( msj + err.message );
-  }
-
-  private showDialogError( dialog: DialogErrorConfig, msj: string ): void {
-    if (dialog) {
-      dialog.body = msj;
-      this.showDialog( dialog );
-    }
-  }
-
-  /**
+	/**
 	 * Para borrar un header, enviar con value en `null`
 	 */
 	private setHeaders(optionsMerged: any) {

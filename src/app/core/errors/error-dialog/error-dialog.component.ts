@@ -5,7 +5,6 @@ import {
   OnInit
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogErrorConfig } from "../../http/http.service";
 
 
 @Component( {
@@ -16,12 +15,12 @@ import { DialogErrorConfig } from "../../http/http.service";
 } )
 export class ErrorDialogComponent implements OnInit {
   constructor(
+    @Inject( MAT_DIALOG_DATA )
     public dialogRef: MatDialogRef<ErrorDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogErrorConfig
   ) {}
 
   ngOnInit(): void {
-  console.log(this.data)
+
   }
 
   cerrarPopUp() {

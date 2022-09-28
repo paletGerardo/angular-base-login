@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from "@angular/forms";
 import { BlockUIModule } from "ng-block-ui";
 import { DashboardModule } from "../dashboard/dashboard.module";
+import { CardsService } from '../dashboard/features/2-router-outlet/1-home/feature/2-cards/cards.service';
 
 @NgModule( {
   declarations: [
@@ -21,7 +22,9 @@ import { DashboardModule } from "../dashboard/dashboard.module";
     ReactiveFormsModule,
     DashboardModule,
   ],
-  providers: [],
+  providers: [
+    CardsService
+  ],
   exports: [
   ],
   bootstrap: [ AppComponent ]

@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResponseLogin } from "../model/responseLogin";
 import { catchError, delay, map } from "rxjs/operators";
-import { Observable, ObservableInput, of } from "rxjs";
+import { Observable, of } from "rxjs";
 import { ERROR_CONSTANTS } from 'src/app/core/errors/errors.const';
 import { AuthService } from "../../auth/auth.service";
 import { ENDPOINTS_API } from "../../routes/api.routes";
 import { UserAuthenticated } from "../model/userAuthenticated";
-import { HttpWrapperService } from "../../http/http-wrapper.service";
-import { HttpClientOptions } from "../../http/http.service";
 
 
 @Injectable( {
@@ -17,39 +15,35 @@ import { HttpClientOptions } from "../../http/http.service";
 export class LoginService {
 
   constructor(
-    private httpWrapperService: HttpWrapperService,
+    private http: HttpClient,
     private authService: AuthService,
   ) {}
 
 
-  login( emailIn: string, passwordIn: string ): Observable<ResponseLogin> {
+  login( emailIn: string, passwordIn: string, isMock = false ): Observable<ResponseLogin> {
     const response: ResponseLogin = { error: true, message: ERROR_CONSTANTS.API.ERROR };
+    if (isMock) {
+      response.error = false;
+      response.message = 'OK';
+      return of( response );
+    }
     //@ts-ignore
-    const data = {
-      mail: emailIn,
-      password: passwordIn,
-    }
-    let httpClientOptions: HttpClientOptions = {
-      body: data,
-      config: {
-        dialog: {
-          title: 'Error al inicia sesión',
-          body: 'Usuario o password incorrecto.',
-          button1: 'Aceptar'
-        }
-      }
-    }
-    return this.httpWrapperService.post( ENDPOINTS_API.LOGIN, httpClientOptions ).pipe(
-      delay( 500 ),
-      map( ( res: any ) => {
-        response.error = res.status != 200;
-        response.message = res.statusText; // todo cambiar por message una vez que cambie el back.
-        //@ts-ignore
-        const { user, token } = this.getUserAndToken( res );
-        this.authService.setUser( user, token );
-        return response;
-      } )
-    );
+    const { options, body } = this.getOptionAndBody( emailIn, passwordIn );
+    return this.http.post( ENDPOINTS_API.AUTH.LOGIN, body, options )
+      .pipe(
+        delay(500),
+        map( ( res: any ) => {
+          response.error = res.status != 200;
+          response.message = res.statusText; // todo cambiar por message una vez que cambie el back.
+          //@ts-ignore
+          const { user, token } = this.getUserAndToken( res );
+          this.authService.setUser( user, token );
+          return response;
+        } ),
+        catchError( e => {
+          return of( response );
+        } )
+      );
   }
 
   private getUserAndToken( res: any ): Object {
@@ -62,6 +56,18 @@ export class LoginService {
     };
     const token = 'Bearer asdfjhasdfjahdahdiauhdaidbadjbnakdjakdjhadlkjahdfakljdhfakjdhalkdfjhaldkfjahsdfkjahdfakjh';
     return { user, token };
+  }
+
+  private getOptionAndBody( emailIn: string, passwordIn: string ): Object {
+    const options = {
+      observe: 'response' as const,
+      responsegType: 'json' as const,
+    }
+    const body = {
+      mail: emailIn,
+      password: passwordIn,
+    }
+    return { options, body };
   }
 
 }

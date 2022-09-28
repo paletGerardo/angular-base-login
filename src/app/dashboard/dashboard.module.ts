@@ -30,6 +30,7 @@ import { ProductsComponent } from './features/3-router-outlet/1-home/feature/2-p
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    MaterialModule
   ]
 })
 export class DashboardModule { }

@@ -6,48 +6,62 @@ import { HttpClientOptions, HttpService } from "./http.service";
 @Injectable()
 export class HttpWrapperService {
   constructor(
-    private httpService: HttpService,
+    private http: HttpService,
   ) { }
 
-  public get<T>( resource: string, options?: HttpClientOptions ): Observable<T> {
-    return this.httpService.get( resource, this.setOptions( options ) );
+  public get<T>(resource: string, options?: HttpClientOptions): Observable<T> {
+    return this.http.get(resource, this.setOptions(options));
   }
 
-  public post<T>( resource: string, options?: HttpClientOptions ): Observable<T> {
-    return this.httpService.post( resource, this.setOptions( options ) );
-  }
-
-  public put<T>( resource: string, options?: HttpClientOptions ): Observable<T> {
-    return this.httpService.put( resource, this.setOptions( options ) );
-  }
-
-  public delete<T>( resource: string, options?: HttpClientOptions ): Observable<T> {
-    /*    const auth = this.userProvider.isAuth();
-        if (!auth) {
-          return null;
-        }*/
-    return this.httpService.delete( resource, this.setOptions( options ) );
-  }
-
-  public patch<T>( resource: string, data: any ): Observable<T> {
+  public post<T>(resource: string, _data?: any): Observable<T> {
     const info = {
       headers: {
+        'responseType': 'json',
+        'observe': 'response'
+      },
+      body: _data || ''
+    };
+    return this.http.post(resource, info);
+  }
+
+  public put<T>(resource: string, options?: HttpClientOptions): Observable<T> {
+    return this.http.put(resource, this.setOptions(options));
+  }
+
+  public delete<T>(resource: string, options?: HttpClientOptions): Observable<T> {
+/*    const auth = this.userProvider.isAuth();
+    if (!auth) {
+      return null;
+    }*/
+    return this.http.delete(resource, this.setOptions(options));
+  }
+
+  public patch<T>(resource: string, data: any): Observable<T> {
+    const info = {
+      headers: {
+        'content-Type': 'application/json; charset=utf-8',
       },
       body: data
     };
-    return this.httpService.patch( resource, this.setOptions( info ) );
+    return this.http.patch(resource, this.setOptions(info));
   }
 
-  public newPut<T>( resource: string, data: any ): Observable<T> {
-    return this.httpService.put( resource, this.setOptions( data ) );
+  public newPut<T>(resource: string, data: any): Observable<T> {
+    const info = {
+      headers: {
+        'content-Type': 'application/json; charset=utf-8',
+      },
+      body: data
+    };
+    return this.http.put(resource, this.setOptions(info));
   }
 
 
-  private setOptions( options?: HttpClientOptions ): HttpClientOptions {
-    return Utils.mergeDeep( options || {}, {
+  private setOptions(options?: HttpClientOptions): HttpClientOptions {
+    return Utils.mergeDeep(options || {}, {
       headers: {
         Authorization: 'Bearer ',
       }
-    } );
+    });
   }
 }

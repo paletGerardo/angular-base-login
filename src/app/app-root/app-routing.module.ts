@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { environment } from "../../environments/environment";
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
   // Este elelemento siempre tiene que quedar al final.
   {
     path: '**',
-    redirectTo: environment.INIT
+    redirectTo: 'auth'
   }
 ];
 
