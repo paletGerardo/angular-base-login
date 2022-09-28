@@ -108,12 +108,13 @@
         <img class="w-full" src="/forest.jpg" alt="Forest">
         <div class="px-6 py-4">
           <div class="font-bold text-xl mb-2">Forest</div>
-          <p class="text-gray-700 text-base">
+          <p class="text-gray-700 text-base"  [style.font-family]="text">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium nihil.
           </p>
         </div>
-        <div class="px-10 pt-10 pb-12" style="background-color:#df0209;"> 
-            <p style="color:aliceblue;text-align: center;">coberturas desde</p>
+        <div class="px-10 pt-10 pb-12" [style.background-color]="clrPrimary"> 
+         
+            <p  style="color:aliceblue;text-align: center;">coberturas desde</p>
             <hr style="background-color:aliceblue">
             <span style="color:aliceblue;text-align: center;font-size :26px;position: relative;margin: 4px;top: 9px;">$589,68 mes</span>
             <div class="btn-container">
@@ -132,7 +133,7 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium nihil.
           </p>
         </div>
-        <div class="px-10 pt-10 pb-12" style="background-color:#df0209;"> 
+        <div class="px-10 pt-10 pb-12" [style.background-color]="clrSecondary"> 
           <p style="color:aliceblue;text-align: center;">coberturas desde</p>
           <hr style="background-color:aliceblue">
           <span style="color:aliceblue;text-align: center;font-size :26px;position: relative;margin: 4px;top: 9px;">$589,68 mes</span>
