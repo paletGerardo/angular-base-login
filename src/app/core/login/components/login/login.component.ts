@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   public loginAndRedirect( data: LoginFormValues ): void {
     this.loadingService.toggleLoading();
-    this.loginService.login( data.email, data.password, true ).pipe(
+    this.loginService.login( data.email, data.password ).pipe(
       catchError((err: any, caught: Observable<any>): any => {
         console.log(err)
       })

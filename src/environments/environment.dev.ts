@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
   url: 'https://hours-backend-pruebas.herokuapp.com/auth',
-  httpTimeout: 3000,
-  retry: 2,
+  HTTP_TIME_OUT: 3000,
+  RETRY: 2,
   // auth | dashboard
-  init: 'dashboard'
+  INIT: 'dashboard'
 }
