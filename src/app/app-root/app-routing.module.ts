@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
- /* {
+  {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'auth'
-  },*/
-{
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'dashboard'
+    redirectTo: environment.INIT
   },
   {
     path: 'auth',

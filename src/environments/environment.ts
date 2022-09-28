@@ -4,9 +4,11 @@
 
 export const environment = {
   production: false,
-  url: 'https://jsonplaceholder.typicode.com',
-  httpTimeout: 3000,
-  retry: 2
+  URL_BASE: 'http://localhost:8080',
+  HTTP_TIME_OUT: 3000,
+  RETRY: 0,
+  // auth | dashboard
+  INIT: 'dashboard'
 };
 /*
  * For easier debugging in development mode, you can import the following file

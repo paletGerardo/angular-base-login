@@ -1,3 +1,6 @@
 <block-ui name="app">
-  <app-dashboard></app-dashboard>
+  <div class="content" [@routeAnimations]="outlet.isActivated && outlet.activatedRoute.component">
+    <div id="scroll-top-helper"></div>
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </block-ui>

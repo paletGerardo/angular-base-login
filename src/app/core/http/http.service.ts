@@ -63,11 +63,11 @@ export class HttpService {
 	private xhr<T>(method: string, resource: string, newOptions?: HttpClientOptions): Observable<T> {
 		const options = this.prepareHttpClientOptions(this.defaultOptions, newOptions);
 		// Si se envia "http" significa que es absoluta, de otra manera concatena la api con el resource
-		const endpoint = resource.substring(0, 4) === 'http' ? resource : `${environment.url}${resource}`;
+		const endpoint = resource.substring(0, 4) === 'http' ? resource : `${environment.URL_BASE}${resource}`;
 		return this.httpClient.request<T>(method, endpoint, options.optionsMerged)
 		.pipe(
-			timeout(environment.httpTimeout),
-			retry(environment.retry),
+			timeout(environment.HTTP_TIME_OUT),
+			retry(environment.RETRY),
 			// @ts-ignore
 			catchError((err: any, caught: Observable<any>): ObservableInput<any> => {
 				if (err instanceof TimeoutError) {
