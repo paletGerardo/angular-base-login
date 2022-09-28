@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from "./features/3-footer/footer.component";
+import { FooterComponent } from "./features/4--footer/footer.component";
 import { NavComponent } from "./features/1-nav/nav.component";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { MaterialModule } from "../core/material/material.module";
-import { HomeComponent } from "./features/2-router-outlet/1-home/home.component";
+import { HomeComponent } from "./features/3-router-outlet/1-home/home.component";
 import { DashboardComponent } from "./dashboard.component";
-import { CarouselComponent } from './features/2-router-outlet/1-home/feature/1-carousel/caurosel.component';
-import { CardsComponent } from './features/2-router-outlet/1-home/feature/2-cards/cards.component';
+import { CarouselComponent } from './features/2-carousel/caurosel.component';
+import { CardComponent } from './features/3-router-outlet/1-home/feature/2-products/features/card/card.component';
+import { ProductsComponent } from './features/3-router-outlet/1-home/feature/2-products/products.component';
 
 @NgModule( {
   declarations: [
@@ -16,7 +17,8 @@ import { CardsComponent } from './features/2-router-outlet/1-home/feature/2-card
     HomeComponent,
     NavComponent,
     CarouselComponent,
-    CardsComponent
+    CardComponent,
+    ProductsComponent
 
   ],
   exports: [
