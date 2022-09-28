@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   URL_BASE: 'http://localhost:8080',
-  HTTP_TIME_OUT: 3000,
+  HTTP_TIME_OUT: 15000,
   RETRY: 0,
   // auth | dashboard
   INIT: 'dashboard'
