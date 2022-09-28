@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from "./features/4--footer/footer.component";
+import { FooterComponent } from "./features/4-footer/footer.component";
 import { NavComponent } from "./features/1-nav/nav.component";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { MaterialModule } from "../core/material/material.module";
