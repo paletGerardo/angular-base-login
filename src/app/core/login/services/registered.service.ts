@@ -23,7 +23,7 @@ export class RegisteredService {
     const response: ResponseLogin = { error: true, message: ERROR_CONSTANTS.API.ERROR };
     //@ts-ignore
     const { options, body } = this.getOptionAndBody( emailIn, passwordIn );
-    return this.http.post( ENDPOINTS_API.AUTH.LOGIN, body, options )
+    return this.http.post( ENDPOINTS_API.LOGIN, body, options )
       .pipe(
         map( ( res: any ) => {
           response.error = res.status != 200;

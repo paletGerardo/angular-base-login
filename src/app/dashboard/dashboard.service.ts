@@ -3,6 +3,7 @@ import { HttpWrapperService } from "../core/http/http-wrapper.service";
 import { BehaviorSubject } from "rxjs";
 import { LoadingService } from "../core/loading/loading.service";
 import { PartnerTheme } from "./shared/models/partnerTheme.model";
+import { ENDPOINTS_API } from "../core/routes/api.routes";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class DashboardService {
   }
 
   getTematica() : void {
-    this.httpWrapper.get<any>('http://localhost:8080/api/tematica').subscribe( (res: PartnerTheme) => {
+    this.httpWrapper.get<any>(ENDPOINTS_API.THEMES).subscribe( (res: PartnerTheme) => {
       this.partnerTheme$.next(res);
     });
   }
