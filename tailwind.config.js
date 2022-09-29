@@ -4,12 +4,14 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    container: {
+    container:{
       center: true,
-      width: '70%',
-    },
 
+    },
     extend: {},
+    container: {
+
+    },
   },
   plugins: [],
 }
