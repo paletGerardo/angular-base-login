@@ -16,7 +16,9 @@ export class AppComponent implements OnInit {
   constructor(
     private animationsService: AnimationsService,
     private loadingService: LoadingService,
-  ) {}
+  ) {
+    document.cookie = "cuit_socio=30687310434";
+  }
 
   public ngOnInit(): void {
     this.loadAnimations();
