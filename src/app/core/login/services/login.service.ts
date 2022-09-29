@@ -29,7 +29,7 @@ export class LoginService {
     }
     //@ts-ignore
     const { options, body } = this.getOptionAndBody( emailIn, passwordIn );
-    return this.http.post( ENDPOINTS_API.AUTH.LOGIN, body, options )
+    return this.http.post( ENDPOINTS_API.LOGIN, body, options )
       .pipe(
         delay(500),
         map( ( res: any ) => {
