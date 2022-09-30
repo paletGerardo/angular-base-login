@@ -6,8 +6,11 @@ module.exports = {
   theme: {
     container:{
       center: true,
+   },
+   gridTemplateRows:{
 
-    },
+
+   },
     extend: {},
     container: {
 
