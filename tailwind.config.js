@@ -4,12 +4,17 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    container: {
+    container:{
       center: true,
-      width: '70%',
-    },
+   },
+   gridTemplateRows:{
 
+
+   },
     extend: {},
+    container: {
+
+    },
   },
   plugins: [],
 }
