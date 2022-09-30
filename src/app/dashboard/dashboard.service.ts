@@ -21,7 +21,11 @@ export class DashboardService {
   }
 
   getTematica() : void {
-    this.httpWrapper.get<any>(ENDPOINTS_API.THEMES).subscribe( (res: PartnerTheme) => {
+    const cuitSocio = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('cuit_socio='))
+      ?.split('=')[1];
+    this.httpWrapper.get<any>(`${ENDPOINTS_API.THEMES}/cuit/${cuitSocio}`).subscribe( (res: PartnerTheme) => {
       this.partnerTheme$.next(res);
     });
   }

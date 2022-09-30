@@ -8,7 +8,9 @@ export const environment = {
   HTTP_TIME_OUT: 15000,
   RETRY: 0,
   // auth | dashboard
-  INIT: 'dashboard'
+  INIT: 'dashboard',
+  CUIT_SOCIO:30687310434,
+//  CUIT_SOCIO:30697265895,
 };
 /*
  * For easier debugging in development mode, you can import the following file
