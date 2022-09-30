@@ -1,5 +1,5 @@
 <div class=" overflow-hidden rounded-lg shadow-lg">
-  <img class="w-full" src="../../../../../../../../../assets/images/card1_article.jpg" alt="Mountain" />
+  <img class="w-full" src="../../../../../../../../../assets/images/card1_article.jpg" alt="Mountain"/>
   <div class="px-1 py-4">
     <div class="font-bold text-xl mb-2"></div>
     <p class="text-gray-700 text-base">
@@ -8,9 +8,9 @@
       nihil.
     </p>
   </div>
-  <div class="px-10 pt-10 pb-12" style="background-color:rgb(55, 112, 187)">
+  <div class="px-10 pt-10 pb-12" [ngStyle]="{'background-color': partnerTheme.color_primary}">
     <p style="color: aliceblue; text-align: center">coberturas desde</p>
-    <hr style="background-color: aliceblue" />
+    <hr style="background-color: aliceblue"/>
     <span style="
             color: aliceblue;
             text-align: center;
@@ -21,7 +21,9 @@
           ">$589,68 mes</span>
     <div class="btn-container">
       <button
-        class="buttonBox bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+        class="buttonBox hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+        [ngStyle]="{'background-color': partnerTheme.color_secondary}"
+      >
         Button
       </button>
     </div>
