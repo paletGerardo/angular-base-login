@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpWrapperService } from "../../../../../../core/http/http-wrapper.service";
 
 @Component({
   selector: 'app-products',
