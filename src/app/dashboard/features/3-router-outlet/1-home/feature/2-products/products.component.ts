@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor( public httpWrapperService : HttpWrapperService) {
+
+    // todo inyectar servicio http-wrapper
+  }
 
   ngOnInit(): void {
+    this.httpWrapperService
+    // todo llamar a servicio de catalogo con http GET y obtener productos response.
   }
 
   // todo get productos
