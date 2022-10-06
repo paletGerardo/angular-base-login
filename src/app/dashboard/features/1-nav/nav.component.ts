@@ -11,6 +11,7 @@ import { LoadingService } from "../../../core/loading/loading.service";
 export class NavComponent implements OnInit {
 
   public partnerTheme: PartnerTheme | null | undefined;
+  public showMenuButton = false;
 
   constructor(
     private dashBoardService: DashboardService,
@@ -22,7 +23,7 @@ export class NavComponent implements OnInit {
     this.dashBoardService.partnerTheme$.subscribe( (parnetTheme: PartnerTheme | null)=> {
       this.partnerTheme = parnetTheme;
       this.loadingService.tryToStopLoading();
-    })
+    } )
   }
 
 }
