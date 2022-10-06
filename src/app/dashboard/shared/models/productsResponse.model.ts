@@ -1,6 +1,6 @@
-export interface ProductsResponse {
+export interface Producto {
   id_producto: number;
-  codig_producto: number;
+  codigo_producto: number;
   ramo: number;
   destino_alta: string;
   id_negocio: number;
@@ -11,8 +11,6 @@ export interface ProductsResponse {
   valida_titular: number;
   valida_beneficiario: number;
   medios_de_pago: MedioDePago[];
-
-
 }
 
 export interface Plan {

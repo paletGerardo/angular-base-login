@@ -1,23 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpWrapperService } from "../../../../../../core/http/http-wrapper.service";
+import { Producto } from "../../../../../shared/models/productsResponse.model";
+import { DashboardService } from "../../../../../dashboard.service";
+import { tap } from "rxjs/operators";
+import { BehaviorSubject, Observable } from "rxjs";
 
-@Component({
+@Component( {
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
-})
+  styleUrls: [ './products.component.scss' ]
+} )
 export class ProductsComponent implements OnInit {
+  public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
 
-  constructor( public httpWrapperService : HttpWrapperService) {
-
+  constructor( public dashboardService: DashboardService ) {
     // todo inyectar servicio http-wrapper
   }
 
   ngOnInit(): void {
-    this.httpWrapperService
-    // todo llamar a servicio de catalogo con http GET y obtener productos response.
+    this.getProducts();
   }
 
+  getProducts(): void {
+    this.products$ = this.dashboardService.getProducts();
+  }
   // todo get productos
-
 }
