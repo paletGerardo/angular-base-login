@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DashboardService } from "../../../../../../../dashboard.service";
 import { LoadingService } from "../../../../../../../../core/loading/loading.service";
 import { PartnerTheme } from "../../../../../../../shared/models/partnerTheme.model";
-@Component({
+import { Producto } from "../../../../../../../shared/models/productsResponse.model";
+
+@Component( {
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
-})
+  styleUrls: [ './card.component.scss' ]
+} )
 export class CardComponent implements OnInit {
 
+  @Input() product: Producto | undefined;
   public partnerTheme: PartnerTheme | null | undefined;
 
   constructor(
@@ -18,9 +21,9 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dashBoardService.partnerTheme$.subscribe( (parnetTheme: PartnerTheme | null)=> {
+    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | null ) => {
       this.partnerTheme = parnetTheme;
       this.loadingService.tryToStopLoading();
-    })
+    } )
   }
 }
