@@ -1,32 +1,54 @@
 import { Injectable } from '@angular/core';
 import { HttpWrapperService } from "../core/http/http-wrapper.service";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable, of } from "rxjs";
 import { LoadingService } from "../core/loading/loading.service";
 import { PartnerTheme } from "./shared/models/partnerTheme.model";
 import { ENDPOINTS_API } from "../core/routes/api.routes";
+import { environment as ENV } from "../../environments/environment";
+import { Producto } from "./shared/models/productsResponse.model";
+import { tap } from "rxjs/operators";
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
+} )
 export class DashboardService {
 
-  public partnerTheme$: BehaviorSubject<PartnerTheme | null> = new BehaviorSubject<PartnerTheme | null>(null);
+  public partnerTheme$: BehaviorSubject<PartnerTheme | null> = new BehaviorSubject<PartnerTheme | null>( null );
+  private products: Producto[] | undefined;
+  public cuitSocio: string | undefined = '';
 
   constructor(
-    private httpWrapper:HttpWrapperService,
+    private httpWrapperService: HttpWrapperService,
     private loadingService: LoadingService
   ) {
     this.loadingService.tryToStartLoading();
-    this.getTematica();
+    this.getCuit();
+    this.getThemes();
   }
 
-  getTematica() : void {
-    const cuitSocio = document.cookie
-      .split('; ')
-      .find((row) => row.startsWith('cuit_socio='))
-      ?.split('=')[1];
-    this.httpWrapper.get<any>(`${ENDPOINTS_API.THEMES}/cuit/${cuitSocio}`).subscribe( (res: PartnerTheme) => {
-      this.partnerTheme$.next(res);
-    });
+  getCuit(): string | undefined {
+    this.cuitSocio = document.cookie
+      .split( '; ' )
+      .find( ( row ) => row.startsWith( 'cuit_socio=' ) )
+      ?.split( '=' )[1];
+    return this.cuitSocio;
+  }
+
+  getThemes(): void {
+    const URL = `${ ENDPOINTS_API.THEMES }/cuit/${ this.cuitSocio }`;
+    this.httpWrapperService.get<PartnerTheme>( URL ).subscribe( ( res: PartnerTheme ) => {
+      this.partnerTheme$.next( res );
+    } );
+  }
+
+  getProducts(): Observable<Producto[]> {
+    if ( this.products ) {
+      return of( this.products );
+    }
+    const URL = `${ ENV.URL_BASE }/statics/catalogos/productos/${ this.cuitSocio }`;
+    return this.httpWrapperService.get<Producto[]>( URL ).pipe( tap( ( products: Producto[] ) => {
+        this.products = products;
+      }
+    ) );
   }
 }
