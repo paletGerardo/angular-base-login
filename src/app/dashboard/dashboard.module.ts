@@ -9,6 +9,7 @@ import { DashboardComponent } from "./dashboard.component";
 import { CarouselComponent } from './features/2-carousel/caurosel.component';
 import { CardComponent } from './features/3-router-outlet/1-home/feature/2-products/features/card/card.component';
 import { ProductsComponent } from './features/3-router-outlet/1-home/feature/2-products/products.component';
+import { ContactComponent } from './features/4-footer/features/contact/contact.component';
 
 @NgModule( {
   declarations: [
@@ -18,7 +19,8 @@ import { ProductsComponent } from './features/3-router-outlet/1-home/feature/2-p
     NavComponent,
     CarouselComponent,
     CardComponent,
-    ProductsComponent
+    ProductsComponent,
+    ContactComponent
 
   ],
   exports: [
