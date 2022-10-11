@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { PartnerTheme } from "../../shared/models/partnerTheme.model";
 import { DashboardService } from "../../dashboard.service";
 import { LoadingService } from "../../../core/loading/loading.service";
@@ -12,7 +12,7 @@ export class NavComponent implements OnInit {
 
   public partnerTheme: PartnerTheme | null | undefined;
   public showMenuButton = false;
-
+  public backGroundClass = false;
   constructor(
     private dashBoardService: DashboardService,
     private loadingService: LoadingService
@@ -24,6 +24,12 @@ export class NavComponent implements OnInit {
       this.partnerTheme = parnetTheme;
       this.loadingService.tryToStopLoading();
     } )
+  }
+//   @HostListener('scroll', ['$event']) // for scroll events of the current element
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event: any) {
+    this.backGroundClass = window.scrollY > 100;
+    console.log(event);
   }
 
 }
