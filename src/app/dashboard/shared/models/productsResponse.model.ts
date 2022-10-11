@@ -6,8 +6,6 @@ export interface Producto {
   id_negocio: number;
   producto_descripcion: string;
   planes: Plan[];
-  rangos: Rango[];
-  riesgos: Riesgo[];
   valida_titular: number;
   valida_beneficiario: number;
   medios_de_pago: MedioDePago[];
@@ -16,12 +14,15 @@ export interface Producto {
 export interface Plan {
   codigo_plan: number,
   id_plan: number,
+  rangos: Rango[];
 }
 
 export interface Rango {
   codigo_etario: number,
   descripcion_rango_etario: number,
   precio: number,
+  riesgos: Riesgo[];
+
 }
 
 export interface Riesgo {
