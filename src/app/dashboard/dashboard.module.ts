@@ -12,6 +12,7 @@ import { ProductsComponent } from './features/3-router-outlet/1-home/feature/2-p
 import { AboutComponent } from './features/3-router-outlet/2-about/about.component';
 import { DownloadPolicyComponent } from './features/3-router-outlet/4-download-policy/download-policy.component';
 import { ConsultPolicyComponent } from './features/3-router-outlet/3-consult-policy/consult-policy.component';
+import { ContactComponent } from './features/4-footer/features/contact/contact.component';
 
 @NgModule( {
   declarations: [
@@ -24,7 +25,9 @@ import { ConsultPolicyComponent } from './features/3-router-outlet/3-consult-pol
     ProductsComponent,
     AboutComponent,
     DownloadPolicyComponent,
-    ConsultPolicyComponent
+    ConsultPolicyComponent,
+    ProductsComponent,
+    ContactComponent
 
   ],
   exports: [
