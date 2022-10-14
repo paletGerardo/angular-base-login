@@ -11,10 +11,6 @@ export const items = [
     position: 2,
     el: document.getElementById('carousel-item-3'),
   },
-  {
-    position: 3,
-    el: document.getElementById('carousel-item-4'),
-  },
 ];
 
 export const options = {
@@ -37,10 +33,6 @@ export const options = {
       {
         position: 2,
         el: document.getElementById('carousel-indicator-3'),
-      },
-      {
-        position: 3,
-        el: document.getElementById('carousel-indicator-4'),
       },
     ],
   },
