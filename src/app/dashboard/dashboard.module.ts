@@ -9,6 +9,9 @@ import { DashboardComponent } from "./dashboard.component";
 import { CarouselComponent } from './features/2-carousel/caurosel.component';
 import { CardComponent } from './features/3-router-outlet/1-home/feature/2-products/features/card/card.component';
 import { ProductsComponent } from './features/3-router-outlet/1-home/feature/2-products/products.component';
+import { AboutComponent } from './features/3-router-outlet/2-about/about.component';
+import { DownloadPolicyComponent } from './features/3-router-outlet/4-download-policy/download-policy.component';
+import { ConsultPolicyComponent } from './features/3-router-outlet/3-consult-policy/consult-policy.component';
 import { ContactComponent } from './features/4-footer/features/contact/contact.component';
 
 @NgModule( {
@@ -19,6 +22,10 @@ import { ContactComponent } from './features/4-footer/features/contact/contact.c
     NavComponent,
     CarouselComponent,
     CardComponent,
+    ProductsComponent,
+    AboutComponent,
+    DownloadPolicyComponent,
+    ConsultPolicyComponent,
     ProductsComponent,
     ContactComponent
 

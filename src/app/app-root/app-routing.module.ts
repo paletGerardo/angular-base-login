@@ -22,8 +22,12 @@ const routes: Routes = [
   // Este elelemento siempre tiene que quedar al final.
   {
     path: '**',
-    redirectTo: 'auth'
-  }
+    redirectTo: 'dashboard'
+  },
+//  {
+//    path: '**',
+//    redirectTo: 'auth'
+//  }
 ];
 
 @NgModule({

@@ -1,31 +1,30 @@
-<div class=" overflow-hidden rounded-lg shadow-lg">
-  <img class="w-full" src="../../../../../../../../../assets/images/card1_article.jpg" alt="Mountain" />
+<div class=" overflow-hidden rounded-lg shadow-[0_25px_20px_-15px_rgba(0,0,0,0.3)] p-3">
+  <img class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
+       src="../../../../../../../../../assets/images/card1_article.jpg" alt="Mountain"/>
   <div class="px-1 py-4">
-    <div class="font-bold text-xl mb-2"></div>
-    <p class="text-gray-700 text-base">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-      quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium
-      nihil.
-    </p>
-  </div>
-  <div class="px-10 pt-10 pb-12" [ngStyle]="{'background-color': partnerTheme.color_primary}">
-    <p style="color: aliceblue; text-align: center">coberturas desde</p>
-    <hr style="background-color: aliceblue" />
-    <span style="
-            color: aliceblue;
-            text-align: center;
-            font-size: 26px;
-            position: relative;
-            padding: 4px;
-            margin-left: 4px;
-            top: 5px;
-          ">$589,68 mes</span>
-    <div class="btn-container ml-5">
-      <button
-        class="buttonBox hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        [ngStyle]="{'background-color': partnerTheme.color_secondary}">
-        Button
-      </button>
+    <div class="font-bold text-xl mb-2">
+      {{product.producto_descripcion}}
+    </div>
+    <div class="text-gray-700 text-base">
+      <ng-container *ngFor="let plan of product.planes; index as i">
+        <ng-container *ngIf="i == 0">
+          <ng-container *ngFor="let rango of plan.rangos; index as j">
+            <ng-container *ngIf="j == 0">
+              <div class="text-[6px]">
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
+              </div>
+              <small>Desde</small><br>
+              $ {{rango.precio}} <small> por mes</small><br>
+              <small class="text-gray-400">{{product.producto_descripcion}}</small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
     </div>
   </div>
+
 </div>
