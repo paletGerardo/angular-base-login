@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+  this.showMenuButton = false;
     this.dashBoardService.partnerTheme$.subscribe( (parnetTheme: PartnerTheme | null)=> {
       this.partnerTheme = parnetTheme;
       this.loadingService.tryToStopLoading();
@@ -32,4 +33,9 @@ export class NavComponent implements OnInit {
     console.log(event);
   }
 
+  public toggleMenuButton(): boolean {
+    this.showMenuButton = !this.showMenuButton
+    return this.showMenuButton;
+
+  }
 }
