@@ -1,4 +1,48 @@
-<app-nav></app-nav>
-<app-carousel></app-carousel>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div style="height: 80vh;">
+  <nav id="nav"
+       class="bg-gray-800 fixed w-full z-50"
+       [ngClass]="{'bg-opacity-100': !backGroundClass, 'bg-opacity-80' : backGroundClass}"
+       (scroll)="onScroll($event)"
+  >
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Responsive Navigation</span>
+        <span class="menu-spacer"></span>
+        <div fxShow="true" fxHide.lt-md>
+          <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+          <a href="#" mat-button>Menu Item 1</a>
+          <a href="#" mat-button>Menu Item 2</a>
+          <a href="#" mat-button>Menu Item 3</a>
+          <a href="#" mat-button>Menu Item 4</a>
+          <a href="#" mat-button>Menu Item 5</a>
+          <a href="#" mat-button>Menu Item 6</a>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </nav>
+
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        <a href="#" mat-list-item>Menu Item 1</a>
+        <a href="#" mat-list-item>Menu Item 2</a>
+        <a href="#" mat-list-item>Menu Item 3</a>
+        <a href="#" mat-list-item>Menu Item 4</a>
+        <a href="#" mat-list-item>Menu Item 5</a>
+        <a href="#"mat-list-item>Menu Item 6</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <app-carousel></app-carousel>
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
