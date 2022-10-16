@@ -11,3 +11,6 @@
     border-bottom: 5px solid #df0209;
 }*/
 
+.hidden-app {
+  display: none;
+}
