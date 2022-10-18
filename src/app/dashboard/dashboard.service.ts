@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, of } from "rxjs";
 import { LoadingService } from "../core/loading/loading.service";
 import { PartnerTheme } from "./shared/models/partnerTheme.model";
 import { ENDPOINTS_API } from "../core/routes/api.routes";
-import { environment as ENV } from "../../environments/environment";
 import { Producto } from "./shared/models/productsResponse.model";
 import { tap } from "rxjs/operators";
 
@@ -45,7 +44,7 @@ export class DashboardService {
     if ( this.products ) {
       return of( this.products );
     }
-    const URL = `${ ENV.URL_BASE }/statics/catalogos/productos/${ this.cuitSocio }`;
+    const URL = `${ ENDPOINTS_API.PRODUCTS }/${ this.cuitSocio }`;
     return this.httpWrapperService.get<Producto[]>( URL ).pipe( tap( ( products: Producto[] ) => {
         this.products = products;
       }
