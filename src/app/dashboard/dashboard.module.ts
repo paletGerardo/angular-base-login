@@ -13,6 +13,7 @@ import { AboutComponent } from './features/3-router-outlet/2-about/about.compone
 import { DownloadPolicyComponent } from './features/3-router-outlet/4-download-policy/download-policy.component';
 import { ConsultPolicyComponent } from './features/3-router-outlet/3-consult-policy/consult-policy.component';
 import { ContactComponent } from './features/4-footer/features/contact/contact.component';
+import { RegretButtonComponent } from './features/5-regret/regret-button/regret-button.component';
 
 @NgModule( {
   declarations: [
@@ -27,7 +28,8 @@ import { ContactComponent } from './features/4-footer/features/contact/contact.c
     DownloadPolicyComponent,
     ConsultPolicyComponent,
     ProductsComponent,
-    ContactComponent
+    ContactComponent,
+    RegretButtonComponent
 
   ],
   exports: [

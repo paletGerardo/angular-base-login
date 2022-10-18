@@ -1,0 +1,87 @@
+<div class="mb-10 container content-center shadow-xl">
+    <div class="">
+        <h4 class="mt-10
+            text-5xl
+            font-semibold
+            h-auto
+            justify-center
+            text-center
+            max-w-screen-3xl">Completar los datos solicitados</h4>
+        <p class="
+            p-5 
+            h-auto
+            justify-center
+            max-w-screen-3xl">
+            Podrás solicitar la cancelación de tu seguro hasta 10 días corridos a partir de la fecha del mismo. Por
+            favor completá la información solicitada para realizar la cancelación:</p>
+    </div>
+    <form class="p-5 border rounded-lg shadow-xl">
+        <div class="flex flex-wrap -mx-3 mb-4">
+            <div class="w-full md:w-6/8 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="grid-first-name">
+                </label>
+                <input formControlName="nombre" name="nombre"
+                    class="appearance-none block w-full border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    id="grid-first-name" type="text" placeholder="Nombre">
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-6/8 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="grid-first-name">
+                </label>
+                <input formControlName="apellido" name="apellido"
+                    class="appearance-none block w-full border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    id="grid-last-name" type="text" placeholder="Apellido">
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:6/8 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="grid-first-name">
+                </label>
+                <input formControlName="numero_de_documento" name="numero_de_documento"
+                    class="appearance-none block w-full border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    id="grid" type="number" placeholder="Numero de documento">
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="grid-first-name">
+                </label>
+                <input formControlName="email" name="email"
+                    class="appearance-none block w-full border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    id="" type="email" placeholder="Email">
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="grid-first-name">
+                </label>
+                <input formControlName="telefono" name="telefono"
+                    class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    id="telefono" type="telefono" placeholder="Telefono">
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-3/4 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="grid-first-name">
+                    </label>
+                    <input formControlName="area" name="area"
+                        class="ml-2 appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                        id="area" type="area" placeholder="Area">
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-6/8 px-3 mb-6 md:mb-0">
+                <input formControlName="poliza" name="poliza"
+                    class="appearance-none block w-full border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    id="poliza" type="poliza" placeholder="poliza">
+            </div>
+        </div>
+        <div
+            class="mt-4 col-start-1 row-start-3 self-center sm:mt-0 sm:col-start-2 sm:row-start-2 sm:row-span-2 lg:mt-6 lg:col-start-1 lg:row-start-3 lg:row-end-4">
+            <button type="button" class="bg-indigo-600 text-white leading-6 py-2 px-3 rounded-lg h-10 w-32 ">
+                Enviar</button>
+        </div>
+    </form>
+
+</div>

@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from "./dashboard.component";
-import { HomeComponent } from "./features/3-router-outlet/1-home/home.component";
-import { AboutComponent } from "./features/3-router-outlet/2-about/about.component";
-import { ConsultPolicyComponent } from "./features/3-router-outlet/3-consult-policy/consult-policy.component";
-import { DownloadPolicyComponent } from "./features/3-router-outlet/4-download-policy/download-policy.component";
+import { DashboardComponent } from './dashboard.component';
+import { HomeComponent } from './features/3-router-outlet/1-home/home.component';
+import { AboutComponent } from './features/3-router-outlet/2-about/about.component';
+import { ConsultPolicyComponent } from './features/3-router-outlet/3-consult-policy/consult-policy.component';
+import { DownloadPolicyComponent } from './features/3-router-outlet/4-download-policy/download-policy.component';
+import { RegretButtonComponent } from '../dashboard/features/5-regret/regret-button/regret-button.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home'
+    redirectTo: 'home',
   },
   {
     path: 'home',
@@ -31,8 +32,8 @@ const routes: Routes = [
       {
         path: 'download-policy',
         component: DownloadPolicyComponent,
-      }
-    ]
+      },
+    ],
   },
   {
     path: 'about',
@@ -41,8 +42,8 @@ const routes: Routes = [
       {
         path: '',
         component: AboutComponent,
-      }
-    ]
+      },
+    ],
   },
   {
     path: 'policy/consult',
@@ -51,8 +52,8 @@ const routes: Routes = [
       {
         path: '',
         component: AboutComponent,
-      }
-    ]
+      },
+    ],
   },
   {
     path: 'policy/download',
@@ -61,13 +62,17 @@ const routes: Routes = [
       {
         path: '',
         component: AboutComponent,
-      }
-    ]
-  }
+      },
+    ],
+  },
+  {
+    path: 'arrepentimiento',
+    component: RegretButtonComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class DashboardRoutingModule {}
