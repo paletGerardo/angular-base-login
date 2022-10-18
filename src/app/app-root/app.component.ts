@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { AnimationsService } from "../core/animations/animations.service";
 import browser from 'browser-detect';
 import { routeAnimations } from "../core/animations/route.animations";
@@ -18,10 +18,13 @@ export class AppComponent implements OnInit {
     private animationsService: AnimationsService,
     private loadingService: LoadingService,
   ) {
-    document.cookie = `cuit_socio=${env.CUIT_SOCIO}` ;
+    if(isDevMode()){
+      document.cookie = `cuit_socio=${env.CUIT_SOCIO}` ;
+    }
   }
 
   public ngOnInit(): void {
+    this.loadingService.tryToStartLoading();
     this.loadAnimations();
   }
 
