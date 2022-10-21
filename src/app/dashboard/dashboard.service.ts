@@ -34,7 +34,7 @@ export class DashboardService {
   }
 
   getThemes(): void {
-    const URL = `${ ENDPOINTS_API.THEMES }/cuit/${ this.cuitSocio }`;
+    const URL = ENDPOINTS_API.THEMES + this.cuitSocio;
     this.httpWrapperService.get<PartnerTheme>( URL ).subscribe( ( res: PartnerTheme ) => {
       this.partnerTheme$.next( res );
     } );
@@ -44,7 +44,7 @@ export class DashboardService {
     if ( this.products ) {
       return of( this.products );
     }
-    const URL = `${ ENDPOINTS_API.PRODUCTS }/${ this.cuitSocio }`;
+    const URL = ENDPOINTS_API.PRODUCTS + this.cuitSocio ;
     return this.httpWrapperService.get<Producto[]>( URL ).pipe( tap( ( products: Producto[] ) => {
         this.products = products;
       }
