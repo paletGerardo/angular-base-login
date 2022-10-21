@@ -29,8 +29,10 @@ export class NavComponent implements AfterViewInit, OnInit {
     this.showMenuButton = false;
     this.loadingService.tryToStartLoading();
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | null ) => {
-      this.partnerTheme = parnetTheme;
-      this.loadingService.tryToStopLoading();
+      if ( parnetTheme ) {
+        this.partnerTheme = parnetTheme;
+        this.loadingService.tryToStopLoading();
+      }
     } )
   }
 
