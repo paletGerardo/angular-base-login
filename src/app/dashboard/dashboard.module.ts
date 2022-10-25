@@ -13,6 +13,8 @@ import { AboutComponent } from './features/3-router-outlet/2-about/about.compone
 import { DownloadPolicyComponent } from './features/3-router-outlet/4-download-policy/download-policy.component';
 import { ConsultPolicyComponent } from './features/3-router-outlet/3-consult-policy/consult-policy.component';
 import { ContactComponent } from './features/4-footer/features/contact/contact.component';
+import { ButtonPrimaryComponent } from './shared/components/buttonPrimary/button-primary.component';
+import { ButtonSecondaryComponent } from './shared/components/buttonSecondary/button-secondary.component';
 
 @NgModule( {
   declarations: [
@@ -27,13 +29,17 @@ import { ContactComponent } from './features/4-footer/features/contact/contact.c
     DownloadPolicyComponent,
     ConsultPolicyComponent,
     ProductsComponent,
-    ContactComponent
+    ContactComponent,
+    ButtonPrimaryComponent,
+    ButtonSecondaryComponent
 
   ],
   exports: [
     DashboardComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    ButtonPrimaryComponent,
+    ButtonSecondaryComponent
 
   ],
   imports: [
