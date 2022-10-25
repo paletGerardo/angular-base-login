@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingService } from 'src/app/core/loading/loading.service';
+
 
 @Component({
   selector: 'app-not-found',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private loadingService: LoadingService
+
+  ) { }
 
   ngOnInit(): void {
+    this.loadingService.tryToStopLoading();
   }
 
 }
