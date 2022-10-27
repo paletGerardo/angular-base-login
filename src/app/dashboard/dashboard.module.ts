@@ -4,34 +4,35 @@ import { FooterComponent } from "./features/4-footer/footer.component";
 import { NavComponent } from "./features/1-nav/nav.component";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { MaterialModule } from "../core/material/material.module";
-import { HomeComponent } from "./features/3-router-outlet/1-home/home.component";
+import { ProductsComponent } from "./features/3-router-outlet/1-products/products.component";
 import { DashboardComponent } from "./dashboard.component";
 import { CarouselComponent } from './features/2-carousel/caurosel.component';
-import { CardComponent } from './features/3-router-outlet/1-home/feature/2-products/features/card/card.component';
-import { ProductsComponent } from './features/3-router-outlet/1-home/feature/2-products/products.component';
+import { ProductCardComponent } from './features/3-router-outlet/1-products/feature/product-card/product-card.component';
 import { AboutComponent } from './features/3-router-outlet/2-about/about.component';
-import { DownloadPolicyComponent } from './features/3-router-outlet/4-download-policy/download-policy.component';
-import { ConsultPolicyComponent } from './features/3-router-outlet/3-consult-policy/consult-policy.component';
+import { PolicyDownloadComponent } from './features/3-router-outlet/4-policy-download/policy-download.component';
+import { PolicyConsultComponent } from './features/3-router-outlet/3-policy-consult/policy-consult.component';
 import { ContactComponent } from './features/4-footer/features/contact/contact.component';
 import { ButtonPrimaryComponent } from './shared/components/buttonPrimary/button-primary.component';
 import { ButtonSecondaryComponent } from './shared/components/buttonSecondary/button-secondary.component';
+import { NotFoundComponent } from "./features/3-router-outlet/not-found/not-found.component";
+import { HelpComponent } from "./features/3-router-outlet/help/help.component";
 
 @NgModule( {
   declarations: [
     DashboardComponent,
     FooterComponent,
-    HomeComponent,
+    ProductsComponent,
     NavComponent,
     CarouselComponent,
-    CardComponent,
-    ProductsComponent,
+    ProductCardComponent,
     AboutComponent,
-    DownloadPolicyComponent,
-    ConsultPolicyComponent,
-    ProductsComponent,
+    PolicyDownloadComponent,
+    PolicyConsultComponent,
     ContactComponent,
     ButtonPrimaryComponent,
-    ButtonSecondaryComponent
+    ButtonSecondaryComponent,
+    NotFoundComponent,
+    HelpComponent
 
   ],
   exports: [

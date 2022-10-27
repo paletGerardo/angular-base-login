@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from "./dashboard.component";
-import { HomeComponent } from "./features/3-router-outlet/1-home/home.component";
+import { ProductsComponent } from "./features/3-router-outlet/1-products/products.component";
+import { HelpComponent } from './features/3-router-outlet/help/help.component';
+import { NotFoundComponent } from "./features/3-router-outlet/not-found/not-found.component";
+import { PolicyConsultComponent } from "./features/3-router-outlet/3-policy-consult/policy-consult.component";
+import { PolicyDownloadComponent } from "./features/3-router-outlet/4-policy-download/policy-download.component";
 import { AboutComponent } from "./features/3-router-outlet/2-about/about.component";
-import { HelpComponent } from './shared/components/help/help.component';
-import { NotFoundComponent } from "./shared/components/not-found/not-found.component";
 
 const routes: Routes = [
   {
@@ -18,7 +20,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent,
+        component: ProductsComponent,
       }
     ]
   },
@@ -38,7 +40,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: AboutComponent,
+        component: PolicyConsultComponent,
       }
     ]
   },
@@ -48,7 +50,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: AboutComponent,
+        component: PolicyDownloadComponent,
       }
     ]
   },
