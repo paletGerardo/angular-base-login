@@ -9,8 +9,7 @@ import { LoadingService } from 'src/app/core/loading/loading.service';
 })
 
 export class ButtonSecondaryComponent implements OnInit {
-    @Input() text:string="plan A"; 
-
+    @Input() text?:any;
   constructor(
     private loadingService: LoadingService
 
@@ -18,6 +17,7 @@ export class ButtonSecondaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.tryToStopLoading();
+    console.log(this.text);
   }
 
 }
