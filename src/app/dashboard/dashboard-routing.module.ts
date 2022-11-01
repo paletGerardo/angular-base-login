@@ -4,9 +4,10 @@ import { DashboardComponent } from "./dashboard.component";
 import { ProductsComponent } from "./features/3-router-outlet/1-products/products.component";
 import { HelpComponent } from './features/3-router-outlet/help/help.component';
 import { NotFoundComponent } from "./features/3-router-outlet/not-found/not-found.component";
-import { PolicyConsultComponent } from "./features/3-router-outlet/3-policy-consult/policy-consult.component";
-import { PolicyDownloadComponent } from "./features/3-router-outlet/4-policy-download/policy-download.component";
-import { AboutComponent } from "./features/3-router-outlet/2-about/about.component";
+import { PolicyConsultComponent } from "./features/3-router-outlet/4-policy-consult/policy-consult.component";
+import { PolicyDownloadComponent } from "./features/3-router-outlet/5-policy-download/policy-download.component";
+import { AboutComponent } from "./features/3-router-outlet/3-about/about.component";
+import { ProductDetailComponent } from './features/3-router-outlet/2-product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -21,9 +22,23 @@ const routes: Routes = [
       {
         path: '',
         component: ProductsComponent,
-      }
+        
+      },
     ]
   },
+
+  {
+    path: 'product-detail/:id',
+    component: ProductDetailComponent,
+    children: [
+      {
+        path: '',
+        component: ProductDetailComponent,
+        
+      },
+    ]
+  },
+ 
   {
     path: 'about',
     component: DashboardComponent,
