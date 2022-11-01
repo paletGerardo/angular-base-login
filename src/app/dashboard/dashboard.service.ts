@@ -50,4 +50,16 @@ export class DashboardService {
       }
     ) );
   }
+
+  getProductItemByIdProducto(id:number): Observable<Producto[]> {
+   
+    const URL = ENDPOINTS_API.PRODUCTSDETAIL +id+"/" + this.cuitSocio ;
+    return this.httpWrapperService.get<Producto[]>( URL ).pipe( tap( ( products: Producto[] ) => {
+        this.products = products;
+      }
+    ) );
+  }
+
+  
 }
+
