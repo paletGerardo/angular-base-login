@@ -12,8 +12,11 @@ import { Producto } from "../../../../../shared/models/productsResponse.model";
 export class ProductCardComponent implements OnInit {
 
   @Input() product: Producto | undefined;
+   id:number=0;
   public partnerTheme: PartnerTheme | null | undefined;
-
+  url: any;
+  prodItem: any;
+  notImage: boolean=false;
   constructor(
     private dashBoardService: DashboardService,
     private loadingService: LoadingService
@@ -21,9 +24,25 @@ export class ProductCardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getProductItemByIdProducto();
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | null ) => {
       this.partnerTheme = parnetTheme;
       this.loadingService.tryToStopLoading();
     } )
+  }
+
+  getProductItemByIdProducto(): void {
+    if(this.product?.id_producto!==undefined){
+      this.id=this.product?.id_producto;
+      this.dashBoardService.getProductItemByIdProducto(this.id).subscribe((data:any)=>{
+        this.prodItem=data;
+       if(this.prodItem!=null){
+        this.url=this.prodItem[0].product_image;
+        this.notImage=false;
+
+       }
+      });
+    }
+
   }
 }
