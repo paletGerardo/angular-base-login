@@ -2,8 +2,9 @@
 
   <section class="py-8 px-4">
     <div class="title">
-      <h3 style="margin:0 auto;">{{this.producto.producto_descripcion}}</h3>
-    </div>
+      <!--<h3 style="margin:0 auto;">{{this.prodItem[0].seccion_cero_titulo}}</h3>-->
+      <h3 style="margin:0 auto;">{{this.titulo}}</h3>
+      </div>
     <div class="flex flex-wrap -mx-4">
       <div class="imageProduct">
         <div class="h-full w-full  bg-cover rounded ">
@@ -13,7 +14,7 @@
       <div>
         <div class="buttonPlanes  px-2">
         <div style="margin:0 auto;">
-          <ng-container *ngFor="let plan of planes">
+          <ng-container *ngFor="let plan of planes ">
             <app-button-secondary [text]="plan.codigo_plan"></app-button-secondary>
           </ng-container>        
         </div>
@@ -25,7 +26,7 @@
           </div>
         </div>
         <div class="price py-4 ">
-          <p>$ {{this.prodItem[0].seccion_cero_precio_base}}</p>
+          <p>$ {{this.precio}}</p>
           
            <p style="font-size: 13px;padding:3px;">por mes</p>
         </div>

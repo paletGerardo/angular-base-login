@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment as env} from "../../../../../environments/environment";
 import { ProductItem } from 'src/app/dashboard/shared/models/productItem.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-detail',
@@ -21,53 +22,64 @@ export class ProductDetailComponent implements OnInit {
    itemsArray:any=[];
    planes:any=[];
 
+   public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
 
-  public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
+  //public products$: Producto[]=[];
+  precio: any;
+  titulo: any;
 
   constructor( public dashboardService: DashboardService,
     private loadingService: LoadingService,
     private activateRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer) {
+    ) {
     }
   
     
       ngOnInit(): void {
+       
        this.loadingService.tryToStartLoading();
         this.getProducts(); 
-        //this.getImageProductByIdProductAndCuit();
-
-        this.activateRoute.url.subscribe(
-          (res: any) => {
-              console.log(res[1].path);
-              this.id=res[1].path;
-        }
-
-        )
-        this.getProduct(this.id);
-        this.getProductItemByIdProducto();
-       //this.url='https://localhost:8080/landing/products/getImageByProductId/'+this.id+'/30687310434';
-      
+         
+          
+         // this.getProduct(this.id);
       }
       getProducts(): void {
-       this.dashboardService.getProducts().subscribe((data:any)=>{
-        console.log(data);
-        this.products$=data;  
+        this.dashboardService.getProducts()
+        .pipe(
+          debounceTime(1000)
+          )
+        .subscribe((data:any)=>{
+          this.products$=data;  
+          console.log(this.products$);
+          this.activateRoute.url.subscribe(
+            (res: any) => {
+              console.log(res[1].path);
+              this.id=res[1].path;
+            });
+          this.getProduct(this.id);
+          this.getProductItemByIdProducto();      
 
+        
        });
+         
+    
       }
 
       getProduct(id:number){
+        console.log(this.products$);
         this.products$.forEach((produc:any) => {
             if(produc.id_producto==id){
               console.log(produc)
               this.producto=produc;
               this.planes=this.producto?.planes;
-             
                console.log(this.planes);  
             }
           });
-       
+
+          
       }
+       
+      
       getProductItemByIdProducto(): void {
         this.dashboardService.getProductItemByIdProducto(this.id).subscribe((data:any)=>{
           this.prodItem=data;
@@ -76,6 +88,8 @@ export class ProductDetailComponent implements OnInit {
          this.itemsArray= items.split('|');
           console.log(this.itemsArray);  
           this.url=this.prodItem[0].product_image;
+          this.precio=this.prodItem[0].seccion_cero_precio_base;
+          this.titulo=this.prodItem[0].seccion_cero_titulo;
         });
       }
     
