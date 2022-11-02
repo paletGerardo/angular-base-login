@@ -41,9 +41,9 @@ export class DashboardService {
   }
 
   getProducts(): Observable<Producto[]> {
-    if ( this.products ) {
-      return of( this.products );
-    }
+    //if ( this.products ) {
+      //return of( this.products );
+    //}
     const URL = ENDPOINTS_API.PRODUCTS + this.cuitSocio ;
     return this.httpWrapperService.get<Producto[]>( URL ).pipe( tap( ( products: Producto[] ) => {
         this.products = products;
@@ -59,6 +59,7 @@ export class DashboardService {
       }
     ) );
   }
+ 
 
   
 }
