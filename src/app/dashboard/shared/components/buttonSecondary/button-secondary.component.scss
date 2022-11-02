@@ -1,11 +1,24 @@
 .buttonSecondary{
     font-style: normal;
+    width: 79px;
+    height: 30px;
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
-    color: #F3F3F3;
-    background-color: #158a8a;
- 
+    margin-right: 1vw;
+    padding: 0px;
    box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    color: black;
+    background-color: #F3F3F3;
+    border: 1px solid #000000;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
 }
 
+.buttonSecondary:active {
+  
+    background-color: #158a8a;
+    border: 1px solid #F3F3F3;
+    color: #F3F3F3;
+
+}
