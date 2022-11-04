@@ -1,10 +1,9 @@
 <div class=" overflow-hidden rounded-lg shadow-[0_25px_20px_-15px_rgba(0,0,0,0.3)] p-3">
-  <img *ngIf="!notImage"class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
+  <img class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
        [src]="this.url" alt="Mountain"/>
-       <img *ngIf="notImage"class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
-       src="../../../../../../../assets/images/card1_article.jpg" alt="Mountain"/>
+   
   <div class="px-1 py-4">
-    <div class="font-bold text-xl mb-2">
+    <div class="font-bold text-xl mb-2" style="overflow: hidden;white-space: pre;text-overflow: ellipsis;">
       {{product.producto_descripcion}}
     </div>
     <div class="text-gray-700 text-base">
