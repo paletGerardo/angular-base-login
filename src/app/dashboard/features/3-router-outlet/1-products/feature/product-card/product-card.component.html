@@ -1,23 +1,29 @@
-<div class=" overflow-hidden rounded-lg shadow-[0_25px_20px_-15px_rgba(0,0,0,0.3)] p-3">
-  <img *ngIf="!notImage"class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
+<div class="container overflow-hidden rounded-lg shadow-[0_25px_20px_-15px_rgba(0,0,0,0.3)] p-3 bg-white">
+  <img *ngIf="!notImage" class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
        [src]="this.url" alt="Mountain"/>
-       <img *ngIf="notImage"class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
+  <img *ngIf="notImage" class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
        src="../../../../../../../assets/images/card1_article.jpg" alt="Mountain"/>
   <div class="px-1 py-4">
     <div class="font-bold text-xl mb-2">
       {{product.producto_descripcion}}
     </div>
+
     <div class="text-gray-700 text-base">
       <ng-container *ngFor="let plan of product.planes; index as i">
         <ng-container *ngIf="i == 0">
           <ng-container *ngFor="let rango of plan.rangos; index as j">
             <ng-container *ngIf="j == 0">
               <div class="text-[6px]">
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon" fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
+                          fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
+                          fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
+                          fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
+                          fontIcon="star"></mat-icon>
+                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
+                          fontIcon="star"></mat-icon>
               </div>
               <small>Desde</small><br>
               $ {{rango.precio}} <small> por mes</small><br>
