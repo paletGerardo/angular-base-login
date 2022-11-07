@@ -22,23 +22,21 @@ const routes: Routes = [
       {
         path: '',
         component: ProductsComponent,
-        
+
       },
     ]
   },
-
   {
     path: 'product-detail/:id',
-    component: ProductDetailComponent,
+    component: DashboardComponent,
     children: [
       {
         path: '',
         component: ProductDetailComponent,
-        
+
       },
     ]
   },
- 
   {
     path: 'about',
     component: DashboardComponent,
