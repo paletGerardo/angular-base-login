@@ -7,7 +7,11 @@ import { ActivatedRoute } from '@angular/router';
 import { environment as env} from "../../../../../environments/environment";
 import { ProductItem } from 'src/app/dashboard/shared/models/productItem.model';
 import { DomSanitizer } from '@angular/platform-browser';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
+import {FormBuilder, Validators} from '@angular/forms';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { StepperOrientation } from '@angular/cdk/stepper';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -20,7 +24,16 @@ export class ProductDetailComponent implements OnInit {
   producto:Producto | undefined;
    prodItem:any=[];
    itemsArray:any=[];
+   itemsArray2:any=[];
    planes:any=[];
+   firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+ 
+  stepperOrientation: Observable<StepperOrientation>;
 
    public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
 
@@ -31,7 +44,10 @@ export class ProductDetailComponent implements OnInit {
   constructor( public dashboardService: DashboardService,
     private loadingService: LoadingService,
     private activateRoute: ActivatedRoute,
-    ) {
+    private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
+      this.stepperOrientation = breakpointObserver
+      .observe('(min-width: 800px)')
+      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
     }
   
     
@@ -51,13 +67,12 @@ export class ProductDetailComponent implements OnInit {
         .subscribe((data:any)=>{
           this.products$=data;  
           console.log(this.products$);
-          this.activateRoute.url.subscribe(
+          this.activateRoute.params.subscribe(
             (res: any) => {
-              console.log(res[1].path);
-              this.id=res[1].path;
+              this.id=res.id;
             });
-          this.getProduct(this.id);
-          this.getProductItemByIdProducto();      
+            this.getProduct(this.id);
+            this.getProductItemByIdProducto();      
 
         
        });
@@ -90,7 +105,33 @@ export class ProductDetailComponent implements OnInit {
           this.url=this.prodItem[0].product_image;
           this.precio=this.prodItem[0].seccion_cero_precio_base;
           this.titulo=this.prodItem[0].seccion_cero_titulo;
+          let items2=this.prodItem[0].seccion_dos_items;
+          this.itemsArray2= items2.split('|');
+           console.log(this.itemsArray);  
         });
       }
-    
-}
+
+      getCoberturas(){
+        this.dashboardService.getCoberturas(this.id).subscribe(res=>{
+          console.log(res);
+          const blob = new Blob([res], {
+            type: 'data:application/pdf',
+          });
+          const url = window.URL.createObjectURL(blob);
+          let link=document.createElement('a');
+          link.href=url;
+          link.download='cobertura.pdf';
+          link.dispatchEvent(
+            new MouseEvent('click',{
+              bubbles:true,
+              cancelable:true,
+              view:window,
+            })
+          );
+        });
+      }  
+    }    
+
+      
+
+   

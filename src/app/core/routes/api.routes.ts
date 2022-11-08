@@ -6,7 +6,8 @@ export const ENDPOINTS_API = {
   THEMES: `${ ENV.URL_BASE }/themes/getThemeBycuit/`,
   PRODUCTS: `${ ENV.URL_BASE }/products/getAllProductsByCuit/`,
   PRODUCTSDETAIL:`${ ENV.URL_BASE }/products/getDetailByProductId/`,
-  PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`
+  PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`,
+  COBERTURAS:`${ ENV.URL_BASE }/themes/getCoberturaByCuitAndProductId/`
 }
 
 

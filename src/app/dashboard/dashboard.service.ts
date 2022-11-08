@@ -6,6 +6,7 @@ import { PartnerTheme } from "./shared/models/partnerTheme.model";
 import { ENDPOINTS_API } from "../core/routes/api.routes";
 import { Producto } from "./shared/models/productsResponse.model";
 import { tap } from "rxjs/operators";
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable( {
   providedIn: 'root'
@@ -60,6 +61,13 @@ export class DashboardService {
     ) );
   }
  
+  getCoberturas(id:number): Observable<any> {
+ 
+    const URL = ENDPOINTS_API.COBERTURAS + this.cuitSocio + "/" +id;
+    return this.httpWrapperService.get<any[]>( URL,{responseType:"blob" as "json"}).pipe();
+  }
+
+
 
   
 }
