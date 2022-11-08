@@ -17,6 +17,7 @@ import { NotFoundComponent } from "./features/3-router-outlet/not-found/not-foun
 import { HelpComponent } from "./features/3-router-outlet/help/help.component";
 import { AboutComponent } from "./features/3-router-outlet/3-about/about.component";
 import { ProductDetailComponent } from './features/3-router-outlet/2-product-detail/product-detail.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule( {
   declarations: [
@@ -48,7 +49,9 @@ import { ProductDetailComponent } from './features/3-router-outlet/2-product-det
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }
