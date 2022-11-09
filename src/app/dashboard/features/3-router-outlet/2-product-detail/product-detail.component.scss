@@ -113,3 +113,18 @@ svg{
     
     
 }
+
+::ng-deep .mat-step-icon{
+    display: none;
+}
+
+::ng-deep .mat-step-text-label{
+    color:#A0A0A0;
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+    display: none;
+}
+
+
+
