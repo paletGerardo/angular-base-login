@@ -37,12 +37,12 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "prod": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "10000kb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -58,7 +58,23 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
+            "devs": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "local": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "server": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -67,19 +83,25 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "prod"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "browserTarget": "app-base-login:build:production"
+            "prod": {
+              "browserTarget": "app-base-login:build:prod"
             },
-            "development": {
-              "browserTarget": "app-base-login:build:development"
+            "devs": {
+              "browserTarget": "app-base-login:build:devs"
+            },
+            "local": {
+              "browserTarget": "app-base-login:build:local"
+            },
+            "server": {
+              "browserTarget": "app-base-login:build:server"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "devs"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

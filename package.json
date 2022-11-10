@@ -4,7 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "local": "ng serve --configuration local",
+    "devs": "ng serve --configuration devs",
+    "server": "ng serve --configuration server --port 3000",
+    "build": "ng build --configuration prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
