@@ -20,7 +20,7 @@
         </div>
 
         </div>
-        <div  *ngIf="cobert" style="overflow-y: scroll;overflow-x: hidden;height: 14vh;width: 74vh">
+        <div  *ngIf="cobert"  class="scroller" #scroller1>
        
           <div class="typesCoberturas  py-4 px-2" *ngFor="let cobertura of riesgos ">
             <div style="display: flex;justify-content: space-between;">
