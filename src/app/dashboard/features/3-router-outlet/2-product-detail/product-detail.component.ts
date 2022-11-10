@@ -13,6 +13,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 
 
+
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -25,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
    prodItem:any=[];
    itemsArray:any=[];
    itemsArray2:any=[];
+   cobert:boolean=false;
    planes:any=[];
    firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -40,6 +43,7 @@ export class ProductDetailComponent implements OnInit {
   //public products$: Producto[]=[];
   precio: any;
   titulo: any;
+  riesgos: any=[];
 
   constructor( public dashboardService: DashboardService,
     private loadingService: LoadingService,
@@ -130,7 +134,16 @@ export class ProductDetailComponent implements OnInit {
           );
         });
       }  
-    }    
+      coberturas(plan:any){
+        this.cobert=true;
+        console.log(plan);
+        console.log(plan.rangos[0].riesgos);
+        this.riesgos=plan.rangos[0].riesgos;
+      }
+
+
+  
+}    
 
       
 

@@ -5,7 +5,7 @@
       <!--<h3 style="margin:0 auto;">{{this.prodItem[0].seccion_cero_titulo}}</h3>-->
       <h3 style="margin:0 auto;">{{this.titulo}}</h3>
       </div>
-    <div class="flex flex-wrap -mx-4">
+    <div class="flex flex-wrap -mx-4" >
       <div class="imageProduct">
         <div class="h-full w-full  bg-cover rounded ">
           <img  class="imageProduct" style="margin:0 auto; border-radius: 15px" [src]="this.url"/>
@@ -15,17 +15,21 @@
         <div class="buttonPlanes  px-2">
         <div style="margin:0 auto;">
           <ng-container *ngFor="let plan of planes ">
-            <app-button-secondary [text]="plan.codigo_plan"></app-button-secondary>
+            <app-button-secondary [text]="plan.codigo_plan" (click)="coberturas(plan)"></app-button-secondary>
           </ng-container>
         </div>
 
         </div>
-        <div class="typesCoberturas py-4 px-2">
-          <div>
-            <p>coberturas</p>
+        <div  *ngIf="cobert" style="overflow-y: scroll;overflow-x: hidden;height: 14vh;width: 74vh">
+       
+          <div class="typesCoberturas  py-4 px-2" *ngFor="let cobertura of riesgos ">
+            <div style="display: flex;justify-content: space-between;">
+              <p>{{cobertura.descipcion_riesgo}} </p>     <p>${{cobertura.suma_asegurada_riesgo}}  </p>
+            </div>
           </div>
         </div>
-        <div class="price py-4 ">
+       
+        <div class="price">
           <p>$ {{this.precio}}</p>
 
            <p style="font-size: 13px;padding:3px;">por mes</p>
