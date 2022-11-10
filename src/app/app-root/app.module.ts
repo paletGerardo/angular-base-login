@@ -4,14 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from '../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from "@angular/forms";
-import { BlockUIModule } from "ng-block-ui";
-import { DashboardModule } from "../dashboard/dashboard.module";
+import { ReactiveFormsModule } from '@angular/forms';
+import { BlockUIModule } from 'ng-block-ui';
+import { DashboardModule } from '../dashboard/dashboard.module';
+import { SwiperModule } from 'swiper/angular';
 
-@NgModule( {
-  declarations: [
-    AppComponent,
-  ],
+@NgModule({
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     BlockUIModule,
@@ -20,13 +19,10 @@ import { DashboardModule } from "../dashboard/dashboard.module";
     CoreModule,
     ReactiveFormsModule,
     DashboardModule,
+    SwiperModule,
   ],
-  providers: [
-
-  ],
-  exports: [
-  ],
-  bootstrap: [ AppComponent ]
-} )
-export class AppModule {
-}
+  providers: [],
+  exports: [SwiperModule],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}

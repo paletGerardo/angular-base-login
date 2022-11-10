@@ -1,0 +1,28 @@
+<section class="slider_container">
+    <div class="swiper-container">
+        <swiper class="swiper-slide" #swiper [virtual]="true" [config]="swiperConfig">
+            <ng-template swiperSlide>
+                <div class="imagen">
+                    <img class="imagen" src="../../../../assets/images/card1_article.jpg">
+                </div>
+            </ng-template>
+            <ng-template swiperSlide>
+                <div class="imagen">
+                    <img class="imagen" src="../../../../assets/images/card2article.jpg" alt="">
+                </div>
+            </ng-template>
+            <ng-template swiperSlide>
+                <div class="imagen">
+                    <img class="imagen" src="../../../../assets/images/card5_article.jpg">
+                </div>
+            </ng-template>
+            <ng-template swiperSlide>
+                <div class="imagen">
+                    <img class="imagen" src="../../../../assets/images/card_7article.jpg">
+                </div>
+            </ng-template>
+        </swiper>
+    </div>
+    <div (click)="sliderA_next()" class="swiper-button-next"></div>
+    <div (click)="sliderB_prev()" class="swiper-button-prev"></div>
+</section>
