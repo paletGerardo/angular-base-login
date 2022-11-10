@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  URL_BASE: 'https://java-dinamic-landing-page.herokuapp.com/landing',
+  URL_BASE: 'http://localhost:8080/landing',
   HTTP_TIME_OUT: 2500,
   RETRY: 0,
   // auth | dashboard
