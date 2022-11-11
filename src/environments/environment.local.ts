@@ -5,5 +5,6 @@ export const environment = {
   RETRY: 0,
   // auth | dashboard
   INIT: 'dashboard',
-  CUIT_SOCIO:30697265895
+  CUIT_SOCIO:30687310434,
+//  CUIT_SOCIO:30697265895,
 }

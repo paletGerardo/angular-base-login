@@ -18,6 +18,7 @@ import { HelpComponent } from "./features/3-router-outlet/help/help.component";
 import { AboutComponent } from "./features/3-router-outlet/3-about/about.component";
 import { ProductDetailComponent } from './features/3-router-outlet/2-product-detail/product-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HoverBtnDiretive } from "./shared/directive/btnHoverDirective";
 
 @NgModule( {
   declarations: [
@@ -35,7 +36,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ButtonPrimaryComponent,
     ButtonSecondaryComponent,
     NotFoundComponent,
-    HelpComponent
+    HelpComponent,
+    HoverBtnDiretive,
 
   ],
   exports: [
