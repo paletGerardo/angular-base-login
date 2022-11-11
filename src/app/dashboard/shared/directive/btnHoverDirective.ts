@@ -6,26 +6,35 @@ import {
   Input,
   Renderer2,
 } from '@angular/core';
+import { DashboardService } from "../../dashboard.service";
+import { PartnerTheme } from "../models/partnerTheme.model";
 
 @Directive({
-  selector: '[hoverBtnDirective]',
+  selector: '[buttonDirective]',
 })
-export class HoverBtnDiretive {
+export class ButtonDiretive {
   @Input() colorPrimary: string | undefined = 'gray';
-  @Input() colorSecondary: string = 'green';
+  @Input() colorSecondary: string | undefined = 'green';
 
   @HostBinding('style.backgroundColor') bgColor: string | undefined;
-  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private elRef: ElementRef,
+    private renderer: Renderer2,
+    private dashboardService: DashboardService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dashboardService.partnerTheme$.subscribe( (themes: PartnerTheme | null) => {
+      this.colorPrimary = themes?.color_primary;
+      this.colorSecondary = themes?.color_secundary;
+      this.renderer.setStyle(this.elRef.nativeElement, 'background-color', this.colorPrimary);
+    })
+  }
 
   @HostListener('mouseover') onMouseOver() {
-//    this.bgColor = this.leavebackgroundColor;
     this.renderer.setStyle(this.elRef.nativeElement, 'background-color', this.colorSecondary);
   }
   @HostListener('mouseleave') onMouseLeave() {
-//    this.bgColor = this.backgroundColor;
     this.renderer.setStyle(this.elRef.nativeElement, 'background-color', this.colorPrimary);
-
   }
 }
