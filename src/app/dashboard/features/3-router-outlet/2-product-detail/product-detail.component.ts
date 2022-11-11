@@ -29,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
    itemsArray2:any=[];
    cobert:boolean=false;
 
+   planCopia:any;
 
 
    planes:any=[];
@@ -59,16 +60,14 @@ export class ProductDetailComponent implements OnInit {
   
     
       ngOnInit(): void {      
-       this.loadingService.tryToStartLoading();
-        this.getProducts(); 
+       this.loadingService.tryToStartLoading();       
+       this.getProducts(); 
        
          // this.getProduct(this.id);
       }
       getProducts(): void {
         this.dashboardService.getProducts()
-        .pipe(
-          debounceTime(1000)
-          )
+        
         .subscribe((data:any)=>{
           this.products$=data;  
           console.log(this.products$);
@@ -77,9 +76,9 @@ export class ProductDetailComponent implements OnInit {
               this.id=res.id;
             });
             this.getProduct(this.id);
-            this.getProductItemByIdProducto();      
-
-        
+            this.getProductItemByIdProducto();     
+            this.coberturas(this.planCopia);
+            
        });
          
     
@@ -92,14 +91,12 @@ export class ProductDetailComponent implements OnInit {
               console.log(produc)
               this.producto=produc;
               this.planes=this.producto?.planes;
-               console.log(this.planes);  
             }
           });
           console.log(this.planes);
           this.ordenarPlanes();
-       // this.planes.sort(((a:any, b:any) => a.codigo_plan - b.codigo_plan));
-       // console.log('planes ordenados',this.planes);
-
+          this.planCopia=this.planes[0];
+          console.log('planes',this.planes[0]);
           
       }
       ordenarPlanes(){
@@ -155,8 +152,8 @@ export class ProductDetailComponent implements OnInit {
         });
       }  
       coberturas(plan:any){
+        console.log('fabi gil',plan);
         this.cobert=true;
-        console.log(plan);
         console.log(plan.rangos[0].riesgos);
         this.riesgos=plan.rangos[0].riesgos;
       }
