@@ -14,6 +14,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class DashboardService {
 
   public partnerTheme$: BehaviorSubject<PartnerTheme | null> = new BehaviorSubject<PartnerTheme | null>( null );
+  public toggleCarousel$ = new BehaviorSubject<boolean>( true );
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';
 
@@ -53,22 +54,24 @@ export class DashboardService {
   }
 
   getProductItemByIdProducto(id:number): Observable<Producto[]> {
-   
+
     const URL = ENDPOINTS_API.PRODUCTSDETAIL +id+"/" + this.cuitSocio ;
     return this.httpWrapperService.get<Producto[]>( URL ).pipe( tap( ( products: Producto[] ) => {
         this.products = products;
       }
     ) );
   }
- 
+
   getCoberturas(id:number): Observable<any> {
- 
+
     const URL = ENDPOINTS_API.COBERTURAS + this.cuitSocio + "/" +id;
     return this.httpWrapperService.get<any[]>( URL,{responseType:"blob" as "json"}).pipe();
   }
 
 
+  toggleCarousel(show: boolean){
+    this.toggleCarousel$.next(show);
+  }
 
-  
 }
 
