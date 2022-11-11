@@ -10,10 +10,15 @@ import { BlockUI, NgBlockUI } from "ng-block-ui";
   styleUrls: [ './nav.component.css' ]
 } )
 export class NavComponent implements AfterViewInit, OnInit {
+  public hover: boolean= false;
 
   public partnerTheme: PartnerTheme | null | undefined;
   public showMenuButton: boolean | undefined;
   public backGroundClass = false;
+
+  public primaryColor: string = 'grey';
+
+  public secundaryColor: string = 'blue';
 
   constructor(
     private dashBoardService: DashboardService,
@@ -24,18 +29,18 @@ export class NavComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
   }
-
   ngOnInit() {
     this.showMenuButton = false;
     this.loadingService.tryToStartLoading();
-    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | null ) => {
-      if ( parnetTheme ) {
-        this.partnerTheme = parnetTheme;
+    this.dashBoardService.partnerTheme$.subscribe( ( partnerThemes: PartnerTheme | null ) => {
+      if ( partnerThemes ) {
+        this.partnerTheme = partnerThemes;
+        this.primaryColor = partnerThemes.color_primary;
+        this.secundaryColor = partnerThemes.color_secundary;
         this.loadingService.tryToStopLoading();
       }
     } )
   }
-
 //   @HostListener('scroll', ['$event']) // for scroll events of the current element
   @HostListener( 'window:scroll', [ '$event' ] ) // for window scroll events
   onScroll( event: any ) {
