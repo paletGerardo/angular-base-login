@@ -28,6 +28,9 @@ export class ProductDetailComponent implements OnInit {
    itemsArray:any=[];
    itemsArray2:any=[];
    cobert:boolean=false;
+
+
+
    planes:any=[];
    firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -55,12 +58,10 @@ export class ProductDetailComponent implements OnInit {
     }
   
     
-      ngOnInit(): void {
-       
+      ngOnInit(): void {      
        this.loadingService.tryToStartLoading();
         this.getProducts(); 
-         
-          
+       
          // this.getProduct(this.id);
       }
       getProducts(): void {
@@ -94,10 +95,29 @@ export class ProductDetailComponent implements OnInit {
                console.log(this.planes);  
             }
           });
+          console.log(this.planes);
+          this.ordenarPlanes();
+       // this.planes.sort(((a:any, b:any) => a.codigo_plan - b.codigo_plan));
+       // console.log('planes ordenados',this.planes);
 
           
       }
-       
+      ordenarPlanes(){
+        this.planes.sort(function (a:any, b:any) {
+          // A va primero que B
+          if (a.codigo_plan < b.codigo_plan)
+              return -1;
+          // B va primero que A
+          else if (a.codigo_plan > b.codigo_plan)
+              return 1;
+          // A y B son iguales
+          else 
+              return 0;
+      });
+      
+      console.log(this.planes);
+      }
+     
       
       getProductItemByIdProducto(): void {
         this.dashboardService.getProductItemByIdProducto(this.id).subscribe((data:any)=>{
