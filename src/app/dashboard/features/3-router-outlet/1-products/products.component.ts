@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+    this.dashboardService.toggleCarousel(true);
   }
 
   getProducts(): void {
@@ -30,4 +31,4 @@ export class ProductsComponent implements OnInit {
     //console.log(product);
     this._router.navigate(['dashboard/product-detail/'+product.id_producto]);
   }
-} 
+}

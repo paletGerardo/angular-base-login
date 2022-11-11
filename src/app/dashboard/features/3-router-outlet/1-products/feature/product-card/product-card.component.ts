@@ -36,10 +36,11 @@ export class ProductCardComponent implements OnInit {
       this.id=this.product?.id_producto;
       this.dashBoardService.getProductItemByIdProducto(this.id).subscribe((data:any)=>{
         this.prodItem=data;
-       if(this.prodItem!=null){
+       if(this.prodItem && this.prodItem.length && this.prodItem[0].product_image){
         this.url=this.prodItem[0].product_image;
         this.notImage=false;
-
+       } else {
+         this.notImage=true;
        }
       });
     }
