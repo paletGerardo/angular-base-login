@@ -7,10 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 } )
 export class RiskListComponent implements OnInit {
   @Input() risks: any[] = [];
-
+  selectedIndex = 0;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  selectImage(index: number): void {
+    this. selectedIndex = index;
+  }
 }
