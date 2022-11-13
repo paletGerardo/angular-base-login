@@ -19,6 +19,10 @@ import { AboutComponent } from "./features/3-router-outlet/3-about/about.compone
 import { ProductDetailComponent } from './features/3-router-outlet/2-product-detail/product-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ButtonDiretive } from "./shared/directive/btnHoverDirective";
+import { PlanListComponent } from './features/3-router-outlet/2-product-detail/feature/plan-list/plan-list.component';
+import { RiskListComponent } from './features/3-router-outlet/2-product-detail/feature/risk-list/risk-list.component';
+import { TitleComponent } from "./shared/components/title/title.component";
+import { DetailComponent } from './features/3-router-outlet/2-product-detail/feature/detail/detail.component';
 
 @NgModule( {
   declarations: [
@@ -35,9 +39,13 @@ import { ButtonDiretive } from "./shared/directive/btnHoverDirective";
     ContactComponent,
     ButtonPrimaryComponent,
     ButtonSecondaryComponent,
+    TitleComponent,
     NotFoundComponent,
     HelpComponent,
     ButtonDiretive,
+    PlanListComponent,
+    RiskListComponent,
+    DetailComponent,
 
   ],
   exports: [
@@ -45,7 +53,8 @@ import { ButtonDiretive } from "./shared/directive/btnHoverDirective";
     NavComponent,
     FooterComponent,
     ButtonPrimaryComponent,
-    ButtonSecondaryComponent
+    ButtonSecondaryComponent,
+    TitleComponent
 
   ],
   imports: [
@@ -53,7 +62,7 @@ import { ButtonDiretive } from "./shared/directive/btnHoverDirective";
     DashboardRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class DashboardModule { }

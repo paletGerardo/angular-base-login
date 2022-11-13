@@ -37,6 +37,23 @@ body {
 
 .mat-step-header.cdk-keyboard-focused, .mat-step-header.cdk-program-focused, .mat-step-header:hover:not([aria-disabled]), .mat-step-header:hover[aria-disabled=false]{
   background-color: transparent!important;
-  
+
 }
 
+:root {
+  --animate-delay: 20ms;
+}
+
+.mat-stepper-horizontal-line {
+  border-top-width: 0px !important;
+  border-top-style: solid;
+  flex: auto;
+  height: 0;
+  min-width: 0 !important;
+  width: 10px !important;
+  display: none !important;
+}
+
+//.mat-ripple {
+//  border-bottom: 2px solid !important;
+//}

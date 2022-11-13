@@ -82,21 +82,21 @@
 
   <!-- Mobile menu, show/hide based on menu state. -->
   <div [ngClass]="{'hidden-app': !showMenuButton}" id="mobile-menu" class="z-50">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="mx-auto container px-2 sm:px-6 lg:px-8">
       <div class="w-auto flex items-center py-2" *ngIf="partnerTheme && partnerTheme.logo_url">
         <img class="md:hidden h-8 w-auto" [src]="partnerTheme.logo_url" alt="Your Company">
       </div>
       <a routerLink="/dashboard/home"
-         class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+         class="animate__animated animate__fadeInRight animate__delay-1s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
          aria-current="page">Home</a>
       <a routerLink="/dashboard/about"
-         class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+         class="animate__animated animate__fadeInRight animate__delay-2s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
          aria-current="page">Nosotros</a>
       <a routerLink="/dashboard/policy/consult"
-         class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Consultá
+         class="animate__animated animate__fadeInRight animate__delay-3s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Consultá
         tu póliza</a>
       <a routerLink="/dashboard/policy/download"
-         class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Descargá
+         class="animate__animated animate__fadeInRight animate__delay-4s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Descargá
         tu póliza</a>
 
       <!--Social icons mobil-->

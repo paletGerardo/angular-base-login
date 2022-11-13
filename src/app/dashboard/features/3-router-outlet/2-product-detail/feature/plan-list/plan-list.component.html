@@ -1,0 +1,5 @@
+<div class="">
+  <ng-container *ngFor="let plan of plans; let i = index">
+    <app-button-secondary [ngClass]="{'hidden': i>2}" [text]="plan.codigo_plan" (click)="emitSelected(plan)"></app-button-secondary>
+  </ng-container>
+</div>
