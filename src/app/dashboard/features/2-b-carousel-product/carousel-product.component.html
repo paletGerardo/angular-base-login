@@ -1,25 +1,23 @@
-<div [style.height]="auto">
-    <mat-carousel
-      timings="250ms ease-in"
-      [autoplay]="true"
-      interval="5000"
-      color="accent"
-      maxWidth="auto"
-      proportion="25"
-      slides="5"
-      [loop]="true"
-      [hideArrows]="false"
-      [hideIndicators]="false"
-      [useKeyboard]="true"
-      [useMouseWheel]="false"
-      orientation="ltr"
-    >
-      <mat-carousel-slide
-        #matCarouselSlide
-        *ngFor="let slide of slides; let i = index"
-        [image]="slide.image"
-        overlayColor="#00000040"
-        [hideOverlay]="false"
-      ></mat-carousel-slide>
-    </mat-carousel>
-  </div>
+<swiper [effect]="'cards'" [grabCursor]="true" class="swiperCard">
+  <ng-template swiperSlide >
+    <img src="https://source.unsplash.com/random/400x200'" alt="">
+    </ng-template
+    ><ng-template swiperSlide>
+    <img src="https://images.unsplash.com/photo-1666742115187-30f79d3b88bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2ODQzNjYyMA&ixlib=rb-4.0.3&q=80&w=1080" alt="">
+    </ng-template
+    ><ng-template swiperSlide>
+    <img src="https://images.unsplash.com/photo-1666899155015-d33935023d20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2ODQzNjY0Mw&ixlib=rb-4.0.3&q=80&w=1080" alt="">
+    </ng-template
+    ><ng-template swiperSlide>
+    <img src="https://images.unsplash.com/photo-1667479708845-8c3da3f02b69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2ODQzNzExNA&ixlib=rb-4.0.3&q=80&w=1080" alt="">
+    </ng-template
+    ><ng-template swiperSlide>
+    <img src="https://images.unsplash.com/photo-1666304611667-b35fcabf0585?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2ODQzNjgwNg&ixlib=rb-4.0.3&q=80&w=1080" alt="">
+    </ng-template
+    ><ng-template swiperSlide>
+    <img src="https://images.unsplash.com/photo-1666827717869-448a0adcd4ac?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=720&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2ODQzNTQ2OA&ixlib=rb-4.0.3&q=80&w=1280" alt="">
+    </ng-template
+    ><ng-template swiperSlide>
+    <img src="https://images.unsplash.com/photo-1666221340457-1af7d0be8ba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2ODQzNjc3NQ&ixlib=rb-4.0.3&q=80&w=1080" alt="">
+    </ng-template>
+</swiper>
