@@ -1,12 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { PartnerTheme } from "../../shared/models/partnerTheme.model";
 import { DashboardService } from "../../dashboard.service";
 import { LoadingService } from "../../../core/loading/loading.service";
 
+import { SwiperComponent } from "swiper/angular";
+// import Swiper core and required modules
+import SwiperCore, { Pagination, Navigation } from "swiper";
+
+// install Swiper modules
+SwiperCore.use([Pagination, Navigation]);
+
+
+// install Swiper modules
+SwiperCore.use([Pagination]);
+
+
 @Component( {
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: [ './carousel.component.scss' ]
+  styleUrls: [ './carousel.component.scss' ],
+  encapsulation: ViewEncapsulation.None,
+
 } )
 export class CarouselComponent implements OnInit {
   public partnerTheme: PartnerTheme | null | undefined;
