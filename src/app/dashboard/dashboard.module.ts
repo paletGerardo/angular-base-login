@@ -23,6 +23,8 @@ import { PlanListComponent } from './features/3-router-outlet/2-product-detail/f
 import { RiskListComponent } from './features/3-router-outlet/2-product-detail/feature/risk-list/risk-list.component';
 import { TitleComponent } from "./shared/components/title/title.component";
 import { DetailComponent } from './features/3-router-outlet/2-product-detail/feature/detail/detail.component';
+import { SwiperModule } from "swiper/angular";
+import { CarouselProductComponent } from './features/2-b-carousel-product/carousel-product.component';
 
 @NgModule( {
   declarations: [
@@ -32,6 +34,7 @@ import { DetailComponent } from './features/3-router-outlet/2-product-detail/fea
     ProductDetailComponent,
     NavComponent,
     CarouselComponent,
+    CarouselProductComponent,
     ProductCardComponent,
     AboutComponent,
     PolicyDownloadComponent,
@@ -54,7 +57,8 @@ import { DetailComponent } from './features/3-router-outlet/2-product-detail/fea
     FooterComponent,
     ButtonPrimaryComponent,
     ButtonSecondaryComponent,
-    TitleComponent
+    TitleComponent,
+    CarouselProductComponent
 
   ],
   imports: [
@@ -63,6 +67,7 @@ import { DetailComponent } from './features/3-router-outlet/2-product-detail/fea
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    SwiperModule,
   ]
 })
 export class DashboardModule { }
