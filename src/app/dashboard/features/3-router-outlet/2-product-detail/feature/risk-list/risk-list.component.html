@@ -2,18 +2,16 @@
   <div class="w-full max-h-20 min-h-20 riskCard p-4 animate__animated animate__fadeInRight" *ngFor="let risk of risks ">
     <div class="grid grid-cols-3 gap-4">
       <p class="font-bold col-span-2" style="font-size:1vw;">{{risk.descipcion_riesgo}} </p>
-      <p class="flex justify-center items-center font-bold">${{risk.suma_asegurada_riesgo}}  </p>
+      <p class="flex justify-center items-center font-bold">${{risk.suma_asegurada_riesgo}} </p>
     </div>
   </div>
   <div class="arrows flex justify-between">
-    <img src="assets/images/arrow_left.png" alt="arrow left">
+    <img class="animate__animated animate__fadeInRight animate__delay-3s" src="assets/images/arrow_left.png"
+      alt="arrow left">
 
-    <div class="carousel-dot-container" >
-      <span *ngFor="let risk of risks; let i=index"
-            class="dot"
-            [ngClass]="{'active': selectedIndex === i}"
-            (click)="selectImage(i)"
-      >
+    <div class="carousel-dot-container">
+      <span *ngFor="let risk of risks; let i=index" class="dot" [ngClass]="{'active': selectedIndex === i}"
+        (click)="selectImage(i)">
       </span>
     </div>
 
