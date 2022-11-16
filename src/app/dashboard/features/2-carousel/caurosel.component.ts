@@ -34,13 +34,19 @@ export class CarouselComponent implements OnInit {
       (parnetTheme: PartnerTheme | null) => {
         if (parnetTheme) {
           this.partnerTheme = parnetTheme;
-          this.images.push(this.partnerTheme.carousel_image1);
-          this.images.push(this.partnerTheme.carousel_image2);
-          this.images.push(this.partnerTheme.carousel_image3);
-          this.images.push(this.partnerTheme.carousel_image4);
-          //        this.images.push("https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(40).webp");
-          //        this.images.push("https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(35).webp");
-          //        this.images.push("https://www.servicioscarrefour1.com.ar/documents/23744/0/banner+092021/285d91a5-7358-41da-a8ad-a13c5c0c76bb?t=1630626730753");;
+          // this.images.push(this.partnerTheme.carousel_image1);
+          //  this.images.push(this.partnerTheme.carousel_image2);
+          //  this.images.push(this.partnerTheme.carousel_image3);
+          //  this.images.push(this.partnerTheme.carousel_image4);
+          this.images.push(
+            'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(40).webp'
+          );
+          this.images.push(
+            'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(35).webp'
+          );
+          this.images.push(
+            'https://www.servicioscarrefour1.com.ar/documents/23744/0/banner+092021/285d91a5-7358-41da-a8ad-a13c5c0c76bb?t=1630626730753'
+          );
           this.loadingService.tryToStopLoading();
         }
       }
