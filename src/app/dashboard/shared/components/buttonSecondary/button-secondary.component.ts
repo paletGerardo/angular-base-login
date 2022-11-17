@@ -12,7 +12,7 @@ import { PartnerTheme } from '../../models/partnerTheme.model';
 
 export class ButtonSecondaryComponent implements OnInit {
     @Input() text?:any;
-  partnerTheme: any;
+  partnerTheme: PartnerTheme = new PartnerTheme();
   constructor(
     private loadingService: LoadingService,
     private dashBoardService:DashboardService
@@ -21,11 +21,9 @@ export class ButtonSecondaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.tryToStopLoading();
-    console.log(this.text);
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | null ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
-        console.log('color->', this.partnerTheme.color_tertiary);
         this.loadingService.tryToStopLoading();
       }
     } )
