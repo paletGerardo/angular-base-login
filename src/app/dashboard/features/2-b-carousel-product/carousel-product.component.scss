@@ -2,20 +2,22 @@
 @import "~swiper/css";
 @import "~swiper/css/effect-cards";
 
-
-
-
 .swiperCard {
   width: 240px!important;
   height: 320px!important;
-  display: flex;
+}
+
+.swiperSlide {
+  display: flex!important;
   align-items: center;
   justify-content: center;
-  border-radius: 18px!important;
+  border-radius: 18px;
   font-size: 22px;
   font-weight: bold;
 }
-
+.swiper-cards {
+  overflow: visible!important;
+}
 
 
 
