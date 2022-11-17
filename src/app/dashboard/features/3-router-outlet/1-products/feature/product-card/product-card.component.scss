@@ -1,14 +1,21 @@
-.btn-container{
-    position: relative;
-    display: contents;
+.btn-container {
+  position: relative;
+  display: contents;
 }
-.buttonBox{
-    position: relative;
-    top: 6px;
+
+.buttonBox {
+  position: relative;
+  top: 6px;
 }
-.card{
 
-margin-right: 40px;
+.card {
+  margin-right: 40px;
+  width: 250px;
+  height: 350px;
+}
 
+.card img {
+  width: auto;
+  height: 50%;
 }
 
