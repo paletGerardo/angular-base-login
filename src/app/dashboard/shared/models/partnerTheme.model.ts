@@ -28,7 +28,7 @@ export class PartnerTheme {
   bg_image_url: string = '';
   //caroucel_list
   colors: Colors = new Colors;
-  carousel_List: CarouselList[] = [];
+  carousel_list: CarouselList[] = [];
   cuit_socio: string = '';
   id: string = '';
   pop_up_body: string = '';
