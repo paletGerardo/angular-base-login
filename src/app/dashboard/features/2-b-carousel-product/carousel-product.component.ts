@@ -4,13 +4,14 @@ import { LoadingService } from "../../../core/loading/loading.service";
 import { SwiperComponent } from "swiper/angular";
 
 // import Swiper core and required modules
-import SwiperCore, { EffectCards } from "swiper";
+import SwiperCore, { EffectCards, Navigation } from "swiper";
 import { Observable } from "rxjs";
 import { Producto } from "../../shared/models/productsResponse.model";
 import { Router } from "@angular/router";
 
 // install Swiper modules
 SwiperCore.use([EffectCards]);
+SwiperCore.use([Navigation]);
 
 
 @Component( {
