@@ -10,7 +10,7 @@ import { PartnerTheme } from '../../models/partnerTheme.model';
   styleUrls: ['./button-primary.component.scss']
 })
 export class ButtonPrimaryComponent implements OnInit {
-  @Input() text:string="sumar al carrrito"; 
+  @Input() text:string="comprar";
   public partnerTheme: PartnerTheme | null | undefined;
   constructor(
     private loadingService: LoadingService,
