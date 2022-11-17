@@ -4,10 +4,11 @@ import { LoadingService } from "../../../core/loading/loading.service";
 import { SwiperComponent } from "swiper/angular";
 
 // import Swiper core and required modules
-import SwiperCore, { EffectCards } from "swiper";
+import SwiperCore, { EffectCards, Navigation } from "swiper";
 
 // install Swiper modules
 SwiperCore.use([EffectCards]);
+SwiperCore.use([Navigation]);
 
 
 @Component( {
@@ -18,7 +19,6 @@ SwiperCore.use([EffectCards]);
 
 } )
 export class CarouselProductComponent implements OnInit {
-  
   constructor(
     private dashBoardService: DashboardService,
     private loadingService: LoadingService

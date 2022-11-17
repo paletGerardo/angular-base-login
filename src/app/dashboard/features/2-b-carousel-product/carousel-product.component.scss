@@ -1,23 +1,97 @@
 
 @import "~swiper/css";
+@import "~swiper/css/pagination";
+@import "~swiper/css/navigation";
 @import "~swiper/css/effect-cards";
 
 .swiperCard {
   width: 240px!important;
   height: 320px!important;
 }
-
-.swiperSlide {
-  display: flex!important;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  font-size: 22px;
-  font-weight: bold;
-}
 .swiper-cards {
   overflow: visible!important;
 }
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px!important;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiperImagen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 
 
+
+.mySwiper {
+  margin-top: 5vh;
+  width: 1200px;
+  height: 400px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.swiperCard{
+  display: none;
+}
+
+@media only screen and (max-width: 800px){           .mySwiper{
+    display: none;
+  }
+
+  .swiperCard{
+    display: block;
+  }
+}
