@@ -25,9 +25,9 @@ export class ButtonDiretive {
 
   ngOnInit() {
     this.dashboardService.partnerTheme$.subscribe(
-      (themes: PartnerTheme | null) => {
-        this.colorPrimary = themes?.color_List.color_primary;
-        this.colorSecondary = themes?.color_List.color_secondary;
+      (themes: PartnerTheme) => {
+        this.colorPrimary = themes?.colors.rgba_primary;
+        this.colorSecondary = themes?.colors.rgba_secondary;
         this.renderer.setStyle(
           this.elRef.nativeElement,
           'background-color',

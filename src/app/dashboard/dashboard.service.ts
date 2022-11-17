@@ -6,14 +6,13 @@ import { PartnerTheme } from "./shared/models/partnerTheme.model";
 import { ENDPOINTS_API } from "../core/routes/api.routes";
 import { Producto } from "./shared/models/productsResponse.model";
 import { tap } from "rxjs/operators";
-import { HttpHeaders } from '@angular/common/http';
 
 @Injectable( {
   providedIn: 'root'
 } )
 export class DashboardService {
 
-  public partnerTheme$: BehaviorSubject<PartnerTheme | null> = new BehaviorSubject<PartnerTheme | null>( null );
+  public partnerTheme$: BehaviorSubject<PartnerTheme> = new BehaviorSubject<PartnerTheme>( new PartnerTheme() );
   public toggleCarousel$ = new BehaviorSubject<boolean>( true );
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';

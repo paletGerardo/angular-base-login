@@ -23,8 +23,8 @@ export class NavComponent implements AfterViewInit, OnInit {
   public backGroundClass = false;
 
   public primaryColor: string = 'grey';
-
   public secundaryColor: string = 'blue';
+  public bgColor: string = 'blue';
 
   constructor(
     private dashBoardService: DashboardService,
@@ -42,8 +42,8 @@ export class NavComponent implements AfterViewInit, OnInit {
       (partnerThemes: PartnerTheme | null) => {
         if (partnerThemes) {
           this.partnerTheme = partnerThemes;
-          this.primaryColor = partnerThemes.color_List.color_primary;
-          this.secundaryColor = partnerThemes.color_List.color_secondary;
+          this.primaryColor = partnerThemes.colors.rgba_primary;
+          this.secundaryColor = partnerThemes.colors.rgba_primary_light;
           this.loadingService.tryToStopLoading();
         }
       }
@@ -52,6 +52,13 @@ export class NavComponent implements AfterViewInit, OnInit {
   //   @HostListener('scroll', ['$event']) // for scroll events of the current element
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll(event: any) {
+    if(window.scrollY < 100) {
+      this.bgColor = this.primaryColor;
+    } else {
+      this.bgColor = this.secundaryColor
+
+    }
+
     this.backGroundClass = window.scrollY > 100;
   }
 }
