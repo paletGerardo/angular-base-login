@@ -1,6 +1,5 @@
 <!--<template>-->
-<nav id="nav" class="fixed w-full z-50"
-  [ngStyle]="{'background-color': bgColor }" (scroll)="onScroll($event)">
+<nav id="nav" class="fixed w-full z-50" [ngStyle]="{'background-color': bgColor }" (scroll)="onScroll($event)">
   <div class="container mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center pr-3">
@@ -40,25 +39,12 @@
           *ngIf="partnerTheme && partnerTheme.logo_url">
           <!--          <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">-->
           <img class="hidden h-8 w-auto md:block" [src]="partnerTheme.logo_url" alt="Your Company">
-          <input class="h-8 pl-2 rounded" type="text">
+          <input class=" ml-4 h-8 w-96 pl-2 rounded" type="text">
         </div>
       </div>
       <!--Social icons-->
       <div
-        class="hidden md:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 gap-4">
-        <button type="button"
-          class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-          [ngClass]="{'bg-opacity-100': !backGroundClass, 'bg-opacity-80' : backGroundClass}">
-          <img class="h-8 w-8 mr-3" src="../../../../assets/icons/bag-icon.png" alt="carrito">
-        </button>
-        <button
-          class="text-white hover:text-gray focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-          <p class="text-2xl text-justify h-8 mr-4 ">Carrito</p>
-        </button>
-        <button
-          class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-          <img class="h-8 mr-3" src="../../../../assets/icons/Line-icon.png" alt="Line">
-        </button>
+        class="hidden md:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <button type="button"
           class="rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
           [ngClass]="{'bg-opacity-100': !backGroundClass, 'bg-opacity-80' : backGroundClass}">
@@ -71,12 +57,7 @@
           <span class="sr-only">View notifications</span>
           <img class="h-8" src="../../../../assets/icons/twiter-icon.png" alt="twit">
         </button>
-        <button type="button"
-          class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-          [ngClass]="{'bg-opacity-100': !backGroundClass, 'bg-opacity-80' : backGroundClass}">
-          <span class="sr-only">View notifications</span>
-          <img class="h-8 w-18" src="../../../../assets/icons/BNP-white-icon.png" alt="bnp">
-        </button>
+
       </div>
     </div>
   </div>
