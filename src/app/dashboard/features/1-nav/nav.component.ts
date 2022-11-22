@@ -23,8 +23,8 @@ export class NavComponent implements AfterViewInit, OnInit {
   public backGroundClass = false;
 
   public primaryColor: string = 'grey';
-  public secundaryColor: string = 'blue';
-  public bgColor: string = 'blue';
+  public secundaryColor: string = '';
+  public bgColor: string = 'rgb(0, 131, 203)';
 
   constructor(
     private dashBoardService: DashboardService,

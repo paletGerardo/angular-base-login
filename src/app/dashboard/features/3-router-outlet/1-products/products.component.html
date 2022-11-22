@@ -1,7 +1,7 @@
-<div class="container sm:container lg:container xl:container bg_image" >
-  <div class=" container mx-auto py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+<div class="container lg:container xl:container bg_image" >
+  <div class="container mx-auto py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
     <ng-container *ngFor="let product of products$ | async">
-      <app-product-card  [product]="product"  (click)="productDetail(product)"></app-product-card>
+      <app-product-card  class="centrar" [product]="product"  (click)="productDetail(product)"></app-product-card>
     </ng-container>
   </div>
 </div>
