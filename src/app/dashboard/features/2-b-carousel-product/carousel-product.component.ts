@@ -23,6 +23,14 @@ SwiperCore.use([Autoplay]);
 } )
 export class CarouselProductComponent implements OnInit {
   public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
+  url: string = "";
+  producto: Producto | undefined;
+  prodItem: any = [];
+  itemsArray: any = [];
+  itemsArray2: any = [];
+  plans: any = [];
+  precio: any;
+  titulo: any;
 
   constructor(
     private dashBoardService: DashboardService,
@@ -41,7 +49,18 @@ export class CarouselProductComponent implements OnInit {
 
   productDetail(product:Producto){
     //console.log(product);
+    this.getProductItemByIdProducto(product);
+    
     this._router.navigate(['dashboard/product-detail/'+product.id_producto]);
+  }
+
+  getProductItemByIdProducto(product:Producto): void {
+    this.dashBoardService.getProductItemByIdProducto( product.id_producto ).subscribe( ( data: any ) => {
+      this.dashBoardService.onUrlChanged$.next(data);
+    } );
+
+    
+    
   }
 }
 
