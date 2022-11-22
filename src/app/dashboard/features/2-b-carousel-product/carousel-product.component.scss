@@ -1,22 +1,22 @@
-
 @import "~swiper/css";
 @import "~swiper/css/effect-cards";
 
 .swiperCard {
-  width: 240px!important;
-  height: 320px!important;
+  width: 240px !important;
+  height: 320px !important;
 }
 
 .swiperSlide {
-  display: flex!important;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  border-radius: 18px!important;
+  border-radius: 18px !important;
   font-size: 22px;
   font-weight: bold;
 }
+
 .swiper-cards {
-  overflow: visible!important;
+  overflow: visible !important;
 }
 
 .swiper-slide {
@@ -47,15 +47,30 @@
 }
 
 
-.swiperCard{
+.swiperCard {
   display: none;
-}
 
-@media only screen and (max-width: 800px){           .mySwiper{
+}
+.swiper-pagination{
+  bottom: 0!important;
+}
+.swiper-wrapper {
+  height: 480px!important;
+}
+@media only screen and (max-width: 800px) {
+  .mySwiper {
     display: none;
   }
 
-  .swiperCard{
+  .swiperCard {
     display: block;
   }
+  .swiper-pagination{
+    bottom: 0!important;
+  }
+  .swiper-wrapper {
+    height: 360px!important;
+    width: 280px!important;
+  }
+
 }
