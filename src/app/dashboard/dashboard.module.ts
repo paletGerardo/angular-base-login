@@ -25,6 +25,7 @@ import { TitleComponent } from "./shared/components/title/title.component";
 import { DetailComponent } from './features/3-router-outlet/2-product-detail/feature/detail/detail.component';
 import { SwiperModule } from "swiper/angular";
 import { CarouselProductComponent } from './features/2-b-carousel-product/carousel-product.component';
+import { StepperComponent } from './features/3-router-outlet/2-product-detail/stepper/stepper/stepper.component';
 
 @NgModule( {
   declarations: [
@@ -49,6 +50,7 @@ import { CarouselProductComponent } from './features/2-b-carousel-product/carous
     PlanListComponent,
     RiskListComponent,
     DetailComponent,
+    StepperComponent,
 
   ],
   exports: [
