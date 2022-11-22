@@ -55,7 +55,16 @@ export class ProductDetailComponent implements OnInit {
     this.getProducts();
 
 
-    // this.getProduct(this.id);
+    this.dashboardService.onUrlChanged$
+    .subscribe({
+      next: data => {
+       this.getProducts();
+      },
+      error: err => {
+        console.log('Error Service -->',err);
+        
+      }
+    })
   }
 
   getProducts(): void {
