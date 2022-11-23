@@ -2,13 +2,14 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  HostListener,
+  HostListener, isDevMode,
   OnInit,
 } from '@angular/core';
 import { PartnerTheme } from '../../shared/models/partnerTheme.model';
 import { DashboardService } from '../../dashboard.service';
 import { LoadingService } from '../../../core/loading/loading.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import {environment as env} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-nav',
@@ -34,6 +35,16 @@ export class NavComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
+    if(isDevMode()){
+      // document.cookie = `cuit_socio=${env.CUIT_SOCIO}` ;
+    }
+    if(document.cookie  !== "cuit_socio=30697265895"){
+      console.log("carre");
+      this.bgColor = 'rgb(0, 131, 203)';
+    } else {
+      console.log("musi");
+      this.bgColor = 'rgb(227,6,19)';
+    }
   }
   ngOnInit() {
     this.showMenuButton = false;

@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
     private animationsService: AnimationsService,
     private loadingService: LoadingService,
   ) {
-    document.cookie = `cuit_socio=${env.CUIT_SOCIO}` ;
     if(isDevMode()){
       document.cookie = `cuit_socio=${env.CUIT_SOCIO}` ;
     }
