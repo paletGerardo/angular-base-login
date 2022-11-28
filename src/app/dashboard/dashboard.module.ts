@@ -25,6 +25,8 @@ import { TitleComponent } from "./shared/components/title/title.component";
 import { DetailComponent } from './features/3-router-outlet/2-product-detail/feature/detail/detail.component';
 import { SwiperModule } from "swiper/angular";
 import { CarouselProductComponent } from './features/2-b-carousel-product/carousel-product.component';
+import { PopUpRiskComponent } from './shared/components/popUpRisks/popUp-risk.component';
+import { ButtonSeeMoreComponent } from './shared/components/buttonSeeMore/button-seeMore.component';
 
 @NgModule( {
   declarations: [
@@ -42,6 +44,7 @@ import { CarouselProductComponent } from './features/2-b-carousel-product/carous
     ContactComponent,
     ButtonPrimaryComponent,
     ButtonSecondaryComponent,
+    ButtonSeeMoreComponent,
     TitleComponent,
     NotFoundComponent,
     HelpComponent,
@@ -49,6 +52,7 @@ import { CarouselProductComponent } from './features/2-b-carousel-product/carous
     PlanListComponent,
     RiskListComponent,
     DetailComponent,
+    PopUpRiskComponent
 
   ],
   exports: [
@@ -57,8 +61,10 @@ import { CarouselProductComponent } from './features/2-b-carousel-product/carous
     FooterComponent,
     ButtonPrimaryComponent,
     ButtonSecondaryComponent,
+    ButtonSeeMoreComponent,
     TitleComponent,
-    CarouselProductComponent
+    CarouselProductComponent,
+    PopUpRiskComponent
 
   ],
   imports: [

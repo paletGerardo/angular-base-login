@@ -23,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
   itemsArray: any = [];
   itemsArray2: any = [];
   plans: any = [];
+
   firstFormGroup = this._formBuilder.group( {
     firstCtrl: [ '', Validators.required ],
   } );
@@ -38,10 +39,12 @@ export class ProductDetailComponent implements OnInit {
   precio: any;
   titulo: any;
   risks: any = [];
+  riskCopia:any=[];
 
   constructor( public dashboardService: DashboardService,
                private loadingService: LoadingService,
                private activateRoute: ActivatedRoute,
+             
                private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver ) {
     this.stepperOrientation = breakpointObserver
       .observe( '(min-width: 800px)' )
@@ -65,6 +68,7 @@ export class ProductDetailComponent implements OnInit {
         
       }
     })
+      
   }
 
   getProducts(): void {
@@ -148,8 +152,19 @@ export class ProductDetailComponent implements OnInit {
 
   showRisk( plan: any ) {
     this.risks = plan.rangos[0].riesgos;
+    console.log(this.risks.length);
+    if (this.risks.length>1){
+      this.riskCopia=this.risks.slice(0,2);
+    }
+    else{
+      this.riskCopia=plan.rangos[0].riesgos;
+    }
   }
+
+
 }
+
+
 
 
 

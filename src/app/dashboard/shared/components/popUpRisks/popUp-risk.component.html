@@ -1,0 +1,25 @@
+    <div class="dialog-content-wrapper">
+      <mat-toolbar matDialogTitle class="mat-accent m-0">
+          <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+              <span class="title dialog-title">RIESGOS</span>
+           
+          </mat-toolbar-row>   
+      </mat-toolbar> 
+      <div mat-dialog-conteiner>
+        <div class="grid grid-rows-2 gap-4">
+          <div class="scrollbar" id="style-7">
+            <div class="w-full max-h-20 min-h-20 riskCard p-4 animate__animated animate__fadeInRight" *ngFor="let risk of risks ">
+              <div class="grid grid-cols-3 gap-4">
+                <p class="font-bold col-span-2" style="font-size:1vw;">{{risk.descipcion_riesgo}} </p>
+                <p class="flex justify-center items-center font-bold">${{risk.suma_asegurada_riesgo}}  </p>
+              </div>
+            </div>
+          </div>
+              
+        </div>  
+        <button class="buttonClose bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+[ngStyle]="{'background-color':partnerTheme.colors.rgba_secondary}" (click)="closemodal()">Cerrar</button>
+      </div>
+  </div>
+  
+
