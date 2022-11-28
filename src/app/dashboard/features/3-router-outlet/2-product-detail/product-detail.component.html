@@ -40,14 +40,13 @@
 
             </div>
             <div>
-              <p (click)="getCoberturas()" style="cursor:pointer;">Condiciones Específicas y Generales de la
-                Cobertura</p>
+              <p (click)="getCoberturas()" style="cursor:pointer;">Condiciones Específicas y Generales de la Cobertura</p>
             </div>
           </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup" class="ejemplo" label="Más detalles del producto">
           <form [formGroup]="secondFormGroup">
-            <h2 style="text-align: center;">{{this.prodItem[0].seccion_dos_titulo}}</h2>
+            <h2>{{this.prodItem[0].seccion_dos_titulo}}</h2>
             <h6>{{this.prodItem[0].seccion_dos_subtitulo}}</h6>
 
             <ul>
