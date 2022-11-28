@@ -1,11 +1,11 @@
 <div class="grid grid-rows-2 gap-4">
-  <div class="w-full max-h-20 min-h-20 riskCard p-4 animate__animated animate__fadeInRight" *ngFor="let risk of risks ">
+  <div class="w-full max-h-20 min-h-20 riskCard p-4 animate__animated animate__fadeInRight" *ngFor="let risk of riskCopia ">
     <div class="grid grid-cols-3 gap-4">
       <p class="font-bold col-span-2" style="font-size:1vw;">{{risk.descipcion_riesgo}} </p>
       <p class="flex justify-center items-center font-bold">${{risk.suma_asegurada_riesgo}}  </p>
     </div>
   </div>
-  <div class="arrows flex justify-between">
+  <!--<div class="arrows flex justify-between">
     <img class="arrow" src="assets/images/arrow_left.png" alt="arrow left">
 
     <div class="carousel-dot-container" >
@@ -18,5 +18,8 @@
     </div>
 
     <img class="arrow" src="assets/images/arrow_right.png" alt="arrow right">
+  </div>-->
+  <app-button-seeMore style="    display: flex;
+  justify-content: center;
+ "(click)="openPopUpRisks()"></app-button-seeMore>
   </div>
-</div>
