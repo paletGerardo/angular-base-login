@@ -25,7 +25,7 @@ export class NavComponent implements AfterViewInit, OnInit {
 
   public primaryColor: string = 'grey';
   public secundaryColor: string = '';
-  public bgColor: string = 'rgb(0, 131, 203)';
+  public bgColor: string = '';
 
   constructor(
     private dashBoardService: DashboardService,
@@ -35,16 +35,7 @@ export class NavComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
-    if(isDevMode()){
-      // document.cookie = `cuit_socio=${env.CUIT_SOCIO}` ;
-    }
-    if(document.cookie  !== "cuit_socio=30697265895"){
-      console.log("carre");
-      this.bgColor = 'rgb(0, 131, 203)';
-    } else {
-      console.log("musi");
-      this.bgColor = 'rgb(227,6,19)';
-    }
+
   }
   ngOnInit() {
     this.showMenuButton = false;
@@ -55,6 +46,7 @@ export class NavComponent implements AfterViewInit, OnInit {
           this.partnerTheme = partnerThemes;
           this.primaryColor = partnerThemes.colors.rgba_primary;
           this.secundaryColor = partnerThemes.colors.rgba_primary_light;
+          this.bgColor = this.primaryColor;
           this.loadingService.tryToStopLoading();
         }
       }
