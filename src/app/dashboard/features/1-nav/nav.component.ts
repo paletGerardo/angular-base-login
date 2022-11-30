@@ -72,4 +72,8 @@ export class NavComponent implements AfterViewInit, OnInit {
 
     this.backGroundClass = window.scrollY > 100;
   }
+
+  scrollCall(id:any){
+    this.dashBoardService.navBarOnChanged.next(id);
+  }
 }
