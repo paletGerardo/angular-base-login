@@ -69,13 +69,13 @@
       <div class="w-auto flex items-center py-2" *ngIf="partnerTheme && partnerTheme.logo_url">
         <img class="md:hidden h-8 w-auto" [src]="partnerTheme.logo_url" alt="Your Company">
       </div>
-      <a routerLink="/dashboard/home"
+      <a  *ngIf="!home" routerLink="/dashboard/home"
         class="animate__animated animate__fadeInRight animate__delay-1s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         aria-current="page">Home</a>
-        <a routerLink="/dashboard/home"
+        <a *ngIf="!home" routerLink="/dashboard/home"
         class="animate__animated animate__fadeInRight animate__delay-1s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         aria-current="page" (click)="scrollCall('seguros')">Seguros</a>
-        <a routerLink="/dashboard/home"
+        <a *ngIf="!home" routerLink="/dashboard/home" data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse"
         class="animate__animated animate__fadeInRight animate__delay-1s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         aria-current="page" (click)="scrollCall('asistencias')">Asistencias</a>
       <a routerLink="/dashboard/about"
