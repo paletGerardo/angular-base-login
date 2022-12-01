@@ -16,6 +16,7 @@ export class DashboardService {
   public toggleCarousel$ = new BehaviorSubject<boolean>(true);
   onUrlChanged$: BehaviorSubject<any>;
   navBarOnChanged!: BehaviorSubject<any>;
+  linkNavbarChanged!:BehaviorSubject<any>;
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';
 
@@ -28,6 +29,8 @@ export class DashboardService {
     this.getThemes();
     this.onUrlChanged$ = new BehaviorSubject([]);
     this.navBarOnChanged = new BehaviorSubject('');
+    this.linkNavbarChanged = new BehaviorSubject('');
+
   }
 
   getCuit(): string | undefined {
