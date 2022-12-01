@@ -39,8 +39,15 @@
         <div class="flex md:flex-shrink-0 items-center w-full justify-center md:justify-start"
           *ngIf="partnerTheme && partnerTheme.logo_url">
           <!--          <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">-->
-          <img class="hidden h-8 w-auto md:block" [src]="partnerTheme.logo_url" alt="Your Company">
-          <input class="flex justify-center sm:ml-4 h-8 lg:w-96 sm:w-42 rounded" type="text">
+          <img class="iconoWeb hidden h-8 w-auto md:block" [src]="partnerTheme.logo_url" alt="Your Company">
+          <input class="inputSearch flex justify-center sm:ml-4 h-8 lg:w-96 sm:w-42 rounded" type="text">
+        
+          <div>
+            <input  *ngIf="clicked" type="text" class="input">
+            <mat-icon class="icon" (click)="showInput()">search</mat-icon>
+          </div>
+
+
         </div>
       </div>
       <!--Social icons-->
@@ -67,18 +74,24 @@
   <div [ngClass]="{'hidden-app': !showMenuButton}" id="mobile-menu" class="z-50">
     <div class="mx-auto container px-2 sm:px-6 lg:px-8">
       <div class="w-auto flex items-center py-2" *ngIf="partnerTheme && partnerTheme.logo_url">
-        <img class="md:hidden h-8 w-auto" [src]="partnerTheme.logo_url" alt="Your Company">
+        <img class="iconoMobile md:hidden h-8 w-auto" [src]="partnerTheme.logo_url" alt="Your Company">
       </div>
-      <a routerLink="/dashboard/home"
+      <a  *ngIf="!home" routerLink="/dashboard/home"
         class="animate__animated animate__fadeInRight animate__delay-1s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         aria-current="page">Home</a>
+        <a *ngIf="!home" routerLink="/dashboard/home"
+        class="animate__animated animate__fadeInRight animate__delay-1s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        aria-current="page" (click)="scrollCall('seguros')">Seguros</a>
+        <a *ngIf="!home" routerLink="/dashboard/home" data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse"
+        class="animate__animated animate__fadeInRight animate__delay-1s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        aria-current="page" (click)="scrollCall('asistencias')">Asistencias</a>
       <a routerLink="/dashboard/about"
         class="animate__animated animate__fadeInRight animate__delay-2s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         aria-current="page">Nosotros</a>
-      <a routerLink="/dashboard/policy/consult"
+      <a href="https://autogestion.cardif.com.ar/#/login" target="_blank"
         class="animate__animated animate__fadeInRight animate__delay-3s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Consultá
         tu póliza</a>
-      <a routerLink="/dashboard/policy/download"
+      <a href="https://impresioncertificados.cardif.com.ar/consulta-web/load.action" target="_blank"
         class="animate__animated animate__fadeInRight animate__delay-4s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Descargá
         tu póliza</a>
 

@@ -1,0 +1,53 @@
+.hidden-app {
+    display: none;
+  }
+  
+  .inputSearch{
+    display: block;
+  }
+
+
+  .input{
+    display:none;
+  }
+  .icon{
+    display:none;
+    transform: scale(4);
+    padding: 8px;
+    margin-left: 232px;
+    cursor:pointer;
+ 
+}
+ 
+  
+  @media only screen and (max-width: 500px){ //some value
+     .inputSearch{
+       display: none!important;
+     }
+  
+     .iconoWeb{
+       display: flex;
+       justify-content: center;
+     }
+     .iconoMobile{
+      display:none;
+     }
+     .input{
+        display:inline-block;
+      }
+      .icon{
+        display:inline-block;
+        }
+  }
+ 
+
+.input{
+    margin-left: 42px !important;
+    margin-top: 29px;
+    border-radius: 10px;
+}
+
+::ng-deep .mat-icon{
+    height: 40px!important;
+    width: 21px!important;
+}

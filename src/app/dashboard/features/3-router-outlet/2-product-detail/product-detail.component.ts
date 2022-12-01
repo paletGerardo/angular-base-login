@@ -68,6 +68,7 @@ export class ProductDetailComponent implements OnInit {
         
       }
     })
+    this.dashboardService.linkNavbarChanged.next(false);
       
   }
 

@@ -10,22 +10,25 @@ import { DashboardService } from '../../dashboard.service';
 import { LoadingService } from '../../../core/loading/loading.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import {environment as env} from "../../../../environments/environment";
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements AfterViewInit, OnInit {
   public hover: boolean = false;
-
+  search : String ="";
   public partnerTheme: PartnerTheme | null | undefined;
   public showMenuButton: boolean | undefined;
   public backGroundClass = false;
 
   public primaryColor: string = 'grey';
   public secundaryColor: string = '';
-  public bgColor: string = '';
+  public bgColor: string = 'rgb(0, 131, 203)';
+  home: boolean=false;
+  clicked: boolean=false;
 
   constructor(
     private dashBoardService: DashboardService,
@@ -38,6 +41,7 @@ export class NavComponent implements AfterViewInit, OnInit {
 
   }
   ngOnInit() {
+    this.home=true;
     this.showMenuButton = false;
     this.loadingService.tryToStartLoading();
     this.dashBoardService.partnerTheme$.subscribe(
@@ -51,6 +55,14 @@ export class NavComponent implements AfterViewInit, OnInit {
         }
       }
     );
+    this.dashBoardService.linkNavbarChanged
+   .pipe(debounceTime(1000))
+    .subscribe({
+      next: res => {
+        console.log("home-->",res);
+        this.home=res;
+       }
+    })
   }
   //   @HostListener('scroll', ['$event']) // for scroll events of the current element
   @HostListener('window:scroll', ['$event']) // for window scroll events
@@ -63,5 +75,13 @@ export class NavComponent implements AfterViewInit, OnInit {
     }
 
     this.backGroundClass = window.scrollY > 100;
+  }
+
+  scrollCall(id:any){
+    this.dashBoardService.navBarOnChanged.next(id);
+  }
+
+  showInput(){
+    this.clicked=!this.clicked;
   }
 }
