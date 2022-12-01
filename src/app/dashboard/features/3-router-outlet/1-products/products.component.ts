@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  home:boolean=true;
 
   public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
 
@@ -31,6 +32,8 @@ export class ProductsComponent implements OnInit {
         this.scrollDown(res);
       }
     })
+
+    this.hideLinkNavbar();
   }
 
   getProducts(): void {
@@ -44,5 +47,11 @@ export class ProductsComponent implements OnInit {
 
   scrollDown(id:any) {   
    document.getElementById(id)!.scrollIntoView();
-}
+  }
+
+  hideLinkNavbar(){
+    console.log(this.home);
+    this.dashboardService.linkNavbarChanged.next(this.home);
+
+  }
 }
