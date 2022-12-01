@@ -15,11 +15,11 @@ import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements AfterViewInit, OnInit {
   public hover: boolean = false;
-
+  search : String ="";
   public partnerTheme: PartnerTheme | null | undefined;
   public showMenuButton: boolean | undefined;
   public backGroundClass = false;
@@ -28,6 +28,7 @@ export class NavComponent implements AfterViewInit, OnInit {
   public secundaryColor: string = '';
   public bgColor: string = 'rgb(0, 131, 203)';
   home: boolean=false;
+  clicked: boolean=false;
 
   constructor(
     private dashBoardService: DashboardService,
@@ -86,5 +87,9 @@ export class NavComponent implements AfterViewInit, OnInit {
 
   scrollCall(id:any){
     this.dashBoardService.navBarOnChanged.next(id);
+  }
+
+  showInput(){
+    this.clicked=!this.clicked;
   }
 }
