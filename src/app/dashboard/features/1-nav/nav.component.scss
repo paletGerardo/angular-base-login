@@ -87,8 +87,8 @@ font-weight: normal;
 font-style: normal;
 position: relative;
 top: 11px;
-color: aliceblue;
-font-size: 33px;
+color: aliceblue!important;
+font-size: 33px!important;
 /* line-height: 1; */
 letter-spacing: normal;
 text-transform: none;
@@ -98,4 +98,9 @@ word-wrap: normal;
 direction: ltr;
 /* -webkit-font-feature-settings: "liga"; */
 /* -webkit-font-smoothing: antialiased; */
+}
+
+.icon{
+  color: aliceblue!important;
+font-size: 33px!important;
 }
