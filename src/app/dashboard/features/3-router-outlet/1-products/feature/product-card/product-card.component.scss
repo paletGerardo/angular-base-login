@@ -18,3 +18,16 @@
   height: 50%;
 }
 
+
+::ng-deep .mat-icon {
+  -webkit-user-select: none;
+  user-select: none;
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 24px;
+  width: 24px;
+  overflow: hidden;
+  color: rgb(255, 200, 0)!important;
+  font-size: 19px!important;
+}
