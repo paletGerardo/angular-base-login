@@ -32,8 +32,7 @@
      .iconoWeb{
        display: flex;
        justify-content: center;
-       position: relative;
-       margin-left: 12vh;
+       margin: auto;
      }
      .iconoMobile{
       display:none;
@@ -45,6 +44,29 @@
         display:inline-block;
         }
   }
+
+  @media only screen and (max-width: 768px){ //some value
+    .inputSearch{
+      display: none!important;
+    }
+ 
+    .iconoWeb{
+      display: flex;
+      justify-content: center;
+      margin: auto;
+    }
+    .iconoMobile{
+     display:none;
+    }
+
+    .input{
+      display:inline-block;
+    }
+    .icon{
+      display:inline-block;
+      }
+    
+ }
  
 
 .input{
