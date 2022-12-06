@@ -1,13 +1,13 @@
-<div class="container pt-8">
-  <section class="container py-8">
+<div class="container pt-8 bg_image">
+  <section class="container py-8" id="title">
     <app-title [title]="titulo"></app-title>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-      <div class="lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft ">
+      <div class="lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white">
         <img class="imageProduct" [src]="this.url"/>
       </div>
 
-      <div class="grid col-span-2 grid-rows-4 gap-4">
+      <div class="grid col-span-2 grid-rows-4 gap-4 bg-white">
         <app-plan-list [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
         <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
         <app-detail [price]="precio" [itemsArray]="itemsArray"></app-detail>
@@ -17,7 +17,7 @@
   </section>
 
   <section class="py-8 px-4">
-    <div class="stepper">
+    <div class="stepper bg-white">
       <mat-stepper
         class="example-stepper"
         [orientation]="(stepperOrientation | async)!"
@@ -39,8 +39,8 @@
               </svg>
 
             </div>
-            <div>
-              <p (click)="getCoberturas()" style="cursor:pointer;">Condiciones Específicas y Generales de la Cobertura</p>
+            <div style="width:120px;">
+              <p (click)="getCoberturas()" style="cursor:pointer;" class="text-center">Condiciones Específicas y Generales de la Cobertura</p>
             </div>
           </form>
         </mat-step>

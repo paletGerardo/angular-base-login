@@ -58,7 +58,7 @@ export class ProductDetailComponent implements OnInit {
     this.loadingService.tryToStartLoading();
     this.getProducts();
 
-
+    this.scrollDown('title')
     this.dashboardService.onUrlChanged$
     .subscribe({
       next: data => {
@@ -66,13 +66,15 @@ export class ProductDetailComponent implements OnInit {
       },
       error: err => {
         console.log('Error Service -->',err);
-        
+
       }
     })
     this.dashboardService.linkNavbarChanged.next(false);
-      
-  }
 
+  }
+  scrollDown(id:any) {
+    document.getElementById(id)!.scrollIntoView();
+  }
   getProducts(): void {
     this.dashboardService.getProducts()
       .pipe(
@@ -168,7 +170,7 @@ export class ProductDetailComponent implements OnInit {
 
     this._router.navigate(['dashboard/product-purchase/'+this.producto?.id_producto]);
   }
-  
+
 
 
 }
