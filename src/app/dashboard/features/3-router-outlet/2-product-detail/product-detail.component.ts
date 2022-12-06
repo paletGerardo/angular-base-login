@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Producto } from "../../../shared/models/productsResponse.model";
 import { DashboardService } from "../../../dashboard.service";
 import { LoadingService } from 'src/app/core/loading/loading.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -40,11 +40,12 @@ export class ProductDetailComponent implements OnInit {
   titulo: any;
   risks: any = [];
   riskCopia:any=[];
+  @Input() product: Producto | undefined;
 
   constructor( public dashboardService: DashboardService,
                private loadingService: LoadingService,
                private activateRoute: ActivatedRoute,
-             
+               private _router: Router ,
                private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver ) {
     this.stepperOrientation = breakpointObserver
       .observe( '(min-width: 800px)' )
@@ -161,6 +162,13 @@ export class ProductDetailComponent implements OnInit {
       this.riskCopia=plan.rangos[0].riesgos;
     }
   }
+
+  comprarProducto(){
+    console.log("compra del producto",this.producto);
+
+    this._router.navigate(['dashboard/product-purchase/'+this.producto?.id_producto]);
+  }
+  
 
 
 }
