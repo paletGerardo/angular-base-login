@@ -8,14 +8,14 @@ import { ProductsComponent } from "./features/3-router-outlet/1-products/product
 import { DashboardComponent } from "./dashboard.component";
 import { CarouselComponent } from './features/2-carousel/caurosel.component';
 import { ProductCardComponent } from './features/3-router-outlet/1-products/feature/product-card/product-card.component';
-import { PolicyDownloadComponent } from './features/3-router-outlet/5-policy-download/policy-download.component';
-import { PolicyConsultComponent } from './features/3-router-outlet/4-policy-consult/policy-consult.component';
+import { PolicyDownloadComponent } from './features/3-router-outlet/6-policy-download/policy-download.component';
+import { PolicyConsultComponent } from './features/3-router-outlet/5-policy-consult/policy-consult.component';
 import { ContactComponent } from './features/4-footer/features/contact/contact.component';
 import { ButtonPrimaryComponent } from './shared/components/buttonPrimary/button-primary.component';
 import { ButtonSecondaryComponent } from './shared/components/buttonSecondary/button-secondary.component';
 import { NotFoundComponent } from "./features/3-router-outlet/not-found/not-found.component";
 import { HelpComponent } from "./features/3-router-outlet/help/help.component";
-import { AboutComponent } from "./features/3-router-outlet/3-about/about.component";
+import { AboutComponent } from "./features/3-router-outlet/4-about/about.component";
 import { ProductDetailComponent } from './features/3-router-outlet/2-product-detail/product-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ButtonDiretive } from "./shared/directive/btnHoverDirective";
@@ -27,6 +27,7 @@ import { SwiperModule } from "swiper/angular";
 import { CarouselProductComponent } from './features/2-b-carousel-product/carousel-product.component';
 import { PopUpRiskComponent } from './shared/components/popUpRisks/popUp-risk.component';
 import { ButtonSeeMoreComponent } from './shared/components/buttonSeeMore/button-seeMore.component';
+import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-purchase/product-purchase.component';
 
 @NgModule( {
   declarations: [
@@ -52,7 +53,8 @@ import { ButtonSeeMoreComponent } from './shared/components/buttonSeeMore/button
     PlanListComponent,
     RiskListComponent,
     DetailComponent,
-    PopUpRiskComponent
+    PopUpRiskComponent,
+    ProductPurchaseComponent
 
   ],
   exports: [
@@ -64,7 +66,8 @@ import { ButtonSeeMoreComponent } from './shared/components/buttonSeeMore/button
     ButtonSeeMoreComponent,
     TitleComponent,
     CarouselProductComponent,
-    PopUpRiskComponent
+    PopUpRiskComponent,
+    ProductPurchaseComponent
 
   ],
   imports: [

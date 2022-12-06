@@ -1,0 +1,16 @@
+<section class="container py-8">
+    <app-title [title]="titulo"></app-title>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div class="lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft ">
+        <img class="imageProduct" [src]="this.url"/>
+      </div>
+
+      <div class="grid col-span-2 grid-rows-4 gap-4">
+        <app-plan-list [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
+        <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
+        <app-detail [price]="precio" [itemsArray]="itemsArray"></app-detail>
+       <!-- <app-button-primary [producto]="producto" (click)="comprarProducto()"></app-button-primary>-->
+      </div>
+    </div>
+  </section>
