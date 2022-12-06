@@ -5,21 +5,21 @@
       <p class="flex justify-center items-center font-bold">${{risk.suma_asegurada_riesgo}}  </p>
     </div>
   </div>
-  <!--<div class="arrows flex justify-between">
+  <!-- <div class="arrows flex justify-between">
     <img class="arrow" src="assets/images/arrow_left.png" alt="arrow left">
 
-    <div class="carousel-dot-container" >
+   <div class="carousel-dot-container" >
       <span *ngFor="let risk of risks; let i=index"
             class="dot"
             [ngClass]="{'active': selectedIndex === i}"
             (click)="selectImage(i)"
       >
       </span>
-    </div>
-
-    <img class="arrow" src="assets/images/arrow_right.png" alt="arrow right">
-  </div>-->
-  <app-button-seeMore style="    display: flex;
+    </div>-->
+    <div class="arrows flex justify-end">
+    <img class="arrow" src="assets/images/arrow_right.png" (click)="openPopUpRisks()" alt="arrow right">
+  </div>
+  <!--<app-button-seeMore style="    display: flex;
   justify-content: center;
- "(click)="openPopUpRisks()"></app-button-seeMore>
+ "(click)="openPopUpRisks()"></app-button-seeMore>-->
   </div>
