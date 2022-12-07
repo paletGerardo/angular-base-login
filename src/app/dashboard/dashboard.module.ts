@@ -28,6 +28,8 @@ import { CarouselProductComponent } from './features/2-b-carousel-product/carous
 import { PopUpRiskComponent } from './shared/components/popUpRisks/popUp-risk.component';
 import { ButtonSeeMoreComponent } from './shared/components/buttonSeeMore/button-seeMore.component';
 import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-purchase/product-purchase.component';
+import { FormEmailComponent } from './features/3-router-outlet/3-product-purchase/feature/form-email/form-email.component';
+import { CuponComponent } from './features/3-router-outlet/3-product-purchase/feature/cupon/cupon.component';
 
 @NgModule( {
   declarations: [
@@ -54,7 +56,9 @@ import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-p
     RiskListComponent,
     DetailComponent,
     PopUpRiskComponent,
-    ProductPurchaseComponent
+    ProductPurchaseComponent,
+    FormEmailComponent,
+    CuponComponent
 
   ],
   exports: [
@@ -67,7 +71,9 @@ import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-p
     TitleComponent,
     CarouselProductComponent,
     PopUpRiskComponent,
-    ProductPurchaseComponent
+    ProductPurchaseComponent,
+    FormEmailComponent,
+    CuponComponent
 
   ],
   imports: [
