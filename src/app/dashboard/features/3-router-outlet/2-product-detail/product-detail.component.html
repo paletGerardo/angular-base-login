@@ -1,13 +1,66 @@
-<div class="container pt-8 bg_image">
+<div class="container pt-8">
   <section class="container py-8" id="title">
-    <app-title [title]="titulo"></app-title>
+    <h3 class="text-center">Seguro de {{titulo}}</h3>
+    <br>
+    <br>
+    <!--    <h4>${{producto.producto_descripcion}}</h4>-->
+    <div class="grid grid-rows-3 gap-6">
+      <div
+        class="flex justify-center lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white pr-porcentaje-35">
+        <!-- colored -->
+        <div class="ih-item circle colored effect3 left_to_right">
+          <a href="#">
+            <div class="img"><img [src]="this.url" alt="img"></div>
+            <div class="info">
+              <h3>
+                <small>desde</small>
+                ${{precio}}
+              </h3>
+              <p>por mes</p>
+              <!--              <h2>${{precio}}</h2>-->
+            </div>
+          </a>
+        </div>
+        <!-- end colored -->
+        <!-- colored -->
+        <!--        <div class="ih-item circle colored effect10 bottom_to_top">-->
+        <!--          <a href="#">-->
+        <!--            <div class="img"><img [src]="this.url" alt="img"></div>-->
+        <!--        <div class="info">-->
+        <!--          <h3>{{titulo}}</h3>-->
+        <!--          <p>desde</p>-->
+        <!--          <h2>${{precio}}</h2>-->
+        <!--        </div>-->
+        <!--          </a>-->
+        <!--        </div>-->
+        <!-- end colored -->
 
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-      <div class="lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white">
-        <img class="imageProduct" [src]="this.url"/>
+        <!-- colored -->
+        <!--        <div class="ih-item square colored effect4">-->
+        <!--          <a href="#">-->
+        <!--            <div class="img"><img [src]="this.url" alt="img"></div>-->
+        <!--            <div class="mask1"></div>-->
+        <!--            <div class="mask2"></div>-->
+        <!--        <div class="info">-->
+        <!--          <h3>{{titulo}}</h3>-->
+        <!--          <p>desde</p>-->
+        <!--          <h2>${{precio}}</h2>-->
+        <!--        </div>-->
+        <!--          </a>-->
+        <!--        </div>-->
+        <!-- end colored -->
       </div>
 
-      <div class="grid col-span-2 grid-rows-4 gap-4 bg-white">
+      <!--      <app-title class="col-span-2" [title]="titulo"></app-title>-->
+
+      <div class="flex justify-center col-span-2 grid grid-rows-4 gap-4 bg-white">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <app-plan-list [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
         <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
         <app-detail [price]="precio" [itemsArray]="itemsArray"></app-detail>
@@ -40,7 +93,8 @@
 
             </div>
             <div style="width:120px;">
-              <p (click)="getCoberturas()" style="cursor:pointer;" class="text-center">Condiciones Específicas y Generales de la Cobertura</p>
+              <p (click)="getCoberturas()" style="cursor:pointer;" class="text-center">Condiciones Específicas y
+                Generales de la Cobertura</p>
             </div>
           </form>
         </mat-step>
