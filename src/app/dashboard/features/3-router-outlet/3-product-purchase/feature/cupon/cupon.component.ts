@@ -1,0 +1,57 @@
+import { Component, OnInit } from '@angular/core';
+import { Observable } from "rxjs";
+import { Producto } from "../../../../../shared/models/productsResponse.model";
+import { DashboardService } from "../../../../../dashboard.service";
+import { LoadingService } from 'src/app/core/loading/loading.service';
+import { ActivatedRoute } from '@angular/router';
+import { debounceTime, map } from 'rxjs/operators';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { StepperOrientation } from '@angular/cdk/stepper';
+
+
+@Component( {
+  selector: 'app-cupon',
+  templateUrl: './cupon.component.html',
+  styleUrls: [ './cupon.component.scss' ]
+} )
+export class CuponComponent implements OnInit {
+  id: number = 0;
+  url: string = "";
+  producto: Producto | undefined;
+  prodItem: any = [];
+  itemsArray: any = [];
+  itemsArray2: any = [];
+  plans: any = [];
+
+  firstFormGroup = this._formBuilder.group( {
+    firstCtrl: [ '', Validators.required ],
+  } );
+  secondFormGroup = this._formBuilder.group( {
+    secondCtrl: [ '', Validators.required ],
+  } );
+
+  stepperOrientation: Observable<StepperOrientation>;
+  planCopia: any;
+  public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
+
+  precio: any;
+  titulo: any;
+  risks: any = [];
+  riskCopia:any=[];
+
+  constructor( public dashboardService: DashboardService,
+               private loadingService: LoadingService,
+               private activateRoute: ActivatedRoute,
+             
+               private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver ) {
+    this.stepperOrientation = breakpointObserver
+      .observe( '(min-width: 800px)' )
+      .pipe( map( ( { matches } ) => ( matches ? 'horizontal' : 'vertical' ) ) );
+  }
+
+
+  ngOnInit(): void {
+  }
+
+} 
