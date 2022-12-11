@@ -8,6 +8,7 @@
  })
  export class LoadingService {
    private isLoading = new BehaviorSubject(false);
+   loadedData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
    get isLoading$() {
      return this.isLoading.asObservable();
@@ -36,6 +37,7 @@
 
    tryToStopLoading() {
      if (!this.blockUIService.isActive('app')) {
+       this.loadedData$.next(true);
        return;
      }
 
