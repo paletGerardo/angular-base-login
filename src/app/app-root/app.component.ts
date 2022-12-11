@@ -4,6 +4,8 @@ import browser from 'browser-detect';
 import { routeAnimations } from "../core/animations/route.animations";
 import { LoadingService } from "../core/loading/loading.service";
 import { environment as env} from "../../environments/environment";
+import { BlockUI, NgBlockUI } from "ng-block-ui";
+import { LoadingTempleteComponent } from "../core/loading/loading-templete/loading-templete.component";
 
 @Component( {
   selector: 'app-root',
@@ -13,10 +15,12 @@ import { environment as env} from "../../environments/environment";
 } )
 export class AppComponent implements OnInit {
   title = 'app-base-login';
-
+  @BlockUI() blockUI: NgBlockUI | undefined;
+  blockTemplate: LoadingTempleteComponent | undefined;
   constructor(
     private animationsService: AnimationsService,
     private loadingService: LoadingService,
+
   ) {
     if(isDevMode()){
       document.cookie = `cuit_socio=${env.CUIT_SOCIO}` ;

@@ -8,6 +8,7 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { BlockUIModule } from 'ng-block-ui';
 import { ErrorDialogComponent } from "./errors/error-dialog/error-dialog.component";
+import { LoadingTempleteComponent } from "./loading/loading-templete/loading-templete.component";
 
 @NgModule( {
   imports: [
@@ -21,17 +22,22 @@ import { ErrorDialogComponent } from "./errors/error-dialog/error-dialog.compone
     HttpClientModule,
 
     // 3rd party
-    BlockUIModule.forRoot()
+    BlockUIModule.forRoot({
+      template: LoadingTempleteComponent
+    })
   ],
   exports: [],
   declarations: [
     ErrorDialogComponent,
+    LoadingTempleteComponent,
   ],
   providers: [
     HttpWrapperService,
     HttpService,
-    RegexCommon
+    RegexCommon,
+  ],
+  entryComponents: [
+    LoadingTempleteComponent,
   ],
 } )
-export class CoreModule {
-}
+export class CoreModule {}
