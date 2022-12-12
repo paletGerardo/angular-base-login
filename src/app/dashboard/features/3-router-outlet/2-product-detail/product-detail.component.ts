@@ -8,6 +8,7 @@ import { debounceTime, map } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
+import { PartnerTheme } from "../../../shared/models/partnerTheme.model";
 
 
 @Component( {
@@ -41,6 +42,8 @@ export class ProductDetailComponent implements OnInit {
   risks: any = [];
   riskCopia:any=[];
   @Input() product: Producto | undefined;
+  public primaryColor: string | undefined;
+  public secundaryColor: string | undefined;
 
   constructor( public dashboardService: DashboardService,
                private loadingService: LoadingService,
@@ -70,7 +73,14 @@ export class ProductDetailComponent implements OnInit {
       }
     })
     this.dashboardService.linkNavbarChanged.next(false);
-
+    this.dashboardService.partnerTheme$.subscribe(
+      (partnerThemes: PartnerTheme | undefined) => {
+        if (partnerThemes) {
+          this.primaryColor = partnerThemes.colors.rgba_primary;
+          this.secundaryColor = partnerThemes.colors.rgba_primary_light;
+        }
+      }
+    );
   }
   scrollDown(id:any) {
     document.getElementById(id)!.scrollIntoView();

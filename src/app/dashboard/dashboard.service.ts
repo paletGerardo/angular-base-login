@@ -12,7 +12,8 @@ import { tap } from "rxjs/operators";
 })
 export class DashboardService {
 
-  public partnerTheme$: BehaviorSubject<PartnerTheme> = new BehaviorSubject<PartnerTheme>(new PartnerTheme());
+  public partnerTheme$: BehaviorSubject<PartnerTheme | undefined> = new BehaviorSubject<PartnerTheme | undefined>(undefined);
+  public partnerTheme: PartnerTheme | undefined = undefined;
   public toggleCarousel$ = new BehaviorSubject<boolean>(true);
   onUrlChanged$: BehaviorSubject<any>;
   navBarOnChanged!: BehaviorSubject<any>;
@@ -42,10 +43,13 @@ export class DashboardService {
   }
 
   getThemes(): void {
-    const URL = ENDPOINTS_API.THEMES + this.cuitSocio;
-    this.httpWrapperService.get<PartnerTheme>(URL).subscribe((res: PartnerTheme) => {
-      this.partnerTheme$.next(res);
-    });
+    if(!this.partnerTheme) {
+      const URL = ENDPOINTS_API.THEMES + this.cuitSocio;
+      this.httpWrapperService.get<PartnerTheme>(URL).subscribe((res: PartnerTheme) => {
+        this.partnerTheme = res;
+        this.partnerTheme$.next(res);
+      });
+    }
   }
 
   getProducts(): Observable<Producto[]> {

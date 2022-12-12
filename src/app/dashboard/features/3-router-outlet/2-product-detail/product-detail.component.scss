@@ -1,10 +1,25 @@
+//@font-face {
+//  font-family: 'fontSecondary';
+//  src: url('http://localhost:8080/landing/themes/getFontByCuit/30687310434/secondary/type/font_primary.ttf') format('ttf');
+//}
+@import "src/styles/_varaibles.scss";
 .product_detail_title {
   text-align: center;
+  font-family: font-primary, serif !important;
+  font-size: 1.6rem;
 }
-
+.detail-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
 .product_detail_slogan {
   text-align: center;
   font-size: 2rem;
+}
+.product_detail_slogan p {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 .imageProduct {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -19,7 +34,7 @@
   text-align: center;
   width: 475px;
   height: 50px;
-  font-family: 'Poppins';
+  font-family: 'Poppins', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -193,11 +208,12 @@ svg {
   text-transform: uppercase;
   position: relative;
   letter-spacing: 4px;
-  font-size: 26px;
+  font-size: 1.8rem;
   margin: 0 30px;
-  padding: 55px 0 0 0;
+  padding: 25px 0 0 0;
   height: 110px;
   text-shadow: 0 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-family: font-secondary, serif !important;
 }
 .ih-item.circle.effect3 small {
   text-transform: lowercase;
@@ -208,11 +224,16 @@ svg {
 }
 .ih-item.circle.effect3 .info p {
   color: #bbb;
-  padding: 10px 5px 0 5px;
+  padding: 5px 5px 0 5px;
   font-style: italic;
   margin: 0 30px;
   font-size: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.ih-item.circle.effect3 .info b {
+  color: white;
+  font-size: 1.6rem;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -238,7 +259,7 @@ svg {
 }
 
 .ih-item.circle.effect3.colored .info {
-  background: #1a4a72;
+  //background: #1a4a72;
 }
 .ih-item.circle .info {
   position: absolute;
@@ -283,5 +304,103 @@ svg {
 }
 
 .pr-porcentaje-35 {
-  padding-right: 35%;
+  padding-right: 40vw;
+}
+
+
+@media (min-width: map-get($grid-breakpoints, xs)) {
+  .pr-porcentaje-35 {
+    padding-right: 40vw;
+  }
+
+  .ih-item.circle .img {
+    width: 280px;
+    height: 280px;
+  }
+
+  .ih-item.circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .ih-item.circle.effect3 .info h3 {
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
+
+  .show_if_not_cell {
+    display: none;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, sm)) {
+  .pr-porcentaje-35 {
+    padding-right: 40vw;
+  }
+  .ih-item.circle .img {
+    width: 360px;
+    height: 360px;
+  }
+
+  .ih-item.circle {
+    width: 170px;
+    height: 170px;
+  }
+
+  .ih-item.circle.effect3 .info h3 {
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
+
+  .show_if_not_cell {
+    display: none;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, md)) {
+  .pr-porcentaje-35 {
+    padding-right: 33vw;
+  }
+  .ih-item.circle .img {
+    width: 400px;
+    height: 400px;
+  }
+
+  .ih-item.circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .ih-item.circle.effect3 .info h3 {
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+  }
+
+  .show_if_not_cell {
+    display: block;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+  .pr-porcentaje-35 {
+    padding-right: 28vw;
+  }
+  .ih-item.circle .img {
+    width: 450px;
+    height: 450px;
+  }
+
+  .ih-item.circle {
+    width: 250px;
+    height: 250px;
+  }
+
+  .ih-item.circle.effect3 .info h3 {
+    letter-spacing: 2px;
+    font-size: 1.6rem;
+  }
+
+  .show_if_not_cell {
+    display: block;
+  }
 }

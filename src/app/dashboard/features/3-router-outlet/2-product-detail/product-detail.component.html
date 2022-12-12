@@ -1,31 +1,29 @@
 <div class="container pt-8">
   <section class="container py-8" id="title">
-    <h3 class="product_detail_title py-4">Seguro de {{titulo}}</h3>
+    <h2 class="product_detail_title py-4">Seguro de {{titulo}}</h2>
     <div class="product_detail_slogan pb-4">
-      <p>
+      <p [ngStyle]="{'color': primaryColor }">
         Asegurá tu celular para usarlo sin preocuparte en cualquier lugar
       </p>
     </div>
-    <!--    <h4>${{producto.producto_descripcion}}</h4>-->
-    <div class="grid grid-rows-3 gap-6">
+    <div class="detail-container">
       <div class="flex justify-center lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white pr-porcentaje-35">
         <!-- colored -->
-        <div class="ih-item circle colored effect3 left_to_right">
+        <div class="ih-item circle colored effect3 left_to_right" >
           <a href="#">
             <div class="img"><img [src]="this.url" alt="img"></div>
-            <div class="info">
+            <div class="info" [ngStyle]="{'background-color': primaryColor }">
               <h3>
                 <small>desde</small>
                 ${{precio}}
+                <small>por mes</small>
               </h3>
-              <p>por mes</p>
+              <p class="show_if_not_cell">clic para</p>
+              <b class="show_if_not_cell">¡Adquirir!</b>
             </div>
           </a>
         </div>
       </div>
-
-      <!--      <app-title class="col-span-2" [title]="titulo"></app-title>-->
-
       <div class="flex justify-center col-span-2 grid grid-rows-4 gap-4 bg-white">
         <br>
         <br>
