@@ -5,7 +5,7 @@ import { DashboardService } from "../../../../../dashboard.service";
 import { LoadingService } from 'src/app/core/loading/loading.service';
 import { ActivatedRoute } from '@angular/router';
 import { debounceTime, map } from 'rxjs/operators';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 
@@ -25,12 +25,12 @@ export class FormEmailComponent implements OnInit {
   plans: any = [];
   page:string='purchase';
 
-  firstFormGroup = this._formBuilder.group( {
-    firstCtrl: [ '', Validators.required ],
-  } );
-  secondFormGroup = this._formBuilder.group( {
-    secondCtrl: [ '', Validators.required ],
-  } );
+  userEmail = new FormGroup({
+    Email: new FormControl('',[
+      Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    } );
+
 
   stepperOrientation: Observable<StepperOrientation>;
   planCopia: any;
