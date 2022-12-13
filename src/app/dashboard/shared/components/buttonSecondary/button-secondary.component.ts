@@ -12,6 +12,8 @@ import { PartnerTheme } from '../../models/partnerTheme.model';
 
 export class ButtonSecondaryComponent implements OnInit {
     @Input() text?:any;
+    @Input() cupon?:any;
+    @Input() clicked?:any;
   partnerTheme: PartnerTheme = new PartnerTheme();
   constructor(
     private loadingService: LoadingService,
