@@ -5,7 +5,7 @@ import { DashboardService } from "../../../../../dashboard.service";
 import { LoadingService } from 'src/app/core/loading/loading.service';
 import { ActivatedRoute } from '@angular/router';
 import { debounceTime, map } from 'rxjs/operators';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 
@@ -17,12 +17,8 @@ import { StepperOrientation } from '@angular/cdk/stepper';
 } )
 export class CuponComponent implements OnInit {
   id: number = 0;
-  url: string = "";
-  producto: Producto | undefined;
-  prodItem: any = [];
-  itemsArray: any = [];
-  itemsArray2: any = [];
-  plans: any = [];
+  descuento: any = 0;
+  clicked:boolean=false;
 
   firstFormGroup = this._formBuilder.group( {
     firstCtrl: [ '', Validators.required ],
@@ -32,13 +28,13 @@ export class CuponComponent implements OnInit {
   } );
 
   stepperOrientation: Observable<StepperOrientation>;
-  planCopia: any;
   public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
 
-  precio: any;
-  titulo: any;
-  risks: any = [];
-  riskCopia:any=[];
+  formularioCupon = new FormGroup({
+    descuento: new FormControl('',[
+      Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    } );
 
   constructor( public dashboardService: DashboardService,
                private loadingService: LoadingService,
@@ -53,5 +49,14 @@ export class CuponComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  cuponDescuento(){
+    this.clicked=true;
+    this.descuento=this.formularioCupon.value.descuento;
+    console.log('formulario',this.descuento);
+    this.dashboardService.resumeDescuento.next(this.descuento);
+
+  }
+
 
 } 
