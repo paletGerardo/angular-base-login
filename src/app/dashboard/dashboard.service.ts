@@ -17,6 +17,7 @@ export class DashboardService {
   onUrlChanged$: BehaviorSubject<any>;
   navBarOnChanged!: BehaviorSubject<any>;
   linkNavbarChanged!:BehaviorSubject<any>;
+  resumeDescuento!:BehaviorSubject<any>;
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';
 
@@ -30,6 +31,9 @@ export class DashboardService {
     this.onUrlChanged$ = new BehaviorSubject([]);
     this.navBarOnChanged = new BehaviorSubject('');
     this.linkNavbarChanged = new BehaviorSubject('');
+    this.resumeDescuento = new BehaviorSubject('');
+
+
 
   }
 
