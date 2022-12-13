@@ -22,6 +22,15 @@
       </div>
     
   </section>
-  <div style="text-align:center;">
-    <app-cupon class="py-8" style="margin:0 auto;"></app-cupon>
-  </div>
+  <section  class="container py-8">
+    <div style="text-align:center;">
+      <app-cupon class="py-8" style="margin:0 auto;"></app-cupon>
+      <app-payment-summary [price]="precio" style="display: flex;justify-content: center;"></app-payment-summary>
+    </div>
+  </section>
+  <section class="container py-8">
+    <app-stepper></app-stepper>
+
+    <app-button-primary style="position: relative;top: 4vh;"></app-button-primary>
+  </section>
+  
