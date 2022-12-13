@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./plan-list.component.scss']
 })
 export class PlanListComponent implements OnInit {
+  cupon:boolean=false;
   @Input() plans: any[] = [];
   @Output() emitPlanSelected: EventEmitter<string> = new EventEmitter<string>();
   constructor() { }
