@@ -30,6 +30,8 @@ import { ButtonSeeMoreComponent } from './shared/components/buttonSeeMore/button
 import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-purchase/product-purchase.component';
 import { FormEmailComponent } from './features/3-router-outlet/3-product-purchase/feature/form-email/form-email.component';
 import { CuponComponent } from './features/3-router-outlet/3-product-purchase/feature/cupon/cupon.component';
+import { StepperComponent } from './features/3-router-outlet/3-product-purchase/feature/stepper/stepper.component';
+import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-purchase/feature/payment-summary/payment-summary.component';
 
 @NgModule( {
   declarations: [
@@ -58,7 +60,9 @@ import { CuponComponent } from './features/3-router-outlet/3-product-purchase/fe
     PopUpRiskComponent,
     ProductPurchaseComponent,
     FormEmailComponent,
-    CuponComponent
+    CuponComponent,
+    StepperComponent,
+    PaymentSummaryComponent,
 
   ],
   exports: [
@@ -73,7 +77,10 @@ import { CuponComponent } from './features/3-router-outlet/3-product-purchase/fe
     PopUpRiskComponent,
     ProductPurchaseComponent,
     FormEmailComponent,
-    CuponComponent
+    CuponComponent,
+    StepperComponent,
+    PaymentSummaryComponent,
+    
 
   ],
   imports: [
@@ -83,6 +90,7 @@ import { CuponComponent } from './features/3-router-outlet/3-product-purchase/fe
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
+    
   ]
 })
 export class DashboardModule { }
