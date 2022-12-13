@@ -1,13 +1,12 @@
 <div class="grid grid-rows-2 gap-4" style="display: flex;justify-content: center;">
     <div class="w-full max-h-25 min-h-20 riskCard p-4 animate__animated animate__fadeInRight" >
       <div class="grid grid-cols-1 gap-4">
-        <form  [formGroup]="formularioCupon" class=" max-w-sm" (ngSubmit)="cuponDescuento()">
+        <form  [formGroup]="formularioCupon" class=" max-w-sm" (ngSubmit)="cuponDescuento($event)">
           <p class="font-bold col-span-2">¿Tenés un cupon o giftcard? Cargálo aqui </p>
             <div class="flex items-center border-b border-green-500 py-2">
-              <input  [disabled]="clicked" formControlName="descuento" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="number" placeholder="CODIGODESCUENTO" aria-label="Full name">
-              <button (click)="cuponDescuento()" [disabled]="clicked" class="flex-shrink-0 bg-green-500 hover:bg-green-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" >
-                Aplicar
-            </button>
+              <input  [disabled]="clicked" onfocus="this.descuento=''" formControlName="descuento" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="number" placeholder="CODIGODESCUENTO" aria-label="Full name">
+           
+            <app-button-secondary [clicked]="clicked" [cupon]="cupon" [text]="text"></app-button-secondary>
             </div>
           </form>
       </div>

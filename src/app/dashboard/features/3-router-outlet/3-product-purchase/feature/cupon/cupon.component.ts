@@ -19,6 +19,8 @@ export class CuponComponent implements OnInit {
   id: number = 0;
   descuento: any = 0;
   clicked:boolean=false;
+  text:string="aplicar";
+  cupon:boolean=true;
 
   firstFormGroup = this._formBuilder.group( {
     firstCtrl: [ '', Validators.required ],
@@ -50,8 +52,17 @@ export class CuponComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cuponDescuento(){
+  cuponDescuento(e:Event){
+    console.log(e);
     this.clicked=true;
+    if(this.text==='borrar'){
+      this.formularioCupon.value.descuento = "";
+      this.descuento="";
+      this.text='aplicar';
+    }
+    else{
+      this.text="borrar";
+    }
     this.descuento=this.formularioCupon.value.descuento;
     console.log('formulario',this.descuento);
     this.dashboardService.resumeDescuento.next(this.descuento);
