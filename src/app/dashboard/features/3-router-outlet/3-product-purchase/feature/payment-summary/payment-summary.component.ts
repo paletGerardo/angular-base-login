@@ -18,7 +18,8 @@ import { StepperOrientation } from '@angular/cdk/stepper';
 } )
 export class PaymentSummaryComponent implements OnInit {
     @Input() price: string | undefined;
-  precioConIVA=0;
+  precioConIVA:any=0;
+  precioTotal:any=0;
   descuento=0;
   id: number = 0;
   url: string = "";
@@ -79,13 +80,15 @@ export class PaymentSummaryComponent implements OnInit {
    // console.log("precio en entero", precio)
     let iva=((precio)*(0.21));
     precio+=iva;
+    console.log(this.descuento);
     if(this.descuento==0){
       this.precioConIVA=precio;
+      this.precioTotal=precio;
     }
     else{
       let promocion=((this.precioConIVA)*(this.descuento)/100);
-      this.precioConIVA-=promocion;
-
+      this.precioTotal=this.precioConIVA-promocion;
+      this.precioTotal=(this.precioTotal.toFixed(2));
     }
   }
 
