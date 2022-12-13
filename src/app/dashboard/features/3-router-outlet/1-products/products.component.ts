@@ -50,7 +50,6 @@ export class ProductsComponent implements OnInit {
   }
 
   hideLinkNavbar(){
-    console.log(this.home);
     this.dashboardService.linkNavbarChanged.next(this.home);
 
   }
