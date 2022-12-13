@@ -11,6 +11,7 @@ import { LoadingService } from '../../../core/loading/loading.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import {environment as env} from "../../../../environments/environment";
 import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -29,12 +30,16 @@ export class NavComponent implements AfterViewInit, OnInit {
   public bgColor: string = 'rgb(0, 131, 203)';
   home: boolean=false;
   clicked: boolean=false;
+  private _unsubscribeAll: Subject<any>;
 
   constructor(
     private dashBoardService: DashboardService,
     private loadingService: LoadingService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
+    this._unsubscribeAll = new Subject();
+
+  }
 
   ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
@@ -59,7 +64,6 @@ export class NavComponent implements AfterViewInit, OnInit {
    .pipe(debounceTime(1000))
     .subscribe({
       next: res => {
-        console.log("home-->",res);
         this.home=res;
        }
     })
@@ -84,4 +88,10 @@ export class NavComponent implements AfterViewInit, OnInit {
   showInput(){
     this.clicked=!this.clicked;
   }
-}
+
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
+}  

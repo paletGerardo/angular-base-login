@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { Producto } from "../../../shared/models/productsResponse.model";
 import { DashboardService } from "../../../dashboard.service";
 import { LoadingService } from 'src/app/core/loading/loading.service';
@@ -41,6 +41,7 @@ export class ProductDetailComponent implements OnInit {
   risks: any = [];
   riskCopia:any=[];
   @Input() product: Producto | undefined;
+  private _unsubscribeAll: Subject<any>;
 
   constructor( public dashboardService: DashboardService,
                private loadingService: LoadingService,
@@ -50,6 +51,8 @@ export class ProductDetailComponent implements OnInit {
     this.stepperOrientation = breakpointObserver
       .observe( '(min-width: 800px)' )
       .pipe( map( ( { matches } ) => ( matches ? 'horizontal' : 'vertical' ) ) );
+      this._unsubscribeAll = new Subject();
+
   }
 
 
@@ -165,10 +168,16 @@ export class ProductDetailComponent implements OnInit {
 
   comprarProducto(){
     console.log("compra del producto",this.producto);
-
     this._router.navigate(['dashboard/product-purchase/'+this.producto?.id_producto]);
   }
+
+
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
   
+  }
 
 
 }
