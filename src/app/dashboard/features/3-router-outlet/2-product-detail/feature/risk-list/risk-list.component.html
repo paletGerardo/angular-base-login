@@ -1,5 +1,6 @@
 <div class="grid grid-rows-2 gap-4">
-  <div class="w-full max-h-20 min-h-20 riskCard p-4 animate__animated animate__fadeInRight" *ngFor="let risk of riskCopia ">
+  <h3 class="text-center">¡Lo que te cubre!</h3>
+  <div *ngFor="let risk of riskCopia " class="w-full max-h-20 min-h-20 riskCard p-4 animate__animated animate__fadeInRight">
     <div class="grid grid-cols-3 gap-4">
       <p class="font-bold col-span-2">{{risk.descipcion_riesgo}} </p>
       <p class="flex justify-center items-center font-bold">${{risk.suma_asegurada_riesgo}}  </p>

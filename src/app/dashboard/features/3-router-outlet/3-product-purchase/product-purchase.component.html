@@ -9,8 +9,28 @@
       <div class="grid col-span-2 grid-rows-4 gap-4">
         <app-plan-list [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
         <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
-        <app-detail [price]="precio" [itemsArray]="itemsArray"></app-detail>
+        <app-detail [price]="precio" [page]="page" [itemsArray]="itemsArray"></app-detail>
        <!-- <app-button-primary [producto]="producto" (click)="comprarProducto()"></app-button-primary>-->
       </div>
     </div>
   </section>
+  <section class="container py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div class="lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft ">
+            <app-form-email style="display: flex;justify-content: center;"></app-form-email>        
+        </div>    
+      </div>
+    
+  </section>
+  <section  class="container py-8">
+    <div style="text-align:center;">
+      <app-cupon class="py-8" style="margin:0 auto;"></app-cupon>
+      <app-payment-summary [price]="precio" style="display: flex;justify-content: center;"></app-payment-summary>
+    </div>
+  </section>
+  <section class="container py-8">
+    <app-stepper></app-stepper>
+
+    <app-button-primary style="position: relative;top: 4vh;"></app-button-primary>
+  </section>
+  

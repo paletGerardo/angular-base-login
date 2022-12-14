@@ -23,6 +23,8 @@ export class ProductPurchaseComponent implements OnInit {
   itemsArray: any = [];
   itemsArray2: any = [];
   plans: any = [];
+  page:string='purchase';
+  
 
   firstFormGroup = this._formBuilder.group( {
     firstCtrl: [ '', Validators.required ],

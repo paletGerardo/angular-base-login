@@ -9,7 +9,7 @@ import { PartnerTheme } from "../../models/partnerTheme.model";
     templateUrl: './popUp-risk.component.html',
     styleUrls: ['./popUp-risk.component.scss']
   })
-  
+
   export class PopUpRiskComponent implements OnInit {
  risks:any=[];
  public partnerTheme: PartnerTheme | null | undefined;
@@ -28,14 +28,14 @@ import { PartnerTheme } from "../../models/partnerTheme.model";
       console.log(this._data.risks);
       this.risks=this._data.risks;
       this.loadingService.tryToStopLoading();
-      this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | null ) => {
+      this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | undefined ) => {
         if ( parnetTheme ) {
           this.partnerTheme = parnetTheme;
           this.loadingService.tryToStopLoading();
         }
       } )
     }
-    
+
 
 
     closemodal(){

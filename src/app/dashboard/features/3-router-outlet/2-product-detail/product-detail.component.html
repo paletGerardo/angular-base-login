@@ -1,16 +1,33 @@
-<div class="container pt-8 bg_image">
+<div class="container pt-8">
   <section class="container py-8" id="title">
-    <app-title [title]="titulo"></app-title>
-
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-      <div class="lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white">
-        <img class="imageProduct" [src]="this.url"/>
+    <h2 class="product_detail_title py-4">Seguro de {{titulo}}</h2>
+    <div class="product_detail_slogan pb-4">
+      <p [ngStyle]="{'color': primaryColor }">
+        Asegurá tu celular para usarlo sin preocuparte en cualquier lugar
+      </p>
+    </div>
+    <div class="detail-container">
+      <div class="flex justify-center lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white pr-porcentaje-35">
+        <!-- colored -->
+        <div class="ih-item circle colored effect3 left_to_right" >
+          <a href="#">
+            <div class="img"><img [src]="this.url" alt="img"></div>
+            <div class="info" [ngStyle]="{'background-color': primaryColor }">
+              <h3>
+                <small>desde</small>
+                ${{precio}}
+                <small>por mes</small>
+              </h3>
+              <p class="show_if_not_cell">clic para</p>
+              <b class="show_if_not_cell">¡Adquirir!</b>
+            </div>
+          </a>
+        </div>
       </div>
-
-      <div class="grid col-span-2 grid-rows-4 gap-4 bg-white">
-        <app-plan-list [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
+      <div class="flex justify-center col-span-2 grid grid-rows-4 gap-4 bg-white m-t-4">
+        <app-plan-list *ngIf="primaryColor" [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
         <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
-        <app-detail [price]="precio" [itemsArray]="itemsArray"></app-detail>
+<!--        <app-detail [price]="precio" [itemsArray]="itemsArray"></app-detail>-->
         <app-button-primary (click)="comprarProducto()"></app-button-primary>
       </div>
     </div>
@@ -25,6 +42,10 @@
 
         <mat-step [stepControl]="firstFormGroup" label="Descarga de documentación">
           <form [formGroup]="firstFormGroup">
+            <div style="width:120px;">
+              <p (click)="getCoberturas()" style="cursor:pointer;" class="text-center">Condiciones Específicas y
+                Generales de la Cobertura</p>
+            </div>
             <div class="descarga">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"
                    xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -39,15 +60,12 @@
               </svg>
 
             </div>
-            <div style="width:120px;">
-              <p (click)="getCoberturas()" style="cursor:pointer;" class="text-center">Condiciones Específicas y Generales de la Cobertura</p>
-            </div>
           </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup" class="ejemplo" label="Más detalles del producto">
           <form [formGroup]="secondFormGroup">
-            <h2>{{this.prodItem[0].seccion_dos_titulo}}</h2>
-            <h6>{{this.prodItem[0].seccion_dos_subtitulo}}</h6>
+<!--            <h2>{{this.prodItem[0].seccion_dos_titulo}}</h2>-->
+<!--            <h6>{{this.prodItem[0].seccion_dos_subtitulo}}</h6>-->
 
             <ul>
               <li *ngFor="let item2 of itemsArray2" class="py-2">{{item2}}</li>

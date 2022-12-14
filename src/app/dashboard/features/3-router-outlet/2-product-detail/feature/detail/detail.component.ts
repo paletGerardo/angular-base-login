@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DetailComponent implements OnInit {
   @Input() price: string = '';
   @Input() itemsArray: any[] = [];
+  @Input() page: string = '';
 
   constructor() { }
 
