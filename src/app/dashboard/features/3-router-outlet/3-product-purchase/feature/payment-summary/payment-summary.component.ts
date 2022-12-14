@@ -4,7 +4,7 @@ import { Producto } from "../../../../../shared/models/productsResponse.model";
 import { DashboardService } from "../../../../../dashboard.service";
 import { LoadingService } from 'src/app/core/loading/loading.service';
 import { ActivatedRoute } from '@angular/router';
-import { debounceTime, map } from 'rxjs/operators';
+import { debounceTime, map, takeUntil } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
@@ -17,9 +17,10 @@ import { StepperOrientation } from '@angular/cdk/stepper';
   styleUrls: [ './payment-summary.component.scss' ]
 } )
 export class PaymentSummaryComponent implements OnInit {
-    @Input() price: string | undefined;
+    @Input() price: any;
   precioConIVA:any=0;
   precioTotal:any=0;
+  precio:any=0;
   descuento=0;
   id: number = 0;
   url: string = "";
@@ -58,8 +59,14 @@ export class PaymentSummaryComponent implements OnInit {
 
 
   ngOnInit(): void {
+    setTimeout(()=>{                          
+
+      this.precio=parseInt(this.price!);
+    }, 500);  
+   
     this.DashboardService.resumeDescuento
     .pipe(debounceTime(1000))
+    .pipe(takeUntil(this._unsubscribeAll))
     .subscribe({
       next: res => {
         console.log('resultado',res);
@@ -67,23 +74,21 @@ export class PaymentSummaryComponent implements OnInit {
         this.getIVA();
       }
     })
-    setTimeout(()=>{                          
-      this.getIVA();
-  }, 1000);   
+ // setTimeout(()=>{                          
+   // this.getIVA();
+  //}, 2000);   
    }
 
 
 
   getIVA(){
-   // console.log("precio--Z",this.price);
-    let precio=parseInt(this.price!);
    // console.log("precio en entero", precio)
-    let iva=((precio)*(0.21));
-    precio+=iva;
+    let iva=((this.precio)*(0.21));
+    this.precio+=iva;
     console.log(this.descuento);
     if(this.descuento==0){
-      this.precioConIVA=precio;
-      this.precioTotal=precio;
+      this.precioConIVA=this.precio;
+      this.precioTotal=this.precio;
     }
     else{
       let promocion=((this.precioConIVA)*(this.descuento)/100);
