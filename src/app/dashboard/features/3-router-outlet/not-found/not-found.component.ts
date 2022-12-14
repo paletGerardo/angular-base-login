@@ -15,7 +15,10 @@ export class NotFoundComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.scrollDown('notFound')
     this.loadingService.tryToStopLoading();
   }
-
+  scrollDown(id:any) {
+    document.getElementById(id)!.scrollIntoView();
+  }
 }

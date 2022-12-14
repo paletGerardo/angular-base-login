@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subject } from "rxjs";
-import { Producto } from "../../../shared/models/productsResponse.model";
+import { Plan, Producto } from "../../../shared/models/productsResponse.model";
 import { DashboardService } from "../../../dashboard.service";
 import { LoadingService } from 'src/app/core/loading/loading.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { debounceTime, map } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
-
+import { PartnerTheme } from "../../../shared/models/partnerTheme.model";
 
 @Component( {
   selector: 'app-product-detail',
@@ -22,7 +22,7 @@ export class ProductDetailComponent implements OnInit {
   prodItem: any = [];
   itemsArray: any = [];
   itemsArray2: any = [];
-  plans: any = [];
+  plans: Plan[] = [];
 
   firstFormGroup = this._formBuilder.group( {
     firstCtrl: [ '', Validators.required ],
@@ -32,21 +32,23 @@ export class ProductDetailComponent implements OnInit {
   } );
 
   stepperOrientation: Observable<StepperOrientation>;
-  planCopia: any;
+  planCopia: Plan | undefined;
   public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
 
   //public products$: Producto[]=[];
   precio: any;
   titulo: any;
   risks: any = [];
-  riskCopia:any=[];
+  riskCopia: any = [];
   @Input() product: Producto | undefined;
+  public primaryColor: string | undefined;
+  public secundaryColor: string | undefined;
   private _unsubscribeAll: Subject<any>;
 
   constructor( public dashboardService: DashboardService,
                private loadingService: LoadingService,
                private activateRoute: ActivatedRoute,
-               private _router: Router ,
+               private _router: Router,
                private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver ) {
     this.stepperOrientation = breakpointObserver
       .observe( '(min-width: 800px)' )
@@ -61,48 +63,59 @@ export class ProductDetailComponent implements OnInit {
     this.loadingService.tryToStartLoading();
     this.getProducts();
 
-
+    this.scrollDown( 'title' )
     this.dashboardService.onUrlChanged$
-    .subscribe({
-      next: data => {
-       this.getProducts();
-      },
-      error: err => {
-        console.log('Error Service -->',err);
-        
+      .subscribe( {
+        next: data => {
+          this.getProducts();
+        },
+        error: err => {
+          console.log( 'Error Service -->', err );
+
+        }
+      } )
+    this.dashboardService.linkNavbarChanged.next( false );
+    this.dashboardService.partnerTheme$.subscribe(
+      ( partnerThemes: PartnerTheme | undefined ) => {
+        if ( partnerThemes ) {
+          this.primaryColor = partnerThemes.colors.rgba_primary;
+          this.secundaryColor = partnerThemes.colors.rgba_primary_light;
+        }
       }
-    })
-    this.dashboardService.linkNavbarChanged.next(false);
-      
+    );
+  }
+
+  scrollDown( id: any ) {
+    document.getElementById( id )!.scrollIntoView();
   }
 
   getProducts(): void {
-    this.dashboardService.getProducts()
-      .pipe(
-        debounceTime( 1000 )
-      )
-      .subscribe( ( data: any ) => {
-        this.products$ = data;
-        console.log( this.products$ );
-        this.activateRoute.params.subscribe(
-          ( res: any ) => {
-            this.id = res.id;
-          } );
-        this.getProduct( this.id );
-        this.getProductItemByIdProducto();
-
-
-      } );
+    this.dashboardService.getProducts().pipe( debounceTime( 0 ) ).subscribe( ( data: any ) => {
+      this.products$ = data;
+      this.activateRoute.params.subscribe(
+        ( res: any ) => {
+          this.id = res.id;
+        } );
+      this.getProduct( this.id );
+      this.getProductItemByIdProducto();
+    } );
 
 
   }
 
   getProduct( id: number ) {
-    console.log( this.products$ );
     this.products$.forEach( ( produc: any ) => {
       if ( produc.id_producto == id ) {
         this.producto = produc;
-        this.plans = this.producto?.planes;
+        if ( this.producto ) {
+          this.plans = this.producto.planes;
+          this.plans.forEach( ( plan, index ) => {
+            if ( index == 0 ) {
+              plan.activeColor = this.primaryColor;
+            }
+            plan.activeColor = 'white';
+          } )
+        }
       }
     } );
     this.ordenarPlanes();
@@ -118,7 +131,7 @@ export class ProductDetailComponent implements OnInit {
       else
         return 0;
     } );
-    this.showRisk(this.plans[0]);
+    this.showRisk( this.plans[0] );
   }
 
 
@@ -157,12 +170,11 @@ export class ProductDetailComponent implements OnInit {
 
   showRisk( plan: any ) {
     this.risks = plan.rangos[0].riesgos;
-    console.log(this.risks.length);
-    if (this.risks.length>1){
-      this.riskCopia=this.risks.slice(0,2);
-    }
-    else{
-      this.riskCopia=plan.rangos[0].riesgos;
+    console.log( this.risks.length );
+    if ( this.risks.length > 1 ) {
+      this.riskCopia = this.risks.slice( 0, 2 );
+    } else {
+      this.riskCopia = plan.rangos[0].riesgos;
     }
   }
 
@@ -176,7 +188,7 @@ export class ProductDetailComponent implements OnInit {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
-  
+
   }
 
 

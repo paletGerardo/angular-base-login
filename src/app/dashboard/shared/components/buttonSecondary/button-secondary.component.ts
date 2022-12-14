@@ -11,7 +11,8 @@ import { PartnerTheme } from '../../models/partnerTheme.model';
 })
 
 export class ButtonSecondaryComponent implements OnInit {
-    @Input() text?:any;
+  @Input() text?: any;
+  @Input() activeColor?: any;
     @Input() cupon?:any;
     @Input() clicked?:any;
   partnerTheme: PartnerTheme = new PartnerTheme();
@@ -23,7 +24,7 @@ export class ButtonSecondaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.tryToStopLoading();
-    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | null ) => {
+    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
         this.loadingService.tryToStopLoading();

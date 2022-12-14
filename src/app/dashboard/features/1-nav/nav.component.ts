@@ -50,7 +50,7 @@ export class NavComponent implements AfterViewInit, OnInit {
     this.showMenuButton = false;
     this.loadingService.tryToStartLoading();
     this.dashBoardService.partnerTheme$.subscribe(
-      (partnerThemes: PartnerTheme | null) => {
+      (partnerThemes: PartnerTheme | undefined) => {
         if (partnerThemes) {
           this.partnerTheme = partnerThemes;
           this.primaryColor = partnerThemes.colors.rgba_primary;

@@ -24,7 +24,7 @@ export class ProductCardComponent implements OnInit {
   ngOnInit() {
     this.getProductItemByIdProducto();
     this.dashBoardService.partnerTheme$.subscribe(
-      (parnetTheme: PartnerTheme | null) => {
+      (parnetTheme: PartnerTheme | undefined) => {
         this.partnerTheme = parnetTheme;
         this.loadingService.tryToStopLoading();
       }

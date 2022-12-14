@@ -3,22 +3,14 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "generic";
 
-@font-face {
-  font-family: 'font-dynamic';
-  src: url(http://localhost:8080/landing/themes/getFontByCuit/30687310434/primary/type/font_primary.ttf);
-}
-
-$custom-typography: mat.define-typography-config(
-  $font-family: "font-dynamic"
+$font-primary: mat.define-typography-config(
+  $font-family: "font-primary"
 );
-@include mat.core($custom-typography);
-body {
-
-}
-
+@include mat.core($font-primary);
 * {
-  font-family: 'font-dynamic' !important;
+  font-family: 'font-primary' !important;
 }
 
 .mat-icon {
@@ -73,3 +65,11 @@ body {
 //.mat-ripple {
 //  border-bottom: 2px solid !important;
 //}
+
+.bg_image {
+  //background-image: url(../assets/images/bg_image4.png);
+}
+
+.mat-stepper-vertical-line::before {
+   border-left-width: 0 !important;
+ }

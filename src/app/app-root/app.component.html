@@ -1,4 +1,4 @@
-<block-ui name="app" message="Cargando..." [delayStop]="1500">
+<block-ui name="app" [template]="blockTemplate" [delayStop]="100">
   <div class="content" [@routeAnimations]="outlet.isActivated && outlet.activatedRoute.component">
     <div id="scroll-top-helper"></div>
     <router-outlet #outlet="outlet"></router-outlet>

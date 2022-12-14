@@ -1,5 +1,14 @@
-<div class="">
-  <ng-container *ngFor="let plan of plans; let i = index">
-    <app-button-secondary [cupon]="cupon" [ngClass]="{'hidden': i>2}" [text]="plan.codigo_plan" (click)="emitSelected(plan)"></app-button-secondary>
-  </ng-container>
+<div class="plans">
+  <h3 class="text-center">¡Elegi el plan que mas te convenga!</h3>
+  <div class="flex justify-center">
+    <ng-container *ngFor="let plan of plans; let i = index">
+      <app-button-secondary
+        [text]="plan.codigo_plan"
+        [cupon]="cupon"
+        [activeColor]="plan.activeColor"
+        (click)="emitSelected(plan)"
+      >
+      </app-button-secondary>
+    </ng-container>
+  </div>
 </div>

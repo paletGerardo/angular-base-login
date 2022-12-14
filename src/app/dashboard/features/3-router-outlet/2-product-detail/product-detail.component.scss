@@ -1,6 +1,30 @@
+//@font-face {
+//  font-family: 'fontSecondary';
+//  src: url('http://localhost:8080/landing/themes/getFontByCuit/30687310434/secondary/type/font_primary.ttf') format('ttf');
+//}
+@import "src/styles/_varaibles.scss";
+.product_detail_title {
+  text-align: center;
+  font-family: font-primary, serif !important;
+  font-size: 1.6rem;
+}
+.detail-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.product_detail_slogan {
+  text-align: center;
+  font-size: 2rem;
+}
+.product_detail_slogan p {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
 .imageProduct {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 15px;
+  width: 45%;
 }
 
 .items {
@@ -10,7 +34,7 @@
   text-align: center;
   width: 475px;
   height: 50px;
-  font-family: 'Poppins';
+  font-family: 'Poppins', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -104,4 +128,280 @@ svg {
   flex: auto;
   height: 0;
   min-width: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+.ih-item {
+  position: relative;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.ih-item,
+.ih-item * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ih-item a {
+  color: #333;
+}
+.ih-item a:hover {
+  text-decoration: none;
+}
+.ih-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.ih-item.circle {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+}
+.ih-item.circle .img img {
+  border-radius: 50%;
+}
+
+
+.ih-item.square {
+  position: relative;
+  width: 316px;
+  height: 216px;
+  border: 8px solid #fff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.ih-item.square .info {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.ih-item.circle.effect3 .info h2 {
+  color: #fff;
+  text-transform: uppercase;
+  position: relative;
+  letter-spacing: 2px;
+  font-size: 22px;
+  margin: 0 30px;
+  height: 110px;
+  text-shadow: 0 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ih-item.circle.effect3 .info h3 {
+  color: #fff;
+  text-transform: uppercase;
+  position: relative;
+  letter-spacing: 4px;
+  font-size: 1.8rem;
+  margin: 0 30px;
+  padding: 25px 0 0 0;
+  height: 110px;
+  text-shadow: 0 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-family: font-secondary, serif !important;
+}
+.ih-item.circle.effect3 small {
+  text-transform: lowercase;
+  font-style: italic;
+  display: block;
+  color: #fff;
+  font-size: 12px;
+}
+.ih-item.circle.effect3 .info p {
+  color: #bbb;
+  padding: 5px 5px 0 5px;
+  font-style: italic;
+  margin: 0 30px;
+  font-size: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.ih-item.circle.effect3 .info b {
+  color: white;
+  font-size: 1.6rem;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+.ih-item.circle.effect3.left_to_right .img {
+  -webkit-transform: scale(1) translateX(0);
+  -moz-transform: scale(1) translateX(0);
+  -ms-transform: scale(1) translateX(0);
+  -o-transform: scale(1) translateX(0);
+  transform: scale(1) translateX(0);
+}
+.ih-item.circle.effect3 .img {
+  z-index: 11;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+.ih-item.circle .img {
+  position: relative;
+  border-radius: 50%;
+}
+
+.ih-item.circle.effect3.colored .info {
+  //background: #1a4a72;
+}
+.ih-item.circle .info {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.ih-item.circle.effect3 .info {
+  z-index: 12;
+  background: #333333;
+  opacity: 1;
+  pointer-events: none;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.ih-item.circle.effect3.left_to_right .info {
+  -webkit-transform: translateX(155%);
+  -moz-transform: translateX(155%);
+  -ms-transform: translateX(155%);
+  -o-transform: translateX(155%);
+  transform: translateX(155%);
+}
+
+.ih-item.circle .img:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 16px rgba(255, 255, 255, 0.6), 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+.pr-porcentaje-35 {
+  padding-right: 40vw;
+}
+
+
+@media (min-width: map-get($grid-breakpoints, xs)) {
+  .pr-porcentaje-35 {
+    padding-right: 40vw;
+  }
+
+  .ih-item.circle .img {
+    width: 280px;
+    height: 280px;
+  }
+
+  .ih-item.circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .ih-item.circle.effect3 .info h3 {
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
+
+  .show_if_not_cell {
+    display: none;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, sm)) {
+  .pr-porcentaje-35 {
+    padding-right: 40vw;
+  }
+  .ih-item.circle .img {
+    width: 360px;
+    height: 360px;
+  }
+
+  .ih-item.circle {
+    width: 170px;
+    height: 170px;
+  }
+
+  .ih-item.circle.effect3 .info h3 {
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    padding: 45px 0 0 0;
+  }
+
+  .show_if_not_cell {
+    display: none;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, md)) {
+  .pr-porcentaje-35 {
+    padding-right: 33vw;
+  }
+  .ih-item.circle .img {
+    width: 400px;
+    height: 400px;
+  }
+
+  .ih-item.circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .ih-item.circle.effect3 .info h3 {
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    padding: 25px 0 0 0;
+  }
+
+  .show_if_not_cell {
+    display: block;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+  .pr-porcentaje-35 {
+    padding-right: 28vw;
+  }
+  .ih-item.circle .img {
+    width: 450px;
+    height: 450px;
+  }
+
+  .ih-item.circle {
+    width: 215px;
+    height: 215px;
+  }
+
+  .ih-item.circle.effect3 .info h3 {
+    letter-spacing: 2px;
+    font-size: 1.6rem;
+    padding: 25px 0 0 0;
+  }
+
+  .show_if_not_cell {
+    display: block;
+  }
 }

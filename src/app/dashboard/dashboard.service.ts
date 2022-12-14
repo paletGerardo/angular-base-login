@@ -12,12 +12,15 @@ import { tap } from "rxjs/operators";
 })
 export class DashboardService {
 
-  public partnerTheme$: BehaviorSubject<PartnerTheme> = new BehaviorSubject<PartnerTheme>(new PartnerTheme());
+  public partnerTheme$: BehaviorSubject<PartnerTheme | undefined> = new BehaviorSubject<PartnerTheme | undefined>(undefined);
+  public partnerTheme: PartnerTheme | undefined = undefined;
   public toggleCarousel$ = new BehaviorSubject<boolean>(true);
   onUrlChanged$: BehaviorSubject<any>;
   navBarOnChanged!: BehaviorSubject<any>;
   linkNavbarChanged!:BehaviorSubject<any>;
   resumeDescuento!:BehaviorSubject<any>;
+  public primaryColor: string = '';
+  public secondaryColor: string = '';
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';
 
@@ -31,9 +34,6 @@ export class DashboardService {
     this.onUrlChanged$ = new BehaviorSubject([]);
     this.navBarOnChanged = new BehaviorSubject('');
     this.linkNavbarChanged = new BehaviorSubject('');
-    this.resumeDescuento = new BehaviorSubject('');
-
-
 
   }
 
@@ -46,10 +46,15 @@ export class DashboardService {
   }
 
   getThemes(): void {
-    const URL = ENDPOINTS_API.THEMES + this.cuitSocio;
-    this.httpWrapperService.get<PartnerTheme>(URL).subscribe((res: PartnerTheme) => {
-      this.partnerTheme$.next(res);
-    });
+    if(!this.partnerTheme) {
+      const URL = ENDPOINTS_API.THEMES + this.cuitSocio;
+      this.httpWrapperService.get<PartnerTheme>(URL).subscribe((res: PartnerTheme) => {
+        this.partnerTheme = res;
+        this.primaryColor = res.colors.rgba_primary;
+        this.secondaryColor = res.colors.rgba_secondary;
+        this.partnerTheme$.next(res);
+      });
+    }
   }
 
   getProducts(): Observable<Producto[]> {
