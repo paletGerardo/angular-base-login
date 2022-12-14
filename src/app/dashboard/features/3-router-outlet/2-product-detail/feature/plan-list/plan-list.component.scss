@@ -1,3 +1,5 @@
+@import "src/styles/_varaibles.scss";
+
 .plans {
   margin-top: 190px;
   display: flex;
@@ -6,5 +8,29 @@
 
   h3 {
     padding: 0 0 1.5rem 0;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, sm)) {
+  .plans {
+    margin-top: 200px;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, md)) {
+  .plans {
+    margin-top: 220px;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+  .plans {
+    margin-top: 260px;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, xl)) {
+  .plans {
+    margin-top: 260px;
   }
 }

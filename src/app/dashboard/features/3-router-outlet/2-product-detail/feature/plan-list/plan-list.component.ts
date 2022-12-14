@@ -10,9 +10,8 @@ import { DashboardService } from "../../../../../dashboard.service";
   styleUrls: [ './plan-list.component.scss' ]
 } )
 export class PlanListComponent implements OnInit {
-  @Input() plans: Plan[] = [];
   cupon:boolean=false;
-  @Input() plans: any[] = [];
+  @Input() plans: Plan[] = [];
   @Output() emitPlanSelected: EventEmitter<string> = new EventEmitter<string>();
   partnerTheme: PartnerTheme = new PartnerTheme();
   public primaryColor: string = '';

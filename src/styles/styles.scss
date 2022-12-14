@@ -73,3 +73,11 @@ $font-primary: mat.define-typography-config(
 .mat-stepper-vertical-line::before {
    border-left-width: 0 !important;
  }
+
+.mat-step-text-label {
+  text-align: center !important;
+}
+
+.mat-vertical-stepper-header {
+  justify-content: center !important;
+}
