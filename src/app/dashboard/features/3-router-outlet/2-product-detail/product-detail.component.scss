@@ -253,8 +253,6 @@ svg {
 
 .ih-item.circle .img {
   position: relative;
-  width: 400px;
-  height: 400px;
   border-radius: 50%;
 }
 
@@ -350,6 +348,7 @@ svg {
   .ih-item.circle.effect3 .info h3 {
     letter-spacing: 1px;
     font-size: 0.8rem;
+    padding: 45px 0 0 0;
   }
 
   .show_if_not_cell {
@@ -374,6 +373,7 @@ svg {
   .ih-item.circle.effect3 .info h3 {
     letter-spacing: 1px;
     font-size: 1.1rem;
+    padding: 25px 0 0 0;
   }
 
   .show_if_not_cell {
@@ -391,13 +391,14 @@ svg {
   }
 
   .ih-item.circle {
-    width: 250px;
-    height: 250px;
+    width: 215px;
+    height: 215px;
   }
 
   .ih-item.circle.effect3 .info h3 {
     letter-spacing: 2px;
     font-size: 1.6rem;
+    padding: 25px 0 0 0;
   }
 
   .show_if_not_cell {

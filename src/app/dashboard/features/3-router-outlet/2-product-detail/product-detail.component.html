@@ -24,17 +24,10 @@
           </a>
         </div>
       </div>
-      <div class="flex justify-center col-span-2 grid grid-rows-4 gap-4 bg-white">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <app-plan-list [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
+      <div class="flex justify-center col-span-2 grid grid-rows-4 gap-4 bg-white m-t-4">
+        <app-plan-list *ngIf="primaryColor" [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
         <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
-        <app-detail [price]="precio" [itemsArray]="itemsArray"></app-detail>
+<!--        <app-detail [price]="precio" [itemsArray]="itemsArray"></app-detail>-->
         <app-button-primary (click)="comprarProducto()"></app-button-primary>
       </div>
     </div>
@@ -71,8 +64,8 @@
         </mat-step>
         <mat-step [stepControl]="secondFormGroup" class="ejemplo" label="Más detalles del producto">
           <form [formGroup]="secondFormGroup">
-            <h2>{{this.prodItem[0].seccion_dos_titulo}}</h2>
-            <h6>{{this.prodItem[0].seccion_dos_subtitulo}}</h6>
+<!--            <h2>{{this.prodItem[0].seccion_dos_titulo}}</h2>-->
+<!--            <h6>{{this.prodItem[0].seccion_dos_subtitulo}}</h6>-->
 
             <ul>
               <li *ngFor="let item2 of itemsArray2" class="py-2">{{item2}}</li>

@@ -17,7 +17,9 @@ export class DashboardService {
   public toggleCarousel$ = new BehaviorSubject<boolean>(true);
   onUrlChanged$: BehaviorSubject<any>;
   navBarOnChanged!: BehaviorSubject<any>;
-  linkNavbarChanged!:BehaviorSubject<any>;
+  linkNavbarChanged!: BehaviorSubject<any>;
+  public primaryColor: string = '';
+  public secondaryColor: string = '';
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';
 
@@ -47,6 +49,8 @@ export class DashboardService {
       const URL = ENDPOINTS_API.THEMES + this.cuitSocio;
       this.httpWrapperService.get<PartnerTheme>(URL).subscribe((res: PartnerTheme) => {
         this.partnerTheme = res;
+        this.primaryColor = res.colors.rgba_primary;
+        this.secondaryColor = res.colors.rgba_secondary;
         this.partnerTheme$.next(res);
       });
     }
