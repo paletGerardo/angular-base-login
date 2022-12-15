@@ -76,8 +76,26 @@ $font-primary: mat.define-typography-config(
 
 .mat-step-text-label {
   text-align: center !important;
+  padding-bottom: 0.4rem;
+}
+
+
+.mat-step-text-label:after {
+  border-width: 0 0 2px 0 !important;
+  border-style: solid !important;
+  content: "";
+  display: block;
+  margin-top: 18px;
+  border-color: #3e3d3c;
+  height: 1px;
+  width: 35px;
 }
 
 .mat-vertical-stepper-header {
+  justify-content: center !important;
+  min-width: 430px;
+}
+
+.mat-horizontal-stepper-header-container {
   justify-content: center !important;
 }

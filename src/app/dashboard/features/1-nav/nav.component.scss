@@ -1,7 +1,7 @@
 .hidden-app {
     display: none;
   }
-  
+
   .inputSearch{
     display: block;
   }
@@ -18,17 +18,17 @@
     cursor:pointer;
     }
     .iconoWeb{
-        
+
         position: relative;
         margin-left: 2vh;
       }
- 
-  
+
+
   @media only screen and (max-width: 500px){ //some value
      .inputSearch{
        display: none!important;
      }
-  
+
      .iconoWeb{
        display: flex;
        justify-content: center;
@@ -49,7 +49,7 @@
     .inputSearch{
       display: none!important;
     }
- 
+
     .iconoWeb{
       display: flex;
       justify-content: center;
@@ -65,9 +65,9 @@
     .icon{
       display:inline;
       }
-    
+
  }
- 
+
 
 .input{
   //  margin-left: 42px !important;
@@ -81,7 +81,7 @@
 }
 
 
-::ng-deep  .material-icons{ 
+::ng-deep  .material-icons{
   font-family: "Material Icons"!important;
 font-weight: normal;
 font-style: normal;
@@ -103,4 +103,71 @@ direction: ltr;
 .icon{
   color: aliceblue!important;
 font-size: 33px!important;
+}
+
+
+.app-float-buttons, .app-float-close {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.app-float-buttons {
+  position: fixed;
+  bottom: 0px;
+  height: 74px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  background-color: rgba(1,1,1, 0.5);
+  width: 100%;
+  z-index: 101;
+  //-webkit-transform: scale(0);
+  //transform: scale(0);
+  //opacity: 0;
+}
+
+.whatsapp-button.open {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.whatsapp-button {
+  position: fixed;
+  right: 0px;
+  padding: 12px;
+  background-color: #4dc247;
+  color: #fff !important;
+  border-radius: 50%;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+}
+
+.buttons-down {
+  height: 7px!important;
+}
+
+.arrow-up {
+  position: fixed;
+  bottom: 74px;
+  height: 34px;
+  padding-bottom: 10px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  width: 100%;
+  z-index: 101;
+  font-size: 32px;
+  text-align: center;
+  //-webkit-transform: scale(0);
+  //transform: scale(0);
+  //opacity: 0;
+}
+
+.arrow-up-scroll {
+  bottom: 24px;
+  padding: 24px;
 }

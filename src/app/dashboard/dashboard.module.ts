@@ -80,7 +80,7 @@ import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-pu
     CuponComponent,
     StepperComponent,
     PaymentSummaryComponent,
-    
+
 
   ],
   imports: [
@@ -90,7 +90,7 @@ import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-pu
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
-    
+
   ]
 })
 export class DashboardModule { }

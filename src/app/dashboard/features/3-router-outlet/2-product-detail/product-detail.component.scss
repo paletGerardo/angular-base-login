@@ -66,6 +66,10 @@ svg {
   max-width: 70%;
 }
 
+.stepper p{
+  cursor: pointer;
+}
+
 .example-stepper {
   color: #A0A0A0;
 }
@@ -329,6 +333,12 @@ svg {
   .show_if_not_cell {
     display: none;
   }
+
+
+  .stepper {
+    margin: auto;
+    max-width: 100%;
+  }
 }
 
 @media (min-width: map-get($grid-breakpoints, sm)) {
@@ -353,6 +363,11 @@ svg {
 
   .show_if_not_cell {
     display: none;
+  }
+
+  .stepper {
+    margin: auto;
+    max-width: 100%;
   }
 }
 
@@ -379,6 +394,7 @@ svg {
   .show_if_not_cell {
     display: block;
   }
+
 }
 
 @media (min-width: map-get($grid-breakpoints, lg)) {

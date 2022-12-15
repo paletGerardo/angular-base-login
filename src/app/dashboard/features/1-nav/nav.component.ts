@@ -19,6 +19,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements AfterViewInit, OnInit {
+  @BlockUI() blockUI: NgBlockUI | undefined;
   public hover: boolean = false;
   search : String ="";
   public partnerTheme: PartnerTheme | null | undefined;
@@ -31,6 +32,7 @@ export class NavComponent implements AfterViewInit, OnInit {
   home: boolean=false;
   clicked: boolean=false;
   private _unsubscribeAll: Subject<any>;
+  public floatButtonsDown: boolean = false;
 
   constructor(
     private dashBoardService: DashboardService,
@@ -46,6 +48,8 @@ export class NavComponent implements AfterViewInit, OnInit {
 
   }
   ngOnInit() {
+    //@ts-ignore
+    this.blockUI.start();
     this.home=true;
     this.showMenuButton = false;
     this.loadingService.tryToStartLoading();
@@ -73,8 +77,10 @@ export class NavComponent implements AfterViewInit, OnInit {
   onScroll(event: any) {
     if(window.scrollY < 100) {
       this.bgColor = this.primaryColor;
+      this.floatButtonsDown = false
     } else {
       this.bgColor = this.secundaryColor
+      this.floatButtonsDown = true
 
     }
 
@@ -94,4 +100,8 @@ export class NavComponent implements AfterViewInit, OnInit {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
   }
-}  
+
+  public upButtons(): void {
+    this.floatButtonsDown = true
+  }
+}

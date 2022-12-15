@@ -5,43 +5,4 @@
 
 .buttonTopApp {
   z-index: 1000;
-  border: 1px solid red;
-}
-.app-float-button, .app-float-close {
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-}
-
-.app-float-button {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  //-webkit-transform: scale(0);
-  //transform: scale(0);
-  //opacity: 0;
-}
-
-.whatsapp-button.open {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  opacity: 1;
-}
-
-.whatsapp-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 12px;
-  background-color: #4dc247;
-  color: #fff !important;
-  border-radius: 50%;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  opacity: 0;
 }

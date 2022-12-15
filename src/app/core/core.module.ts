@@ -23,7 +23,7 @@ import { LoadingTempleteComponent } from "./loading/loading-templete/loading-tem
 
     // 3rd party
     BlockUIModule.forRoot({
-      template: LoadingTempleteComponent
+//      template: LoadingTempleteComponent
     })
   ],
   exports: [],
