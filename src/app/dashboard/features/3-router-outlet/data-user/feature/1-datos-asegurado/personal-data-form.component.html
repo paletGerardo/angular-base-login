@@ -1,0 +1,193 @@
+
+<div style="padding:6vh;">
+  <h2 style="text-align:center;">Datos del asegurado</h2>
+</div>
+<form  [formGroup]="personalDataForm" class="w-full max-w-lg" style="display: contents;" (ngSubmit)="guardarDatos()" >
+  <div *ngFor="let campo of PersonalData;"></div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Nombre
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-first-name" type="text" formControlName="name" >
+        <div *ngFor="let validation of validationMessages.name!">
+          <span style="color:red;" *ngIf="getValidationFromControl(validation, 'name')"> {{ validation.message }} </span>
+        </div>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Apellido
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-last-name" type="text"  formControlName="lastname" >
+        <div *ngFor="let validation of validationMessages.lastname!">
+          <span style="color:red;" *ngIf="getValidationFromControl(validation, 'lastname')"> {{ validation.message }} </span>
+        </div>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap -mx-3 mb-3">
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city" >
+        Nacionalidad
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-city" type="text" formControlName="nationality" >
+    </div>
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+        fecha de nacimiento
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-city" type="text"  formControlName="birthdate">
+    </div>
+
+    <div class="w-full md:w-1/3 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+        Sexo
+      </label>
+      <div class="flex">
+        <div class="flex items-center mr-4">
+          <input id="inline-radio" type="radio" value="" name="inline-radio-group"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="inline-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">M</label>
+        </div>
+        <div class="flex items-center mr-4">
+          <input id="inline-2-radio" type="radio" value="" name="inline-radio-group"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="inline-2-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">F</label>
+        </div>
+        <div class="flex items-center mr-4">
+          <input checked id="inline-checked-radio" type="radio" value="" name="inline-radio-group"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="inline-checked-radio"
+            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">OTRO</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Tipo de documento
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-first-name" type="text"  formControlName="document_type" >
+      <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p>-->
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Nro de documento
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-last-name" type="text"  formControlName="document_number" >
+    </div>
+  </div>
+
+  
+<div style="padding:6vh;">
+  <h2 style="text-align:center;">Domicilio</h2>
+</div>
+
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Calle
+      </label>
+      <input
+        class="appearance-none block w-full  bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-first-name" type="text" formControlName="address" >
+      <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p>-->
+    </div>
+    <div class="w-full md:w-1/6 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Nro/Piso
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-last-name" type="text" formControlName="number"  >
+    </div>
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+        Localidad
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-city" type="text" formControlName="city">
+    </div>
+  </div>
+
+  <div class="flex flex-wrap -mx-3 mb-3">
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+        Provincia
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-city" type="text" formControlName="province" >
+    </div>
+    <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+        C.postal
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-city" type="text" formControlName="zip">
+    </div>
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+        Email
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-city" type="text" formControlName="email" >
+    </div>
+   
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Nro telefono
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-first-name" type="text" formControlName="number_phone" >
+      <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p>-->
+    </div>
+    <div class="w-full md:w-1/4 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Cod area
+      </label>
+      <input
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="grid-last-name" type="text" formControlName="cod_area" >
+    </div>
+  </div>
+  <div>
+    <div class="flex items-center pl-3">
+        <input id="vue-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        <label for="vue-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">Solicito que el certificado individual o la póliza me sea remitido a la dirección de e-mail que he consignado.</label>
+    </div>
+    <div class="flex items-center pl-3">
+        <input id="react-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        <label for="react-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">Acepto y quiero recibir información y novedades sobre este y nuevos productos y seguros que ofrezca “Cardif Seguros S.A.”.
+        </label>
+    </div>
+    <div class="flex items-center pl-3">
+        <input id="angular-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        <label for="angular-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">Solicito que el certificado individual o la póliza me sea remitido a la dirección de e-mail que he consignado.
+        </label>
+    </div>
+</div>
+<div style="display: flex;">
+  <app-button-primary  (click)="volver()"style="padding:6vh;"></app-button-primary>
+  <app-button-primary [text]="text"  (click)="guardarDatos()" style="padding:6vh;"></app-button-primary>
+</div>
+</form>
