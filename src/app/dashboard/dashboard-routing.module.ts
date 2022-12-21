@@ -9,6 +9,7 @@ import { PolicyDownloadComponent } from "./features/3-router-outlet/6-policy-dow
 import { AboutComponent } from "./features/3-router-outlet/4-about/about.component";
 import { ProductDetailComponent } from './features/3-router-outlet/2-product-detail/product-detail.component';
 import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-purchase/product-purchase.component';
+import { DataUserComponent } from './features/3-router-outlet/data-user/data-user.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,17 @@ const routes: Routes = [
       {
         path: '',
         component: ProductPurchaseComponent,
+
+      },
+    ]
+  },
+  {
+    path: 'data-user/:id',
+    component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        component: DataUserComponent,
 
       },
     ]

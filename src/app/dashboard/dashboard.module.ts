@@ -32,6 +32,8 @@ import { FormEmailComponent } from './features/3-router-outlet/3-product-purchas
 import { CuponComponent } from './features/3-router-outlet/3-product-purchase/feature/cupon/cupon.component';
 import { StepperComponent } from './features/3-router-outlet/3-product-purchase/feature/stepper/stepper.component';
 import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-purchase/feature/payment-summary/payment-summary.component';
+import { DataUserComponent } from './features/3-router-outlet/data-user/data-user.component';
+import { PersonalDataFormComponent } from './features/3-router-outlet/data-user/feature/1-datos-asegurado/personal-data-form.component';
 
 @NgModule( {
   declarations: [
@@ -63,7 +65,9 @@ import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-pu
     CuponComponent,
     StepperComponent,
     PaymentSummaryComponent,
-
+    DataUserComponent,
+    PersonalDataFormComponent,
+   
   ],
   exports: [
     DashboardComponent,
@@ -80,6 +84,9 @@ import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-pu
     CuponComponent,
     StepperComponent,
     PaymentSummaryComponent,
+    DataUserComponent,
+    PersonalDataFormComponent,
+  
     
 
   ],
