@@ -1,0 +1,95 @@
+@import "src/styles/_varaibles.scss";
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 600px;
+  height: 62px;
+}
+
+.card-num {
+  color: white;
+  width: 100px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 200%;
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  border: 2px solid blue;
+  border-radius: 50%;
+  margin-left: -30px;
+  background-color: white;
+  z-index: 1;
+}
+
+.card-body {
+  height: 60px;
+  border: 2px solid rgba(0, 0, 0, 0.30);
+  margin-left: -30px;
+  padding-left: 40px;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 1px -1px 5px 0px rgba(0, 0, 0, 0.30);
+  -webkit-box-shadow: 1px -1px 5px 0px rgba(0, 0, 0, 0.30);
+  -moz-box-shadow: 1px -1px 5px 0px rgba(0, 0, 0, 0.30);
+  width: 80%;
+}
+
+.card-body span {
+  margin-right: 0.3rem;
+}
+
+
+@media (min-width: map-get($grid-breakpoints, xs)) {
+  .card {
+    width: 98vw;
+    height: 62px;
+  }
+  .card-body {
+    font-size: 0.9rem;
+  }
+
+  .card-num {
+    width: 80px;
+    padding-right: 1.6rem;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, sm)) {
+  .card {
+    width: 600px;
+    height: 62px;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, md)) {
+  .card {
+    width: 600px;
+    height: 62px;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+  .card {
+    width: 600px;
+    height: 62px;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, xl)) {
+  .card {
+    width: 600px;
+    height: 62px;
+  }
+}

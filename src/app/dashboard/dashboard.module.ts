@@ -32,6 +32,8 @@ import { FormEmailComponent } from './features/3-router-outlet/3-product-purchas
 import { CuponComponent } from './features/3-router-outlet/3-product-purchase/feature/cupon/cupon.component';
 import { StepperComponent } from './features/3-router-outlet/3-product-purchase/feature/stepper/stepper.component';
 import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-purchase/feature/payment-summary/payment-summary.component';
+import { HowToBuyComponent } from './features/3-router-outlet/how-to-buy/how-to-buy.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule( {
   declarations: [
@@ -63,6 +65,7 @@ import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-pu
     CuponComponent,
     StepperComponent,
     PaymentSummaryComponent,
+    HowToBuyComponent,
 
   ],
   exports: [
@@ -83,14 +86,15 @@ import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-pu
 
 
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SwiperModule,
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SwiperModule,
+        SharedModule,
 
-  ]
+    ]
 })
 export class DashboardModule { }

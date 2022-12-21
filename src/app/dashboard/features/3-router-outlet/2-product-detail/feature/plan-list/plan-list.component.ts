@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Plan } from "../../../../../shared/models/productsResponse.model";
-import { PartnerTheme } from "../../../../../shared/models/partnerTheme.model";
+import {PartnerTheme, TemaSocio} from "../../../../../shared/models/partnerTheme.model";
 import { LoadingService } from "../../../../../../core/loading/loading.service";
 import { DashboardService } from "../../../../../dashboard.service";
 
@@ -13,7 +13,7 @@ export class PlanListComponent implements OnInit {
   cupon:boolean=false;
   @Input() plans: Plan[] = [];
   @Output() emitPlanSelected: EventEmitter<string> = new EventEmitter<string>();
-  partnerTheme: PartnerTheme = new PartnerTheme();
+  partnerTheme: TemaSocio | undefined;
   public primaryColor: string = '';
   public secundaryColor: string = '';
 
@@ -21,14 +21,14 @@ export class PlanListComponent implements OnInit {
                public dashBoardService: DashboardService ) { }
 
   ngOnInit(): void {
-    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | undefined ) => {
+    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
-        this.primaryColor = parnetTheme.colors.rgba_primary;
-        this.secundaryColor = parnetTheme.colors.rgba_secondary;
+        this.primaryColor = parnetTheme.color.primario;
+        this.secundaryColor = parnetTheme.color.secundario;
         this.plans.forEach( (plan, index) => {
           if(index == 0) {
-            plan.activeColor = this.partnerTheme.colors.rgba_primary
+            plan.activeColor = this.partnerTheme?.color.primario_rgba
           } else {
             plan.activeColor = 'white';
           }

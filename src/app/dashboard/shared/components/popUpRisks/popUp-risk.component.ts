@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, ViewChild } from "@angular/core";
 import {  MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { LoadingService } from "src/app/core/loading/loading.service";
 import { DashboardService } from "src/app/dashboard/dashboard.service";
-import { PartnerTheme } from "../../models/partnerTheme.model";
+import {PartnerTheme, TemaSocio} from "../../models/partnerTheme.model";
 
 @Component({
     selector: 'app-popUp-risk',
@@ -12,7 +12,7 @@ import { PartnerTheme } from "../../models/partnerTheme.model";
 
   export class PopUpRiskComponent implements OnInit {
  risks:any=[];
- public partnerTheme: PartnerTheme | null | undefined;
+ public partnerTheme: TemaSocio | undefined;
 
  @ViewChild('closebutton') closebutton:any;
 
@@ -28,7 +28,7 @@ import { PartnerTheme } from "../../models/partnerTheme.model";
       console.log(this._data.risks);
       this.risks=this._data.risks;
       this.loadingService.tryToStopLoading();
-      this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | undefined ) => {
+      this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
         if ( parnetTheme ) {
           this.partnerTheme = parnetTheme;
           this.loadingService.tryToStopLoading();

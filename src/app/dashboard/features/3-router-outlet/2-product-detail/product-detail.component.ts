@@ -8,7 +8,7 @@ import { debounceTime, map } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
-import { PartnerTheme } from "../../../shared/models/partnerTheme.model";
+import {PartnerTheme, TemaSocio} from "../../../shared/models/partnerTheme.model";
 
 @Component( {
   selector: 'app-product-detail',
@@ -76,10 +76,10 @@ export class ProductDetailComponent implements OnInit {
       } )
     this.dashboardService.linkNavbarChanged.next( false );
     this.dashboardService.partnerTheme$.subscribe(
-      ( partnerThemes: PartnerTheme | undefined ) => {
+      ( partnerThemes: TemaSocio | undefined ) => {
         if ( partnerThemes ) {
-          this.primaryColor = partnerThemes.colors.rgba_primary;
-          this.secundaryColor = partnerThemes.colors.rgba_primary_light;
+          this.primaryColor = partnerThemes.color.primario_rgba;
+          this.secundaryColor = partnerThemes.color.secundario_rgba;
         }
       }
     );

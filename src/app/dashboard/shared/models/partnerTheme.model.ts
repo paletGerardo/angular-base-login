@@ -37,3 +37,51 @@ export class PartnerTheme {
   pop_up_show: string = '';
   pop_up_title: string = '';
 }
+
+export interface TemaSocio {
+  id: string,
+  cuit_socio: string,
+  nombre: string,
+  url_logo: string,
+  url_imagen_fondo: string,
+  url_tipografia: string,
+  color: Color,
+  navbar_tema: NavbarTema,
+  imagenes_carrusel: ImagenCarrusel[]
+}
+
+export interface Color {
+  id: string,
+  cuit_socio: string,
+  primario: string,
+  primario_rgba: string,
+  primario_rgba_light: string,
+  secundario: string,
+  secundario_rgba: any,
+  secundario_rgba_light: any,
+  terciario: string,
+  terciario_rgba: any
+  terciario_rgba_light: any
+}
+
+export interface NavbarTema {
+  id: string,
+  cuit_socio: string,
+  color_primario: string,
+  color_primario_rgba: string,
+  color_primario_rgba_light: string,
+  color_secundario: string,
+  color_secundario_rgba: any,
+  color_secundario_rgba_light: any,
+  url_logo: any
+}
+
+export interface ImagenCarrusel {
+  id: string,
+  cuitSocio: string,
+  nombre: string,
+  url: string,
+  estado: string,
+  createdAt: string,
+  updatedAt: string,
+}

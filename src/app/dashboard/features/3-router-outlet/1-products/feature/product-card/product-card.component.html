@@ -4,35 +4,23 @@
   <img *ngIf="notImage" class="w-full rounded-lg shadow-[0_25px_30px_-20px_rgba(0,0,0,0.4)]"
        src="../../../../../../../assets/images/not_product.jpeg" alt="Mountain"/>
   <div class="px-1 py-4">
-    <div class="font-bold text-xl mb-2" style="overflow: hidden;white-space: pre;text-overflow: ellipsis;">
-      {{product.producto_descripcion}}
-    </div>
-
     <div class="text-gray-700 text-base">
       <ng-container *ngFor="let plan of product.planes; index as i">
         <ng-container *ngIf="i == 0">
           <ng-container *ngFor="let rango of plan.rangos; index as j">
             <ng-container *ngIf="j == 0">
-              <div class="text-[6px]">
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
-                          fontIcon="star"></mat-icon>
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
-                          fontIcon="star"></mat-icon>
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
-                          fontIcon="star"></mat-icon>
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
-                          fontIcon="star"></mat-icon>
-                <mat-icon class="text-amber-300" aria-hidden="false" aria-label="Example star icon"
-                          fontIcon="star"></mat-icon>
-              </div>
               <small>Desde</small><br>
               $ {{rango.precio}} <small> por mes</small><br>
-              <small class="text-gray-400">{{product.producto_descripcion}}</small>
+              <app-button-primary
+                (clicked)="verDetalleProducto(product.id_producto.toString())"
+                [text]="'ver mas'"
+                [bgcolor]="bgcolor"
+              >
+              </app-button-primary>
             </ng-container>
           </ng-container>
         </ng-container>
       </ng-container>
     </div>
   </div>
-
 </div>

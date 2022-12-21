@@ -1,9 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DashboardService } from '../../../../../dashboard.service';
 import { LoadingService } from '../../../../../../core/loading/loading.service';
-import { PartnerTheme } from '../../../../../shared/models/partnerTheme.model';
-import { Producto } from '../../../../../shared/models/productsResponse.model';
+import {PartnerTheme, TemaSocio} from '../../../../../shared/models/partnerTheme.model';
+import {ENDPOINTS_API} from "../../../../../../core/routes/api.routes";
+import {Producto} from "../../../../../shared/models/productsResponse.model";
+import {GlobalResponse} from "../../../../../../core/http/http.response.model";
+import {Router} from "@angular/router";
 
+export interface DetalleProducto {
+  id: string,
+  id_producto: string,
+  cuit_socio: string,
+  titulo: string,
+  slogan: string,
+  precio_base: string,
+  url_imagen1: string,
+  url_imagen2: string,
+
+}
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
@@ -12,20 +26,23 @@ import { Producto } from '../../../../../shared/models/productsResponse.model';
 export class ProductCardComponent implements OnInit {
   @Input() product: Producto | undefined;
   id: number = 0;
-  public partnerTheme: PartnerTheme | null | undefined;
+  public partnerTheme: TemaSocio | null | undefined;
   url: any;
-  prodItem: any;
+  prodItem: DetalleProducto | undefined;
   notImage: boolean = false;
+  bgcolor: string | undefined;
   constructor(
-    private dashBoardService: DashboardService,
-    private loadingService: LoadingService
+    public dashBoardService: DashboardService,
+    private loadingService: LoadingService,
+    private _router: Router
   ) {}
 
   ngOnInit() {
+    this.bgcolor = this.dashBoardService.secondaryColor;
     this.getProductItemByIdProducto();
     this.dashBoardService.partnerTheme$.subscribe(
-      (parnetTheme: PartnerTheme | undefined) => {
-        this.partnerTheme = parnetTheme;
+      (partnerTheme: TemaSocio | undefined) => {
+        this.partnerTheme = partnerTheme;
         this.loadingService.tryToStopLoading();
       }
     );
@@ -34,21 +51,20 @@ export class ProductCardComponent implements OnInit {
   getProductItemByIdProducto(): void {
     if (this.product?.id_producto !== undefined) {
       this.id = this.product?.id_producto;
-      this.dashBoardService
-        .getProductItemByIdProducto(this.id)
-        .subscribe((data: any) => {
-          this.prodItem = data;
-          if (
-            this.prodItem &&
-            this.prodItem.length &&
-            this.prodItem[0].product_image
-          ) {
-            this.url = this.prodItem[0].product_image;
+      this.dashBoardService.getProductItemByIdProducto(this.id).subscribe((data: GlobalResponse) => {
+          this.prodItem = data.body;
+          if ( this.prodItem && this.prodItem.url_imagen1 ) {
+            this.url = this.prodItem.url_imagen1;
             this.notImage = false;
           } else {
-            this.notImage = true;
+            this.notImage = false;
+            this.url = `${ENDPOINTS_API.IMGAGEN_PRODUCTO_1}/${this.product?.id_producto}/cuit/${this.dashBoardService.getCuit()}/numero-imagen/1`;
           }
         });
     }
+  }
+
+  verDetalleProducto(idProducto:string){
+    this._router.navigate(['dashboard/product-detail/'+idProducto]);
   }
 }

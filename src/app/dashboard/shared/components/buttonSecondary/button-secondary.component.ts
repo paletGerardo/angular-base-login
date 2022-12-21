@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/core/loading/loading.service';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
-import { PartnerTheme } from '../../models/partnerTheme.model';
+import {PartnerTheme, TemaSocio} from '../../models/partnerTheme.model';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class ButtonSecondaryComponent implements OnInit {
   @Input() activeColor?: any;
     @Input() cupon?:any;
     @Input() clicked?:any;
-  partnerTheme: PartnerTheme = new PartnerTheme();
+  partnerTheme: TemaSocio | undefined;
   constructor(
     private loadingService: LoadingService,
     private dashBoardService:DashboardService
@@ -24,7 +24,7 @@ export class ButtonSecondaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.tryToStopLoading();
-    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | undefined ) => {
+    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
         this.loadingService.tryToStopLoading();

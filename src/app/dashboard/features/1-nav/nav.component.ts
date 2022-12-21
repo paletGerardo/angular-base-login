@@ -5,11 +5,10 @@ import {
   HostListener, isDevMode,
   OnInit,
 } from '@angular/core';
-import { PartnerTheme } from '../../shared/models/partnerTheme.model';
+import {TemaSocio} from '../../shared/models/partnerTheme.model';
 import { DashboardService } from '../../dashboard.service';
 import { LoadingService } from '../../../core/loading/loading.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import {environment as env} from "../../../../environments/environment";
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -22,13 +21,13 @@ export class NavComponent implements AfterViewInit, OnInit {
   @BlockUI() blockUI: NgBlockUI | undefined;
   public hover: boolean = false;
   search : String ="";
-  public partnerTheme: PartnerTheme | null | undefined;
+  public partnerTheme: TemaSocio | null | undefined;
   public showMenuButton: boolean | undefined;
   public backGroundClass = false;
 
   public primaryColor: string = 'grey';
   public secundaryColor: string = '';
-  public bgColor: string = 'rgb(0, 131, 203)';
+  public bgColor: string | undefined;
   home: boolean=false;
   clicked: boolean=false;
   private _unsubscribeAll: Subject<any>;
@@ -54,11 +53,17 @@ export class NavComponent implements AfterViewInit, OnInit {
     this.showMenuButton = false;
     this.loadingService.tryToStartLoading();
     this.dashBoardService.partnerTheme$.subscribe(
-      (partnerThemes: PartnerTheme | undefined) => {
-        if (partnerThemes) {
+      (partnerThemes: TemaSocio | undefined) => {
+        if (partnerThemes && partnerThemes.navbar_tema.color_primario_rgba) {
           this.partnerTheme = partnerThemes;
-          this.primaryColor = partnerThemes.colors.rgba_primary;
-          this.secundaryColor = partnerThemes.colors.rgba_primary_light;
+          this.primaryColor = partnerThemes.navbar_tema.color_primario_rgba;
+          this.secundaryColor = partnerThemes.navbar_tema.color_primario_rgba_light;
+          this.bgColor = this.primaryColor;
+          this.loadingService.tryToStopLoading();
+        } else if (partnerThemes) {
+          this.partnerTheme = partnerThemes;
+          this.primaryColor = partnerThemes.color.primario_rgba;
+          this.secundaryColor = partnerThemes.color.primario_rgba_light;
           this.bgColor = this.primaryColor;
           this.loadingService.tryToStopLoading();
         }

@@ -4,7 +4,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/core/loading/loading.service';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
-import { PartnerTheme } from '../../models/partnerTheme.model';
+import {PartnerTheme, TemaSocio} from '../../models/partnerTheme.model';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { PartnerTheme } from '../../models/partnerTheme.model';
 })
 export class ButtonSeeMoreComponent implements OnInit {
     @Input() text:string="Ver más ";
-    public partnerTheme: PartnerTheme | null | undefined;
+    public partnerTheme: TemaSocio | undefined;
   constructor(
     private loadingService: LoadingService,
     private dashBoardService:DashboardService
@@ -22,7 +22,7 @@ export class ButtonSeeMoreComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.tryToStopLoading();
-    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: PartnerTheme | null ) => {
+    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
         this.loadingService.tryToStopLoading();

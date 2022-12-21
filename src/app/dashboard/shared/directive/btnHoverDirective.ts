@@ -7,7 +7,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { DashboardService } from '../../dashboard.service';
-import { PartnerTheme } from '../models/partnerTheme.model';
+import {PartnerTheme, TemaSocio} from '../models/partnerTheme.model';
 
 @Directive({
   selector: '[buttonDirective]',
@@ -25,9 +25,14 @@ export class ButtonDiretive {
 
   ngOnInit() {
     this.dashboardService.partnerTheme$.subscribe(
-      (themes: PartnerTheme) => {
-        this.colorPrimary = themes?.colors.rgba_primary;
-        this.colorSecondary = themes?.colors.rgba_secondary;
+      (themes: TemaSocio | undefined) => {
+        if (themes && themes.navbar_tema.color_primario_rgba) {
+          this.colorPrimary = themes.navbar_tema.color_primario_rgba;
+          this.colorSecondary = themes.navbar_tema.color_primario_rgba_light;
+        } else if (themes) {
+          this.colorPrimary = themes.color.primario_rgba;
+          this.colorSecondary = themes.color.primario_rgba_light;
+        }
         this.renderer.setStyle(
           this.elRef.nativeElement,
           'background-color',

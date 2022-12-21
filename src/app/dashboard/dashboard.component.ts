@@ -9,7 +9,7 @@ import { DashboardService } from "./dashboard.service";
 export class DashboardComponent implements OnInit {
   public showCarousel: boolean = true;
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(public dashboardService: DashboardService) { }
 
   ngOnInit(): void {
     this.dashboardService.toggleCarousel$.subscribe( (value: boolean) => {
