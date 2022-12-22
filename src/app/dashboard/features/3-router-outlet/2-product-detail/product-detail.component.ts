@@ -41,6 +41,8 @@ export class ProductDetailComponent implements OnInit {
   risks: any = [];
   riskCopia:any=[];
   @Input() product: Producto | undefined;
+  @Input() text:string="comprar";
+
   private _unsubscribeAll: Subject<any>;
 
   constructor( public dashboardService: DashboardService,
