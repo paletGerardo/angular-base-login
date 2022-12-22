@@ -21,7 +21,6 @@ export class PersonalDataFormComponent implements OnInit {
         PersonalData: any;
         @Input() text:string='Ir a cargar datos del pago';
         @Input() id:any
-
         public validationMessages = VALIDATION_MESSAGES;
 
 
@@ -35,21 +34,21 @@ export class PersonalDataFormComponent implements OnInit {
         ngOnInit(): void {
             console.log(this.personalDataForm.value);
             this.personalDataForm = new FormGroup({
-              lastname:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            name:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            nationality:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            document_type:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            document_number:new FormControl('', [Validators.required, Validators.minLength(3)]),
+              lastname:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern('^[a-zA-Z \-\']+')]),
+            name:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-Z]+$/)]),
+            nationality:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern('[-_a-zA-Z0-9]*')]),
+            document_type:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[A-Z]+$/i)]),
+            document_number:new FormControl('', [Validators.required, Validators.minLength(7),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
             id_genre:new FormControl('', [Validators.required, Validators.minLength(3)]),
             birthdate:new FormControl('', [Validators.required, Validators.minLength(3)]),
             address:new FormControl('', [Validators.required, Validators.minLength(3)]),
             number:new FormControl('', [Validators.required, Validators.minLength(3)]),
             city:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            province:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            zip:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            email:new FormControl(),
-            cod_area:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            number_phone:new FormControl('', [Validators.required, Validators.minLength(3)])
+            province:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[A-Z]+$/i)]),
+            zip:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+            email:new FormControl('', [Validators.required, Validators.email ]),
+            cod_area:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+            number_phone:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^-?(0|[1-9]\d*)?$/)])
               
           
                })
@@ -63,13 +62,24 @@ export class PersonalDataFormComponent implements OnInit {
             }
             public getValidationFromControl( validation: any, elem: string ): any {
               //@ts-ignore
-              return this.personalDataForm.get( elem ).hasError( validation.type ) && ( this.personalDataForm.get( elem ).dirty || this.personalDataForm.get( elem ).touched )
+              return this.personalDataForm.get( elem ).invalid && this.personalDataForm.get( elem ).hasError( validation.type ) && ( this.personalDataForm.get( elem ).dirty || this.personalDataForm.get( elem ).touched )
             }
              
           
   
         guardarDatos(){
-          console.log('datos del usuario',this.personalDataForm);
+            if(this.personalDataForm.invalid){
+              this.personalDataForm.markAllAsTouched();
+              return;
+            }
+            else{
+              console.log('datos del usuario',this.personalDataForm);
+              alert(this.personalDataForm);
+
+            }
+       
+          
+
         }
         volver(){
           this.activateRoute.params.subscribe(
