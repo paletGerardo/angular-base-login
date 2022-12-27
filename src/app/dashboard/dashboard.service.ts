@@ -113,6 +113,22 @@ export class DashboardService {
             //}
           //]
         },
+        otherAddress:{
+         
+          address:['',Validators.required],
+          number:['',Validators.required],
+          city:['',Validators.required],
+          province:['',Validators.required],
+          zip:['',Validators.required],
+          email:['',Validators.required],
+          //phone:[
+            //{
+              //phone_type:['',Validators.required],
+              cod_area:['',Validators.required],
+              number_phone:['',Validators.required]
+            //}
+          //]
+        },
         
        
         saleDetail:{
