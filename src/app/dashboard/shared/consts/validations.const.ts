@@ -60,14 +60,7 @@ const TYPE = {
           type: TYPE.REQUIRED,
           message: 'La nacionalidad es requerida.'
         },
-        {
-          type: TYPE.PATTERN,
-          message: 'Solo se aceptan letras.'
-        },
-        {
-            type: TYPE.MINLENGTH,
-            message: 'La nacionalidad debe tener al menos 2 caracteres.'
-          },
+       
          
       ],
       birthdate: [
