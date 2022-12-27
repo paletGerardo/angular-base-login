@@ -35,6 +35,7 @@ import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-pu
 import { DataUserComponent } from './features/3-router-outlet/data-user/data-user.component';
 import { PersonalDataFormComponent } from './features/3-router-outlet/data-user/feature/1-datos-asegurado/personal-data-form.component';
 import { StepperTwoComponent } from './features/3-router-outlet/data-user/feature/stepper/stepperTwo.component';
+import { QuestionComponent } from './shared/components/question/question.component';
 
 @NgModule( {
   declarations: [
@@ -68,7 +69,8 @@ import { StepperTwoComponent } from './features/3-router-outlet/data-user/featur
     PaymentSummaryComponent,
     DataUserComponent,
     PersonalDataFormComponent,
-    StepperTwoComponent
+    StepperTwoComponent,
+    QuestionComponent
 
    
   ],
@@ -90,6 +92,7 @@ import { StepperTwoComponent } from './features/3-router-outlet/data-user/featur
     DataUserComponent,
     PersonalDataFormComponent,
     StepperTwoComponent,
+    QuestionComponent
   
     
 
