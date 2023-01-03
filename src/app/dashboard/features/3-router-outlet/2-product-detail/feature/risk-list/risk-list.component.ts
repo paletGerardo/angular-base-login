@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PopUpRiskComponent } from 'src/app/dashboard/shared/components/popUpRisks/popUp-risk.component';
+import {DashboardService} from "../../../../../dashboard.service";
 
 @Component( {
   selector: 'app-risk-list',
@@ -15,12 +16,12 @@ export class RiskListComponent implements OnInit {
   dialogRef: any;
 
   constructor(
+    public dashboardService: DashboardService,
     private _matDialog: MatDialog,
     ) {
    }
 
   ngOnInit(): void {
-    this.showRisk();
   }
   selectImage(index: number): void {
     this. selectedIndex = index;
@@ -31,19 +32,9 @@ export class RiskListComponent implements OnInit {
     this.dialogRef = this._matDialog.open(PopUpRiskComponent, {
         panelClass: 'app-popUp-risk',
         data: {
-            risks: this.risks,  
+            risks: this.risks,
         }
-    });         
+    });
   }
 
-  showRisk() {
-    console.log('original',this.risks);
-    console.log('copia',this.riskCopia);
-    if (this.risks.length>1){
-      this.riskCopia=this.risks.slice(0,2);
-    }
-    else{
-      this.riskCopia=this.risks;
-    }
-  }
 }

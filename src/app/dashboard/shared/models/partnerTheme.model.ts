@@ -46,7 +46,8 @@ export interface TemaSocio {
   url_imagen_fondo: string,
   url_tipografia: string,
   color: Color,
-  navbar_tema: NavbarTema,
+  navbar: Navbar,
+  boton: Boton;
   imagenes_carrusel: ImagenCarrusel[]
 }
 
@@ -64,7 +65,7 @@ export interface Color {
   terciario_rgba_light: any
 }
 
-export interface NavbarTema {
+export interface Navbar {
   id: string,
   cuit_socio: string,
   color_primario: string,
@@ -74,6 +75,17 @@ export interface NavbarTema {
   color_secundario_rgba: any,
   color_secundario_rgba_light: any,
   url_logo: any
+}
+
+export interface Boton {
+  id: string,
+  cuit_socio: string,
+  primario_rgba: string,
+  primario_rgba_light: string,
+  secundario_rgba: string,
+  secundario_rgba_light: string,
+  fondo_rgba: string,
+  fondo_rgba_light: string,
 }
 
 export interface ImagenCarrusel {

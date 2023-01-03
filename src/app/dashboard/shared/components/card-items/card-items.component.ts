@@ -11,6 +11,7 @@ export class CardItemsComponent implements OnInit {
   @Input() body: string = '';
   @Input() textColor: string = 'white';
   @Input() bgColor: string = 'green';
+  @Input() MODEL: string = 'MODEL-1';
 
   constructor() { }
 

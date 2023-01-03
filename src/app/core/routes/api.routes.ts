@@ -7,6 +7,7 @@ export const ENDPOINTS_API = {
   TEMA_SOCIO: `${ ENV.URL_BASE }/temas/obtener-temas/cuit`,
   PRODUCTS: `${ ENV.URL_BASE }/products/getAllProductsByCuit/`,
   PRODUCTSDETAIL:`${ ENV.URL_BASE }/products/getDetailByProductId/`,
+  PRODUCTO:`${ ENV.URL_BASE }/productos/obtener-producto/id-producto`,
   DETALLE_PRODUCTO:`${ ENV.URL_BASE }/productos/obtener-detalle-producto/id-producto`,
   IMGAGEN_PRODUCTO_1:`${ ENV.URL_BASE }/productos/obtener-imagen/id-producto`,
   PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`,

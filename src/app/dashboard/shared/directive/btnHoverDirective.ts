@@ -26,9 +26,9 @@ export class ButtonDiretive {
   ngOnInit() {
     this.dashboardService.partnerTheme$.subscribe(
       (themes: TemaSocio | undefined) => {
-        if (themes && themes.navbar_tema.color_primario_rgba) {
-          this.colorPrimary = themes.navbar_tema.color_primario_rgba;
-          this.colorSecondary = themes.navbar_tema.color_primario_rgba_light;
+        if (themes && themes.navbar.color_primario_rgba) {
+          this.colorPrimary = themes.navbar.color_primario_rgba;
+          this.colorSecondary = themes.navbar.color_primario_rgba_light;
         } else if (themes) {
           this.colorPrimary = themes.color.primario_rgba;
           this.colorSecondary = themes.color.primario_rgba_light;

@@ -18,7 +18,7 @@ export class ButtonSecondaryComponent implements OnInit {
   partnerTheme: TemaSocio | undefined;
   constructor(
     private loadingService: LoadingService,
-    private dashBoardService:DashboardService
+    public dashBoardService:DashboardService
 
   ) { }
 

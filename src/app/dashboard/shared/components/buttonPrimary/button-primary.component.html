@@ -1,6 +1,6 @@
-<div class="w-full flex justify-center">
-  <button class=" color bg-blue-500 hover:bg-blue-700 text-white font-bold flex justify-center"
-    [ngStyle]="{'background-color':bgcolor}" (click)="onClick()">
+<div class="button-container" [ngStyle]="{'background-color':validarColorFondo()}">
+  <button class="button"
+    [ngStyle]="{'background-color':dashBoardService.temaSocio.boton.primario_rgba}" (click)="onClick()">
     {{text}}
   </button>
 </div>

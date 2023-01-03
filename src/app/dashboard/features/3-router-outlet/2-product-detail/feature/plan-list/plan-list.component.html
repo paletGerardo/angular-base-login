@@ -1,8 +1,9 @@
-<div class="plans">
-  <h3 class="text-center">¡Elegi el plan que mas te convenga!</h3>
-  <div class="flex justify-center">
+<div class="plans" [ngStyle]="{'background-color': primaryColor }">
+  <p class="text-center px-4">¡Elegí el plan que más se adapte a tus necesidades!</p>
+  <div class="flex justify-center grid grid-cols-3 gap-4 p-6">
     <ng-container *ngFor="let plan of plans; let i = index">
       <app-button-secondary
+        class="flex justify-center"
         [text]="plan.codigo_plan"
         [cupon]="cupon"
         [activeColor]="plan.activeColor"

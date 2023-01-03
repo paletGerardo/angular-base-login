@@ -11,12 +11,14 @@ import {PartnerTheme, TemaSocio} from '../../models/partnerTheme.model';
 })
 export class ButtonPrimaryComponent implements OnInit {
   @Input() text:string="comprar";
+  @Input() mostrarColorFondo:boolean=false;
   @Input() bgcolor:string | undefined = undefined;
   @Output() clicked: EventEmitter<boolean> = new EventEmitter<boolean>(false);
   public partnerTheme: TemaSocio | null | undefined;
+  public colorFondo: string | undefined = 'white';
   constructor(
     private loadingService: LoadingService,
-    private dashBoardService:DashboardService
+    public dashBoardService:DashboardService
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class ButtonPrimaryComponent implements OnInit {
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
+        this.colorFondo = this.dashBoardService.temaSocio?.boton.fondo_rgba;
         this.loadingService.tryToStopLoading();
       }
     } )
@@ -31,5 +34,12 @@ export class ButtonPrimaryComponent implements OnInit {
 
   onClick() {
     this.clicked.emit(true);
+  }
+
+  validarColorFondo() {
+    if(this.mostrarColorFondo){
+      return this.colorFondo
+    }
+    return 'white';
   }
 }

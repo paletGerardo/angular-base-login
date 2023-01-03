@@ -1,17 +1,15 @@
 .buttonSecondary{
     font-style: normal;
-    width: 79px;
+    text-transform: uppercase;
+    width: 90px;
     height: 30px;
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
     margin-right: 1vw;
     padding: 0px;
-    color: grey;
-    background-color: #F3F3F3;
-    border: 1px solid #000000;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+    border-radius: 8px;
 }
 
 .buttonSecondary:focus:hover {

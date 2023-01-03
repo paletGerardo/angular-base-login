@@ -9,6 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import {PartnerTheme, TemaSocio} from "../../../shared/models/partnerTheme.model";
+import {TemaProducto, ItemsProducto, DetalleProducto} from "../1-products/feature/product-card/product-card.component";
+import {GlobalResponse} from "../../../../core/http/http.response.model";
 
 @Component( {
   selector: 'app-product-detail',
@@ -19,7 +21,8 @@ export class ProductDetailComponent implements OnInit {
   id: number = 0;
   url: string = "";
   producto: Producto | undefined;
-  prodItem: any = [];
+  temaProducto: TemaProducto | undefined;
+  detalleProducto: DetalleProducto | undefined;
   itemsArray: any = [];
   itemsArray2: any = [];
   plans: Plan[] = [];
@@ -44,6 +47,7 @@ export class ProductDetailComponent implements OnInit {
   public primaryColor: string | undefined;
   public secundaryColor: string | undefined;
   private _unsubscribeAll: Subject<any>;
+  public mostrarmeLasDescargas: boolean = false;
 
   constructor( public dashboardService: DashboardService,
                private loadingService: LoadingService,
@@ -64,8 +68,7 @@ export class ProductDetailComponent implements OnInit {
     this.getProducts();
 
     this.scrollDown( 'title' )
-    this.dashboardService.onUrlChanged$
-      .subscribe( {
+    this.dashboardService.onUrlChanged$.subscribe( {
         next: data => {
           this.getProducts();
         },
@@ -98,6 +101,7 @@ export class ProductDetailComponent implements OnInit {
         } );
       this.getProduct( this.id );
       this.getProductItemByIdProducto();
+      this.getProductDetailByIdProductoAndCuit();
     } );
 
 
@@ -120,6 +124,7 @@ export class ProductDetailComponent implements OnInit {
     } );
     this.ordenarPlanes();
     this.planCopia = this.plans[0];
+    this.precio = this.planCopia.rangos[0].precio;
   }
 
   ordenarPlanes() {
@@ -136,15 +141,14 @@ export class ProductDetailComponent implements OnInit {
 
 
   getProductItemByIdProducto(): void {
-    this.dashboardService.getProductItemByIdProducto( this.id ).subscribe( ( data: any ) => {
-      this.prodItem = data;
-      let items = this.prodItem[0].seccion_uno_items;
-      this.itemsArray = items.split( '|' );
-      this.url = this.prodItem[0].product_image;
-      this.precio = this.prodItem[0].seccion_cero_precio_base;
-      this.titulo = this.prodItem[0].seccion_cero_titulo;
-      let items2 = this.prodItem[0].seccion_dos_items;
-      this.itemsArray2 = items2.split( '|' );
+    this.dashboardService.getProductItemByIdProducto( this.id ).subscribe( ( data: GlobalResponse ) => {
+      this.temaProducto = data.body;
+    } );
+  }
+
+  getProductDetailByIdProductoAndCuit() {
+    this.dashboardService.getProductDetailByIdProductoAndCuit( this.id ).subscribe( ( data: GlobalResponse ) => {
+      this.detalleProducto = data.body;
     } );
   }
 
@@ -189,6 +193,29 @@ export class ProductDetailComponent implements OnInit {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
 
+  }
+
+
+  funcionMostrarmeLasDescargas() {
+    this.mostrarmeLasDescargas = !this.mostrarmeLasDescargas;
+  }
+
+  getBorderColer(tipo: string) {
+    if(tipo === 'descargas') {
+      if(this.mostrarmeLasDescargas) {
+        return this.secundaryColor;
+      } else {
+        return '#b5b8c4'
+      }
+    }
+    if(tipo === 'detalles') {
+      if(!this.mostrarmeLasDescargas) {
+        return this.secundaryColor;
+      } else {
+        return '#b5b8c4'
+      }
+    }
+    return '#b5b8c4'
   }
 
 

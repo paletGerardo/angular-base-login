@@ -10,9 +10,9 @@ import { DashboardService } from "../../../../../dashboard.service";
   styleUrls: [ './plan-list.component.scss' ]
 } )
 export class PlanListComponent implements OnInit {
-  cupon:boolean=false;
   @Input() plans: Plan[] = [];
   @Output() emitPlanSelected: EventEmitter<string> = new EventEmitter<string>();
+  cupon:boolean=false;
   partnerTheme: TemaSocio | undefined;
   public primaryColor: string = '';
   public secundaryColor: string = '';
@@ -24,8 +24,8 @@ export class PlanListComponent implements OnInit {
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
-        this.primaryColor = parnetTheme.color.primario;
-        this.secundaryColor = parnetTheme.color.secundario;
+        this.primaryColor = parnetTheme.boton.primario_rgba;
+        this.secundaryColor = parnetTheme.boton.secundario_rgba;
         this.plans.forEach( (plan, index) => {
           if(index == 0) {
             plan.activeColor = this.partnerTheme?.color.primario_rgba

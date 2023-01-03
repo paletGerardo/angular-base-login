@@ -1,6 +1,6 @@
+@import "src/styles/_varaibles.scss";
 .card {
-  width: 600px;
-  height: 62px;
+  max-width: 85vw;
 }
 
 .card-num {
@@ -37,4 +37,49 @@
   -webkit-box-shadow: 1px -1px 5px 0px rgba(0,0,0,0.30);
   -moz-box-shadow: 1px -1px 5px 0px rgba(0,0,0,0.30);
   width: 80%;
+}
+
+.card2-icon {
+  color: white;
+  width: 75px;
+  height: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+
+  img {
+    max-width: 50%;
+  }
+}
+
+.card2-body {
+  height: 65px;
+  font-size: 0.8rem;
+  border: 2px solid rgba(0,0,0,0.30);
+  padding: 0 15px 0 15px;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 1px -1px 5px 0px rgba(0,0,0,0.30);
+  -webkit-box-shadow: 1px -1px 5px 0px rgba(0,0,0,0.30);
+  -moz-box-shadow: 1px -1px 5px 0px rgba(0,0,0,0.30);
+  width: 80%;
+}
+
+
+@media (min-width: map-get($grid-breakpoints, xs)) {
+
+}
+@media (min-width: map-get($grid-breakpoints, sm)) {
+
+}
+
+@media (min-width: map-get($grid-breakpoints, md)) {
+
+}
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+
 }

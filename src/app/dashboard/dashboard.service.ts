@@ -72,7 +72,14 @@ export class DashboardService {
   }
 
   getProductItemByIdProducto(id: number): Observable<GlobalResponse> {
-    // const URL = ENDPOINTS_API.PRODUCTSDETAIL + id + "/" + this.cuitSocio;
+    const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}`;
+    return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
+      this.products = response.body;
+    }
+    ));
+  }
+
+  getProductDetailByIdProductoAndCuit(id: number): Observable<GlobalResponse> {
     const URL = `${ENDPOINTS_API.DETALLE_PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
       this.products = response.body;

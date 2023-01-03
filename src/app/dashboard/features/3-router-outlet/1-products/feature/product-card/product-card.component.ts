@@ -1,23 +1,46 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DashboardService } from '../../../../../dashboard.service';
 import { LoadingService } from '../../../../../../core/loading/loading.service';
-import {PartnerTheme, TemaSocio} from '../../../../../shared/models/partnerTheme.model';
+import {TemaSocio} from '../../../../../shared/models/partnerTheme.model';
 import {ENDPOINTS_API} from "../../../../../../core/routes/api.routes";
 import {Producto} from "../../../../../shared/models/productsResponse.model";
 import {GlobalResponse} from "../../../../../../core/http/http.response.model";
 import {Router} from "@angular/router";
 
-export interface DetalleProducto {
+export interface BaseProducto {
   id: string,
   id_producto: string,
   cuit_socio: string,
+}
+
+export interface Cobertura extends BaseProducto {
+  descripcion: string,
+  url_icono: string,
+}
+export interface TemaProducto extends BaseProducto {
   titulo: string,
   slogan: string,
   precio_base: string,
   url_imagen1: string,
   url_imagen2: string,
+  url_imagen_precio: string,
+  coberturas: Cobertura[];
 
 }
+
+export interface DetalleProducto extends BaseProducto {
+  titulo: string,
+  descripcion: string,
+  subTitulo: string,
+  items: ItemsProducto[]
+
+}
+
+export interface ItemsProducto extends BaseProducto {
+  descripcion: string,
+  prioridad: string,
+}
+
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
@@ -28,7 +51,7 @@ export class ProductCardComponent implements OnInit {
   id: number = 0;
   public partnerTheme: TemaSocio | null | undefined;
   url: any;
-  prodItem: DetalleProducto | undefined;
+  prodItem: TemaProducto | undefined;
   notImage: boolean = false;
   bgcolor: string | undefined;
   constructor(

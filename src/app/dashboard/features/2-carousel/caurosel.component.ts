@@ -38,7 +38,12 @@ export class CarouselComponent implements OnInit {
           this.partnerTheme = parnetTheme;
           if (this.partnerTheme && this.partnerTheme.imagenes_carrusel && this.partnerTheme.imagenes_carrusel.length) {
             this.partnerTheme.imagenes_carrusel.forEach((value) => {
-              this.images.push(value.url);
+              const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+              const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+              console.log('ancho: ' + vw);
+              console.log('alto: ' + vh);
+              console.log('url: ' + value.url + '?vw='+vw);
+              this.images.push(value.url + '?size='+vw);
             })
           }
           this.loadingService.tryToStopLoading();

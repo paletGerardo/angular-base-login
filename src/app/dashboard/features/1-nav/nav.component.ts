@@ -54,10 +54,10 @@ export class NavComponent implements AfterViewInit, OnInit {
     this.loadingService.tryToStartLoading();
     this.dashBoardService.partnerTheme$.subscribe(
       (partnerThemes: TemaSocio | undefined) => {
-        if (partnerThemes && partnerThemes.navbar_tema.color_primario_rgba) {
+        if (partnerThemes && partnerThemes.navbar.color_primario_rgba) {
           this.partnerTheme = partnerThemes;
-          this.primaryColor = partnerThemes.navbar_tema.color_primario_rgba;
-          this.secundaryColor = partnerThemes.navbar_tema.color_primario_rgba_light;
+          this.primaryColor = partnerThemes.navbar.color_primario_rgba;
+          this.secundaryColor = partnerThemes.navbar.color_primario_rgba_light;
           this.bgColor = this.primaryColor;
           this.loadingService.tryToStopLoading();
         } else if (partnerThemes) {
