@@ -7,12 +7,7 @@ export interface PersonalDataForm{
     "birthdate":string;
     "email":string;
     "address":string;
-    "phone":[
-        {
-            "phone_type":string,
-            "cod_area":string,
-            "number":string
-        }
-    ];
-
+    "cod_area":string,
+    "number_phone":string
+       
 }
