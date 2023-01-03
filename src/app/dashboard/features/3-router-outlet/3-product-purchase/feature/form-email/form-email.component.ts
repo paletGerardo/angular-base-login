@@ -16,8 +16,13 @@ import { StepperOrientation } from '@angular/cdk/stepper';
   styleUrls: [ './form-email.component.scss' ]
 } )
 export class FormEmailComponent implements OnInit {
+  public userEmail: FormGroup<any> = this.dashboardService.formAlta.get('userEmail') as FormGroup;
+
   id: number = 0;
+  emailUser="";
   url: string = "";
+  text:string="Guardar";
+  cupon:boolean=true;
   producto: Producto | undefined;
   prodItem: any = [];
   itemsArray: any = [];
@@ -25,11 +30,7 @@ export class FormEmailComponent implements OnInit {
   plans: any = [];
   page:string='purchase';
 
-  userEmail = new FormGroup({
-    Email: new FormControl('',[
-      Validators.required,
-      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-    } );
+
 
 
   stepperOrientation: Observable<StepperOrientation>;
@@ -54,6 +55,14 @@ export class FormEmailComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.userEmail = new FormGroup({
+      Email: new FormControl('',[
+        Validators.required,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      } );
+  }
+  guardar(){
+    console.log(this.emailUser);
   }
 
 } 
