@@ -53,6 +53,10 @@ const TYPE = {
             type: TYPE.MINLENGTH,
             message: 'El apellido debe tener al menos 2 caracteres.'
           },
+          {
+            type: TYPE.MAXLENGTH,
+            message: 'El maximo permitido es 20'
+          },
       
       ],
       nationality: [
@@ -88,6 +92,10 @@ const TYPE = {
           type: TYPE.MINLENGTH,
           message: 'El documento debe tener 8 digitos'
         },
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'El maximo permitido es 8 digitos'
+        },
       ],
       id_genre: [
         {
@@ -101,6 +109,7 @@ const TYPE = {
           message: 'Este campo es requerido.'
         },
       ],
+     
       number: [
         {
           type: TYPE.REQUIRED,
@@ -138,14 +147,42 @@ const TYPE = {
           type: TYPE.PATTERN,
           message: 'solo se aceptan numeros'
         },
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'El maximo permitido es 5 digitos'
+        },
       ],
       number_phone: [
         {
           type: TYPE.REQUIRED,
           message: 'Este campo es requerido.'
         },
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'El maximo permitido es 7 digitos'
+        },
+      ],
+      relation: [
+        {
+          type: TYPE.REQUIRED,
+          message: 'Este campo es requerido.'
+        },
       ],
 
+      percentage: [
+        {
+          type: TYPE.REQUIRED,
+          message: 'Este campo es requerido.'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se aceptan numeros'
+        },
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'El maximo permitido es de 3 digitos'
+        },
+      ],
      
   };
   
