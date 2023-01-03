@@ -91,6 +91,7 @@ export class DashboardService {
   buildForm(){
     return this.formBuilder.group(
       {
+        
         personalData:{
           name:['',[Validators.required,Validators.minLength(4)]],
           lastname:['',Validators.required],
@@ -111,7 +112,29 @@ export class DashboardService {
               cod_area:['',Validators.required],
               number_phone:['',Validators.required]
             //}
-          //]
+          //]        },
+        },
+        beneficiary:{
+          percentage:['',[Validators.required]],
+
+          name:['',[Validators.required,Validators.minLength(4)]],
+          lastname:['',Validators.required],
+          nationality:['',Validators.required],
+          document_type:['',Validators.required],
+          document_number:['',Validators.required],
+          id_genre:['',Validators.required],
+          birthdate:['',Validators.required],
+          address:['',Validators.required],
+          number:['',Validators.required],
+          city:['',Validators.required],
+          province:['',Validators.required],
+          zip:['',Validators.required],
+          email:['',Validators.required],
+          //phone:[
+            //{
+              //phone_type:['',Validators.required],
+              cod_area:['',Validators.required],
+              number_phone:['',Validators.required]
         },
         otherAddress:{
          
