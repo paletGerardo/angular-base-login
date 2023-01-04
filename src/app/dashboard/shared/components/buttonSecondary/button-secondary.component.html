@@ -1,4 +1,4 @@
-<button class="buttonSecondary text-white py-2 px-4 rounded-full"
+<button *ngIf="!cupon" class="buttonSecondary text-white py-2 px-4 rounded-full"
         [ngStyle]="{'background-color':dashBoardService.temaSocio.boton.secundario_rgba}"
 >
   Plan {{text}}
