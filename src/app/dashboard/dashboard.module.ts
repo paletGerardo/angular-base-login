@@ -38,6 +38,7 @@ import { DataUserComponent } from './features/3-router-outlet/4-data-user-form/d
 import { PersonalDataFormComponent } from './features/3-router-outlet/4-data-user-form/feature/1-datos-asegurado/personal-data-form.component';
 import { StepperTwoComponent } from './features/3-router-outlet/4-data-user-form/feature/stepper/stepperTwo.component';
 import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/feature/question/question.component';
+import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form.component';
 
 @NgModule( {
   declarations: [
@@ -73,7 +74,8 @@ import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/f
     DataUserComponent,
     PersonalDataFormComponent,
     StepperTwoComponent,
-    QuestionComponent
+    QuestionComponent,
+    BuyFormComponent
 
    
   ],
@@ -95,7 +97,8 @@ import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/f
     DataUserComponent,
     PersonalDataFormComponent,
     StepperTwoComponent,
-    QuestionComponent
+    QuestionComponent,
+    BuyFormComponent
   
     
 

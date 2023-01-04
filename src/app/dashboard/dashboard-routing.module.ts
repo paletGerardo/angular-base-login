@@ -11,6 +11,7 @@ import { ProductDetailComponent } from './features/3-router-outlet/2-product-det
 import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-purchase/product-purchase.component';
 import {HowToBuyComponent} from "./features/3-router-outlet/how-to-buy/how-to-buy.component";
 import { DataUserComponent } from './features/3-router-outlet/4-data-user-form/data-user.component';
+import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,17 @@ const routes: Routes = [
       {
         path: '',
         component: DataUserComponent,
+
+      },
+    ]
+  },
+  {
+    path: 'buy-form',
+    component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        component: BuyFormComponent,
 
       },
     ]
