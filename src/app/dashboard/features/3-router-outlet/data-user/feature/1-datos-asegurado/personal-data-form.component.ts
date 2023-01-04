@@ -116,8 +116,9 @@ export class PersonalDataFormComponent implements OnInit {
 
         }
         
-        cambiarColor(){
-          this.cargado=!this.cargado;
+        irArriba(){
+          console.log('llego aca');
+          document.getElementById('formPrincipal')?.scrollIntoView();
         }
 
 

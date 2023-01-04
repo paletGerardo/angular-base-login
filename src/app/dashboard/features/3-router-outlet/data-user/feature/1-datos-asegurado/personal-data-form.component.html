@@ -1,6 +1,6 @@
 
 
-<div *ngIf="!formNoTitular" class="max-w-screen-md mx-auto p-5">
+<div *ngIf="!formNoTitular" class="max-w-screen-md mx-auto p-5" >
 <div style="padding:6vh;">
   <h2 style="text-align:center; padding: 2vw;">Datos del asegurado</h2>
 </div>
@@ -368,7 +368,7 @@
   </form>
 </div>
 
-<div *ngIf="this.parentCount && beneficiario" class="max-w-screen-md mx-auto p-5">
+<div *ngIf="this.parentCount && beneficiario" class="max-w-screen-md mx-auto p-5" id="formPrincipal">
   <div style="padding:6vh;">
     <h2 style="text-align:center;">Datos beneficiario</h2>
   </div>
@@ -615,7 +615,7 @@
             </div>
         </div>
     <div style="display:flex;justify-content:end;">
-      <button    [ngClass]="cargado ? 'primary' : 'disabled'" class="primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="cambiarColor()" >
+      <button    [ngClass]="cargado ? 'primary' : 'disabled'" class="primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="irArriba()" >
         Siguiente
       </button>
     </div>
