@@ -187,6 +187,8 @@ export class ProductDetailComponent implements OnInit {
   comprarProducto(){
     console.log("compra del producto",this.producto);
     this._router.navigate(['dashboard/product-purchase/'+this.producto?.id_producto]);
+    this._router.navigate(['dashboard/data-user/'+this.producto?.id_producto]);
+
   }
 
 
