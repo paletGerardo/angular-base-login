@@ -1,0 +1,25 @@
+<div style="padding:10vh">
+  <div *ngIf="beneficiario">
+    <h2 style="text-align: center;padding:10vh">¿Desea agregar beneficiarios?</h2>
+    <div class="flex px-4 py-2 flex-wrap justify-center items-baseline">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"  (click)="otherAddress()">
+            SI
+          </button>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"  (click)="irPlandePago()">
+            NO
+          </button>
+    </div>
+</div>
+<div *ngIf="domicilio">
+    <h2 style="text-align: center;padding:10vh">¿El domicilio que vas a asegurar es el mismo que fue declarado?</h2>
+    <div style="display: flex;justify-content: center;">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="irPlandePago()" >
+         SI
+       </button>
+       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="otherAddress()">
+         NO
+       </button>
+    </div>
+</div>
+</div>
+

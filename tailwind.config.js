@@ -17,5 +17,7 @@ module.exports = {
     gridTemplateRows: {},
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

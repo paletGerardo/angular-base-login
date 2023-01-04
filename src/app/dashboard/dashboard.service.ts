@@ -7,6 +7,7 @@ import {ENDPOINTS_API} from "../core/routes/api.routes";
 import {Producto} from "./shared/models/productsResponse.model";
 import {tap} from "rxjs/operators";
 import {GlobalResponse} from "../core/http/http.response.model";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,11 @@ export class DashboardService {
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';
 
+  public formAlta:FormGroup= this.buildForm();
   constructor(
     private httpWrapperService: HttpWrapperService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private formBuilder:FormBuilder
   ) {
     this.loadingService.tryToStartLoading();
     this.getCuit();
@@ -97,6 +100,100 @@ export class DashboardService {
   toggleCarousel(show: boolean) {
     this.toggleCarousel$.next(show);
   }
+
+
+  buildForm(){
+    return this.formBuilder.group(
+      {
+        
+        personalData:{
+          name:['',[Validators.required,Validators.minLength(4)]],
+          lastname:['',Validators.required],
+          nationality:['',Validators.required],
+          document_type:['',Validators.required],
+          document_number:['',Validators.required],
+          id_genre:['',Validators.required],
+          birthdate:['',Validators.required],
+          address:['',Validators.required],
+          number:['',Validators.required],
+          city:['',Validators.required],
+          province:['',Validators.required],
+          zip:['',Validators.required],
+          email:['',Validators.required],
+          //phone:[
+            //{
+              //phone_type:['',Validators.required],
+              cod_area:['',Validators.required],
+              number_phone:['',Validators.required]
+            //}
+          //]        },
+        },
+        beneficiary:{
+          percentage:['',[Validators.required]],
+
+          name:['',[Validators.required,Validators.minLength(4)]],
+          lastname:['',Validators.required],
+          nationality:['',Validators.required],
+          document_type:['',Validators.required],
+          document_number:['',Validators.required],
+          id_genre:['',Validators.required],
+          birthdate:['',Validators.required],
+          address:['',Validators.required],
+          number:['',Validators.required],
+          city:['',Validators.required],
+          province:['',Validators.required],
+          zip:['',Validators.required],
+          email:['',Validators.required],
+          //phone:[
+            //{
+              //phone_type:['',Validators.required],
+              cod_area:['',Validators.required],
+              number_phone:['',Validators.required]
+        },
+        otherAddress:{
+         
+          address:['',Validators.required],
+          number:['',Validators.required],
+          city:['',Validators.required],
+          province:['',Validators.required],
+          zip:['',Validators.required],
+          email:['',Validators.required],
+          //phone:[
+            //{
+              //phone_type:['',Validators.required],
+              cod_area:['',Validators.required],
+              number_phone:['',Validators.required]
+            //}
+          //]
+        },
+        
+       
+        saleDetail:{
+          is_insured_address:['',Validators.required],
+          additionals:[],
+          beneficiaries:[],
+          name_socio:['',Validators.required],
+          id_product:['',Validators.required],
+          code_product:['',Validators.required],
+          description_product:['',Validators.required],
+          id_ramo:['',Validators.required],
+          plan:['',Validators.required],
+          price:['',Validators.required],
+        },
+        pay:{
+          number_card:['',Validators.required],
+          payment_method:['',Validators.required],
+          payment_method_description:['',Validators.required]
+         }
+      
+      }
+      
+    )}
+
+
+    public getFormDataJson() {
+      const formAlta = this.formAlta.getRawValue();
+    }
 
 }
 

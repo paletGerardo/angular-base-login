@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Producto } from "../../../shared/models/productsResponse.model";
 import { DashboardService } from "../../../dashboard.service";
 import { LoadingService } from 'src/app/core/loading/loading.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -25,6 +25,7 @@ export class ProductPurchaseComponent implements OnInit {
   plans: any = [];
   page:string='purchase';
   
+  @Input() text:string='Ir a cargar los datos de la poliza';
 
   firstFormGroup = this._formBuilder.group( {
     firstCtrl: [ '', Validators.required ],
@@ -46,6 +47,8 @@ export class ProductPurchaseComponent implements OnInit {
   constructor( public dashboardService: DashboardService,
                private loadingService: LoadingService,
                private activateRoute: ActivatedRoute,
+               private _router: Router,
+
              
                private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver ) {
     this.stepperOrientation = breakpointObserver
@@ -118,6 +121,11 @@ export class ProductPurchaseComponent implements OnInit {
           let items2 = this.prodItem[0].seccion_dos_items;
           this.itemsArray2 = items2.split( '|' );
         } );
+      }
+
+      completarDatosCompra(){
+        console.log("compra del producto",this.producto);
+        this._router.navigate(['dashboard/data-user/'+this.producto?.id_producto]);
       }
     
 }

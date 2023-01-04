@@ -8,14 +8,14 @@ import { ProductsComponent } from "./features/3-router-outlet/1-products/product
 import { DashboardComponent } from "./dashboard.component";
 import { CarouselComponent } from './features/2-carousel/caurosel.component';
 import { ProductCardComponent } from './features/3-router-outlet/1-products/feature/product-card/product-card.component';
-import { PolicyDownloadComponent } from './features/3-router-outlet/6-policy-download/policy-download.component';
-import { PolicyConsultComponent } from './features/3-router-outlet/5-policy-consult/policy-consult.component';
+import { PolicyDownloadComponent } from './features/3-router-outlet/8-policy-download/policy-download.component';
+import { PolicyConsultComponent } from './features/3-router-outlet/7-policy-consult/policy-consult.component';
 import { ContactComponent } from './features/4-footer/features/contact/contact.component';
 import { ButtonPrimaryComponent } from './shared/components/buttonPrimary/button-primary.component';
 import { ButtonSecondaryComponent } from './shared/components/buttonSecondary/button-secondary.component';
 import { NotFoundComponent } from "./features/3-router-outlet/not-found/not-found.component";
 import { HelpComponent } from "./features/3-router-outlet/help/help.component";
-import { AboutComponent } from "./features/3-router-outlet/4-about/about.component";
+import { AboutComponent } from "./features/3-router-outlet/6-about/about.component";
 import { ProductDetailComponent } from './features/3-router-outlet/2-product-detail/product-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ButtonDiretive } from "./shared/directive/btnHoverDirective";
@@ -34,6 +34,10 @@ import { StepperComponent } from './features/3-router-outlet/3-product-purchase/
 import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-purchase/feature/payment-summary/payment-summary.component';
 import { HowToBuyComponent } from './features/3-router-outlet/how-to-buy/how-to-buy.component';
 import {SharedModule} from "./shared/shared.module";
+import { DataUserComponent } from './features/3-router-outlet/4-data-user-form/data-user.component';
+import { PersonalDataFormComponent } from './features/3-router-outlet/4-data-user-form/feature/1-datos-asegurado/personal-data-form.component';
+import { StepperTwoComponent } from './features/3-router-outlet/4-data-user-form/feature/stepper/stepperTwo.component';
+import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/feature/question/question.component';
 
 @NgModule( {
   declarations: [
@@ -66,7 +70,12 @@ import {SharedModule} from "./shared/shared.module";
     StepperComponent,
     PaymentSummaryComponent,
     HowToBuyComponent,
+    DataUserComponent,
+    PersonalDataFormComponent,
+    StepperTwoComponent,
+    QuestionComponent
 
+   
   ],
   exports: [
     DashboardComponent,
@@ -83,7 +92,12 @@ import {SharedModule} from "./shared/shared.module";
     CuponComponent,
     StepperComponent,
     PaymentSummaryComponent,
-
+    DataUserComponent,
+    PersonalDataFormComponent,
+    StepperTwoComponent,
+    QuestionComponent
+  
+    
 
   ],
     imports: [

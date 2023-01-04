@@ -46,6 +46,8 @@ export class ProductDetailComponent implements OnInit {
   @Input() product: Producto | undefined;
   public primaryColor: string | undefined;
   public secundaryColor: string | undefined;
+  @Input() text:string="comprar";
+
   private _unsubscribeAll: Subject<any>;
   public mostrarmeLasDescargas: boolean = false;
 
