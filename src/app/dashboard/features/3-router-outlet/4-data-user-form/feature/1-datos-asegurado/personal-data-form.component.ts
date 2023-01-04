@@ -113,6 +113,7 @@ export class PersonalDataFormComponent implements OnInit {
           console.log('domicilio agregado',this.addressDataForm);
           //preguntar este caso..
           this.arregloPersonas.push(this.addressDataForm);
+          this._router.navigate(['dashboard/buy-form']);
 
         }
         
@@ -157,7 +158,9 @@ export class PersonalDataFormComponent implements OnInit {
               console.log("arreglo de personas",this.arregloPersonas);
               if (this.porcentaje==100){
                 console.log("aca se termino");
-                alert('ir a plan de pago');   
+                this._router.navigate(['dashboard/buy-form']);
+
+               // alert('ir a plan de pago');   
               }
               else{
                 this.beneficiario=true;
@@ -168,7 +171,8 @@ export class PersonalDataFormComponent implements OnInit {
             else{
               if(this.porcentaje==100){
                 console.log("aca se termino");
-                alert('ir a plan de pago');
+                this._router.navigate(['dashboard/buy-form']);
+               // alert('ir a plan de pago');
               }
               else{
                 this._snackBar.open(this.message,this.action);
@@ -201,7 +205,9 @@ export class PersonalDataFormComponent implements OnInit {
                 this.beneficiario=true;
               }  
               else{
-                alert("plan de pago");
+              //  alert("plan de pago");
+                this._router.navigate(['dashboard/buy-form']);
+
               }  
   
             }
@@ -272,7 +278,9 @@ export class PersonalDataFormComponent implements OnInit {
         }
         else{
           if(this.domicilio && !this.parentCount){
-            alert("ir a plan de pago");
+            //alert("ir a plan de pago");
+            this._router.navigate(['dashboard/buy-form']);
+
           }
           else{
             console.log("es beneficiario");
