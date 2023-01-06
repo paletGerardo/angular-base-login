@@ -41,7 +41,7 @@ const routes: Routes = [
       },
     ]
   },
-  {
+  /*{
     path: 'product-purchase/:id',
     component: DashboardComponent,
     children: [
@@ -51,7 +51,7 @@ const routes: Routes = [
 
       },
     ]
-  },
+  },*/
   {
     path: 'data-user/:id',
     component: DashboardComponent,
