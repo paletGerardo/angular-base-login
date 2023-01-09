@@ -14,7 +14,7 @@ export class BuyFormComponent implements OnInit {
    
 
     id:any;
-    public personalDataForm: FormGroup<any> = this.dashboardService.formAlta.get('personalData') as FormGroup;
+    //public payDataForm: FormGroup<any> = this.dashboardService.formAlta.get('pay') as FormGroup;
     PersonalData: any;
     constructor( private dashboardService:DashboardService,
                  private activateRoute: ActivatedRoute,

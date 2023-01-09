@@ -39,6 +39,10 @@ import { PersonalDataFormComponent } from './features/3-router-outlet/4-data-use
 import { StepperTwoComponent } from './features/3-router-outlet/4-data-user-form/feature/stepper/stepperTwo.component';
 import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/feature/question/question.component';
 import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form.component';
+import { PayFormDataComponent } from './features/3-router-outlet/5-buy-form/feature/payFormData/pay-form-data.component';
+import { CardsSvgComponent } from './features/3-router-outlet/5-buy-form/feature/cardsSvg/cards-svg.component';
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 @NgModule( {
   declarations: [
@@ -75,7 +79,10 @@ import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form
     PersonalDataFormComponent,
     StepperTwoComponent,
     QuestionComponent,
-    BuyFormComponent
+    BuyFormComponent,
+    PayFormDataComponent,
+    CardsSvgComponent
+
 
    
   ],
@@ -98,7 +105,9 @@ import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form
     PersonalDataFormComponent,
     StepperTwoComponent,
     QuestionComponent,
-    BuyFormComponent
+    BuyFormComponent,
+    PayFormDataComponent,
+    CardsSvgComponent
   
     
 
@@ -111,6 +120,9 @@ import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form
         ReactiveFormsModule,
         SwiperModule,
         SharedModule,
+        TextMaskModule
+        
+
 
     ]
 })
