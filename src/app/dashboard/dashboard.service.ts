@@ -182,8 +182,11 @@ export class DashboardService {
         },
         pay:{
           number_card:['',Validators.required],
-          payment_method:['',Validators.required],
-          payment_method_description:['',Validators.required]
+          expiration:['',Validators.required],
+          security_code:['',Validators.required],
+          cardholder:['',Validators.required],
+        //  payment_method:['',Validators.required],
+         // payment_method_description:['',Validators.required]
          }
       
       }
