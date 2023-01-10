@@ -4,13 +4,11 @@ import { DashboardComponent } from "./dashboard.component";
 import { ProductsComponent } from "./features/3-router-outlet/1-products/products.component";
 import { HelpComponent } from './features/3-router-outlet/help/help.component';
 import { NotFoundComponent } from "./features/3-router-outlet/not-found/not-found.component";
-import { PolicyConsultComponent } from "./features/3-router-outlet/7-policy-consult/policy-consult.component";
-import { PolicyDownloadComponent } from "./features/3-router-outlet/8-policy-download/policy-download.component";
 import { AboutComponent } from "./features/3-router-outlet/6-about/about.component";
 import { ProductDetailComponent } from './features/3-router-outlet/2-product-detail/product-detail.component';
-import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-purchase/product-purchase.component';
 import {HowToBuyComponent} from "./features/3-router-outlet/how-to-buy/how-to-buy.component";
 import { DataUserComponent } from './features/3-router-outlet/4-data-user-form/data-user.component';
+import {UnsubscribeComponent} from "./features/3-router-outlet/unsubscribe/unsubscribe.component";
 
 const routes: Routes = [
   {
@@ -83,26 +81,6 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'policy/consult',
-    component: DashboardComponent,
-    children: [
-      {
-        path: '',
-        component: PolicyConsultComponent,
-      }
-    ]
-  },
-  {
-    path: 'policy/download',
-    component: DashboardComponent,
-    children: [
-      {
-        path: '',
-        component: PolicyDownloadComponent,
-      }
-    ]
-  },
-  {
     path: 'not-found',
     component: DashboardComponent,
     children: [
@@ -120,6 +98,17 @@ const routes: Routes = [
         path: '',
         component: HelpComponent,
       }
+    ]
+  },
+  {
+    path: 'unsubscribe',
+    component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        component: UnsubscribeComponent,
+
+      },
     ]
   },
 ];

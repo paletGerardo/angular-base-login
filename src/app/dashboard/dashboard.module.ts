@@ -8,8 +8,6 @@ import { ProductsComponent } from "./features/3-router-outlet/1-products/product
 import { DashboardComponent } from "./dashboard.component";
 import { CarouselComponent } from './features/2-carousel/caurosel.component';
 import { ProductCardComponent } from './features/3-router-outlet/1-products/feature/product-card/product-card.component';
-import { PolicyDownloadComponent } from './features/3-router-outlet/8-policy-download/policy-download.component';
-import { PolicyConsultComponent } from './features/3-router-outlet/7-policy-consult/policy-consult.component';
 import { ContactComponent } from './features/4-footer/features/contact/contact.component';
 import { ButtonPrimaryComponent } from './shared/components/buttonPrimary/button-primary.component';
 import { ButtonSecondaryComponent } from './shared/components/buttonSecondary/button-secondary.component';
@@ -38,6 +36,7 @@ import { DataUserComponent } from './features/3-router-outlet/4-data-user-form/d
 import { PersonalDataFormComponent } from './features/3-router-outlet/4-data-user-form/feature/1-datos-asegurado/personal-data-form.component';
 import { StepperTwoComponent } from './features/3-router-outlet/4-data-user-form/feature/stepper/stepperTwo.component';
 import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/feature/question/question.component';
+import { UnsubscribeComponent } from './features/3-router-outlet/unsubscribe/unsubscribe.component';
 
 @NgModule( {
   declarations: [
@@ -50,8 +49,6 @@ import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/f
     CarouselProductComponent,
     ProductCardComponent,
     AboutComponent,
-    PolicyDownloadComponent,
-    PolicyConsultComponent,
     ContactComponent,
     ButtonPrimaryComponent,
     ButtonSecondaryComponent,
@@ -73,9 +70,10 @@ import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/f
     DataUserComponent,
     PersonalDataFormComponent,
     StepperTwoComponent,
-    QuestionComponent
+    QuestionComponent,
+    UnsubscribeComponent
 
-   
+
   ],
   exports: [
     DashboardComponent,
@@ -96,8 +94,8 @@ import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/f
     PersonalDataFormComponent,
     StepperTwoComponent,
     QuestionComponent
-  
-    
+
+
 
   ],
     imports: [
