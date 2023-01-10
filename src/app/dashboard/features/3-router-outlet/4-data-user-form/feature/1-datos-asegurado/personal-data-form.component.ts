@@ -194,7 +194,13 @@ export class PersonalDataFormComponent implements OnInit {
           }
           // [FER]: paso 2 - emitir solo el json de los datos cargados
           let jsonForm = this.personalDataForm.getRawValue();
-          this.sendPersonalData.emit(jsonForm);
+          let obj = {
+            msj: 'Error',
+            tipoErro: 'no se cargo algo',
+            tipoEvento: 'volver | formulario cargado',
+            body: jsonForm,
+          }
+          this.sendPersonalData.emit(obj);
 
 
           if(this.titular){
