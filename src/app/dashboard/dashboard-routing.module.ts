@@ -9,6 +9,8 @@ import { ProductDetailComponent } from './features/3-router-outlet/2-product-det
 import {HowToBuyComponent} from "./features/3-router-outlet/how-to-buy/how-to-buy.component";
 import { DataUserComponent } from './features/3-router-outlet/4-data-user-form/data-user.component';
 import {UnsubscribeComponent} from "./features/3-router-outlet/unsubscribe/unsubscribe.component";
+import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form.component';
+import { SuccessOrErrorPayComponent } from './features/3-router-outlet/5-buy-form/feature/confirmation-or-reject/success-or-error-pay.component';
 
 const routes: Routes = [
   {
@@ -56,6 +58,28 @@ const routes: Routes = [
       {
         path: '',
         component: DataUserComponent,
+
+      },
+    ]
+  },
+  {
+    path: 'buy-form',
+    component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        component: BuyFormComponent,
+
+      },
+    ]
+  },
+  {
+    path: 'success-or-error-pay',
+    component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        component: SuccessOrErrorPayComponent,
 
       },
     ]

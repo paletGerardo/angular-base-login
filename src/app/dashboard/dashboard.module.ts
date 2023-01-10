@@ -37,6 +37,12 @@ import { PersonalDataFormComponent } from './features/3-router-outlet/4-data-use
 import { StepperTwoComponent } from './features/3-router-outlet/4-data-user-form/feature/stepper/stepperTwo.component';
 import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/feature/question/question.component';
 import { UnsubscribeComponent } from './features/3-router-outlet/unsubscribe/unsubscribe.component';
+import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form.component';
+import { PayFormDataComponent } from './features/3-router-outlet/5-buy-form/feature/pay-form-data/pay-form-data.component';
+import { CardsSvgComponent } from './features/3-router-outlet/5-buy-form/feature/cards-svg/cards-svg.component';
+import { TextMaskModule } from 'angular2-text-mask';
+import { SuccessOrErrorPayComponent } from './features/3-router-outlet/5-buy-form/feature/confirmation-or-reject/success-or-error-pay.component';
+
 
 @NgModule( {
   declarations: [
@@ -71,7 +77,12 @@ import { UnsubscribeComponent } from './features/3-router-outlet/unsubscribe/uns
     PersonalDataFormComponent,
     StepperTwoComponent,
     QuestionComponent,
-    UnsubscribeComponent
+    UnsubscribeComponent,
+    BuyFormComponent,
+    PayFormDataComponent,
+    CardsSvgComponent,
+    SuccessOrErrorPayComponent
+
 
 
   ],
@@ -93,10 +104,11 @@ import { UnsubscribeComponent } from './features/3-router-outlet/unsubscribe/uns
     DataUserComponent,
     PersonalDataFormComponent,
     StepperTwoComponent,
-    QuestionComponent
-
-
-
+    QuestionComponent,
+    BuyFormComponent,
+    PayFormDataComponent,
+    CardsSvgComponent,
+    SuccessOrErrorPayComponent
   ],
     imports: [
         CommonModule,
@@ -106,6 +118,9 @@ import { UnsubscribeComponent } from './features/3-router-outlet/unsubscribe/uns
         ReactiveFormsModule,
         SwiperModule,
         SharedModule,
+        TextMaskModule
+
+
 
     ]
 })

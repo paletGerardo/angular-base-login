@@ -1,16 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { DashboardService } from "../../../dashboard.service";
-
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 
 
 @Component( {
   selector: 'app-data-user',
   templateUrl: './data-user.component.html'
- // styleUrls: [ './product-purchase.component.scss' ]
 
 } )
 export class DataUserComponent implements OnInit {

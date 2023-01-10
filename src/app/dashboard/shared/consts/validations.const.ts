@@ -183,6 +183,68 @@ const TYPE = {
           message: 'El maximo permitido es de 3 digitos'
         },
       ],
+
+
+
+      //payForm///
+      number_card: [
+        {
+          type: TYPE.REQUIRED,
+          message: 'Este campo es requerido.'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se aceptan numeros'
+        },
+        {
+          type: TYPE.MINLENGTH,
+          message: 'el minimo es de 13 digitos'
+        },
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'El maximo es de 18 digitos'
+        },
+       
+      ],
+      expiration: [
+        {
+          type: TYPE.REQUIRED,
+          message: 'Este campo es requerido.'
+        },
+       
+      ],
+      security_code: [
+        {
+          type: TYPE.REQUIRED,
+          message: 'Este campo es requerido.'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se aceptan numeros'
+        },
+        {
+          type: TYPE.MINLENGTH,
+          message: 'El minimo es de 3 digitos'
+        },
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'El maximo permitido es de 3 digitos'
+        },
+      
+      ],
+      cardholder: [
+        {
+          type: TYPE.REQUIRED,
+          message: 'Este campo es requerido.'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se aceptan letras'
+        },
+       
+      ],
+
+
      
   };
   
