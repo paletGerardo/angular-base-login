@@ -20,6 +20,7 @@ export class DashboardService {
   public onUrlChanged$: BehaviorSubject<any>;
   public navBarOnChanged!: BehaviorSubject<any>;
   public linkNavbarChanged!: BehaviorSubject<any>;
+  public isCompra!: BehaviorSubject<any>;
   public resumeDescuento!: BehaviorSubject<any>;
   public primaryColor: string | undefined = '';
   public secondaryColor: string | undefined = '';
@@ -38,6 +39,7 @@ export class DashboardService {
     this.onUrlChanged$ = new BehaviorSubject([]);
     this.navBarOnChanged = new BehaviorSubject('');
     this.linkNavbarChanged = new BehaviorSubject('');
+    this.isCompra = new BehaviorSubject('');
 
   }
 
