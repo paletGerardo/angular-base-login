@@ -39,9 +39,10 @@ import { PersonalDataFormComponent } from './features/3-router-outlet/4-data-use
 import { StepperTwoComponent } from './features/3-router-outlet/4-data-user-form/feature/stepper/stepperTwo.component';
 import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/feature/question/question.component';
 import { BuyFormComponent } from './features/3-router-outlet/5-buy-form/buy-form.component';
-import { PayFormDataComponent } from './features/3-router-outlet/5-buy-form/feature/payFormData/pay-form-data.component';
-import { CardsSvgComponent } from './features/3-router-outlet/5-buy-form/feature/cardsSvg/cards-svg.component';
+import { PayFormDataComponent } from './features/3-router-outlet/5-buy-form/feature/pay-form-data/pay-form-data.component';
+import { CardsSvgComponent } from './features/3-router-outlet/5-buy-form/feature/cards-svg/cards-svg.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { SuccessOrErrorPayComponent } from './features/3-router-outlet/5-buy-form/feature/confirmation-or-reject/success-or-error-pay.component';
 
 
 @NgModule( {
@@ -81,8 +82,9 @@ import { TextMaskModule } from 'angular2-text-mask';
     QuestionComponent,
     BuyFormComponent,
     PayFormDataComponent,
-    CardsSvgComponent
-
+    CardsSvgComponent,
+    SuccessOrErrorPayComponent
+    
 
    
   ],
@@ -107,10 +109,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     QuestionComponent,
     BuyFormComponent,
     PayFormDataComponent,
-    CardsSvgComponent
-  
-    
-
+    CardsSvgComponent,
+    SuccessOrErrorPayComponent
   ],
     imports: [
         CommonModule,
