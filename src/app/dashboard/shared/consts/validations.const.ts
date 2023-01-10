@@ -193,13 +193,18 @@ const TYPE = {
           message: 'Este campo es requerido.'
         },
         {
+          type: TYPE.PATTERN,
+          message: 'solo se aceptan numeros'
+        },
+        {
           type: TYPE.MINLENGTH,
-          message: 'el minimo es de 12 digitos'
+          message: 'el minimo es de 13 digitos'
         },
         {
           type: TYPE.MAXLENGTH,
-          message: 'El maximo es de 12 digitos'
+          message: 'El maximo es de 18 digitos'
         },
+       
       ],
       expiration: [
         {
@@ -212,6 +217,10 @@ const TYPE = {
         {
           type: TYPE.REQUIRED,
           message: 'Este campo es requerido.'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se aceptan numeros'
         },
         {
           type: TYPE.MINLENGTH,
