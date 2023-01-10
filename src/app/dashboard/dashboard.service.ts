@@ -67,7 +67,7 @@ export class DashboardService {
 
   getProducts(): Observable<Producto[]> {
     //if ( this.products ) {
-    //return of( this.products );
+    //return of( this.products );https://web.whatsapp.com/
     //}
     const URL = ENDPOINTS_API.PRODUCTS + this.cuitSocio;
     return this.httpWrapperService.get<Producto[]>(URL).pipe(tap((products: Producto[]) => {
@@ -107,7 +107,7 @@ export class DashboardService {
   buildForm(){
     return this.formBuilder.group(
       {
-        
+
         personalData:{
           name:['',[Validators.required,Validators.minLength(4)]],
           lastname:['',Validators.required],
@@ -153,7 +153,7 @@ export class DashboardService {
               number_phone:['',Validators.required]
         },
         otherAddress:{
-         
+
           address:['',Validators.required],
           number:['',Validators.required],
           city:['',Validators.required],
@@ -168,8 +168,8 @@ export class DashboardService {
             //}
           //]
         },
-        
-       
+
+
         saleDetail:{
           is_insured_address:['',Validators.required],
           additionals:[],
@@ -190,9 +190,9 @@ export class DashboardService {
         //  payment_method:['',Validators.required],
          // payment_method_description:['',Validators.required]
          }
-      
+
       }
-      
+
     )}
 
 

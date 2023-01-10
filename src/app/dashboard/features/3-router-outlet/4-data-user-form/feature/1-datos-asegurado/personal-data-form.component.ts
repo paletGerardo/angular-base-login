@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -27,6 +27,8 @@ export class PersonalDataFormComponent implements OnInit {
         formNoTitular:boolean=false;
         @Input() text:string='Ir a cargar datos del pago';
         @Input() id:any
+
+  @Output("sendPersonalData") sendPersonalData: EventEmitter<any> = new EventEmitter()
         producto: Producto | undefined;
         plans: any = [];
         arregloPersonas:any=[];
@@ -57,11 +59,11 @@ export class PersonalDataFormComponent implements OnInit {
                       private activateRoute: ActivatedRoute,
 
         ) {
-    
+
         }
         ngOnInit(): void {
-        
-          
+
+
             console.log(this.personalDataForm.value);
             this.validadForm();
             //console.log("las provincias son ",this.provinces);
@@ -74,7 +76,7 @@ export class PersonalDataFormComponent implements OnInit {
               this.products$ = data;
               console.log( this.products$ );
               this.getProduct();
-            });  
+            });
 
 
         }
@@ -107,8 +109,8 @@ export class PersonalDataFormComponent implements OnInit {
           this.planCopia = this.plans[0];
         }
 
-    
-  
+
+
         guardar(){
           console.log('domicilio agregado',this.addressDataForm);
           //preguntar este caso..
@@ -116,7 +118,7 @@ export class PersonalDataFormComponent implements OnInit {
           this._router.navigate(['dashboard/buy-form']);
 
         }
-        
+
         irArriba(){
           console.log('llego aca');
           document.getElementById('formPrincipal')?.scrollIntoView();
@@ -160,7 +162,7 @@ export class PersonalDataFormComponent implements OnInit {
                 console.log("aca se termino");
                 this._router.navigate(['dashboard/buy-form']);
 
-               // alert('ir a plan de pago');   
+               // alert('ir a plan de pago');
               }
               else{
                 this.beneficiario=true;
@@ -178,9 +180,9 @@ export class PersonalDataFormComponent implements OnInit {
                 this._snackBar.open(this.message,this.action);
               }
             }
-          
+
           }
-        }  
+        }
       }
         guardarDatos(){
           this.cargado=true;
@@ -190,10 +192,16 @@ export class PersonalDataFormComponent implements OnInit {
             this.personalDataForm.markAllAsTouched();
             return;
           }
+          // [FER]: paso 2 - emitir solo el json de los datos cargados
+          let jsonForm = this.personalDataForm.getRawValue();
+          this.sendPersonalData.emit(jsonForm);
+
+
           if(this.titular){
             this.arregloPersonas.push(this.personalDataForm);
             console.log("arreglo de personas",this.arregloPersonas);
             this.formNoTitular=true;
+            // [FER]: Cambiar logica para consultar por formularios adicionales por la validacion que trae el producto.
             let seguro=this.producto?.producto_descripcion!;
             if(this.seguroDomicilio.includes(seguro)){
               console.log("pop up con pregunta de si asegura ese domicilio");
@@ -203,13 +211,13 @@ export class PersonalDataFormComponent implements OnInit {
               if(this.seguroBeneficiario.includes(seguro)){
                 console.log("pop up beneficiario");
                 this.beneficiario=true;
-              }  
+              }
               else{
               //  alert("plan de pago");
                 this._router.navigate(['dashboard/buy-form']);
 
-              }  
-  
+              }
+
             }
             this.titular=false;
 
@@ -249,17 +257,17 @@ export class PersonalDataFormComponent implements OnInit {
           email:new FormControl('', [Validators.required, Validators.email ]),
           cod_area:new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(5), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
           number_phone:new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(7),Validators.pattern(/^-?(0|[1-9]\d*)?$/)])
-            
-        
+
+
              })
         }
        // isClicked(){
-         
+
          //   this.maxLength-=this.codigoArea.toString().length;
            // console.log(this.maxLength);
-          
+
          // this.maxLength=10;
-          
+
         //}
         displayCounter(e:Event){
 
@@ -287,7 +295,7 @@ export class PersonalDataFormComponent implements OnInit {
             this.validadForm();
 
           }
-          
+
         }
     }
   }

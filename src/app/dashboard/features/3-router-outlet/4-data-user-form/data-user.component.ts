@@ -3,6 +3,12 @@ import { DashboardService } from "../../../dashboard.service";
 import {  FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+// [FER]: Esta interface deberia estar instanciada dentro del dashboardService
+class principalForm {
+  personalData: PersonalData[];
+  domicilioAsegurado: Domicilio;
+  datosPago: DatosPago
+}
 
 
 @Component( {
@@ -11,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 
 } )
 export class DataUserComponent implements OnInit {
-   
+
 
     id:any;
     public personalDataForm: FormGroup<any> = this.dashboardService.formAlta.get('personalData') as FormGroup;
@@ -29,4 +35,21 @@ export class DataUserComponent implements OnInit {
             } );
     }
 
-}    
+  savePersonalData($event: any) {
+    // [FER]: paso 4 - push de los datos personales
+    this.principalForm.personalData.push($event);
+    // tiene adicional
+
+    // [FER]: paso 5 - logica para mostrar formularios adicionales
+    this.isAditional =true;
+    // else
+    this.isBeneficiary = true;
+    // else
+    this.isAddresQuestion = true;
+  }
+
+
+  verificarRespuesta() {
+
+  }
+}
