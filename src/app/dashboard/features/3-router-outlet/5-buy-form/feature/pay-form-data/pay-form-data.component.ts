@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { VALIDATION_MESSAGES } from 'src/app/dashboard/shared/consts/validations.const';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import { MatDialog } from '@angular/material/dialog';
+import { debounceTime } from 'rxjs/operators';
 
 
 
@@ -33,9 +34,17 @@ export class PayFormDataComponent implements OnInit {
     ) {
 
     }
-    ngOnInit(): void {
-      
+    ngOnInit(): void { 
        this.validarForm();
+       this.dashboardService.goTop.subscribe( {
+        next: data => {
+         console.log("data del buy form" ,data)
+          if(data){
+            
+            document.getElementById('formPrincipal')?.scrollIntoView();
+          }
+        },
+      })
     }
 
     public getValidationPayFormControl( validation: any, elem: string ): any {
