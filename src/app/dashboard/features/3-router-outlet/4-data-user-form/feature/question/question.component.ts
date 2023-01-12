@@ -14,20 +14,28 @@ import { PartnerTheme } from '../../../../../shared/models/partnerTheme.model';
 export class QuestionComponent implements OnInit {
   @Input() domicilio:any;
   @Input() beneficiario:any;
-  @Output() respuesta = new EventEmitter();
+  @Input() question:any;
+  @Output("respuesta") respuesta: EventEmitter<any> = new EventEmitter() ;
+
+  constructor( private dashboardService:DashboardService,
+
+) {
+  }
+
   rta: boolean=true;
   ngOnInit(): void {
     console.log(this.domicilio);
     console.log(this.beneficiario);
+   
   }
 
   otherAddress() {
-    this.rta = true;
+    this.rta = false;
     this.respuesta.emit(this.rta);
   }
 
   irPlandePago(){
-    this.rta=false;
+    this.rta=true;
     this.respuesta.emit(this.rta);
 
   }
