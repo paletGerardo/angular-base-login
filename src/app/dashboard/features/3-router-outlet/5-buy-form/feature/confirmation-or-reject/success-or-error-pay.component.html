@@ -1,4 +1,4 @@
-<div style="display: grid;padding: 3vh;"*ngIf="isCompra">
+<div style="display: grid; padding-top: 10vh;"*ngIf="isCompra"  id="formPrincipal">
     <h2 style="text-align:center;padding:4vw;font-weight: bolder;font-size: large;">¡Felicitaciones! Ya tenés tu Seguro</h2>
         <svg  class="w-full  px-3 mb-6 md:mb-0" width="208" height="208" viewBox="0 0 208 208" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g filter="url(#filter0_d_1_1695)">
@@ -26,7 +26,7 @@
 </div>
 
 
-<div style="display: grid;padding: 3vh;" *ngIf="!isCompra">
+<div style="display: grid;padding-top: 10vh;" *ngIf="!isCompra"  id="formPrincipal">
     <h2 style="text-align:center;padding:4vw;font-weight: bolder;font-size: large;">Ups! Ocurrió un error con tu forma de pago, volvé a intentarlo por favor</h2>
     <svg  class="w-full  px-3 mb-6 md:mb-0" width="300" height="282" viewBox="0 0 300 282" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="300" height="281.016" fill="url(#pattern0)"/>

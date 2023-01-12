@@ -32,12 +32,20 @@ export class SuccessOrErrorPayComponent implements OnInit {
 
     ngOnInit(): void {
         this.dashBoardService.isCompra
-    .pipe()
-        .subscribe({
-         next: res => {
-         this.isCompra=res;
-       }
-    });
+        .pipe()
+          .subscribe({
+          next: res => {
+          this.isCompra=res;
+          }
+        });
+        this.dashBoardService.goTop.subscribe( {
+          next: data => {
+            if(data){
+              
+              document.getElementById('formPrincipal')?.scrollIntoView();
+            }
+          },
+        })
     }
 
     volver(){
