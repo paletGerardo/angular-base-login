@@ -25,7 +25,7 @@ export class PersonalDataFormComponent implements OnInit {
 
         PersonalData: any;
         formNoTitular:boolean=false;
-        @Input() text:string='Ir a cargar datos del pago';
+        @Input() text:string='Continuar';
         @Input() id:any
 
   @Output("sendPersonalData") sendPersonalData: EventEmitter<any> = new EventEmitter()
@@ -35,8 +35,8 @@ export class PersonalDataFormComponent implements OnInit {
         //arregloPersonas:FormGroup<PersonalDataForm>=[];
         planCopia: any;
         cargado:boolean=false;
-        domicilio:boolean=false;
-        beneficiario:boolean=false;
+        isAddresQuestion:boolean=false;
+        isBeneficiaryQuestion:boolean=false;
         public validationMessages = VALIDATION_MESSAGES;
         public provinces=provinces;
         public nationalities=nationalities;
@@ -84,14 +84,7 @@ export class PersonalDataFormComponent implements OnInit {
               //@ts-ignore
               return this.personalDataForm.get( elem ).invalid && this.personalDataForm.get( elem ).hasError( validation.type ) && ( this.personalDataForm.get( elem ).dirty || this.personalDataForm.get( elem ).touched )
         }
-        public getValidationAdressFromControl( validation: any, elem: string ): any {
-          //@ts-ignore
-          return this.addressDataForm.get( elem ).invalid && this.addressDataForm.get( elem ).hasError( validation.type ) && ( this.addressDataForm.get( elem ).dirty || this.addressDataForm.get( elem ).touched )
-        }
-        public getValidationBeneficiaryFromControl( validation: any, elem: string ): any {
-          //@ts-ignore
-          return this.beneficiaryForm.get( elem ).invalid && this.beneficiaryForm.get( elem ).hasError( validation.type ) && ( this.beneficiaryForm.get( elem ).dirty || this.beneficiaryForm.get( elem ).touched )
-        }
+       
 
         getProduct( ) {
           this.activateRoute.params.subscribe(
@@ -119,10 +112,7 @@ export class PersonalDataFormComponent implements OnInit {
 
         }
 
-        irArriba(){
-          console.log('llego aca');
-          document.getElementById('formPrincipal')?.scrollIntoView();
-        }
+        
 
 
         guardarFormBeneficiary(){
@@ -130,14 +120,14 @@ export class PersonalDataFormComponent implements OnInit {
 
             if(this.seguroBeneficiario.includes(seguro)){
               console.log("pop up beneficiario");
-              this.beneficiario=true;
+              this.isBeneficiaryQuestion=true;
               if(this.porcentaje==0){
                 if(parseInt(this.personalDataForm.value.percentage)<100){
                   this.porcentaje+=parseInt(this.personalDataForm.value.percentage);
                   this.arregloPersonas.push(this.personalDataForm);
                   console.log("arreglo de personas",this.arregloPersonas);
                   console.log("ir a proxima etapa");
-                  this.beneficiario=true;
+                  this.isBeneficiaryQuestion=true;
                   this.parentCount=!this.parentCount;
                   this.validadForm();
                 }
@@ -165,7 +155,7 @@ export class PersonalDataFormComponent implements OnInit {
                // alert('ir a plan de pago');
               }
               else{
-                this.beneficiario=true;
+                this.isBeneficiaryQuestion=true;
                 this.parentCount=!this.parentCount;
                 this.validadForm();
               }
@@ -192,46 +182,29 @@ export class PersonalDataFormComponent implements OnInit {
             this.personalDataForm.markAllAsTouched();
             return;
           }
+          let seguro=this.producto?.producto_descripcion!;
           // [FER]: paso 2 - emitir solo el json de los datos cargados
           let jsonForm = this.personalDataForm.getRawValue();
+          if(this.seguroDomicilio.includes(seguro)){
+            console.log("pop up con pregunta de si asegura ese domicilio");
+            this.isAddresQuestion=true;
+          }
+          else{
+            if(this.seguroBeneficiario.includes(seguro)){
+              console.log("pop up beneficiario");
+              this.isBeneficiaryQuestion=true;
+            }
+          }
           let obj = {
-            msj: 'Error',
-            tipoErro: 'no se cargo algo',
-            tipoEvento: 'volver | formulario cargado',
+            address:this.isAddresQuestion,
+            beneficiary:this.isBeneficiaryQuestion,
             body: jsonForm,
           }
           this.sendPersonalData.emit(obj);
 
-
-          if(this.titular){
-            this.arregloPersonas.push(this.personalDataForm);
-            console.log("arreglo de personas",this.arregloPersonas);
-            this.formNoTitular=true;
-            // [FER]: Cambiar logica para consultar por formularios adicionales por la validacion que trae el producto.
-            let seguro=this.producto?.producto_descripcion!;
-            if(this.seguroDomicilio.includes(seguro)){
-              console.log("pop up con pregunta de si asegura ese domicilio");
-              this.domicilio=true;
-            }
-            else{
-              if(this.seguroBeneficiario.includes(seguro)){
-                console.log("pop up beneficiario");
-                this.beneficiario=true;
-              }
-              else{
-              //  alert("plan de pago");
-                this._router.navigate(['dashboard/buy-form']);
-
-              }
-
-            }
-            this.titular=false;
-
-          }
-          else{
-            this.guardarFormBeneficiary();
-          }
+           // this.guardarFormBeneficiary();
         }
+        
 
         volver(){
           this.activateRoute.params.subscribe(
@@ -267,18 +240,15 @@ export class PersonalDataFormComponent implements OnInit {
 
              })
         }
-       // isClicked(){
+        irArriba(){
+          this.dashboardService.goTop.next(true);
 
-         //   this.maxLength-=this.codigoArea.toString().length;
-           // console.log(this.maxLength);
 
-         // this.maxLength=10;
-
-        //}
+        }
         displayCounter(e:Event){
 
          this.parentCount = e;
-         if(this.domicilio && this.parentCount){
+         if(this.isAddresQuestion && this.parentCount){
           this.addressDataForm= new FormGroup({
           address:new FormControl('', [Validators.required, Validators.minLength(3)]),
           number:new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -291,7 +261,7 @@ export class PersonalDataFormComponent implements OnInit {
           });
         }
         else{
-          if(this.domicilio && !this.parentCount){
+          if(this.isAddresQuestion && !this.parentCount){
             //alert("ir a plan de pago");
             this._router.navigate(['dashboard/buy-form']);
 
