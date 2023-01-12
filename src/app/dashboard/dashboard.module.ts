@@ -33,7 +33,7 @@ import { PaymentSummaryComponent } from './features/3-router-outlet/3-product-pu
 import { HowToBuyComponent } from './features/3-router-outlet/how-to-buy/how-to-buy.component';
 import {SharedModule} from "./shared/shared.module";
 import { DataUserComponent } from './features/3-router-outlet/4-data-user-form/data-user.component';
-import { PersonalDataFormComponent } from './features/3-router-outlet/4-data-user-form/feature/1-datos-asegurado/personal-data-form.component';
+import { PersonalDataFormComponent } from './features/3-router-outlet/4-data-user-form/feature/components/1-personal-form/personal-data-form.component';
 import { StepperTwoComponent } from './features/3-router-outlet/4-data-user-form/feature/stepper/stepperTwo.component';
 import { QuestionComponent } from './features/3-router-outlet/4-data-user-form/feature/question/question.component';
 import { UnsubscribeComponent } from './features/3-router-outlet/unsubscribe/unsubscribe.component';
@@ -42,6 +42,7 @@ import { PayFormDataComponent } from './features/3-router-outlet/5-buy-form/feat
 import { CardsSvgComponent } from './features/3-router-outlet/5-buy-form/feature/cards-svg/cards-svg.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { SuccessOrErrorPayComponent } from './features/3-router-outlet/5-buy-form/feature/confirmation-or-reject/success-or-error-pay.component';
+import { AddressFormComponent } from './features/3-router-outlet/4-data-user-form/feature/components/2-address-form/address-form.component';
 
 
 @NgModule( {
@@ -81,7 +82,8 @@ import { SuccessOrErrorPayComponent } from './features/3-router-outlet/5-buy-for
     BuyFormComponent,
     PayFormDataComponent,
     CardsSvgComponent,
-    SuccessOrErrorPayComponent
+    SuccessOrErrorPayComponent,
+    AddressFormComponent
 
 
 
@@ -108,7 +110,8 @@ import { SuccessOrErrorPayComponent } from './features/3-router-outlet/5-buy-for
     BuyFormComponent,
     PayFormDataComponent,
     CardsSvgComponent,
-    SuccessOrErrorPayComponent
+    SuccessOrErrorPayComponent,
+    AddressFormComponent
   ],
     imports: [
         CommonModule,
