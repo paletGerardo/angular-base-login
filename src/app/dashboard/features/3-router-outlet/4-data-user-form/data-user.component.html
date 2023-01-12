@@ -1,16 +1,17 @@
 
 <div style="display: flex;justify-content: center;">
-  <div>
+  <div  id="formPrincipal">
 <!--    [FER]: paso 3 - recibir datos del titular-->
-    <app-personal-data [id]="id" (sendPersonalData)="savePersonalData($event)" [type] = "'TITULAR"></app-personal-data>
+   <!-- <app-personal-data [id]="id" (sendPersonalData)="savePersonalData($event)" [type] = "'TITULAR"></app-personal-data>-->
+    <app-personal-data [id]="id" *ngIf="titular"  (sendPersonalData)="savePersonalData($event)" ></app-personal-data>
 
-    <app-question *ngIf="isAddresQuestion" (respuesta)="validarRespuesta($event)" [question]="'Es domicilpo asegurado'" [type] = "'DOMICILIO" style="display:flex;justify-content:center;padding:6vh"></app-question>
-    <app-addres.form *ngIf="isAddresQuestion"></app-addres.form>
+    <app-question id="formPrincipal" style="display:flex;justify-content:center;padding:6vh" *ngIf="isAddressQuestion" [domicilio]='isAddressQuestion' (respuesta)="verificarRespuesta($event)" [question]="'¿El domicilio que vas a asegurar es el mismo que fue declarado?'"  ></app-question>
+    <app-address-form *ngIf="showAddressForm" (sendPersonalData)="saveAddressData($event)"></app-address-form>
 
-    <app-question *ngIf="isBeneficxiaru" (respuesta)="validarRespuesta($event)" [question]="'Es domicilpo asegurado'" style="display:flex;justify-content:center;padding:6vh"></app-question>
-    <app-personal-data *ngIf="showFormBewneficiary" (sendBeneficiary)="savePersonalData($event)" [type] = "'BENEFICIARIO"></app-personal-data>
+    <!--<app-question *ngIf="isBeneficiaryQuestion"  [beneficiario]='isBeneficiaryQuestion' (respuesta)="verificarRespuesta($event)" [question]="'¿Desea agregar beneficiarios?'" style="display:flex;justify-content:center;padding:6vh"></app-question>
+    <app-personal-data *ngIf="isBeneficiaryQuestion" (sendBeneficiary)="savePersonalData($event)" ></app-personal-data>-->
 
-    <app-question *ngIf="isAditional" (respuesta)="validarRespuesta($event)" [question]="'desea agregar una adicional'" style="display:flex;justify-content:center;padding:6vh"></app-question>
-    <app-personal-data *ngIf="showFormBAditional" (sendAditional)="savePersonalData($event)" [type] = "'ADICIONAL"></app-personal-data>
+   <!-- <app-question *ngIf="isAditional" (respuesta)="validarRespuesta($event)" [question]="'desea agregar una adicional'" style="display:flex;justify-content:center;padding:6vh"></app-question>
+    <app-personal-data *ngIf="showFormBAditional" (sendAditional)="savePersonalData($event)" ></app-personal-data>-->
   </div>
 </div>
