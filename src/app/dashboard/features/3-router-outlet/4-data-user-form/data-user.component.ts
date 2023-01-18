@@ -8,11 +8,7 @@ import { AddressForm } from 'src/app/dashboard/shared/models/InfoForm/address-fo
 import { debounceTime } from 'rxjs/operators';
 
 // [FER]: Esta clase deberia estar instanciada dentro del dashboardService
-  class principalForm {
-  personalData: PersonalDataForm[] =[];
-  domicilioAsegurado: AddressForm | undefined;
-  datosPago: PayForm | undefined
-}
+
 
 
 @Component( {
@@ -25,17 +21,19 @@ export class DataUserComponent implements OnInit {
     id:any;
     public personalDataForm: FormGroup<any> = this.dashboardService.formAlta.get('personalData') as FormGroup;
     PersonalData: any;
-    principalForm: principalForm;
+    //principalForm: principalForm;
     titular:boolean=true;
     showAddressForm:boolean=false;
     showBeneficiaryForm:boolean=false;
     isAddressQuestion:boolean=false;
     isBeneficiaryQuestion:boolean=false;
+    showAdicionalForm: boolean=false;
+    isAdicionalQuestion: boolean=false;
     constructor( private dashboardService:DashboardService,
                  private activateRoute: ActivatedRoute,
                  private _router:Router,
     ) {
-      this.principalForm=new principalForm();
+     // this.principalForm=new principalForm();
       }
     ngOnInit(): void {
         this.activateRoute.params.subscribe(
@@ -57,14 +55,20 @@ export class DataUserComponent implements OnInit {
     }
 
     savePersonalData($event: any) {
+      let tipo=""
     console.log('el evento muchacho',$event);
+    this.dashboardService.addPersonalData($event,tipo);
     // [FER]: paso 4 - push de los datos personales
-    this.principalForm.personalData!.push($event);
+    //this.principalForm.personalData!.push($event);
     this.isAddressQuestion=$event.address;
     this.isBeneficiaryQuestion=$event.beneficiary;
+    if(this.isBeneficiaryQuestion){
+      this.showBeneficiaryForm=false;
+
+    }
     this.titular=false;
     console.log(this.isAddressQuestion);
-    console.log("arreglo cargado?", this.principalForm.personalData);
+   // console.log("arreglo cargado?", this.principalForm.personalData);
     // tiene adicional
 
     // [FER]: paso 5 - logica para mostrar formularios adicionales
@@ -75,12 +79,15 @@ export class DataUserComponent implements OnInit {
     ///this.isAddresQuestion = true;
   }
   saveAddressData($event: any){
+    let tipo="domicilio";
     console.log('el nuevo domicilio',$event);
-    this.principalForm.domicilioAsegurado=$event.body;
-    console.log('domicilio del cliente', this.principalForm.domicilioAsegurado);
+    this.dashboardService.addPersonalData($event,tipo);
+    //this.principalForm.domicilioAsegurado=$event.body;
+   // console.log('domicilio del cliente', this.principalForm.domicilioAsegurado);
     this._router.navigate(['dashboard/buy-form']);
 
   }
+
 
 
   verificarRespuesta($event:any) {
@@ -93,9 +100,31 @@ export class DataUserComponent implements OnInit {
       else{
         this._router.navigate(['dashboard/buy-form']);
       }
-      
-    
-   
 
+    }
+    verificarRespuestaBeneficiario($event:any) {
+        console.log("respuesta beneficiario",$event);      
+          this.isBeneficiaryQuestion=false;
+          this.showBeneficiaryForm=$event;
+          if(!$event){
+            this.showBeneficiaryForm=!this.showBeneficiaryForm;
+          }
+          else{
+            this._router.navigate(['dashboard/buy-form']);
+          }
+    }
+    validarRespuestaAdicional($event:any) {
+      console.log("respuesta adicional",$event);      
+        this.isAdicionalQuestion=false;
+        this.showAdicionalForm=$event;
+        if(!$event){
+          this.showAdicionalForm=!this.showAdicionalForm;
+        }
+        else{
+          this._router.navigate(['dashboard/buy-form']);
+        }
   }
+
+
+
 }
