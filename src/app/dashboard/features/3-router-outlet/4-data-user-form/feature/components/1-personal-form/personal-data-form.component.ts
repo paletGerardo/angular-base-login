@@ -11,7 +11,6 @@ import { documentType } from 'src/app/dashboard/shared/consts/document-type.cons
 import { Observable } from 'rxjs';
 import { Producto } from 'src/app/dashboard/shared/models/productsResponse.model';
 import { debounceTime } from 'rxjs/operators';
-import { PersonalDataForm } from 'src/app/dashboard/shared/models/InfoForm/personal-data-form.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component( {
   selector: 'app-personal-data',
@@ -27,11 +26,15 @@ export class PersonalDataFormComponent implements OnInit {
         formNoTitular:boolean=false;
         @Input() text:string='Continuar';
         @Input() id:any
+        @Input() type:string="";
 
   @Output("sendPersonalData") sendPersonalData: EventEmitter<any> = new EventEmitter()
         producto: Producto | undefined;
         plans: any = [];
         arregloPersonas:any=[];
+        longitudMaxima:number=1;
+        telefono:any;
+        codigo:any;
         //arregloPersonas:FormGroup<PersonalDataForm>=[];
         planCopia: any;
         cargado:boolean=false;
@@ -48,11 +51,13 @@ export class PersonalDataFormComponent implements OnInit {
 
         public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
 
-        public seguroBeneficiario=['Bolso Protegido','Accidentes Personales ','Vida Temporal'];
+        public seguroBeneficiario=['Hogares','Bolso Protegido','Accidentes Personales ','Vida Temporal'];
         public seguroDomicilio=['Hogar'];
         maxLength: number=10;
         parentCount: any;
         titular: any=true;
+        resultado: number=0;
+  cod_area: number=0;
         constructor( private dashboardService:DashboardService,
                       private _router: Router ,
                       private _snackBar: MatSnackBar,
@@ -63,11 +68,10 @@ export class PersonalDataFormComponent implements OnInit {
         }
         ngOnInit(): void {
 
-
-            console.log(this.personalDataForm.value);
+          
+        
             this.validadForm();
-            //console.log("las provincias son ",this.provinces);
-            //console.log("las natiionalities son ",this.nationalities);
+          
             this.dashboardService.getProducts()
             .pipe(
               debounceTime( 1000 )
@@ -100,109 +104,84 @@ export class PersonalDataFormComponent implements OnInit {
           } );
         //  this.ordenarPlanes();
           this.planCopia = this.plans[0];
+          this.dashboardService.goTop
+          .subscribe( {
+            next: data => {
+              console.log('la dataaaaa',data);
+              if(data){
+                
+                document.getElementById('formPrincipal')?.scrollIntoView();
+              }
+            },
+          })
         }
 
 
-
-        guardar(){
-          console.log('domicilio agregado',this.addressDataForm);
-          //preguntar este caso..
-          this.arregloPersonas.push(this.addressDataForm);
-          this._router.navigate(['dashboard/buy-form']);
-
+        sumaPorcentajes(porcentaje:number):number{
+          console.log('porcentaje ',parseInt(this.personalDataForm.value.percentage));
+          porcentaje+=parseInt(this.personalDataForm.value.percentage);
+            return porcentaje;
         }
 
-        
-
-
-        guardarFormBeneficiary(){
-          let seguro=this.producto?.producto_descripcion!;
-
-            if(this.seguroBeneficiario.includes(seguro)){
-              console.log("pop up beneficiario");
-              this.isBeneficiaryQuestion=true;
-              if(this.porcentaje==0){
-                if(parseInt(this.personalDataForm.value.percentage)<100){
-                  this.porcentaje+=parseInt(this.personalDataForm.value.percentage);
-                  this.arregloPersonas.push(this.personalDataForm);
-                  console.log("arreglo de personas",this.arregloPersonas);
-                  console.log("ir a proxima etapa");
-                  this.isBeneficiaryQuestion=true;
-                  this.parentCount=!this.parentCount;
-                  this.validadForm();
-                }
-                else{
-                  if(parseInt(this.personalDataForm.value.percentage)==100){
-                    alert("se cargo el 100%");
-                  }
-                  else{
-                    this._snackBar.open(this.message,this.action);
-                  }
-
-                }
-
-              }
-          else{
-            let resultadoParcial=this.porcentaje+parseInt(this.personalDataForm.value.percentage);
-            if(resultadoParcial<101){
-              this.porcentaje+=parseInt(this.personalDataForm.value.percentage);
-              this.arregloPersonas.push(this.personalDataForm);
-              console.log("arreglo de personas",this.arregloPersonas);
-              if (this.porcentaje==100){
-                console.log("aca se termino");
-                this._router.navigate(['dashboard/buy-form']);
-
-               // alert('ir a plan de pago');
-              }
-              else{
-                this.isBeneficiaryQuestion=true;
-                this.parentCount=!this.parentCount;
-                this.validadForm();
-              }
-            }
-            else{
-              if(this.porcentaje==100){
-                console.log("aca se termino");
-                this._router.navigate(['dashboard/buy-form']);
-               // alert('ir a plan de pago');
-              }
-              else{
-                this._snackBar.open(this.message,this.action);
-              }
-            }
-
-          }
-        }
-      }
-        guardarDatos(){
-          this.cargado=true;
-          console.log("estatus",this.personalDataForm);
-
-          if(this.personalDataForm.invalid){
-            this.personalDataForm.markAllAsTouched();
-            return;
-          }
-          let seguro=this.producto?.producto_descripcion!;
-          // [FER]: paso 2 - emitir solo el json de los datos cargados
+        cargarObjetoForm(){
           let jsonForm = this.personalDataForm.getRawValue();
-          if(this.seguroDomicilio.includes(seguro)){
-            console.log("pop up con pregunta de si asegura ese domicilio");
-            this.isAddresQuestion=true;
-          }
-          else{
-            if(this.seguroBeneficiario.includes(seguro)){
-              console.log("pop up beneficiario");
-              this.isBeneficiaryQuestion=true;
-            }
-          }
           let obj = {
             address:this.isAddresQuestion,
             beneficiary:this.isBeneficiaryQuestion,
             body: jsonForm,
           }
           this.sendPersonalData.emit(obj);
+        }
+        guardarFormBeneficiary(){
+        
+          this.porcentaje=this.dashboardService.calcularPorcentajeParcial();
+          let rta=this.sumaPorcentajes(this.porcentaje);
+          console.log('rta',rta);
+          if(rta>100){
+            this._snackBar.open(this.message,this.action);
 
-           // this.guardarFormBeneficiary();
+          }
+
+          else {
+            this.cargarObjetoForm();
+            if(rta==100){
+               this._router.navigate(['dashboard/buy-form']);
+             }
+             else{
+               this.validadForm();
+             }
+          }
+       
+      }
+        guardarDatos(){
+          console.log("tipooo",this.type);
+          console.log("estatus",this.personalDataForm);
+
+          if(this.personalDataForm.invalid){
+            this.personalDataForm.markAllAsTouched();
+            return;
+          }
+            let seguro=this.producto?.producto_descripcion!;
+            //valida_adicional,valida_beneficiario, valida_domicilio
+            if(this.seguroDomicilio.includes(seguro)){                                                                                                                
+             
+              this.isAddresQuestion=true;
+            }
+            else{
+              if(this.seguroBeneficiario.includes(seguro)){
+                this.isBeneficiaryQuestion=true;
+              }
+            }
+          
+            if(this.type==="BENEFICIARIO"){
+               this.guardarFormBeneficiary();
+            }else{
+              this.cargarObjetoForm();
+              this.validadForm();
+            }
+            this.cargado=false;
+         
+        
         }
         
 
@@ -219,39 +198,88 @@ export class PersonalDataFormComponent implements OnInit {
 
         validadForm(){
           this.personalDataForm = new FormGroup({
-            percentage: (!this.titular) ? new FormControl( '', [Validators.required,Validators.maxLength(3),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]): new FormControl('0'),
-            relation:(this.titular) ? new FormControl('titular', [Validators.required]):new FormControl( '', [Validators.required]),
-            lastname:new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(20),Validators.pattern('[A-Za-z].*')]),
-          name:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-Z]+$/)]),
+            percentage: (this.type!=='TITULAR') ? new FormControl( '', [Validators.required,Validators.maxLength(3),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]): new FormControl('0'),
+            relation:(this.type==='TITULAR') ? new FormControl('titular', [Validators.required]):new FormControl( '', [Validators.required]),
+            lastname:new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(20),Validators.pattern(/^[a-zA-Zñáéíóú ']+$/)]),
+          name:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-Zñáéíóú ]+$/)]),
           nationality:new FormControl('', [Validators.required]),
           document_type:new FormControl('', [Validators.required,]),
-          document_number:new FormControl('', [Validators.required, Validators.minLength(7),Validators.maxLength(8),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+          document_number:new FormControl('', [Validators.required, Validators.minLength(7),Validators.maxLength(8),Validators.pattern(/^[0-9]*$/)]),
           id_genre:new FormControl('', [Validators.required]),
           birthdate:new FormControl('', [Validators.required]),
-          address:new FormControl('', [Validators.required, Validators.minLength(3)]),
-          number:new FormControl('', [Validators.required, Validators.maxLength(5)]),
-          city:new FormControl('', [Validators.required, Validators.minLength(3)]),
+          address:new FormControl('', [Validators.required, Validators.minLength(1),Validators.pattern(/^[A-Za-z0-9ñáéíóú\s]+$/)]),
+          number:new FormControl('', [Validators.required, Validators.maxLength(5),Validators.pattern(/^[0-9]*$/)]),
+          floor:new FormControl('', [ Validators.maxLength(3),Validators.pattern(/^[A-Za-z0-9ñ\s]+$/)]),
+          city:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[A-Za-z0-9 ñáéíóú\s]+$/)]),
           province:new FormControl('', [Validators.required]),
-          zip:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+          zip:new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(5) ,Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
           email:new FormControl('', [Validators.required, Validators.email ]),
           cod_area:new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(5), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-          number_phone:new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(7),Validators.pattern(/^-?(0|[1-9]\d*)?$/)])
+          number_phone:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[0-9]*$/)])
 
 
              })
         }
         irArriba(){
           this.dashboardService.goTop.next(true);
+        }
 
+        limpiarTelefono(){
+          this.personalDataForm.controls["number_phone"].reset();
+          this.longitudMaxima=1;
+          console.log(this.personalDataForm.controls["cod_area"].value);
+          this.codigo=this.personalDataForm.controls["cod_area"].value;
+          this.resultado=(10-this.codigo.toString().length)+1;
+          this.personalDataForm.controls["number_phone"].removeValidators([Validators.maxLength(11)]);
+
+          console.log('resultado',this.resultado);
+        }
+
+
+
+        
+
+        validarMaximoPermitido(event:any):number{
+          if(this.longitudMaxima!=10){
+            this.resultado=0;
+           
+              let longitud =this.codigo.toString().length;
+          
+            let longitudTelefono=this.telefono.toString().length;
+  
+            this.longitudMaxima=(longitud+longitudTelefono)+1;
+            return  this.longitudMaxima;
+          }
+          else{
+             
+                this.resultado=(this.longitudMaxima-this.codigo.toString().length);
+             
+          
+            console.log("resultado",this.resultado);
+
+            this.personalDataForm.controls["number_phone"].addValidators([Validators.maxLength(this.resultado)]);
+           // this.personalDataForm.controls['number_phone'].clearValidators()
+
+             this.personalDataForm.controls['number_phone'].updateValueAndValidity()
+
+            this.resultado=0;
+            this.longitudMaxima=1;
+            return this.resultado;
+            
+          }
 
         }
-        displayCounter(e:Event){
+       
 
+
+        displayCounter(e:Event){
          this.parentCount = e;
          if(this.isAddresQuestion && this.parentCount){
           this.addressDataForm= new FormGroup({
-          address:new FormControl('', [Validators.required, Validators.minLength(3)]),
-          number:new FormControl('', [Validators.required, Validators.minLength(3)]),
+          address:new FormControl('', [Validators.required, Validators.minLength(1)]),
+          number:new FormControl('', [Validators.required, Validators.maxLength(5)]),
+          floor:new FormControl('', [ Validators.maxLength(3)]),
+
           city:new FormControl('', [Validators.required, Validators.minLength(3)]),
           province:new FormControl('', [Validators.required, Validators.minLength(3)]),
           zip:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
