@@ -32,14 +32,13 @@ export class AddressFormComponent implements OnInit {
 
     validarForm(){
         this.addressDataForm= new FormGroup({
-            address:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            number:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            city:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            province:new FormControl('', [Validators.required, Validators.minLength(3)]),
-            zip:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-            email:new FormControl('', [Validators.required, Validators.email ]),
-            cod_area:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-            number_phone:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^-?(0|[1-9]\d*)?$/)])
+            address:new FormControl('', [Validators.required, Validators.minLength(1),Validators.pattern(/^[A-Za-z0-9ñáéíóú\s]+$/)]),
+            number:new FormControl('', [Validators.required, Validators.maxLength(5),Validators.pattern(/^[0-9]*$/)]),
+            floor:new FormControl('', [ Validators.maxLength(3),Validators.pattern(/^[A-Za-z0-9ñ\s]+$/)]),
+            city:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[A-Za-z0-9 ñáéíóú\s]+$/)]),
+            province:new FormControl('', [Validators.required]),
+            zip:new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(5) ,Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+           
             });
 
     }
