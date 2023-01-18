@@ -13,10 +13,10 @@
 <div *ngIf="!domicilio">
     <h2 style="text-align: center;padding:10vh">{{question}}</h2>
     <div class="flex px-4 py-2 flex-wrap justify-center items-baseline">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"  >
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="otherAddress()" >
          SI
        </button>
-       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="irPlandePago()" (click)="otherAddress()">
+       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="irPlandePago()" >
          NO
        </button>
     </div>

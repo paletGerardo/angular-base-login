@@ -14,6 +14,7 @@ import { PartnerTheme } from '../../../../../shared/models/partnerTheme.model';
 export class QuestionComponent implements OnInit {
   @Input() domicilio:any;
   @Input() beneficiario:any;
+  @Input() adicional:any;
   @Input() question:any;
   @Output("respuesta") respuesta: EventEmitter<any> = new EventEmitter() ;
 
