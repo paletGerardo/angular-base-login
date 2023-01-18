@@ -108,6 +108,10 @@ const TYPE = {
           type: TYPE.REQUIRED,
           message: 'Este campo es requerido.'
         },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se aceptan numeros o letras'
+        },
       ],
      
       number: [
@@ -115,11 +119,34 @@ const TYPE = {
           type: TYPE.REQUIRED,
           message: 'Este campo es requerido.'
         },
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'el maximo es de 5 digitos'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se permiten numeros'
+        },
+      ],
+      floor: [
+       
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'el maximo es de 3 digitos'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se permiten numeros y/o letras'
+        },
       ],
       city: [
         {
           type: TYPE.REQUIRED,
           message: 'Este campo es requerido.'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se aceptan numeros o letras'
         },
       ],
       province: [
@@ -136,6 +163,10 @@ const TYPE = {
         {
           type: TYPE.PATTERN,
           message: 'solo se aceptan numeros'
+        },
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'el maximo es de 5 digitos'
         },
       ],
       cod_area: [
@@ -159,7 +190,11 @@ const TYPE = {
         },
         {
           type: TYPE.MAXLENGTH,
-          message: 'El maximo permitido es 7 digitos'
+          message: 'El maximo entre el codigo de area y el telefono es de 10 digitos'
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'solo se permiten numeros'
         },
       ],
       relation: [
@@ -210,6 +245,11 @@ const TYPE = {
         {
           type: TYPE.REQUIRED,
           message: 'Este campo es requerido.'
+
+        },
+        {
+          type: TYPE.PATTERN,
+          message: 'Formato invalido'
         },
        
       ],
