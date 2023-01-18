@@ -1,5 +1,5 @@
-<div  class="max-w-screen-md mx-auto p-5">
-    <div style="padding:6vh;">
+<div  class="max-w-screen-md mx-auto p-5" id="formPrincipal">
+    <div style="padding-top:10vh;">
       <h2 style="text-align:center;">Formulario de pago</h2>
     </div>
     <app-cards-svg></app-cards-svg>
@@ -13,7 +13,7 @@
           </label>
           <input
             class="appearance-none block w-full  bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-first-name" type="text" formControlName="number_card"   >
+            id="grid-first-name" type="text" formControlName="number_card" min="01-2023" max="12-2030"  >
             <div *ngFor="let validation of validationMessages.number_card!">
               <span style="color:red;" *ngIf="getValidationPayFormControl(validation, 'number_card')"> {{ validation.message }} </span>
             </div>  
@@ -27,8 +27,13 @@
             Vencimiento
           </label>
           <input
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          type="month" name="begin"
+          placeholder="mm-yyyy" value=""
+          min="2023-01" max="2028-12" formControlName="expiration">
+          <!--<input
             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city" type="text"  [textMask]="mask"  [min]="01/2023" formControlName="expiration">
+            id="grid-city" type="text"  [textMask]="mask"  [min]="01/2023" formControlName="expiration">-->
             <div *ngFor="let validation of validationMessages.expiration!">
               <span style="color:red;" *ngIf="getValidationPayFormControl(validation, 'expiration')"> {{ validation.message }} </span>
             </div> 

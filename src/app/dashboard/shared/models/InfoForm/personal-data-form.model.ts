@@ -7,7 +7,15 @@ export interface PersonalDataForm{
     "birthdate":string;
     "email":string;
     "address":string;
-    "cod_area":string,
-    "number_phone":string
-       
+    "cod_area":string;
+    "number_phone":string;
+    "percentage":string;
+    "relation":string;
+    "nationality":string;
+    "number":string;
+    "floor":string;
+    "city":string;
+    "province":string;
+    "zip":string;
+ 
 }

@@ -14,5 +14,3 @@ export const ENDPOINTS_API = {
   PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`,
   DESCARGAR_COBERTURA:`${ ENV.URL_BASE }/themes/getCoberturaByCuitAndProductId/`
 }
-
-

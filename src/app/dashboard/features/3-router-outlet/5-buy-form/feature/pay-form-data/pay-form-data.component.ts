@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { VALIDATION_MESSAGES } from 'src/app/dashboard/shared/consts/validations.const';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import { MatDialog } from '@angular/material/dialog';
+import { debounceTime } from 'rxjs/operators';
 
 
 
@@ -33,9 +34,17 @@ export class PayFormDataComponent implements OnInit {
     ) {
 
     }
-    ngOnInit(): void {
-      
+    ngOnInit(): void { 
        this.validarForm();
+       this.dashboardService.goTop.subscribe( {
+        next: data => {
+         console.log("data del buy form" ,data)
+          if(data){
+            
+            document.getElementById('formPrincipal')?.scrollIntoView();
+          }
+        },
+      })
     }
 
     public getValidationPayFormControl( validation: any, elem: string ): any {
@@ -45,6 +54,10 @@ export class PayFormDataComponent implements OnInit {
 
   guardar(){
   let tarjetaPrueba=this.payDataForm.value.number_card;  
+  if(this.payDataForm.invalid){
+    this.payDataForm.markAllAsTouched();
+    return;
+  }
    if(tarjetaPrueba!=="3577525912345"){
       if(this.payDataForm.valid){
         this.compra=true;
@@ -64,7 +77,7 @@ export class PayFormDataComponent implements OnInit {
         number_card:new FormControl ('',[Validators.required,Validators.minLength(13),Validators.maxLength(18),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
         expiration:new FormControl ('',[Validators.required]),
         security_code:new FormControl ('',[Validators.required,Validators.minLength(3),Validators.maxLength(3),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-        cardholder:new FormControl ('',[Validators.required]),
+        cardholder:new FormControl ('',[Validators.required,Validators.pattern(/^[a-zA-Zñáéíóú ]+$/)]),
        })
   }
 

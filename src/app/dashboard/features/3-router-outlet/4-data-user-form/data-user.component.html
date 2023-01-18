@@ -1,6 +1,16 @@
 
 <div style="display: flex;justify-content: center;">
-  <div>
-    <app-personal-data [id]="id"></app-personal-data>
+  <div  id="formPrincipal">
+
+    <app-personal-data [id]="id"  [type]="'TITULAR'" *ngIf="titular"  (sendPersonalData)="savePersonalData($event)" ></app-personal-data>
+
+    <app-question id="formPrincipal" style="display:flex;justify-content:center;padding:6vh" *ngIf="isAddressQuestion" [domicilio]='isAddressQuestion' (respuesta)="verificarRespuesta($event)" [question]="'¿El domicilio que vas a asegurar es el mismo que fue declarado?'"  ></app-question>
+    <app-address-form *ngIf="showAddressForm" (sendPersonalData)="saveAddressData($event)"></app-address-form>
+
+    <app-question *ngIf="isBeneficiaryQuestion"  [beneficiario]='isBeneficiaryQuestion' (respuesta)="verificarRespuestaBeneficiario($event)" [question]="'¿Desea agregar beneficiarios?'" style="display:flex;justify-content:center;padding:6vh"></app-question>
+<app-personal-data *ngIf="showBeneficiaryForm" [type]="'BENEFICIARIO'"  (sendPersonalData)="savePersonalData($event)" ></app-personal-data>
+
+    <app-question *ngIf="isAdicionalQuestion" [adicional]='isAdicionalQuestion' (respuesta)="validarRespuestaAdicional($event)" [question]="'¿desea agregar una adicional?'"  style="display:flex;justify-content:center;padding:6vh"></app-question>
+    <app-personal-data *ngIf="showAdicionalForm" (sendPersonalData)="savePersonalData($event)" ></app-personal-data>
   </div>
 </div>
