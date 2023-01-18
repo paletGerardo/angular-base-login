@@ -1,5 +1,5 @@
 export interface Producto {
-  id_producto: number;
+  id_producto: string;
   codigo_producto: number;
   ramo: number;
   destino_alta: string;

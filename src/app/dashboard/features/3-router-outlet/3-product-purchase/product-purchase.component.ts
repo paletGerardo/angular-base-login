@@ -16,7 +16,7 @@ import { StepperOrientation } from '@angular/cdk/stepper';
   styleUrls: [ './product-purchase.component.scss' ]
 } )
 export class ProductPurchaseComponent implements OnInit {
-  id: number = 0;
+  id: string = "";
   url: string = "";
   producto: Producto | undefined;
   prodItem: any = [];
@@ -24,7 +24,7 @@ export class ProductPurchaseComponent implements OnInit {
   itemsArray2: any = [];
   plans: any = [];
   page:string='purchase';
-  
+
   @Input() text:string='Ir a cargar los datos de la poliza';
 
   firstFormGroup = this._formBuilder.group( {
@@ -49,7 +49,7 @@ export class ProductPurchaseComponent implements OnInit {
                private activateRoute: ActivatedRoute,
                private _router: Router,
 
-             
+
                private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver ) {
     this.stepperOrientation = breakpointObserver
       .observe( '(min-width: 800px)' )
@@ -76,7 +76,7 @@ export class ProductPurchaseComponent implements OnInit {
       } );
     }
 
-    getProduct( id: number ) {
+    getProduct( id: string ) {
         console.log( this.products$ );
         this.products$.forEach( ( produc: any ) => {
           if ( produc.id_producto == id ) {
@@ -87,7 +87,7 @@ export class ProductPurchaseComponent implements OnInit {
         this.ordenarPlanes();
         this.planCopia = this.plans[0];
       }
-    
+
       ordenarPlanes() {
         this.plans.sort( function ( a: any, b: any ) {
           if ( a.codigo_plan < b.codigo_plan )
@@ -127,6 +127,6 @@ export class ProductPurchaseComponent implements OnInit {
         console.log("compra del producto",this.producto);
         this._router.navigate(['dashboard/data-user/'+this.producto?.id_producto]);
       }
-    
+
 }
 
