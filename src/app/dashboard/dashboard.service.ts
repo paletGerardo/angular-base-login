@@ -8,6 +8,15 @@ import {Producto} from "./shared/models/productsResponse.model";
 import {tap} from "rxjs/operators";
 import {GlobalResponse} from "../core/http/http.response.model";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PersonalDataForm } from './shared/models/InfoForm/personal-data-form.model';
+import { AddressForm } from './shared/models/InfoForm/address-form.model';
+import { PayForm } from './shared/models/InfoForm/pay-form.model';
+
+class principalForm {
+  personalData: PersonalDataForm[] =[];
+  domicilioAsegurado: AddressForm | undefined;
+  datosPago: PayForm | undefined
+}
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +37,11 @@ export class DashboardService {
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';
 
+
+ 
+
   public formAlta:FormGroup= this.buildForm();
+  principalForm: principalForm;
   constructor(
     private httpWrapperService: HttpWrapperService,
     private loadingService: LoadingService,
@@ -42,6 +55,7 @@ export class DashboardService {
     this.linkNavbarChanged = new BehaviorSubject('');
     this.isCompra = new BehaviorSubject('');
     this.goTop = new BehaviorSubject(false);
+    this.principalForm=new principalForm();
 
   }
 
@@ -55,7 +69,7 @@ export class DashboardService {
 
   getThemes(): void {
     if (!this.temaSocio) {
-      const URL = `${ENDPOINTS_API.TEMA_SOCIO}/${this.cuitSocio}`;
+      const URL = `${ENDPOINTS_API.TEMA_SOCIO}/${this.cuitSocio}/tema-socio`;
       this.httpWrapperService.get<GlobalResponse>(URL).subscribe((res: GlobalResponse) => {
         if (res) {
           this.temaSocio = res.body;
@@ -71,7 +85,7 @@ export class DashboardService {
     //if ( this.products ) {
     //return of( this.products );https://web.whatsapp.com/
     //}
-    const URL = ENDPOINTS_API.PRODUCTS + this.cuitSocio;
+    const URL = ENDPOINTS_API.PRODUCTS +'/'+ this.cuitSocio+'/productos';
     return this.httpWrapperService.get<Producto[]>(URL).pipe(tap((products: Producto[]) => {
         this.products = products;
       }
@@ -79,11 +93,34 @@ export class DashboardService {
   }
 
   getProductItemByIdProducto(id: number): Observable<GlobalResponse> {
-    const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}`;
+    const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}/detalle-{$id}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
       this.products = response.body;
     }
     ));
+  }
+
+  addPersonalData(data:any,tipo:any){
+    console.log(tipo);
+    if(tipo==="domicilio"){
+      this.principalForm.domicilioAsegurado=data.body;
+
+    }
+    else{
+      this.principalForm.personalData.push(data.body);
+    }
+  }
+
+
+    calcularPorcentajeParcial():number{
+    let porcentaje=0;
+    for(let i=0;i<this.principalForm.personalData.length;i++){
+      porcentaje+=parseInt(this.principalForm.personalData[i].percentage);
+      console.log("Porcentaje",this.principalForm.personalData[i].percentage);
+      
+    }
+    console.log(porcentaje);
+    return porcentaje;
   }
 
   getProductDetailByIdProductoAndCuit(id: number): Observable<GlobalResponse> {
