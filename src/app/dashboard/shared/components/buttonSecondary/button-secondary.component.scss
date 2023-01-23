@@ -14,8 +14,12 @@
 
 .buttonSecondary:focus:hover {
 
-    background-color: #158a8a;
+    background-color: rgb(69, 61, 61);;
     border: 1px solid #F3F3F3;
     color: #F3F3F3;
 
+}
+
+.active{
+    background-color: rgb(69, 61, 61);
 }

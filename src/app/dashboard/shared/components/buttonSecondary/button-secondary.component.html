@@ -1,11 +1,22 @@
 <button *ngIf="!cupon" class="buttonSecondary text-white py-2 px-4 rounded-full"
-        [ngStyle]="{'background-color':dashBoardService.temaSocio.boton.secundario_rgba}"
->
+[ngStyle]="{'background-color':partnerTheme.color.secundario_rgba}"
+
+[ngClass]="{
+  'backgroundColor': seleccionado ?  'color':'active' 
+
+}">
+
   Plan {{text}}
 </button>
 <!--partnerTheme.colors.rgba_secondary-->
 
-  <button *ngIf="cupon"  class="buttonSecondary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-[ngStyle]="{'background-color':partnerTheme.color.secundario_rgba}">
+  <button *ngIf="cupon"
+  class="buttonSecondary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+  [ngStyle]="{'background-color':partnerTheme.color.secundario_rgba}"
+
+  [ngStyle]="{
+    'backgroundColor': seleccionado ?  color: 'active' 
+
+  }">
     {{text}}
   </button>
