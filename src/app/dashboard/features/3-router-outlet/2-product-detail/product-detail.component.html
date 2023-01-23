@@ -7,36 +7,32 @@
         <div class="product-detail-content">
           <div class="content">
             <img class="product-detail-img" [src]="temaProducto.url_imagen2" alt="img">
-            <div
-              class="product-detail-seccion-precio"
-              [ngStyle]="{'background-image': 'url(' +temaProducto.url_imagen_precio + ')'}"
-            >
+            <div class="product-detail-seccion-precio"
+              [ngStyle]="{'background-image': 'url(' +temaProducto.url_imagen_precio + ')'}">
               <div class="precio font-bold">
-                <small class="ml-4 small-desde">desde</small>
+                <small class="ml-4 small-desde"> desde</small>
                 <p>$ {{precio}}</p>
                 <small class="ml-4 small-mes">por mes</small>
               </div>
             </div>
           </div>
           <app-button-primary [text]="'Contratarlo ahora'" [mostrarColorFondo]="true"
-                              (click)="comprarProducto()"></app-button-primary>
+            (click)="comprarProducto()"></app-button-primary>
           <h1 [ngStyle]="{'color': primaryColor }">¿Qué cubre el seguro?</h1>
           <ng-container *ngFor="let cobertura of temaProducto.coberturas">
-            <app-card-items
-              [icon]="cobertura.url_icono"
-              [body]="cobertura.descripcion"
-              [textColor]="dashboardService.temaSocio.boton.primario_rgba"
-              [MODEL]="'MODEL-2'"
-              [bgColor]="dashboardService.temaSocio.boton.primario_rgba"
-            ></app-card-items>
+            <app-card-items [icon]="cobertura.url_icono" [body]="cobertura.descripcion"
+              [textColor]="dashboardService.temaSocio.boton.primario_rgba" [MODEL]="'MODEL-2'"
+              [bgColor]="dashboardService.temaSocio.boton.primario_rgba"></app-card-items>
           </ng-container>
-          <app-plan-list *ngIf="primaryColor"
-                         [plans]="plans"
-                         (emitPlanSelected)="showRisk($event)"
-          ></app-plan-list>
+          <app-plan-list *ngIf="primaryColor" [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
           <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
+          <div style="display: flex;justify-content: center;">
+            <p class="">plan {{plan}}, desde</p>
+            <p class="">$ {{precio}}</p>
+            <p class=""> por mes</p>
+          </div>
           <app-button-primary [text]="'Comprar'" [mostrarColorFondo]="true"
-                              (click)="comprarProducto()"></app-button-primary>
+            (click)="comprarProducto()"></app-button-primary>
         </div>
       </div>
     </div>
@@ -46,15 +42,17 @@
 <section class="seccion-descargas">
 
   <div class="botones-descarga">
-    <div class="option-buttons button-download text-center font-bold" (click)="mostrarmeLasDescargas = !mostrarmeLasDescargas"
-         [ngStyle]="{'border-color': getBorderColer('descargas'), 'color': getBorderColer('descargas') }"
-         [ngClass]="{'selected': mostrarmeLasDescargas, 'unselect': !mostrarmeLasDescargas}">
+    <div class="option-buttons button-download text-center font-bold"
+      (click)="mostrarmeLasDescargas = !mostrarmeLasDescargas"
+      [ngStyle]="{'border-color': getBorderColer('descargas'), 'color': getBorderColer('descargas') }"
+      [ngClass]="{'selected': mostrarmeLasDescargas, 'unselect': !mostrarmeLasDescargas}">
       <p>Descarga de documentacíon</p>
       <img class="p-1" src="./assets/icons/Documentos.png" alt="img">
     </div>
-    <div class="option-buttons button-more-detail text-center font-bold" (click)="mostrarmeLasDescargas = !mostrarmeLasDescargas"
-         [ngStyle]="{'border-color': getBorderColer('detalles'), 'color': getBorderColer('detalles')}"
-         [ngClass]="{'selected': !mostrarmeLasDescargas, 'unselect': mostrarmeLasDescargas}">
+    <div class="option-buttons button-more-detail text-center font-bold"
+      (click)="mostrarmeLasDescargas = !mostrarmeLasDescargas"
+      [ngStyle]="{'border-color': getBorderColer('detalles'), 'color': getBorderColer('detalles')}"
+      [ngClass]="{'selected': !mostrarmeLasDescargas, 'unselect': mostrarmeLasDescargas}">
       <p>Más detalles del producto</p>
       <img class="p-1" src="./assets/icons/Detalles.png" alt="img">
     </div>
@@ -64,11 +62,19 @@
     <div id="descargas" *ngIf="mostrarmeLasDescargas">
       <div class="flex items-center">
         <p class="text-center text-white mr-4"> Datos de la Cobertura </p>
-        <svg class="text-white" (click)="getCoberturas()" xmlns="http://www.w3.org/2000/svg" width="45px" height="45px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4l4-4h-2.55z"/></svg>
+        <svg class="text-white" (click)="getCoberturas()" xmlns="http://www.w3.org/2000/svg" width="45px" height="45px"
+          preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4l4-4h-2.55z" />
+        </svg>
       </div>
       <div class="flex items-center">
         <p class="text-center text-white mr-4"> Bases y condiciones </p>
-        <svg class="text-white" (click)="getCoberturas()" xmlns="http://www.w3.org/2000/svg" width="45px" height="45px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4l4-4h-2.55z"/></svg>
+        <svg class="text-white" (click)="getCoberturas()" xmlns="http://www.w3.org/2000/svg" width="45px" height="45px"
+          preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4l4-4h-2.55z" />
+        </svg>
       </div>
     </div>
     <div id="detalles" *ngIf="!mostrarmeLasDescargas">
@@ -84,4 +90,3 @@
 <section>
   <app-carousel-product></app-carousel-product>
 </section>
-
