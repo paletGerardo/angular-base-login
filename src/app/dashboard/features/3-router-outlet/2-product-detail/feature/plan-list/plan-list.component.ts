@@ -3,6 +3,7 @@ import { Plan } from "../../../../../shared/models/productsResponse.model";
 import {PartnerTheme, TemaSocio} from "../../../../../shared/models/partnerTheme.model";
 import { LoadingService } from "../../../../../../core/loading/loading.service";
 import { DashboardService } from "../../../../../dashboard.service";
+import { BehaviorSubject } from 'rxjs';
 
 @Component( {
   selector: 'app-plan-list',
@@ -13,14 +14,21 @@ export class PlanListComponent implements OnInit {
   @Input() plans: Plan[] = [];
   @Output() emitPlanSelected: EventEmitter<string> = new EventEmitter<string>();
   cupon:boolean=false;
+
+
   partnerTheme: TemaSocio | undefined;
   public primaryColor: string = '';
   public secundaryColor: string = '';
+  selectedIndex: any;
 
   constructor( private loadingService: LoadingService,
-               public dashBoardService: DashboardService ) { }
+               public dashBoardService: DashboardService,
+                ) {
+                  
+                 }
 
   ngOnInit(): void {
+  
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
@@ -41,6 +49,7 @@ export class PlanListComponent implements OnInit {
 
 
   public emitSelected( selectedPlan: any ): void {
+    console.log("plan", selectedPlan);
     this.plans.forEach( plan => {
       if ( plan.codigo_plan === selectedPlan.codigo_plan ) {
         plan.activeColor = this.primaryColor;
@@ -48,6 +57,13 @@ export class PlanListComponent implements OnInit {
         plan.activeColor = 'white';
       }
     } )
+
     this.emitPlanSelected.emit( selectedPlan );
+    
   }
+  setIndex(i:any){
+    this.selectedIndex = i;
+    this.dashBoardService.cambiarColorChanged.next(true);
+  }
+
 }
