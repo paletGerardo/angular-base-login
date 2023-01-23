@@ -31,12 +31,13 @@ export class DashboardService {
   public linkNavbarChanged!: BehaviorSubject<any>;
   public goTop!:BehaviorSubject<any>;
   public isCompra!: BehaviorSubject<any>;
+  public changePrice!:BehaviorSubject<any>;
   public resumeDescuento!: BehaviorSubject<any>;
   public primaryColor: string | undefined = '';
   public secondaryColor: string | undefined = '';
   private products: Producto[] | undefined;
   public cuitSocio: string | undefined = '';
-
+  public cambiarColorChanged!:BehaviorSubject<any>;
 
  
 
@@ -52,11 +53,12 @@ export class DashboardService {
     this.getThemes();
     this.onUrlChanged$ = new BehaviorSubject([]);
     this.navBarOnChanged = new BehaviorSubject('');
+    this.changePrice =new BehaviorSubject('');
     this.linkNavbarChanged = new BehaviorSubject('');
     this.isCompra = new BehaviorSubject('');
     this.goTop = new BehaviorSubject(false);
     this.principalForm=new principalForm();
-
+    this.cambiarColorChanged = new BehaviorSubject(false);
   }
 
   getCuit(): string | undefined {
