@@ -48,7 +48,7 @@ export interface ItemsProducto extends BaseProducto {
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: Producto | undefined;
-  id: number = 0;
+  id: string = '';
   public partnerTheme: TemaSocio | null | undefined;
   url: any;
   prodItem: TemaProducto | undefined;

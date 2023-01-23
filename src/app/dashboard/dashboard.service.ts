@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpWrapperService} from "../core/http/http-wrapper.service";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {LoadingService} from "../core/loading/loading.service";
-import {PartnerTheme, TemaSocio} from "./shared/models/partnerTheme.model";
+import {TemaSocio} from "./shared/models/partnerTheme.model";
 import {ENDPOINTS_API} from "../core/routes/api.routes";
 import {Producto} from "./shared/models/productsResponse.model";
 import {tap} from "rxjs/operators";
@@ -16,6 +16,14 @@ class principalForm {
   personalData: PersonalDataForm[] =[];
   domicilioAsegurado: AddressForm | undefined;
   datosPago: PayForm | undefined
+}
+export interface Cobertura {
+  id: number;
+  id_producto: string;
+  cuit_socio: string;
+  descripcion?: string;
+  url_icono?: string;
+  prioridad: number;
 }
 
 @Injectable({
@@ -36,6 +44,7 @@ export class DashboardService {
   public primaryColor: string | undefined = '';
   public secondaryColor: string | undefined = '';
   private products: Producto[] | undefined;
+  private coberturas: Cobertura[] | undefined;
   public cuitSocio: string | undefined = '';
   public cambiarColorChanged!:BehaviorSubject<any>;
 
@@ -46,7 +55,7 @@ export class DashboardService {
   constructor(
     private httpWrapperService: HttpWrapperService,
     private loadingService: LoadingService,
-    private formBuilder:FormBuilder
+    private formBuilder: FormBuilder
   ) {
     this.loadingService.tryToStartLoading();
     this.getCuit();
@@ -87,18 +96,18 @@ export class DashboardService {
     //if ( this.products ) {
     //return of( this.products );https://web.whatsapp.com/
     //}
-    const URL = ENDPOINTS_API.PRODUCTS +'/'+ this.cuitSocio+'/productos';
+    const URL = ENDPOINTS_API.PRODUCTS + '/'+ this.cuitSocio + '/productos';
     return this.httpWrapperService.get<Producto[]>(URL).pipe(tap((products: Producto[]) => {
         this.products = products;
       }
     ));
   }
 
-  getProductItemByIdProducto(id: number): Observable<GlobalResponse> {
-    const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}/detalle-{$id}`;
+  getProductItemByIdProducto(id: string): Observable<GlobalResponse> {
+    const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}/detalle-${id}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
-      this.products = response.body;
-    }
+        this.products = response.body;
+      }
     ));
   }
 
@@ -125,17 +134,25 @@ export class DashboardService {
     return porcentaje;
   }
 
-  getProductDetailByIdProductoAndCuit(id: number): Observable<GlobalResponse> {
-    const URL = `${ENDPOINTS_API.DETALLE_PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}`;
+  getCoberturasByCuitSocioAndIdProducto(idProducto: string): Observable<GlobalResponse> {
+    const URL = `${ENDPOINTS_API.COBERTURAS}/obtener-coberturas/cuit-socio/${this.cuitSocio}/id-producto/${idProducto}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
-      this.products = response.body;
-    }
+        this.coberturas = response.body;
+      }
     ));
   }
 
-  getCoberturas(id: number): Observable<any> {
 
-    const URL = ENDPOINTS_API.COBERTURAS + this.cuitSocio + "/" + id;
+  getProductDetailByIdProductoAndCuit(id: string): Observable<GlobalResponse> {
+    const URL = `${ENDPOINTS_API.DETALLE_PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}`;
+    return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
+        this.products = response.body;
+      }
+    ));
+  }
+
+  getCoberturas(idProducto: string): Observable<any> {
+    const URL = ENDPOINTS_API.DESCARGAR_COBERTURA + this.cuitSocio + "/" + idProducto;
     return this.httpWrapperService.get<any[]>(URL, {responseType: "blob" as "json"}).pipe();
   }
 
@@ -145,7 +162,7 @@ export class DashboardService {
   }
 
 
-  buildForm(){
+  buildForm() {
     return this.formBuilder.group(
       {
 
@@ -164,34 +181,34 @@ export class DashboardService {
           zip:['',Validators.required],
           email:['',Validators.required],
           //phone:[
-            //{
-              //phone_type:['',Validators.required],
-              cod_area:['',Validators.required],
-              number_phone:['',Validators.required]
-            //}
+          //{
+          //phone_type:['',Validators.required],
+          cod_area: ['', Validators.required],
+          number_phone: ['', Validators.required]
+          //}
           //]        },
         },
-        beneficiary:{
-          percentage:['',[Validators.required]],
+        beneficiary: {
+          percentage: ['', [Validators.required]],
 
-          name:['',[Validators.required,Validators.minLength(4)]],
-          lastname:['',Validators.required],
-          nationality:['',Validators.required],
-          document_type:['',Validators.required],
-          document_number:['',Validators.required],
-          id_genre:['',Validators.required],
-          birthdate:['',Validators.required],
-          address:['',Validators.required],
-          number:['',Validators.required],
-          city:['',Validators.required],
-          province:['',Validators.required],
-          zip:['',Validators.required],
-          email:['',Validators.required],
+          name: ['', [Validators.required, Validators.minLength(4)]],
+          lastname: ['', Validators.required],
+          nationality: ['', Validators.required],
+          document_type: ['', Validators.required],
+          document_number: ['', Validators.required],
+          id_genre: ['', Validators.required],
+          birthdate: ['', Validators.required],
+          address: ['', Validators.required],
+          number: ['', Validators.required],
+          city: ['', Validators.required],
+          province: ['', Validators.required],
+          zip: ['', Validators.required],
+          email: ['', Validators.required],
           //phone:[
-            //{
-              //phone_type:['',Validators.required],
-              cod_area:['',Validators.required],
-              number_phone:['',Validators.required]
+          //{
+          //phone_type:['',Validators.required],
+          cod_area: ['', Validators.required],
+          number_phone: ['', Validators.required]
         },
         otherAddress:{
 
@@ -202,11 +219,11 @@ export class DashboardService {
           zip:['',Validators.required],
           email:['',Validators.required],
           //phone:[
-            //{
-              //phone_type:['',Validators.required],
-              cod_area:['',Validators.required],
-              number_phone:['',Validators.required]
-            //}
+          //{
+          //phone_type:['',Validators.required],
+          cod_area: ['', Validators.required],
+          number_phone: ['', Validators.required]
+          //}
           //]
         },
 
@@ -237,9 +254,9 @@ export class DashboardService {
     )}
 
 
-    public getFormDataJson() {
-      const formAlta = this.formAlta.getRawValue();
-    }
+  public getFormDataJson() {
+    const formAlta = this.formAlta.getRawValue();
+  }
 
 }
 

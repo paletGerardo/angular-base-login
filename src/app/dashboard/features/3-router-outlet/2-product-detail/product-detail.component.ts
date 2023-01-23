@@ -9,7 +9,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import {PartnerTheme, TemaSocio} from "../../../shared/models/partnerTheme.model";
-import {TemaProducto, ItemsProducto, DetalleProducto} from "../1-products/feature/product-card/product-card.component";
+import {
+  TemaProducto,
+  ItemsProducto,
+  DetalleProducto,
+  Cobertura
+} from "../1-products/feature/product-card/product-card.component";
 import {GlobalResponse} from "../../../../core/http/http.response.model";
 
 @Component( {
@@ -18,10 +23,11 @@ import {GlobalResponse} from "../../../../core/http/http.response.model";
   styleUrls: [ './product-detail.component.scss' ]
 } )
 export class ProductDetailComponent implements OnInit {
-  id: number = 0;
+  idProducto: string = '';
   url: string = "";
   producto: Producto | undefined;
   temaProducto: TemaProducto | undefined;
+  coberturas: Cobertura[] = [];
   detalleProducto: DetalleProducto | undefined;
   itemsArray: any = [];
   itemsArray2: any = [];
@@ -69,7 +75,6 @@ export class ProductDetailComponent implements OnInit {
     this.dashboardService.toggleCarousel( false );
     this.loadingService.tryToStartLoading();
     this.getProducts();
-
     this.scrollDown( 'title' )
     this.dashboardService.onUrlChanged$.subscribe( {
         next: data => {
@@ -100,9 +105,10 @@ export class ProductDetailComponent implements OnInit {
       this.products$ = data;
       this.activateRoute.params.subscribe(
         ( res: any ) => {
-          this.id = res.id;
+          this.idProducto = res.id;
         } );
-      this.getProduct( this.id );
+      this.getProduct( this.idProducto );
+      this.getCoberturasByCuitSocioAndIdProducto(this.idProducto);
       this.getProductItemByIdProducto();
       this.getProductDetailByIdProductoAndCuit();
     } );
@@ -110,7 +116,7 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
-  getProduct( id: number ) {
+  getProduct( id: string ) {
     this.products$.forEach( ( produc: any ) => {
       if ( produc.id_producto == id ) {
         this.producto = produc;
@@ -144,19 +150,25 @@ export class ProductDetailComponent implements OnInit {
 
 
   getProductItemByIdProducto(): void {
-    this.dashboardService.getProductItemByIdProducto( this.id ).subscribe( ( data: GlobalResponse ) => {
+    this.dashboardService.getProductItemByIdProducto( this.idProducto ).subscribe( (data: GlobalResponse ) => {
       this.temaProducto = data.body;
     } );
   }
 
+  getCoberturasByCuitSocioAndIdProducto(idProducto: string): void {
+    this.dashboardService.getCoberturasByCuitSocioAndIdProducto( idProducto ).subscribe( (data: GlobalResponse ) => {
+      this.coberturas = data.body;
+    } );
+  }
+
   getProductDetailByIdProductoAndCuit() {
-    this.dashboardService.getProductDetailByIdProductoAndCuit( this.id ).subscribe( ( data: GlobalResponse ) => {
+    this.dashboardService.getProductDetailByIdProductoAndCuit( this.idProducto ).subscribe( (data: GlobalResponse ) => {
       this.detalleProducto = data.body;
     } );
   }
 
   getCoberturas() {
-    this.dashboardService.getCoberturas( this.id ).subscribe( res => {
+    this.dashboardService.getCoberturas( this.idProducto ).subscribe(res => {
       console.log( res );
       const blob = new Blob( [ res ], {
         type: 'data:application/pdf',
