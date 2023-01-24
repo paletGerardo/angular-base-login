@@ -74,9 +74,9 @@ export class PayFormDataComponent implements OnInit {
 
   validarForm(){
     this.payDataForm = new FormGroup({
-        number_card:new FormControl ('',[Validators.required,Validators.minLength(13),Validators.maxLength(18),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+        number_card:new FormControl ('',[Validators.required,Validators.minLength(13),Validators.maxLength(18),Validators.pattern(/^-?(0|[0-9]\d*)?$/)]),
         expiration:new FormControl ('',[Validators.required]),
-        security_code:new FormControl ('',[Validators.required,Validators.minLength(3),Validators.maxLength(3),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+        security_code:new FormControl ('',[Validators.required,Validators.minLength(3),Validators.maxLength(3),Validators.pattern(/^-?(0|[0-9]\d*)?$/)]),
         cardholder:new FormControl ('',[Validators.required,Validators.pattern(/^[a-zA-Zñáéíóú ]+$/)]),
        })
   }
