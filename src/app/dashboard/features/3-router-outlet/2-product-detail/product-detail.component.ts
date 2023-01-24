@@ -186,6 +186,26 @@ export class ProductDetailComponent implements OnInit {
     } );
   }
 
+  getCondiciones() {
+    this.dashboardService.getCondiciones( this.idProducto ).subscribe(res => {
+      console.log( res );
+      const blob = new Blob( [ res ], {
+        type: 'data:application/pdf',
+      } );
+      const url = window.URL.createObjectURL( blob );
+      let link = document.createElement( 'a' );
+      link.href = url;
+      link.download = 'condiciones.pdf';
+      link.dispatchEvent(
+        new MouseEvent( 'click', {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        } )
+      );
+    } );
+  }
+
   showRisk( plan: any ) {
     this.risks = plan.rangos[0].riesgos;
     console.log( this.risks.length );

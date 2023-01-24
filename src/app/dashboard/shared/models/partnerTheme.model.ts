@@ -46,7 +46,7 @@ export interface TemaSocio {
   url_imagen_fondo: string,
   url_tipografia: string,
   color: Color,
-  navbar: Navbar,
+  barra_navegacion: Navbar,
   boton: Boton;
   imagenes_carrusel: ImagenCarrusel[]
 }

@@ -43,7 +43,9 @@ export class ProductsComponent implements OnInit {
   // todo get productos
 
   scrollDown(id: any) {
-    document.getElementById(id)!.scrollIntoView();
+    if(id) {
+      document.getElementById(id)!.scrollIntoView();
+    }
   }
 
   hideLinkNavbar() {

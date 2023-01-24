@@ -30,6 +30,24 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.loadingService.tryToStartLoading();
     this.loadAnimations();
+    //todo falta completar codigo para font dinamica.
+//     let cuit = 'gerr';
+//     let url = `http://200.114.219.199/service/landing/themes/getFontByCuit/${cuit}/primary/type/`;
+//
+//     let fontPrimary = `
+//     @font-face {
+//         font-family: 'font-gerr';
+//         src: url(http://200.114.219.199/service/landing/themes/getFontByCuit/30687310434/primary/type/font_primary.ttf);
+//     }
+// `;
+//
+//     document.styleSheets[0].insertRule(fontPrimary, 0);
+//
+//
+//     let fontPrimary2 = document.styleSheets[0]['href'];
+//     console.log(fontPrimary2);
+//     // @ts-ignore
+//     document.styleSheets[0]['href'] = `url('${url}gerr.ttf')`;
   }
 
   private loadAnimations(): void {

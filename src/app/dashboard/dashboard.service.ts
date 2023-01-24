@@ -96,7 +96,7 @@ export class DashboardService {
     //if ( this.products ) {
     //return of( this.products );
     //}
-    const URL = ENDPOINTS_API.PRODUCTS + this.cuitSocio;
+    const URL = ENDPOINTS_API.PRODUCTS + '/'+ this.cuitSocio + '/productos';
     return this.httpWrapperService.get<Producto[]>(URL).pipe(tap((products: Producto[]) => {
         this.products = products;
       }
@@ -134,7 +134,15 @@ export class DashboardService {
     ));
   }
 
-  getProductDetailByIdProductoAndCuit(id: number): Observable<GlobalResponse> {
+  getCoberturasByCuitSocioAndIdProducto(idProducto: string): Observable<GlobalResponse> {
+    const URL = `${ENDPOINTS_API.COBERTURAS}/obtener-coberturas/cuit-socio/${this.cuitSocio}/id-producto/${idProducto}`;
+    return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
+        this.coberturas = response.body;
+      }
+    ));
+  }
+
+  getProductDetailByIdProductoAndCuit(id: string): Observable<GlobalResponse> {
     const URL = `${ENDPOINTS_API.DETALLE_PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
         this.products = response.body;
@@ -143,7 +151,12 @@ export class DashboardService {
   }
 
   getCoberturas(idProducto: string): Observable<any> {
-    const URL = ENDPOINTS_API.DESCARGAR_COBERTURA + this.cuitSocio + "/" + idProducto;
+    const URL = `${ENDPOINTS_API.DESCARGAR_COBERTURA}/${this.cuitSocio}/id-producto/${idProducto}/descarga-cobertura`
+    return this.httpWrapperService.get<any[]>(URL, {responseType: "blob" as "json"}).pipe();
+  }
+
+  getCondiciones(idProducto: string): Observable<any> {
+    const URL = `${ENDPOINTS_API.DESCARGAR_CONDICIONES}/${this.cuitSocio}/id-producto/${idProducto}/descarga-condiciones`
     return this.httpWrapperService.get<any[]>(URL, {responseType: "blob" as "json"}).pipe();
   }
 
