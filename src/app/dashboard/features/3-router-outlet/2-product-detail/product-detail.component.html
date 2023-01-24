@@ -10,7 +10,7 @@
             <div class="product-detail-seccion-precio"
               [ngStyle]="{'background-image': 'url(' +temaProducto.url_imagen_precio + ')'}">
               <div class="precio font-bold">
-                <small class="ml-4 small-desde"> desde</small>
+                <small class="ml-4 small-desde">plan {{plan}}, desde</small>
                 <p>$ {{precio}}</p>
                 <small class="ml-4 small-mes">por mes</small>
               </div>
@@ -29,7 +29,7 @@
           <div style="display: flex;justify-content: center;">
             <p class="">plan {{plan}}, desde</p>
             <p class="">$ {{precio}}</p>
-            <p class=""> por mes</p>
+            <p class="ml-1 small-desde"> por mes</p>
           </div>
           <app-button-primary [text]="'Comprar'" [mostrarColorFondo]="true"
             (click)="comprarProducto()"></app-button-primary>
