@@ -51,8 +51,8 @@ export class PersonalDataFormComponent implements OnInit {
 
         public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
 
-        public seguroBeneficiario=['Hogares','Bolso Protegido','Accidentes Personales ','Vida Temporal'];
-        public seguroDomicilio=['Hogar'];
+        public seguroBeneficiario=['Hogar','Bolso Protegido','Accidentes Personales ','Vida Temporal'];
+        public seguroDomicilio=['Hogares'];
         maxLength: number=10;
         parentCount: any;
         titular: any=true;
@@ -214,8 +214,8 @@ export class PersonalDataFormComponent implements OnInit {
           province:new FormControl('', [Validators.required]),
           zip:new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(5) ,Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
           email:new FormControl('', [Validators.required, Validators.email ]),
-          cod_area:new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(5), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-          number_phone:new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern(/^[0-9]*$/)])
+          cod_area:new FormControl('', [Validators.required,Validators.maxLength(5), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+          number_phone:new FormControl('', [Validators.required,Validators.pattern(/^[0-9]*$/)])
 
 
              })

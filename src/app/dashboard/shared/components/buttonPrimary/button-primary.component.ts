@@ -10,7 +10,7 @@ import {PartnerTheme, TemaSocio} from '../../models/partnerTheme.model';
   styleUrls: ['./button-primary.component.scss']
 })
 export class ButtonPrimaryComponent implements OnInit {
-  @Input() text:string="Volver al carrito";
+  @Input() text:string="Volver";
   @Input() mostrarColorFondo:boolean=false;
   @Input() bgcolor:string | undefined = undefined;
   @Output() clicked: EventEmitter<boolean> = new EventEmitter<boolean>(false);

@@ -31,6 +31,7 @@ export class ProductDetailComponent implements OnInit {
   detalleProducto: DetalleProducto | undefined;
   itemsArray: any = [];
   itemsArray2: any = [];
+  plan:string="B";
   plans: Plan[] = [];
 
   firstFormGroup = this._formBuilder.group( {
@@ -207,8 +208,12 @@ export class ProductDetailComponent implements OnInit {
   }
 
   showRisk( plan: any ) {
+    console.log("plan", plan);
+    this.plan=plan.codigo_plan;
+    this.precio=plan.rangos[0].precio;
     this.risks = plan.rangos[0].riesgos;
     console.log( this.risks.length );
+    console.log(this.risks);
     if ( this.risks.length > 1 ) {
       this.riskCopia = this.risks.slice( 0, 2 );
     } else {
