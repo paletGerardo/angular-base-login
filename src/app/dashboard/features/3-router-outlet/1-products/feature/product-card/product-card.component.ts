@@ -31,7 +31,7 @@ export interface TemaProducto extends BaseProducto {
 export interface DetalleProducto extends BaseProducto {
   titulo: string,
   descripcion: string,
-  subTitulo: string,
+  sub_titulo: string,
   items: ItemsProducto[]
 
 }

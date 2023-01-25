@@ -99,6 +99,13 @@
   }
 }
 
+#detalles {
+  .lista {
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+}
+
 @media (min-width: map-get($grid-breakpoints, xxs)) {
   p {
     font-size: 0.7rem;
