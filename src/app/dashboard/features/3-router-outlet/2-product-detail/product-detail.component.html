@@ -26,13 +26,20 @@
           </ng-container>
           <app-plan-list *ngIf="primaryColor" [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
           <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
-          <div style="display: flex;justify-content: center;">
-            <p class="">plan {{plan}}, desde</p>
-            <p class="">$ {{precio}}</p>
-            <p class="ml-1 small-desde"> por mes</p>
+          <div >
+            <div style="    display: flex;
+            position: absolute;
+            left: 50%;
+            margin-top: 2vh;
+            transform: translate(-50%, -50%);">
+              <p class="">plan {{plan}}, desde</p>
+              <p class="">$ {{precio}}</p>
+              <p class="ml-1 small-desde"> por mes</p>
+            </div>
+            <app-button-primary [text]="'Comprar'" [mostrarColorFondo]="true" 
+              (click)="comprarProducto()"></app-button-primary>
           </div>
-          <app-button-primary [text]="'Comprar'" [mostrarColorFondo]="true"
-            (click)="comprarProducto()"></app-button-primary>
+      
         </div>
       </div>
     </div>
