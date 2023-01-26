@@ -24,11 +24,11 @@ export class PlanListComponent implements OnInit {
   constructor( private loadingService: LoadingService,
                public dashBoardService: DashboardService,
                 ) {
-                  
+
                  }
 
   ngOnInit(): void {
-  
+
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
@@ -45,10 +45,14 @@ export class PlanListComponent implements OnInit {
 
       }
     } )
+    this.emitSelected(this.plans[0],0);
+
   }
 
 
-  public emitSelected( selectedPlan: any ): void {
+  public emitSelected( selectedPlan: any, i: any ): void {
+    this.selectedIndex = i;
+    this.dashBoardService.cambiarColorChanged.next(true);
     console.log("plan", selectedPlan);
     this.plans.forEach( plan => {
       if ( plan.codigo_plan === selectedPlan.codigo_plan ) {
@@ -59,7 +63,7 @@ export class PlanListComponent implements OnInit {
     } )
 
     this.emitPlanSelected.emit( selectedPlan );
-    
+
   }
   setIndex(i:any){
     this.selectedIndex = i;
