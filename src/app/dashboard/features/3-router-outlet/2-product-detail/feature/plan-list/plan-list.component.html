@@ -8,7 +8,8 @@
         [cupon]="cupon"
         (click)="emitSelected(plan)"
         (click)="setIndex(i)"
-         [class.active]="selectedIndex === i">
+         [class.active]="selectedIndex === i"
+         [ngClass]="{'active': i == 0}">
       </app-button-secondary>
     </ng-container>
   </div>

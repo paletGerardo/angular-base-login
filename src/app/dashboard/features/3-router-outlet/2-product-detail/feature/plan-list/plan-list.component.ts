@@ -1,19 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Plan } from "../../../../../shared/models/productsResponse.model";
-import {PartnerTheme, TemaSocio} from "../../../../../shared/models/partnerTheme.model";
+import { PartnerTheme, TemaSocio } from "../../../../../shared/models/partnerTheme.model";
 import { LoadingService } from "../../../../../../core/loading/loading.service";
 import { DashboardService } from "../../../../../dashboard.service";
 import { BehaviorSubject } from 'rxjs';
 
-@Component( {
+@Component({
   selector: 'app-plan-list',
   templateUrl: './plan-list.component.html',
-  styleUrls: [ './plan-list.component.scss' ]
-} )
+  styleUrls: ['./plan-list.component.scss']
+})
 export class PlanListComponent implements OnInit {
   @Input() plans: Plan[] = [];
   @Output() emitPlanSelected: EventEmitter<string> = new EventEmitter<string>();
-  cupon:boolean=false;
+  cupon: boolean = false;
 
 
   partnerTheme: TemaSocio | undefined;
@@ -21,49 +21,59 @@ export class PlanListComponent implements OnInit {
   public secundaryColor: string = '';
   selectedIndex: any;
 
-  constructor( private loadingService: LoadingService,
-               public dashBoardService: DashboardService,
-                ) {
-                  
-                 }
+  constructor(private loadingService: LoadingService,
+    public dashBoardService: DashboardService,
+  ) {
+
+  }
 
   ngOnInit(): void {
-  
-    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
-      if ( parnetTheme ) {
+
+    this.dashBoardService.partnerTheme$.subscribe((parnetTheme: TemaSocio | undefined) => {
+      if (parnetTheme) {
         this.partnerTheme = parnetTheme;
         this.primaryColor = parnetTheme.boton.primario_rgba;
         this.secundaryColor = parnetTheme.boton.secundario_rgba;
-        this.plans.forEach( (plan, index) => {
-          if(index == 0) {
+        this.plans.forEach((plan, index) => {
+          if (index == 0) {
             plan.activeColor = this.partnerTheme?.color.primario_rgba
           } else {
             plan.activeColor = 'white';
           }
-        } )
+        })
         this.loadingService.tryToStopLoading();
 
       }
-    } )
+    });
+
+    this.selectButtonDefault();
   }
 
 
-  public emitSelected( selectedPlan: any ): void {
+  public emitSelected(selectedPlan: any): void {
     console.log("plan", selectedPlan);
-    this.plans.forEach( plan => {
-      if ( plan.codigo_plan === selectedPlan.codigo_plan ) {
+    this.plans.forEach(plan => {
+      if (plan.codigo_plan === selectedPlan.codigo_plan) {
         plan.activeColor = this.primaryColor;
       } else {
         plan.activeColor = 'white';
       }
-    } )
+    })
 
-    this.emitPlanSelected.emit( selectedPlan );
-    
+    this.emitPlanSelected.emit(selectedPlan);
+
   }
-  setIndex(i:any){
+  setIndex(i: any) {
     this.selectedIndex = i;
     this.dashBoardService.cambiarColorChanged.next(true);
+  }
+
+  selectButtonDefault() {
+    document.addEventListener("DOMContentLoaded", function (event) {
+      document.getElementById("opcion-0")!.classList.add('active');
+    });
+    console.log('asdasdsadasdsadasd');
+    
   }
 
 }
