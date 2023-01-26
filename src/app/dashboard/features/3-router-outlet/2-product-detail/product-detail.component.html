@@ -32,14 +32,12 @@
             left: 50%;
             margin-top: 2vh;
             transform: translate(-50%, -50%);">
-              <p class="">plan {{plan}}, desde</p>
-              <p class="">$ {{precio}}</p>
-              <p class="ml-1 small-desde"> por mes</p>
+              <p class="ml-1 small-desde"></p>
             </div>
-            <app-button-primary [text]="'Comprar'" [mostrarColorFondo]="true" 
+            <app-button-primary [text]="'Comprar'" [title] = "getTextInside()" [mostrarColorFondo]="true"
               (click)="comprarProducto()"></app-button-primary>
           </div>
-      
+
         </div>
       </div>
     </div>

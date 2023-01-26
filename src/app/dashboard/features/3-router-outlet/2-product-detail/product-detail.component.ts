@@ -260,6 +260,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
 
+  getTextInside() {
+    return `plan ${this.plan}, desde $ ${this.precio} por mes`;
+  }
 }
 
 
