@@ -29,10 +29,13 @@
         <input
         class="appearance-none block w-full  bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
  
-        type="text"  maxlength="5" placeholder="MM/YY" 
+        type="text" maxlength="5"  placeholder="MM/YY" 
           name="month" [(ngModel)]="month"  formControlName="expiration" (keyup)="addSlash($event)" (keydown)="clearData($event)" >
      
-        
+          <div *ngFor="let validation of validationMessages.expiration!">
+            <span style="color:red;" *ngIf="getValidationPayFormControl(validation, 'expiration')  "> {{ validation.message
+              }} </span>
+          </div>
         <div style="color:red;" *ngIf="payDataForm.get('expiration').hasError('invalidDate')">
            Fecha inválida
         </div>
@@ -40,10 +43,7 @@
           Fecha inválida
       </div>
        
-<div *ngFor="let validation of validationMessages.expiration!">
-          <span style="color:red;" *ngIf="getValidationPayFormControl(validation, 'expiration')  "> {{ validation.message
-            }} </span>
-        </div>
+
       
       </div>
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
