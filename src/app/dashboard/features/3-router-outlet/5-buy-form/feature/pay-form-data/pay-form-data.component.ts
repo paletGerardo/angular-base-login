@@ -17,13 +17,11 @@ export class PayFormDataComponent implements OnInit {
     public payDataForm: FormGroup<any> = this.dashboardService.formAlta.get('pay') as FormGroup;
     public validationMessages = VALIDATION_MESSAGES;
     @Input() text:string='Confirmar';
+    isCargado=false;
     month: string="";
     year: string="";
-    public mask = {
-        guide: true,
-       
-        mask: [ /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
-      };
+    fechaPattern = "^(0[1-9]|1[0-2])\/(2[3-9])$";
+
       dialogRef: any;
       compra: boolean=false;
 
@@ -54,9 +52,16 @@ export class PayFormDataComponent implements OnInit {
         return this.payDataForm.get( elem ).invalid && this.payDataForm.get( elem ).hasError( validation.type ) && ( this.payDataForm.get( elem ).dirty || this.payDataForm.get( elem ).touched )
   }
 
+
   addSlash(event:any) {
+    this.isCargado=true;
     if (event.target.value.length === 2) {
       event.target.value += '/';
+    }
+    else{
+      if (event.target.value.length === 0) {
+        this.isCargado=false;
+      }
     }
   }
 
@@ -86,10 +91,28 @@ export class PayFormDataComponent implements OnInit {
 
   }
 
+  validateExpiration(control: FormControl): {[key: string]: any} | null {
+    const value = control.value;
+    if (!value.match(/^(0[1-9]|1[0-2])\/(2[3-9])$/)) {
+      console.log("fecha invalida");
+        return { invalidFormat: true };
+    }
+    const today = new Date();
+    const inputDate = new Date(`20${value.split("/")[1]}-${value.split("/")[0]}-01`);
+    if(inputDate < today) {
+      console.log("invalidDate",true);
+        return { 
+
+          invalidDate: true };
+    }
+
+    return null;
+}
+
   validarForm(){
     this.payDataForm = new FormGroup({
         number_card:new FormControl ('',[Validators.required,Validators.minLength(13),Validators.maxLength(18),Validators.pattern(/^-?(0|[0-9]\d*)?$/)]),
-        expiration:new FormControl ('',[Validators.required,Validators.pattern(/^(0[1-9]|1[0-2])\/([0-9]{2})$/)]),
+        expiration:new FormControl ('',[Validators.required,this.validateExpiration]),
         security_code:new FormControl ('',[Validators.required,Validators.minLength(3),Validators.maxLength(3),Validators.pattern(/^-?(0|[0-9]\d*)?$/)]),
         cardholder:new FormControl ('',[Validators.required,Validators.pattern(/^[a-zA-Zñáéíóú ]+$/)]),
        })
