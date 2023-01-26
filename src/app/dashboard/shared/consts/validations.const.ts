@@ -249,7 +249,12 @@ const TYPE = {
         },
         {
           type: TYPE.PATTERN,
-          message: 'Formato invalido'
+          message: 'ingrese una fecha valida'
+        },
+
+        {
+          type: TYPE.MAXLENGTH,
+          message: 'el formato debe ser YY/MM'
         },
        
       ],
