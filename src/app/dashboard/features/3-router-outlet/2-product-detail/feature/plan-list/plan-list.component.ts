@@ -21,16 +21,16 @@ export class PlanListComponent implements OnInit {
   public secundaryColor: string = '';
   selectedIndex: any;
 
-  constructor(private loadingService: LoadingService,
-    public dashBoardService: DashboardService,
-  ) {
+  constructor( private loadingService: LoadingService,
+               public dashBoardService: DashboardService,
+                ) {
 
-  }
+                 }
 
   ngOnInit(): void {
 
-    this.dashBoardService.partnerTheme$.subscribe((parnetTheme: TemaSocio | undefined) => {
-      if (parnetTheme) {
+    this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
+      if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
         this.primaryColor = parnetTheme.boton.primario_rgba;
         this.secundaryColor = parnetTheme.boton.secundario_rgba;
@@ -44,13 +44,15 @@ export class PlanListComponent implements OnInit {
         this.loadingService.tryToStopLoading();
 
       }
-    });
+    } )
+    this.emitSelected(this.plans[0],0);
 
-    this.selectButtonDefault();
   }
 
 
-  public emitSelected(selectedPlan: any): void {
+  public emitSelected( selectedPlan: any, i: any ): void {
+    this.selectedIndex = i;
+    this.dashBoardService.cambiarColorChanged.next(true);
     console.log("plan", selectedPlan);
     this.plans.forEach(plan => {
       if (plan.codigo_plan === selectedPlan.codigo_plan) {
@@ -61,6 +63,8 @@ export class PlanListComponent implements OnInit {
     })
 
     this.emitPlanSelected.emit(selectedPlan);
+
+    this.emitPlanSelected.emit( selectedPlan );
 
   }
   setIndex(i: any) {

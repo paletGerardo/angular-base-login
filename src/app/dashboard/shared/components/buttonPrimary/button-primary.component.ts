@@ -11,11 +11,13 @@ import {PartnerTheme, TemaSocio} from '../../models/partnerTheme.model';
 })
 export class ButtonPrimaryComponent implements OnInit {
   @Input() text:string="Volver";
+  @Input() title:string="";
   @Input() mostrarColorFondo:boolean=false;
   @Input() bgcolor:string | undefined = undefined;
   @Output() clicked: EventEmitter<boolean> = new EventEmitter<boolean>(false);
   public partnerTheme: TemaSocio | null | undefined;
   public colorFondo: string | undefined = 'white';
+  public color: string = '';
   constructor(
     private loadingService: LoadingService,
     public dashBoardService:DashboardService
@@ -27,6 +29,7 @@ export class ButtonPrimaryComponent implements OnInit {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
         this.colorFondo = this.dashBoardService.temaSocio?.boton.fondo_rgba;
+        this.color = this.dashBoardService.temaSocio?.boton.primario_rgba;
         this.loadingService.tryToStopLoading();
       }
     } )

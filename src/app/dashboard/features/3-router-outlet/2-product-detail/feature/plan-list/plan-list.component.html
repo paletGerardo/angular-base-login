@@ -2,14 +2,12 @@
   <p class="text-center px-4">¡Elegí el plan que más se adapte a tus necesidades!</p>
   <div class="flex justify-center grid grid-cols-3 gap-4 p-6">
     <ng-container *ngFor="let plan of plans;let i=index">
-      <app-button-secondary 
+      <app-button-secondary
         class="flex justify-center btn btn-primary"
         [text]="plan.codigo_plan"
         [cupon]="cupon"
-        (click)="emitSelected(plan)"
-        (click)="setIndex(i)"
-         [class.active]="selectedIndex === i"
-         [ngClass]="{'active': i == 0}">
+        (click)="emitSelected(plan, i)"
+         [class.active]="selectedIndex === i || i === 0">
       </app-button-secondary>
     </ng-container>
   </div>
