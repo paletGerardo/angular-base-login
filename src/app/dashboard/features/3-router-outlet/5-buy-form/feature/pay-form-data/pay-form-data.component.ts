@@ -17,6 +17,8 @@ export class PayFormDataComponent implements OnInit {
     public payDataForm: FormGroup<any> = this.dashboardService.formAlta.get('pay') as FormGroup;
     public validationMessages = VALIDATION_MESSAGES;
     @Input() text:string='Confirmar';
+    month: string="";
+    year: string="";
     public mask = {
         guide: true,
        
@@ -52,6 +54,18 @@ export class PayFormDataComponent implements OnInit {
         return this.payDataForm.get( elem ).invalid && this.payDataForm.get( elem ).hasError( validation.type ) && ( this.payDataForm.get( elem ).dirty || this.payDataForm.get( elem ).touched )
   }
 
+  addSlash(event:any) {
+    if (event.target.value.length === 2) {
+      event.target.value += '/';
+    }
+  }
+
+  clearData(event:any) {
+    if (event.keyCode === 8 && event.target.value.length === 3) {
+      event.target.value = event.target.value.slice(0, 2);
+    }
+  }
+
   guardar(){
   let tarjetaPrueba=this.payDataForm.value.number_card;  
   if(this.payDataForm.invalid){
@@ -75,7 +89,7 @@ export class PayFormDataComponent implements OnInit {
   validarForm(){
     this.payDataForm = new FormGroup({
         number_card:new FormControl ('',[Validators.required,Validators.minLength(13),Validators.maxLength(18),Validators.pattern(/^-?(0|[0-9]\d*)?$/)]),
-        expiration:new FormControl ('',[Validators.required]),
+        expiration:new FormControl ('',[Validators.required,Validators.pattern(/^(0[1-9]|1[0-2])\/([0-9]{2})$/)]),
         security_code:new FormControl ('',[Validators.required,Validators.minLength(3),Validators.maxLength(3),Validators.pattern(/^-?(0|[0-9]\d*)?$/)]),
         cardholder:new FormControl ('',[Validators.required,Validators.pattern(/^[a-zA-Zñáéíóú ]+$/)]),
        })
