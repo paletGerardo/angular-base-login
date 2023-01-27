@@ -11,6 +11,7 @@ import { LoadingService } from '../../../core/loading/loading.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import {GlobalResponse} from "../../../core/http/http.response.model";
 
 @Component({
   selector: 'app-nav',
@@ -32,6 +33,7 @@ export class NavComponent implements AfterViewInit, OnInit {
   clicked: boolean=false;
   private _unsubscribeAll: Subject<any>;
   public floatButtonsDown: boolean = false;
+  public textFilter: string = '';
 
   constructor(
     private dashBoardService: DashboardService,
@@ -108,5 +110,13 @@ export class NavComponent implements AfterViewInit, OnInit {
 
   public upButtons(): void {
     this.floatButtonsDown = true
+  }
+
+  filterProducts($event: KeyboardEvent) {
+    if ($event.keyCode === 13) {
+      this.dashBoardService.filterProducts(this.textFilter).subscribe((res: GlobalResponse) => {
+        console.log(res.body);
+      });
+    }
   }
 }
