@@ -52,6 +52,9 @@ export class DashboardService {
 
   public formAlta:FormGroup= this.buildForm();
   principalForm: principalForm;
+  public productsFiltered: Producto[] = [];
+  private productDetail: Producto | undefined;
+  private productItems: Producto | undefined;
   constructor(
     private httpWrapperService: HttpWrapperService,
     private loadingService: LoadingService,
@@ -92,10 +95,15 @@ export class DashboardService {
     }
   }
 
-  getProducts(): Observable<Producto[]> {
-    //if ( this.products ) {
-    //return of( this.products );https://web.whatsapp.com/
-    //}
+  getProducts(filter?: string[]): Observable<Producto[]> {
+    if ( this.products && !filter ) {
+      return of( this.products );
+    }
+    if(this.products && filter) {
+      this.productsFiltered = this.products.filter(producto => filter.includes(producto.id_producto.toString()));
+      console.log(JSON.stringify(this.productsFiltered))
+      return of(this.productsFiltered);
+    }
     const URL = ENDPOINTS_API.PRODUCTS + '/'+ this.cuitSocio + '/productos';
     return this.httpWrapperService.get<Producto[]>(URL).pipe(tap((products: Producto[]) => {
         this.products = products;
@@ -106,7 +114,7 @@ export class DashboardService {
   getProductItemByIdProducto(id: string): Observable<GlobalResponse> {
     const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}/detalle-${id}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
-        this.products = response.body;
+        this.productItems = response.body;
       }
     ));
   }
@@ -146,7 +154,7 @@ export class DashboardService {
   getProductDetailByIdProductoAndCuit(id: string): Observable<GlobalResponse> {
     const URL = `${ENDPOINTS_API.DETALLE_PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
-        this.products = response.body;
+        this.productDetail = response.body;
       }
     ));
   }
@@ -263,5 +271,12 @@ export class DashboardService {
     const formAlta = this.formAlta.getRawValue();
   }
 
+  filterProducts(textFilter: string) {
+    const URL = `${ENDPOINTS_API.PRODUCTOS_FILTRO}?params=${textFilter}`;
+    return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
+        this.getProducts(response.body);
+      }
+    ));
+  }
 }
 

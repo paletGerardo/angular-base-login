@@ -12,7 +12,12 @@ export const ENDPOINTS_API = {
   IMGAGEN_PRODUCTO_1:`${ ENV.URL_BASE }/productos/obtener-imagen/id-producto`,
   PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`,
 
+  //productos
+  PRODUCTOS_FILTRO:`${ ENV.URL_BASE }/productos/busquedas/buscar-parametros`,
+
+
   //descargas
   DESCARGAR_COBERTURA:`${ ENV.URL_BASE }/descargas/cobertura/cuit`,
   DESCARGAR_CONDICIONES:`${ ENV.URL_BASE }/descargas/condiciones/cuit`,
+
 }
