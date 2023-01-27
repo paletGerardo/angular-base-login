@@ -1,14 +1,14 @@
 <div class="container pt-8">
   <div>
     <div>
-      <h1>Hola usuari@</h1>
+      <h1 [ngStyle]="{'color': primaryColor }" >Hola usuari@</h1>
     </div>
     <div style="text-align:center">
-      <p>te confirmamos la baja de tu producto "seguro hogar protegido"</p>
+      <p>Te confirmamos la baja de tu producto <span style="font-weight: bolder;">"Seguro hogar protegido"</span></p>
       <br>
-      <p> que contrataste en Carrefour</p>
+      <p> Que contrataste en <span style="font-weight: bolder;">Carrefour</span></p>
       <br>
-      <p> el numero de tramite es "1212312321312312"</p>
+      <p> El número de tramite es <span style="font-weight: bolder;">"1212312321312312"</span></p>
     </div>
   </div>
   <section>
@@ -17,7 +17,7 @@
   </section>
 <section>
 <div  style="padding: 2vh; text-align: center;"  >
-  <h6>nos gustaría que volvieras, si cambias de opinión recorda que podes adquirir alguna de estas coberturas:</h6>
+  <h1 [ngStyle]="{'color': primaryColor }">Nos gustaría que volvieras, si cambias de opinión recorda que podes adquirir alguna de estas coberturas:</h1>
 </div>
   <app-carousel-product></app-carousel-product>
 </section>
