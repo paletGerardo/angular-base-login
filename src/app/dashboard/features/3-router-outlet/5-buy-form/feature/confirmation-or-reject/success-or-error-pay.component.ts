@@ -18,7 +18,8 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
 export class SuccessOrErrorPayComponent implements OnInit {
     private _unsubscribeAll: Subject<any>;
     isCompra: any=false;
-    @Input() text:string='volver a formulario de pago';
+    @Input() text:string='';
+   
 
     constructor(
         private dashBoardService: DashboardService,
@@ -31,6 +32,13 @@ export class SuccessOrErrorPayComponent implements OnInit {
     
 
     ngOnInit(): void {
+      if(this.isCompra){
+        console.log("es compra: ",this.isCompra);
+      this.text='Volver a formulario de pago';
+      }
+      else{
+        this.text="Volver al home";
+      }
         this.dashBoardService.isCompra
         .pipe()
           .subscribe({
@@ -53,5 +61,11 @@ export class SuccessOrErrorPayComponent implements OnInit {
           console.log("ruta",ruta);
           this.router.navigate([ruta]);
     }
+
+    volverAInicio(){
+      let ruta = 'dashboard/products/';
+        console.log("ruta",ruta);
+        this.router.navigate([ruta]);
+  }
 
 }
