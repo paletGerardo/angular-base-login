@@ -43,6 +43,7 @@ import { CardsSvgComponent } from './features/3-router-outlet/5-buy-form/feature
 import { TextMaskModule } from 'angular2-text-mask';
 import { SuccessOrErrorPayComponent } from './features/3-router-outlet/5-buy-form/feature/confirmation-or-reject/success-or-error-pay.component';
 import { AddressFormComponent } from './features/3-router-outlet/4-data-user-form/feature/components/2-address-form/address-form.component';
+import { PriceFormatPipe } from './features/3-router-outlet/2-product-detail/feature/risk-list/priceFormat.pipe';
 
 
 @NgModule( {
@@ -83,7 +84,8 @@ import { AddressFormComponent } from './features/3-router-outlet/4-data-user-for
     PayFormDataComponent,
     CardsSvgComponent,
     SuccessOrErrorPayComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    PriceFormatPipe
 
 
 
@@ -111,7 +113,8 @@ import { AddressFormComponent } from './features/3-router-outlet/4-data-user-for
     PayFormDataComponent,
     CardsSvgComponent,
     SuccessOrErrorPayComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    PriceFormatPipe
   ],
     imports: [
         CommonModule,

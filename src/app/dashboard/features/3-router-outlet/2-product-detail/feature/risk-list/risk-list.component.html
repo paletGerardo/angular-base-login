@@ -15,7 +15,7 @@
          [ngStyle]="{'color': dashboardService.temaSocio.color.primario_rgba }">{{risk.descipcion_riesgo}} </p>
     </div>
     <p class="flex justify-center items-center font-bold" [ngStyle]="{'color': dashboardService.temaSocio.color.primario_rgba }">
-      ${{risk.suma_asegurada_riesgo}}
+      ${{risk.suma_asegurada_riesgo | priceFormat }}
     </p>
   </div>
 </div>
