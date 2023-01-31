@@ -7,7 +7,7 @@ export const ENDPOINTS_API = {
   PRODUCTS: `${ ENV.URL_BASE }/productos/obtener-productos-por-cuit`,
   PRODUCTSDETAIL:`${ ENV.URL_BASE }/products/getDetailByProductId/`,
   PRODUCTO:`${ ENV.URL_BASE }/productos/obtener-producto/id`,
-  COBERTURAS:`${ ENV.URL_BASE }/coberturas`,
+  COBERTURAS:`${ ENV.URL_BASE }/productos/coberturas`,
   DETALLE_PRODUCTO:`${ ENV.URL_BASE }/productos/obtener-detalle-producto/id-producto`,
   IMGAGEN_PRODUCTO_1:`${ ENV.URL_BASE }/productos/obtener-imagen/id-producto`,
   PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`,
