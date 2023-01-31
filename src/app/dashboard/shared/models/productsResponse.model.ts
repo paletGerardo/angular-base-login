@@ -15,7 +15,8 @@ export interface Plan {
   codigo_plan: number,
   id_plan: number,
   rangos: Rango[];
-  activeColor?: string;
+  activeColor?: string,
+  active?: boolean,
 }
 
 export interface Rango {

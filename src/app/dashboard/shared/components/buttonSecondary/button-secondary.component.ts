@@ -1,7 +1,8 @@
-import { AfterViewChecked, AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LoadingService } from 'src/app/core/loading/loading.service';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import {PartnerTheme, TemaSocio} from '../../models/partnerTheme.model';
+import { PlanListComponent } from '../../../../dashboard/features/3-router-outlet/2-product-detail/feature/plan-list/plan-list.component';
 
 
 @Component({
@@ -12,16 +13,20 @@ import {PartnerTheme, TemaSocio} from '../../models/partnerTheme.model';
 
 export class ButtonSecondaryComponent implements OnInit,AfterViewInit {
   @Input() text?: any;
+  @Input()  active?:any;
   @Input() activeColor?: any;
     @Input() cupon?:any;
     @Input() clicked?:any;
+    @Output() emitPlanSelected: EventEmitter<string> = new EventEmitter<string>();
+
   partnerTheme: TemaSocio | undefined;
   seleccionado:boolean =false;
-  color:any="";
-  active:any="";
+  colorclickeado:any="";
+  colorNotClicked: any;
   constructor(
     private loadingService: LoadingService,
-    public dashBoardService:DashboardService
+    public dashBoardService:DashboardService,
+    private planList: PlanListComponent
 
   ) { }
   ngAfterViewInit(): void {
@@ -29,8 +34,8 @@ export class ButtonSecondaryComponent implements OnInit,AfterViewInit {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
         console.log("color",this.partnerTheme.color.secundario_rgba);
-        this.active=this.partnerTheme.color.primario_rgba;
-        this.color=this.partnerTheme.color.secundario_rgba;
+        this.colorclickeado=this.partnerTheme.color.secundario_rgba;
+        this.colorNotClicked="grey";
         this.loadingService.tryToStopLoading();
       }
     } );
@@ -39,6 +44,11 @@ export class ButtonSecondaryComponent implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     this.loadingService.tryToStopLoading();
+    this.planList.plansObs.subscribe(data=>{
+      console.log("la data posta", data);
+      console.log("tamo activo?", this.active);
+      
+    })
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;

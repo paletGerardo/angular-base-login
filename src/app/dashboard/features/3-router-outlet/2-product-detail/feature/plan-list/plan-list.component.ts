@@ -14,6 +14,8 @@ export class PlanListComponent implements OnInit {
   @Input() plans: Plan[] = [];
   @Output() emitPlanSelected: EventEmitter<string> = new EventEmitter<string>();
   cupon: boolean = false;
+  plansObs: BehaviorSubject<any> = new BehaviorSubject<any>('');
+
 
 
   partnerTheme: TemaSocio | undefined;
@@ -35,12 +37,16 @@ export class PlanListComponent implements OnInit {
         this.primaryColor = parnetTheme.boton.primario_rgba;
         this.secundaryColor = parnetTheme.boton.secundario_rgba;
         this.plans.forEach((plan, index) => {
+          console.log("los planes son",this.plans);
           if (index == 0) {
-            plan.activeColor = this.partnerTheme?.color.primario_rgba
+            plan.activeColor = this.partnerTheme?.color.primario_rgba;
+            plan.active = true;
           } else {
             plan.activeColor = 'white';
+
           }
         })
+        this.plansObs.next(this.plans)
         this.loadingService.tryToStopLoading();
 
       }
@@ -52,20 +58,28 @@ export class PlanListComponent implements OnInit {
 
   public emitSelected( selectedPlan: any, i: any ): void {
     this.selectedIndex = i;
+    this.plans.forEach((plan, index) => {
+      if (index == 0) {
+        plan.activeColor = this.partnerTheme?.color.primario_rgba;
+        plan.active = true;
+      } else {
+        plan.activeColor = 'white';
+
+      }
+    })
+    this.plansObs.next(this.plans)
     this.dashBoardService.cambiarColorChanged.next(true);
     console.log("plan", selectedPlan);
     this.plans.forEach(plan => {
       if (plan.codigo_plan === selectedPlan.codigo_plan) {
-        plan.activeColor = this.primaryColor;
+        plan.active = true;
       } else {
-        plan.activeColor = 'white';
+        plan.active = false;
       }
     })
+    this.plansObs.next(this.plans)
 
     this.emitPlanSelected.emit(selectedPlan);
-
-    this.emitPlanSelected.emit( selectedPlan );
-
   }
   setIndex(i: any) {
     this.selectedIndex = i;
@@ -76,8 +90,11 @@ export class PlanListComponent implements OnInit {
     document.addEventListener("DOMContentLoaded", function (event) {
       document.getElementById("opcion-0")!.classList.add('active');
     });
-    console.log('asdasdsadasdsadasd');
-    
+    console.log('asdasdsadasdsadasd'); 
+  }
+
+  prueba($event:any){
+    console.log("la prueba resulto??", $event)
   }
 
 }
