@@ -54,6 +54,8 @@ export class ProductCardComponent implements OnInit {
   prodItem: TemaProducto | undefined;
   notImage: boolean = false;
   bgcolor: string | undefined;
+  slogan: any;
+
   constructor(
     public dashBoardService: DashboardService,
     private loadingService: LoadingService,
@@ -75,7 +77,9 @@ export class ProductCardComponent implements OnInit {
     if (this.product?.id_producto !== undefined) {
       this.id = this.product?.id_producto;
       this.dashBoardService.getProductItemByIdProducto(this.id).subscribe((data: GlobalResponse) => {
-          this.prodItem = data.body;
+        console.log("data del producto",data);  
+        this.slogan=data.body.slogan;
+        this.prodItem = data.body;
           if ( this.prodItem && this.prodItem.url_imagen1 ) {
             this.url = this.prodItem.url_imagen1;
             this.notImage = false;

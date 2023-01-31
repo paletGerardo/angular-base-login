@@ -11,6 +11,7 @@
             <ng-container *ngIf="j == 0">
               <small>Desde</small><br>
               $ {{rango.precio}} <small> por mes</small><br>
+              <small>{{slogan}}</small><br>
               <app-button-primary
                 (clicked)="verDetalleProducto(product.id_producto.toString())"
                 [text]="'ver mas'"
