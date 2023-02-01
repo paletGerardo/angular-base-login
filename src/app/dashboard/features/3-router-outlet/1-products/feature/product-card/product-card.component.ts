@@ -55,6 +55,7 @@ export class ProductCardComponent implements OnInit {
   notImage: boolean = false;
   bgcolor: string | undefined;
   slogan: any;
+  primaryColor?: string;
 
   constructor(
     public dashBoardService: DashboardService,
@@ -68,9 +69,13 @@ export class ProductCardComponent implements OnInit {
     this.dashBoardService.partnerTheme$.subscribe(
       (partnerTheme: TemaSocio | undefined) => {
         this.partnerTheme = partnerTheme;
+        this.primaryColor = partnerTheme!.color.primario_rgba;
+
         this.loadingService.tryToStopLoading();
       }
     );
+
+ 
   }
 
   getProductItemByIdProducto(): void {

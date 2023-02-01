@@ -29,7 +29,7 @@ export class ButtonPrimaryComponent implements OnInit {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
         this.colorFondo = this.dashBoardService.temaSocio?.boton.fondo_rgba;
-      
+        this.color=this.partnerTheme.color.primario_rgba;;
         this.loadingService.tryToStopLoading();
       }
     } )
