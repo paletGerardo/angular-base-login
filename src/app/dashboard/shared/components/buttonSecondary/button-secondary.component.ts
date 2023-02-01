@@ -33,7 +33,6 @@ export class ButtonSecondaryComponent implements OnInit,AfterViewInit {
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;
-        console.log("color",this.partnerTheme.color.secundario_rgba);
         this.colorclickeado=this.partnerTheme.color.secundario_rgba;
         this.colorNotClicked="grey";
         this.loadingService.tryToStopLoading();
@@ -44,9 +43,7 @@ export class ButtonSecondaryComponent implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     this.loadingService.tryToStopLoading();
-    this.planList.plansObs.subscribe(data=>{
- 
-    })
+    
     this.dashBoardService.partnerTheme$.subscribe( ( parnetTheme: TemaSocio | undefined ) => {
       if ( parnetTheme ) {
         this.partnerTheme = parnetTheme;

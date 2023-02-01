@@ -112,6 +112,10 @@ const TYPE = {
           type: TYPE.PATTERN,
           message: 'solo se aceptan numeros o letras'
         },
+        {
+          type: TYPE.MINLENGTH,
+          message: 'El mínimo es de un caracter'
+        },
       ],
      
       number: [
@@ -147,6 +151,10 @@ const TYPE = {
         {
           type: TYPE.PATTERN,
           message: 'solo se aceptan numeros o letras'
+        },
+        {
+          type: TYPE.MINLENGTH,
+          message: 'El mínimo es de 3 letras'
         },
       ],
       province: [
@@ -289,7 +297,5 @@ const TYPE = {
        
       ],
 
-
-     
   };
   
