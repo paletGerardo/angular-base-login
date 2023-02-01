@@ -56,6 +56,7 @@ export class ProductCardComponent implements OnInit {
   bgcolor: string | undefined;
   slogan: any;
   primaryColor?: string;
+  secondaryColor: any;
 
   constructor(
     public dashBoardService: DashboardService,
@@ -70,7 +71,7 @@ export class ProductCardComponent implements OnInit {
       (partnerTheme: TemaSocio | undefined) => {
         this.partnerTheme = partnerTheme;
         this.primaryColor = partnerTheme!.color.primario_rgba;
-
+        this.secondaryColor=partnerTheme?.color.secundario_rgba
         this.loadingService.tryToStopLoading();
       }
     );
