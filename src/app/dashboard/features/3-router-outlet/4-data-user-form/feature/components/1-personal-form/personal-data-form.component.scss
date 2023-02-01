@@ -5,3 +5,9 @@
     background-color: rgb(114, 114, 114);
   }
 
+  @media (max-width: 600px) {
+    .boton {
+      flex-direction: column-reverse;
+      align-items: center;
+      text-align: center;    }
+  }
