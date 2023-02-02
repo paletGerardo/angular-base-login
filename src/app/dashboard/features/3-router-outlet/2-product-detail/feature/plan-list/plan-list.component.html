@@ -3,11 +3,12 @@
   <div class="flex justify-center grid grid-cols-3 gap-4 p-6">
     <ng-container *ngFor="let plan of plansObs | async ;let i=index">
       <app-button-secondary
-        class="flex justify-center btn btn-primary"
+        class="boton flex justify-center btn btn-primary"
         [text]="plan.codigo_plan"
         [cupon]="cupon"
         (click)="emitSelected(plan, i)"
-         [active]="plan.active">
+         [active]="plan.active"
+         style="max-width: 105px;">
       </app-button-secondary>
     </ng-container>
   </div>
