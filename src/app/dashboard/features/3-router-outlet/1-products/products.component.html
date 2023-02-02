@@ -4,7 +4,7 @@
     class="icono py-4" alt="">
   <h1 id="seguros">Seguros</h1>
   <div class="container mx-auto py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-    <ng-container *ngFor="let product of products$ | async">
+    <ng-container *ngFor="let product of dashboardService.products$ | async">
       <app-product-card *ngIf="product.id_negocio===1" class="centrar" [product]="product"></app-product-card>
     </ng-container>
   </div>
@@ -13,7 +13,7 @@
     class="icono py-4" alt="">
   <h1 id="asistencias">Asistencias</h1>
   <div class="container mx-auto py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-    <ng-container *ngFor="let product of products$ | async">
+    <ng-container *ngFor="let product of dashboardService.products$ | async">
       <app-product-card *ngIf="product.id_negocio===2" class="centrar" [product]="product"></app-product-card>
     </ng-container>
   </div>

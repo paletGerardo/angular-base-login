@@ -37,7 +37,11 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.products$ = this.dashboardService.getProducts();
+    this.dashboardService.getProducts();
+  }
+
+  getFilteredProducts(): void {
+    this.dashboardService.getFilteredProducts();
   }
 
   // todo get productos

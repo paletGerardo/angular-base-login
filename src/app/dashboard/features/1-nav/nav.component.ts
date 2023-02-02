@@ -114,9 +114,7 @@ export class NavComponent implements AfterViewInit, OnInit {
 
   filterProducts($event: KeyboardEvent) {
     if ($event.keyCode === 13) {
-      this.dashBoardService.filterProducts(this.textFilter).subscribe((res: GlobalResponse) => {
-        console.log(res.body);
-      });
+      this.dashBoardService.getIdProductsToFilter(this.textFilter);
     }
   }
 }

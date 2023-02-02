@@ -1,12 +1,13 @@
 <div class="container pt-8">
   <section class="container py-8" id="title">
-    <h1 class="py-4" [ngStyle]="{'color': primaryColor }">{{temaProducto.slogan}}</h1>
+    <h1 class="py-4" [ngStyle]="{'color': primaryColor }">{{temaProducto && temaProducto.slogan? temaProducto.slogan : ""}}</h1>
     <div class="product-detail-container">
       <div
         class="flex justify-center lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white">
         <div class="product-detail-content">
           <div class="content">
-            <img class="product-detail-img" [src]="temaProducto.url_imagen2" alt="img">
+            <h1>error::::: {{temaProducto && temaProducto.url_imagen2 ? temaProducto.url_imagen2 : "error en url2"}}</h1>
+            <img class="product-detail-img" [src]="temaProducto && temaProducto.url_imagen2 ? temaProducto.url_imagen2 : 'error en url2'" alt="img">
             <div class="product-detail-seccion-precio"
               [ngStyle]="{'background-image': 'url(' +temaProducto.url_imagen_precio + ')'}">
               <div class="precio font-bold">

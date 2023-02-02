@@ -101,7 +101,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.dashboardService.getProducts().pipe( debounceTime( 0 ) ).subscribe( ( data: any ) => {
+    this.dashboardService.products$.pipe( debounceTime( 0 ) ).subscribe( (data: any ) => {
       this.products$ = data;
       this.activateRoute.params.subscribe(
         ( res: any ) => {

@@ -5,7 +5,7 @@
     delay: 3000
   }"
   class="swiperCard">
-  <ng-template swiperSlide *ngFor="let product of products$ | async">
+  <ng-template swiperSlide *ngFor="let product of dashboardService.products$ | async">
     <app-product-card [product]="product"  (click)="productDetail(product)"></app-product-card>
   </ng-template>
 </swiper>
@@ -25,7 +25,7 @@
   [navigation]="true"
   class="mySwiper"
 >
-  <ng-template swiperSlide *ngFor="let product of products$ | async">
+  <ng-template swiperSlide *ngFor="let product of dashboardService.products$ | async">
     <app-product-card [product]="product"  (click)="productDetail(product)"></app-product-card>
   </ng-template>
 </swiper>

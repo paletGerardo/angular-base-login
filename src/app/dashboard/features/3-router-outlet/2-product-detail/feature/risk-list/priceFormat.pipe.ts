@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { NumberFormatPipe } from './NumberFormat.pipe';
+import {NumberFormatPipe} from "./numberFormat.pipe";
 
 @Pipe({
   name: 'priceFormat'

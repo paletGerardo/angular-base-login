@@ -58,8 +58,7 @@ export class ProductPurchaseComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.dashboardService.getProducts()
-      .pipe(
+    this.dashboardService.products$.pipe(
         debounceTime( 1000 )
       )
       .subscribe( ( data: any ) => {

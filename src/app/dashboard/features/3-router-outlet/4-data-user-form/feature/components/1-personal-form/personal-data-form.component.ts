@@ -68,12 +68,11 @@ export class PersonalDataFormComponent implements OnInit {
         }
         ngOnInit(): void {
 
-          
-        
+
+
             this.validadForm();
-          
-            this.dashboardService.getProducts()
-            .pipe(
+
+            this.dashboardService.products$.pipe(
               debounceTime( 1000 )
             )
             .subscribe( ( data: any ) => {
@@ -88,7 +87,7 @@ export class PersonalDataFormComponent implements OnInit {
               //@ts-ignore
               return this.personalDataForm.get( elem ).invalid && this.personalDataForm.get( elem ).hasError( validation.type ) && ( this.personalDataForm.get( elem ).dirty || this.personalDataForm.get( elem ).touched )
         }
-       
+
 
         getProduct( ) {
           this.activateRoute.params.subscribe(
@@ -109,7 +108,7 @@ export class PersonalDataFormComponent implements OnInit {
             next: data => {
               console.log('la dataaaaa',data);
               if(data){
-                
+
                 document.getElementById('formPrincipal')?.scrollIntoView();
               }
             },
@@ -133,7 +132,7 @@ export class PersonalDataFormComponent implements OnInit {
           this.sendPersonalData.emit(obj);
         }
         guardarFormBeneficiary(){
-        
+
           this.porcentaje=this.dashboardService.calcularPorcentajeParcial();
           let rta=this.sumaPorcentajes(this.porcentaje);
           console.log('rta',rta);
@@ -151,7 +150,7 @@ export class PersonalDataFormComponent implements OnInit {
                this.validadForm();
              }
           }
-       
+
       }
         guardarDatos(){
           console.log("tipooo",this.type);
@@ -163,8 +162,8 @@ export class PersonalDataFormComponent implements OnInit {
           }
             let seguro=this.producto?.producto_descripcion!;
             //valida_adicional,valida_beneficiario, valida_domicilio
-            if(this.seguroDomicilio.includes(seguro)){                                                                                                                
-             
+            if(this.seguroDomicilio.includes(seguro)){
+
               this.isAddresQuestion=true;
             }
             else{
@@ -172,7 +171,7 @@ export class PersonalDataFormComponent implements OnInit {
                 this.isBeneficiaryQuestion=true;
               }
             }
-          
+
             if(this.type==="BENEFICIARIO"){
                this.guardarFormBeneficiary();
             }else{
@@ -180,10 +179,10 @@ export class PersonalDataFormComponent implements OnInit {
               this.validadForm();
             }
             this.cargado=false;
-         
-        
+
+
         }
-        
+
 
         volver(){
           this.activateRoute.params.subscribe(
@@ -237,24 +236,24 @@ export class PersonalDataFormComponent implements OnInit {
 
 
 
-        
+
 
         validarMaximoPermitido(event:any):number{
           if(this.longitudMaxima!=10){
             this.resultado=0;
-           
+
               let longitud =this.codigo.toString().length;
-          
+
             let longitudTelefono=this.telefono.toString().length;
-  
+
             this.longitudMaxima=(longitud+longitudTelefono)+1;
             return  this.longitudMaxima;
           }
           else{
-             
+
                 this.resultado=(this.longitudMaxima-this.codigo.toString().length);
-             
-          
+
+
             console.log("resultado",this.resultado);
 
             this.personalDataForm.controls["number_phone"].addValidators([Validators.maxLength(this.resultado)]);
@@ -265,11 +264,11 @@ export class PersonalDataFormComponent implements OnInit {
             this.resultado=0;
             this.longitudMaxima=1;
             return this.resultado;
-            
+
           }
 
         }
-       
+
 
 
         displayCounter(e:Event){
