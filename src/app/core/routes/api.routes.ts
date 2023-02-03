@@ -4,14 +4,14 @@ export const ENDPOINTS_API = {
   LOGIN: `${ ENV.URL_BASE }/login`,
   LOGOUT: `${ ENV.URL_BASE }/auth/logout`,
   TEMA_SOCIO: `${ ENV.URL_BASE }/temas/obtener-temas/cuit`,
-  DETALLE_PRODUCTO:`${ ENV.URL_BASE }/productos/obtener-detalle-producto/id-producto`,
+  DETALLE_PRODUCTO:`${ ENV.URL_BASE }/productos/detalles/obtener-detalle`,
   PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`,
 
   //productos
   PRODUCTOS_FILTRO:`${ ENV.URL_BASE }/productos/busquedas/buscar-parametros`,
-  PRODUCTO:`${ ENV.URL_BASE }/productos/obtener-producto/id`,
-  PRODUCTS: `${ ENV.URL_BASE }/productos/obtener-productos-por-cuit`,
-  IMGAGEN_PRODUCTO_1:`${ ENV.URL_BASE }/productos/obtener-imagen/id-producto`,
+  PRODUCTO:`${ ENV.URL_BASE }/productos/producto/obtener-producto/id`,
+  PRODUCTS: `${ ENV.URL_BASE }/productos/producto/obtener-productos-por-cuit`,
+  IMGAGEN_PRODUCTO_1:`${ ENV.URL_BASE }/productos/producto/obtener-imagen/id-producto`,
   COBERTURAS:`${ ENV.URL_BASE }/productos/coberturas`,
 
 
