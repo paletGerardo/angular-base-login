@@ -10,7 +10,7 @@
           <ng-container *ngFor="let rango of plan.rangos; index as j">
             <ng-container *ngIf="j == 0">
               <small   style="font-weight:bolder">Desde</small><br>
-              <span  style="font-weight:bolder">$ {{rango.precio}}</span> <small  style="font-weight:bolder"> por mes</small><br>
+              <span  class="font" >$ {{rango.precio}}</span> <small  style="font-weight:bolder"> por mes</small><br>
               <small [ngStyle]="{'color': secondaryColor }" style=" font-style: italic;">{{slogan}}</small><br>
               <app-button-primary
                 (clicked)="verDetalleProducto(product.id_producto.toString())"
