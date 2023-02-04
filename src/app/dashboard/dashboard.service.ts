@@ -103,7 +103,7 @@ export class DashboardService {
     }
     const URL = ENDPOINTS_API.PRODUCTS + '/' + this.cuitSocio + '/productos';
     this.httpWrapperService.get<Producto[]>(URL).subscribe((products: Producto[]) => {
-        this.productos = products;
+      this.productos = products;
         this.products$.next(products);
       }
     );
@@ -288,3 +288,4 @@ export class DashboardService {
     );
   }
 }
+
