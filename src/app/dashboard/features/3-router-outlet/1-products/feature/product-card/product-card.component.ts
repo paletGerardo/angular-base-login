@@ -76,14 +76,13 @@ export class ProductCardComponent implements OnInit {
       }
     );
 
- 
+
   }
 
   getProductItemByIdProducto(): void {
     if (this.product?.id_producto !== undefined) {
       this.id = this.product?.id_producto;
       this.dashBoardService.getProductItemByIdProducto(this.id).subscribe((data: GlobalResponse) => {
-        console.log("data del producto",data);  
         this.slogan=data.body.slogan;
         this.prodItem = data.body;
           if ( this.prodItem && this.prodItem.url_imagen1 ) {

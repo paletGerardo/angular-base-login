@@ -118,7 +118,7 @@ export class DashboardService {
   }
 
   getProductItemByIdProducto(id: string): Observable<GlobalResponse> {
-    const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}/detalle-${id}`;
+    const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}/producto-${id}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
         this.productItems = response.body;
       }
