@@ -30,3 +30,12 @@
   color: rgb(255, 200, 0)!important;
   font-size: 19px!important;
 }
+@font-face {
+  font-family: 'fuenteSecundaria';
+  src: url('../../../../../../../assets/fonts/bnpp-sans-bold.woff2') format('truetype');
+}
+
+
+.font{
+  font-family:'fuenteSecundaria'!important ;
+}
