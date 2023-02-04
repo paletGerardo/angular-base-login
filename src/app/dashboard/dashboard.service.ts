@@ -289,7 +289,7 @@ export class DashboardService {
   }
 
   public getImagesCarrusel(): Observable<ImagenCarruselResponse[]> {
-    const URL = `${ENDPOINTS_API.IMAGENES_CARRUSEL}/cuit/${this.cuitSocio}/imagenes-carrusel`;
+    const URL = `${ENDPOINTS_API.IMAGENES_CARRUSEL}/cuit-socio/${this.cuitSocio}/imagenes-carrusel`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(map((response: GlobalResponse) => {
         return response.body;
       }
