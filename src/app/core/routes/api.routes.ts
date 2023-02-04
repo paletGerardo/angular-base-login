@@ -10,7 +10,7 @@ export const ENDPOINTS_API = {
   //productos
   PRODUCTOS_FILTRO:`${ ENV.URL_BASE }/productos/busquedas/buscar-parametros`,
   PRODUCTO:`${ ENV.URL_BASE }/productos/obtener-producto/id`,
-  PRODUCTS: `${ ENV.URL_BASE }/productos/obtener-productos-por-cuit`,
+  PRODUCTS: `${ ENV.URL_BASE }/productos/producto/obtener-productos-por-cuit`,
   IMGAGEN_PRODUCTO_1:`${ ENV.URL_BASE }/productos/obtener-imagen/id-producto`,
   COBERTURAS:`${ ENV.URL_BASE }/productos/coberturas`,
 

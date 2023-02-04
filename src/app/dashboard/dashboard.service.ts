@@ -103,7 +103,7 @@ export class DashboardService {
     }
     const URL = ENDPOINTS_API.PRODUCTS + '/' + this.cuitSocio + '/productos';
     this.httpWrapperService.get<Producto[]>(URL).subscribe((products: Producto[]) => {
-      this.productos = products;
+        this.productos = products;
         this.products$.next(products);
       }
     );
@@ -157,7 +157,7 @@ export class DashboardService {
 
 
   getProductDetailByIdProductoAndCuit(id: string): Observable<GlobalResponse> {
-    const URL = `${ENDPOINTS_API.DETALLE_PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}`;
+    const URL = `${ENDPOINTS_API.DETALLE_PRODUCTO}/cuit-socio/${this.cuitSocio}/id-producto/${id}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
         this.productDetail = response.body;
       }
@@ -288,4 +288,3 @@ export class DashboardService {
     );
   }
 }
-
