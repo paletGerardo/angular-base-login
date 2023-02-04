@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpWrapperService} from "../core/http/http-wrapper.service";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {LoadingService} from "../core/loading/loading.service";
-import {TemaSocio} from "./shared/models/partnerTheme.model";
+import { ImagenCarruselResponse, TemaSocio } from "./shared/models/partnerTheme.model";
 import {ENDPOINTS_API} from "../core/routes/api.routes";
 import {Producto} from "./shared/models/productsResponse.model";
-import {tap} from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import {GlobalResponse} from "../core/http/http.response.model";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PersonalDataForm} from './shared/models/InfoForm/personal-data-form.model';
@@ -286,6 +286,14 @@ export class DashboardService {
         this.getFilteredProducts(response.body);
       }
     );
+  }
+
+  public getImagesCarrusel(): Observable<ImagenCarruselResponse[]> {
+    const URL = `${ENDPOINTS_API.IMAGENES_CARRUSEL}/cuit/${this.cuitSocio}/imagenes-carrusel`;
+    return this.httpWrapperService.get<GlobalResponse>(URL).pipe(map((response: GlobalResponse) => {
+        return response.body;
+      }
+    ));
   }
 }
 

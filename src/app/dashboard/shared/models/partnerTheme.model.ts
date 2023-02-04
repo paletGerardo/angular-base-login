@@ -48,7 +48,6 @@ export interface TemaSocio {
   color: Color,
   barra_navegacion: Navbar,
   boton: Boton;
-  imagenes_carrusel: ImagenCarrusel[]
 }
 
 export interface Color {
@@ -88,12 +87,12 @@ export interface Boton {
   fondo_rgba_light: string,
 }
 
-export interface ImagenCarrusel {
-  id: string,
-  cuitSocio: string,
-  nombre: string,
+export interface ImagenCarruselResponse {
+  id: number,
+  cuit_socio: string,
   url: string,
-  estado: string,
-  createdAt: string,
-  updatedAt: string,
+  "imagen": null,
+  "tipo": null,
+  "active": boolean,
+  "prioridad": number
 }

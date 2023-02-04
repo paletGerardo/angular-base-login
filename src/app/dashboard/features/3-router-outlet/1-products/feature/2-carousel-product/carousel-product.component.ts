@@ -1,12 +1,9 @@
 import { Component, OnInit, ViewEncapsulation,ViewChild } from '@angular/core';
-import { DashboardService } from "../../dashboard.service";
-import { LoadingService } from "../../../core/loading/loading.service";
-import { SwiperComponent } from "swiper/angular";
+import { DashboardService } from "../../../../../dashboard.service";
+import { LoadingService } from "../../../../../../core/loading/loading.service";
 
-// import Swiper core and required modules
 import SwiperCore, {Autoplay, EffectCards, Navigation} from "swiper";
-import { Observable } from "rxjs";
-import { Producto } from "../../shared/models/productsResponse.model";
+import { Producto } from "../../../../../shared/models/productsResponse.model";
 import { Router } from "@angular/router";
 
 // install Swiper modules
@@ -47,7 +44,6 @@ export class CarouselProductComponent implements OnInit {
   }
 
   productDetail(product:Producto){
-    //console.log(product);
     this.getProductItemByIdProducto(product);
 
     this._router.navigate(['dashboard/product-detail/'+product.id_producto]);

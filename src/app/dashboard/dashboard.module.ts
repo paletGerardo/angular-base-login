@@ -7,7 +7,7 @@ import { MaterialModule } from "../core/material/material.module";
 import { ProductsComponent } from "./features/3-router-outlet/1-products/products.component";
 import { DashboardComponent } from "./dashboard.component";
 import { CarouselComponent } from './features/2-carousel/caurosel.component';
-import { ProductCardComponent } from './features/3-router-outlet/1-products/feature/product-card/product-card.component';
+import { ProductCardComponent } from './features/3-router-outlet/1-products/feature/1-product-card/product-card.component';
 import { ContactComponent } from './features/4-footer/features/contact/contact.component';
 import { ButtonPrimaryComponent } from './shared/components/buttonPrimary/button-primary.component';
 import { ButtonSecondaryComponent } from './shared/components/buttonSecondary/button-secondary.component';
@@ -22,7 +22,7 @@ import { RiskListComponent } from './features/3-router-outlet/2-product-detail/f
 import { TitleComponent } from "./shared/components/title/title.component";
 import { DetailComponent } from './features/3-router-outlet/2-product-detail/feature/detail/detail.component';
 import { SwiperModule } from "swiper/angular";
-import { CarouselProductComponent } from './features/2-b-carousel-product/carousel-product.component';
+import { CarouselProductComponent } from './features/3-router-outlet/1-products/feature/2-carousel-product/carousel-product.component';
 import { PopUpRiskComponent } from './shared/components/popUpRisks/popUp-risk.component';
 import { ButtonSeeMoreComponent } from './shared/components/buttonSeeMore/button-seeMore.component';
 import { ProductPurchaseComponent } from './features/3-router-outlet/3-product-purchase/product-purchase.component';

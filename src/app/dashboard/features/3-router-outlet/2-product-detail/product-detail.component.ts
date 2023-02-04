@@ -14,7 +14,7 @@ import {
   ItemsProducto,
   DetalleProducto,
   Cobertura
-} from "../1-products/feature/product-card/product-card.component";
+} from "../1-products/feature/1-product-card/product-card.component";
 import {GlobalResponse} from "../../../../core/http/http.response.model";
 
 @Component( {
