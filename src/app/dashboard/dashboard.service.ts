@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpWrapperService} from "../core/http/http-wrapper.service";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {LoadingService} from "../core/loading/loading.service";
-import { ImagenCarruselResponse, TemaSocio } from "./shared/models/partnerTheme.model";
+import { ImagenCarruselResponse, Navbar, TemaSocio } from "./shared/models/partnerTheme.model";
 import {ENDPOINTS_API} from "../core/routes/api.routes";
 import {Producto} from "./shared/models/productsResponse.model";
 import { map, tap } from "rxjs/operators";
@@ -290,6 +290,14 @@ export class DashboardService {
 
   public getImagesCarrusel(): Observable<ImagenCarruselResponse[]> {
     const URL = `${ENDPOINTS_API.IMAGENES_CARRUSEL}/cuit-socio/${this.cuitSocio}/imagenes-carrusel`;
+    return this.httpWrapperService.get<GlobalResponse>(URL).pipe(map((response: GlobalResponse) => {
+        return response.body;
+      }
+    ));
+  }
+
+  public getBarraNavegacion(): Observable<Navbar> {
+    const URL = `${ENDPOINTS_API.BARRA_NAVEGACION}/cuit-socio/${this.cuitSocio}/barra-navegacion`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(map((response: GlobalResponse) => {
         return response.body;
       }

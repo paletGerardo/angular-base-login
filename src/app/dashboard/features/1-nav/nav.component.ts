@@ -2,16 +2,15 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  HostListener, isDevMode,
+  HostListener,
   OnInit,
 } from '@angular/core';
-import {TemaSocio} from '../../shared/models/partnerTheme.model';
+import { Navbar, TemaSocio } from '../../shared/models/partnerTheme.model';
 import { DashboardService } from '../../dashboard.service';
 import { LoadingService } from '../../../core/loading/loading.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import {GlobalResponse} from "../../../core/http/http.response.model";
 
 @Component({
   selector: 'app-nav',
@@ -29,6 +28,7 @@ export class NavComponent implements AfterViewInit, OnInit {
   public primaryColor: string = 'grey';
   public secundaryColor: string = '';
   public bgColor: string | undefined;
+  public urlLogo: string | undefined;
   home: boolean=false;
   clicked: boolean=false;
   private _unsubscribeAll: Subject<any>;
@@ -54,19 +54,12 @@ export class NavComponent implements AfterViewInit, OnInit {
     this.home=true;
     this.showMenuButton = false;
     this.loadingService.tryToStartLoading();
-    this.dashBoardService.partnerTheme$.subscribe(
-      (partnerThemes: TemaSocio | undefined) => {
-        if (partnerThemes && partnerThemes.barra_navegacion.color_primario_rgba) {
-          this.partnerTheme = partnerThemes;
-          this.primaryColor = partnerThemes.barra_navegacion.color_primario_rgba;
-          this.secundaryColor = partnerThemes.barra_navegacion.color_primario_rgba_light;
+    this.dashBoardService.getBarraNavegacion().subscribe((nav: Navbar) => {
+        if (nav) {
+          this.primaryColor = nav.color_primario_rgba;
+          this.secundaryColor = nav.color_primario_rgba_light;
           this.bgColor = this.primaryColor;
-          this.loadingService.tryToStopLoading();
-        } else if (partnerThemes) {
-          this.partnerTheme = partnerThemes;
-          this.primaryColor = partnerThemes.color.primario_rgba;
-          this.secundaryColor = partnerThemes.color.primario_rgba_light;
-          this.bgColor = this.primaryColor;
+          this.urlLogo = nav.url_logo;
           this.loadingService.tryToStopLoading();
         }
       }

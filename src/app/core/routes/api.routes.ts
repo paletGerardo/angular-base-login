@@ -19,6 +19,7 @@ export const ENDPOINTS_API = {
   DESCARGAR_COBERTURA:`${ ENV.URL_BASE }/descargas/cobertura/cuit`,
   DESCARGAR_CONDICIONES:`${ ENV.URL_BASE }/descargas/condiciones/cuit`,
   IMAGENES_CARRUSEL: `${ ENV.URL_BASE }/temas/carrusel/obtener-carrusel`,
+  BARRA_NAVEGACION: `${ ENV.URL_BASE }/temas/barra-navegacion/obtener-barra-navegacion`,
 
 
 }

@@ -37,9 +37,9 @@
           </button>
         </div>
         <div class="flex md:flex-shrink-0 items-center w-full justify-center md:justify-start"
-             *ngIf="partnerTheme && partnerTheme.url_logo">
+             *ngIf="urlLogo">
           <!--          <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">-->
-          <img *ngIf="!clicked" class="iconoWeb hidden h-8 w-auto md:block" [src]="partnerTheme.url_logo"
+          <img *ngIf="!clicked" class="iconoWeb hidden h-8 w-auto md:block" [src]="urlLogo"
                alt="Your Company">
           <input (keyup)="filterProducts($event)" class="inputSearch flex justify-center sm:ml-4 h-8 lg:w-96 sm:w-42 rounded" type="text">
 
@@ -75,8 +75,8 @@
   <!-- Mobile menu, show/hide based on menu state. -->
   <div [ngClass]="{'hidden-app': !showMenuButton}" id="mobile-menu" class="z-50">
     <div class="mx-auto container px-2 sm:px-6 lg:px-8">
-      <div class="w-auto flex items-center py-2" *ngIf="partnerTheme && partnerTheme.url_logo">
-        <img class="iconoMobile md:hidden h-8 w-auto" [src]="partnerTheme.url_logo" alt="Your Company">
+      <div class="w-auto flex items-center py-2" *ngIf="urlLogo">
+        <img class="iconoMobile md:hidden h-8 w-auto" [src]="urlLogo" alt="Your Company">
       </div>
       <a routerLink="/dashboard/home"
          class="animate__animated animate__fadeInRight animate__delay-1s text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
