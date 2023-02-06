@@ -6,8 +6,8 @@
         class="flex justify-center lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white">
         <div class="product-detail-content">
           <div class="content">
-            <h1>error::::: {{temaProducto && temaProducto.url_imagen2 ? temaProducto.url_imagen2 : "error en url2"}}</h1>
-            <img class="product-detail-img" [src]="temaProducto && temaProducto.url_imagen2 ? temaProducto.url_imagen2 : 'error en url2'" alt="img">
+            <h1> {{temaProducto ? temaProducto : "error en url2"}}</h1>
+            <img class="product-detail-img" [src]="temaProducto  ? temaProducto: 'http://200.114.219.199/service/landing/productos/producto/obtener-imagen/id-producto/1077/cuit/30687310434/numero-imagen/1'" alt="img">
             <div class="product-detail-seccion-precio"
               [ngStyle]="{'background-image': 'url(' +temaProducto.url_imagen_precio + ')'}">
               <div class="precio font-bold">

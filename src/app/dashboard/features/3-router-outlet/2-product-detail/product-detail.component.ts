@@ -151,7 +151,7 @@ export class ProductDetailComponent implements OnInit {
 
   getProductItemByIdProducto(): void {
     this.dashboardService.getProductItemByIdProducto( this.idProducto ).subscribe( (data: GlobalResponse ) => {
-      this.temaProducto = data.body;
+      this.temaProducto = data.body.url_imagen;
     } );
   }
 
