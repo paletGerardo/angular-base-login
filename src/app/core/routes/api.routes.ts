@@ -4,7 +4,7 @@ export const ENDPOINTS_API = {
   LOGIN: `${ ENV.URL_BASE }/login`,
   LOGOUT: `${ ENV.URL_BASE }/auth/logout`,
   TEMA_SOCIO: `${ ENV.URL_BASE }/temas/obtener-temas/cuit-socio`,
-  DETALLE_PRODUCTO:`${ ENV.URL_BASE }/productos/detalles/obtener-detalle`,
+  DETALLE_PRODUCTO:`${ ENV.URL_BASE }/detalles/detalle/obtener-detalle`,
   PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`,
 
   //productos
