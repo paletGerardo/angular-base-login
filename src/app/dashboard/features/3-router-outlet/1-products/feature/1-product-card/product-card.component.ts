@@ -21,7 +21,7 @@ export interface TemaProducto extends BaseProducto {
   titulo: string,
   slogan: string,
   precio_base: string,
-  url_imagen1: string,
+  url_imagen: string,
   url_imagen2: string,
   url_imagen_precio: string,
   coberturas: Cobertura[];
@@ -85,8 +85,8 @@ export class ProductCardComponent implements OnInit {
       this.dashBoardService.getProductItemByIdProducto(this.id).subscribe((data: GlobalResponse) => {
         this.slogan=data.body.slogan;
         this.prodItem = data.body;
-          if ( this.prodItem && this.prodItem.url_imagen1 ) {
-            this.url = this.prodItem.url_imagen1;
+          if ( this.prodItem && this.prodItem.url_imagen ) {
+            this.url = this.prodItem.url_imagen;
             this.notImage = false;
           } else {
             this.notImage = false;

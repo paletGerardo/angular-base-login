@@ -27,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
   url: string = "";
   producto: Producto | undefined;
   temaProducto: TemaProducto | undefined;
+  itemsProducto: ItemsProducto| undefined;
   coberturas: Cobertura[] = [];
   detalleProducto: DetalleProducto | undefined;
   itemsArray: any = [];
@@ -111,6 +112,7 @@ export class ProductDetailComponent implements OnInit {
       this.getCoberturasByCuitSocioAndIdProducto(this.idProducto);
       this.getProductItemByIdProducto();
       this.getProductDetailByIdProductoAndCuit();
+      this.getProductItemsCoberturaByIdProducto();
     } );
 
 
@@ -151,9 +153,19 @@ export class ProductDetailComponent implements OnInit {
 
   getProductItemByIdProducto(): void {
     this.dashboardService.getProductItemByIdProducto( this.idProducto ).subscribe( (data: GlobalResponse ) => {
-      this.temaProducto = data.body.url_imagen;
+      this.temaProducto = data.body;
     } );
   }
+
+
+  getProductItemsCoberturaByIdProducto(): void {
+    this.dashboardService.getProductItemsCoberturaByIdProducto( this.idProducto ).subscribe( (data: GlobalResponse ) => {
+      console.log("los items del proudcto son", data.body);
+      this.itemsProducto = data.body;
+    } );
+  }
+
+
 
   getCoberturasByCuitSocioAndIdProducto(idProducto: string): void {
     this.dashboardService.getCoberturasByCuitSocioAndIdProducto( idProducto ).subscribe( (data: GlobalResponse ) => {
@@ -163,7 +175,9 @@ export class ProductDetailComponent implements OnInit {
 
   getProductDetailByIdProductoAndCuit() {
     this.dashboardService.getProductDetailByIdProductoAndCuit( this.idProducto ).subscribe( (data: GlobalResponse ) => {
+      console.log("detalle del producto",data);
       this.detalleProducto = data.body;
+
     } );
   }
 
