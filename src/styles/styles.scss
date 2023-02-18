@@ -11,8 +11,28 @@ $font-primary: mat.define-typography-config(
 @include mat.core($font-primary);
 * {
   font-family: 'font-primary' !important;
+  
 }
 
+
+
+@media only screen and (max-width: 767px) {
+  html {
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  html {
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
 .mat-icon {
   -webkit-user-select: none;
   user-select: none;

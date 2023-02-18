@@ -5,6 +5,7 @@ export const ENDPOINTS_API = {
   LOGOUT: `${ ENV.URL_BASE }/auth/logout`,
   TEMA_SOCIO: `${ ENV.URL_BASE }/temas/obtener-temas/cuit-socio`,
   DETALLE_PRODUCTO:`${ ENV.URL_BASE }/detalles/detalle/obtener-detalle`,
+  ITEMS_PRODUCTO:`${ ENV.URL_BASE }/items/obtener-items/`,
   PRODUCTIMAGE:`${ ENV.URL_BASE }/products/getImageByProductId/`,
 
   //productos

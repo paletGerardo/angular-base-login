@@ -55,6 +55,7 @@ export class DashboardService {
   private productsFiltered: Producto[] = [];
   private productDetail: Producto | undefined;
   private productItems: Producto | undefined;
+  private productItemsCoberturas:  Producto | undefined;
 
   constructor(
     private httpWrapperService: HttpWrapperService,
@@ -121,6 +122,13 @@ export class DashboardService {
     const URL = `${ENDPOINTS_API.PRODUCTO}/${id}/cuit-socio/${this.cuitSocio}/producto-${id}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
         this.productItems = response.body;
+      }
+    ));
+  }
+  getProductItemsCoberturaByIdProducto(id: string): Observable<GlobalResponse> {
+    const URL = `${ENDPOINTS_API.ITEMS_PRODUCTO}/cuit-socio/${this.cuitSocio}/id-producto/${id}`;
+    return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
+        this.productItemsCoberturas = response.body;
       }
     ));
   }
