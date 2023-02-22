@@ -110,4 +110,9 @@ export class NavComponent implements AfterViewInit, OnInit {
       this.dashBoardService.getIdProductsToFilter(this.textFilter);
     }
   }
+
+  onInputChange(event: any) {
+    // ngModel no funciona, corregir error.
+    this.textFilter = event.target.value;
+  }
 }
