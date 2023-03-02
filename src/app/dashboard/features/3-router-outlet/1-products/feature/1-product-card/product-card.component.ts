@@ -54,7 +54,7 @@ export class ProductCardComponent implements OnInit {
   prodItem: TemaProducto | undefined;
   notImage: boolean = false;
   bgcolor: string | undefined;
-  slogan: any;
+  slogan: string | undefined;
   primaryColor?: string;
   secondaryColor: any;
 
@@ -83,7 +83,7 @@ export class ProductCardComponent implements OnInit {
     if (this.product?.id_producto !== undefined) {
       this.id = this.product?.id_producto;
       this.dashBoardService.getProductItemByIdProducto(this.id).subscribe((data: GlobalResponse) => {
-        this.slogan=data.body.slogan;
+        this.slogan=data.body && data.body.slogan ? data.body.slogan : 'Sin datos.';
         this.prodItem = data.body;
           if ( this.prodItem && this.prodItem.url_imagen ) {
             this.url = this.prodItem.url_imagen;

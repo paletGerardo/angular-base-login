@@ -1,5 +1,5 @@
 <div class="container pt-8" >
-  <section class="container py-8" id="title">
+  <section class="container py-8" id="title" *ngIf="temaProducto">
     <h1 class="py-4" [ngStyle]="{'color': primaryColor }">{{temaProducto && temaProducto.slogan? temaProducto.slogan : ""}}</h1>
     <div class="product-detail-container">
       <div
@@ -83,7 +83,7 @@
         </svg>
       </div>
     </div>
-    <div id="detalles" *ngIf="!mostrarmeLasDescargas">
+    <div id="detalles" *ngIf="!mostrarmeLasDescargas && detalleProducto">
       <h1 class="title py-4 text-white">{{detalleProducto.titulo}}</h1>
       <p class="text-white">{{detalleProducto.descripcion}}</p>
 

@@ -1,9 +1,11 @@
-<div class="button-container" [ngStyle]="{'background-color':validarColorFondo()}">
-  <div class="title" [ngStyle]="{'color': color }" *ngIf="title"> {{title}}</div>
-  <button class="button"
-    [ngStyle]="{'background-color':dashBoardService.temaSocio.boton.primario_rgba}" (click)="onClick()">
-    {{text}}
-  </button>
-</div>
+<ng-container *ngIf="partnerTheme">
+  <div class="button-container" [ngStyle]="{'background-color':validarColorFondo()}">
+    <div class="title" [ngStyle]="{'color': color }" *ngIf="title"> {{title}}</div>
+    <button class="button"
+            [ngStyle]="{'background-color':dashBoardService.temaSocio.boton.primario_rgba}" (click)="onClick()">
+      {{text}}
+    </button>
+  </div>
+</ng-container>
 
 
