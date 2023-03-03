@@ -16,6 +16,7 @@ export class CardItemsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('entro en card.items')
   }
 
 }

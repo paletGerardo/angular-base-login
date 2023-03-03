@@ -37,7 +37,6 @@ export class PlanListComponent implements OnInit {
         this.primaryColor = parnetTheme.boton.primario_rgba;
         this.secundaryColor = parnetTheme.boton.secundario_rgba;
         this.plans.forEach((plan, index) => {
-          console.log("los planes son",this.plans);
           if (index == 0) {
             plan.activeColor = this.partnerTheme?.color.primario_rgba;
             plan.active = true;
@@ -69,7 +68,6 @@ export class PlanListComponent implements OnInit {
     })
     this.plansObs.next(this.plans)
     this.dashBoardService.cambiarColorChanged.next(true);
-    console.log("plan", selectedPlan);
     this.plans.forEach(plan => {
       if (plan.codigo_plan === selectedPlan.codigo_plan) {
         plan.active = true;
@@ -90,11 +88,6 @@ export class PlanListComponent implements OnInit {
     document.addEventListener("DOMContentLoaded", function (event) {
       document.getElementById("opcion-0")!.classList.add('active');
     });
-    console.log('asdasdsadasdsadasd'); 
-  }
-
-  prueba($event:any){
-    console.log("la prueba resulto??", $event)
   }
 
 }

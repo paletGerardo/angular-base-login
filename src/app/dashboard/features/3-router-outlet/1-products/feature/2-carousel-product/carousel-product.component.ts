@@ -40,7 +40,7 @@ export class CarouselProductComponent implements OnInit {
 
   }
   getProducts(): void {
-    this.dashboardService.getProducts();
+    this.dashboardService.getProductsObs();
   }
 
   productDetail(product:Producto){

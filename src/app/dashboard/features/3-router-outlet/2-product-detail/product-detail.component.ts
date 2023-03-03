@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {Plan, Producto} from "../../../shared/models/productsResponse.model";
-import {DashboardService} from "../../../dashboard.service";
+import {Cobertura, DashboardService, Items} from "../../../dashboard.service";
 import {LoadingService} from 'src/app/core/loading/loading.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {debounceTime, map} from 'rxjs/operators';
@@ -13,7 +13,6 @@ import {
   TemaProducto,
   ItemsProducto,
   DetalleProducto,
-  Cobertura
 } from "../1-products/feature/1-product-card/product-card.component";
 import {GlobalResponse} from "../../../../core/http/http.response.model";
 
@@ -27,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
   url: string = "";
   producto: Producto | undefined;
   temaProducto: TemaProducto | undefined;
-  itemsProducto: ItemsProducto | undefined;
+  itemsProducto:Items[] = [];
   coberturas: Cobertura[] = [];
   detalleProducto: DetalleProducto | undefined;
   itemsArray: any = [];
@@ -44,9 +43,8 @@ export class ProductDetailComponent implements OnInit {
 
   stepperOrientation: Observable<StepperOrientation>;
   planCopia: Plan | undefined;
-  public products$: Observable<Producto[] | null> = new Observable<Producto[] | null>();
+  public productList: Producto[] = [];
 
-  //public products$: Producto[]=[];
   precio: any;
   titulo: any;
   risks: any = [];
@@ -97,30 +95,29 @@ export class ProductDetailComponent implements OnInit {
     );
   }
 
-  scrollDown(id: any) {
-    document.getElementById(id)!.scrollIntoView();
+  scrollDown(id: string) {
+    if (id && document.getElementById(id)) {
+      document.getElementById(id)?.scrollIntoView();
+    }
   }
 
-  getProducts(): void {
-    this.dashboardService.products$.pipe(debounceTime(0)).subscribe((data: any) => {
-      this.products$ = data;
-      this.activateRoute.params.subscribe(
-        (res: any) => {
-          this.idProducto = res.id;
-        });
-      this.getProduct(this.idProducto);
-      this.getCoberturasByCuitSocioAndIdProducto(this.idProducto);
-      this.getProductItemByIdProducto();
-      this.getProductDetailByIdProductoAndCuit();
-      this.getProductItemsCoberturaByIdProducto();
-    });
-
-
+  async getProducts(): Promise<void> {
+    this.productList = await this.dashboardService.getProducts();
+    this.activateRoute.params.subscribe(
+      (res: any) => {
+        this.idProducto = res.id;
+      });
+    this.coberturas = await this.dashboardService.getItemsDeCoberturasByCuitSocioAndIdProductoAwait(this.idProducto);
+    this.getProduct(this.idProducto);
+    this.getCoberturasByCuitSocioAndIdProducto(this.idProducto);
+    this.getProductItemByIdProducto();
+    this.getProductDetailByIdProductoAndCuit();
+    this.getProductItemsCoberturaByIdProducto();
   }
 
   getProduct(id: string) {
-    if (this.products$) {
-      this.products$.forEach((produc: any) => {
+    if (this.productList.length) {
+      this.productList.forEach((produc: any) => {
         if (produc.id_producto == id) {
           this.producto = produc;
           if (this.producto) {
@@ -160,23 +157,20 @@ export class ProductDetailComponent implements OnInit {
   }
 
 
-  getProductItemsCoberturaByIdProducto(): void {
-    this.dashboardService.getProductItemsCoberturaByIdProducto(this.idProducto).subscribe((data: GlobalResponse) => {
-      console.log("los items del proudcto son", data.body);
-      this.itemsProducto = data.body;
-    });
+  async getProductItemsCoberturaByIdProducto(): Promise<void> {
+    let res:any = await this.dashboardService.getProductItemsCoberturaByIdProducto(this.idProducto);
+    this.itemsProducto = res.body;
   }
 
 
   getCoberturasByCuitSocioAndIdProducto(idProducto: string): void {
-    this.dashboardService.getCoberturasByCuitSocioAndIdProducto(idProducto).subscribe((data: GlobalResponse) => {
+    this.dashboardService.getItemsDeCoberturasByCuitSocioAndIdProducto(idProducto).subscribe((data: GlobalResponse) => {
       this.coberturas = data.body;
     });
   }
 
   getProductDetailByIdProductoAndCuit() {
     this.dashboardService.getProductDetailByIdProductoAndCuit(this.idProducto).subscribe((data: GlobalResponse) => {
-      console.log("detalle del producto", data);
       this.detalleProducto = data.body;
 
     });
@@ -184,7 +178,6 @@ export class ProductDetailComponent implements OnInit {
 
   getCoberturas() {
     this.dashboardService.getCoberturas(this.idProducto).subscribe(res => {
-      console.log(res);
       const blob = new Blob([res], {
         type: 'data:application/pdf',
       });
@@ -204,7 +197,6 @@ export class ProductDetailComponent implements OnInit {
 
   getCondiciones() {
     this.dashboardService.getCondiciones(this.idProducto).subscribe(res => {
-      console.log(res);
       const blob = new Blob([res], {
         type: 'data:application/pdf',
       });
@@ -223,21 +215,19 @@ export class ProductDetailComponent implements OnInit {
   }
 
   showRisk(plan: any) {
-    console.log("plan", plan);
-    this.plan = plan.codigo_plan;
-    this.precio = plan.rangos[0].precio;
-    this.risks = plan.rangos[0].riesgos;
-    console.log(this.risks.length);
-    console.log(this.risks);
-    if (this.risks.length > 1) {
-      this.riskCopia = this.risks.slice(0, 2);
-    } else {
-      this.riskCopia = plan.rangos[0].riesgos;
+    if (plan) {
+      this.plan = plan.codigo_plan;
+      this.precio = plan.rangos[0].precio;
+      this.risks = plan.rangos[0].riesgos;
+      if (this.risks.length > 1) {
+        this.riskCopia = this.risks.slice(0, 2);
+      } else {
+        this.riskCopia = plan.rangos[0].riesgos;
+      }
     }
   }
 
   comprarProducto() {
-    console.log("compra del producto", this.producto);
     this._router.navigate(['dashboard/product-purchase/' + this.producto?.id_producto]);
     this._router.navigate(['dashboard/data-user/' + this.producto?.id_producto]);
 

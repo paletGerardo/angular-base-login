@@ -24,7 +24,6 @@ export interface TemaProducto extends BaseProducto {
   url_imagen: string,
   url_imagen2: string,
   url_imagen_precio: string,
-  coberturas: Cobertura[];
 
 }
 

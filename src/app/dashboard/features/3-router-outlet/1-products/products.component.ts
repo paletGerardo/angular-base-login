@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.dashboardService.getProducts();
+    this.dashboardService.getProductsObs();
   }
 
   getFilteredProducts(): void {

@@ -1,47 +1,50 @@
-<div class="container pt-8" >
-  <section class="container py-8" id="title" *ngIf="temaProducto">
-    <h1 class="py-4" [ngStyle]="{'color': primaryColor }">{{temaProducto && temaProducto.slogan? temaProducto.slogan : ""}}</h1>
-    <div class="product-detail-container">
-      <div
-        class="flex justify-center lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white">
-        <div class="product-detail-content">
-          <div class="content">
-            <h1> {{temaProducto.titulo}}</h1>
-            <img class="product-detail-img" [src]="temaProducto.url_imagen" alt="img">
-            <div class="product-detail-seccion-precio"
-              [ngStyle]="{'background-image': 'url(' +temaProducto.url_imagen_precio + ')'}">
-              <div class="precio font-bold">
-                <small class="ml-4 small-desde">plan {{plan}}, desde</small>
-                <p>$ {{precio}}</p>
-                <small class="ml-4 small-mes">por mes</small>
+<div class="container pt-8">
+  <section class="container py-8" id="title">
+    <ng-container *ngIf="temaProducto">
+      <h1 class="py-4"
+          [ngStyle]="{'color': primaryColor }">{{temaProducto && temaProducto.slogan ? temaProducto.slogan : ""}}</h1>
+      <div class="product-detail-container">
+        <div
+          class="flex justify-center lg:col-span-2 w-full bg-cover rounded animate__animated animate__fadeInLeft bg-white">
+          <div class="product-detail-content">
+            <div class="content">
+              <h1> {{temaProducto.titulo}}</h1>
+              <img class="product-detail-img" [src]="temaProducto.url_imagen" alt="img">
+              <div class="product-detail-seccion-precio"
+                   [ngStyle]="{'background-image': 'url(' +temaProducto.url_imagen_precio + ')'}">
+                <div class="precio font-bold">
+                  <small class="ml-4 small-desde">plan {{plan}}, desde</small>
+                  <p>$ {{precio}}</p>
+                  <small class="ml-4 small-mes">por mes</small>
+                </div>
               </div>
             </div>
-          </div>
-          <app-button-primary [text]="'Contratarlo ahora'" [mostrarColorFondo]="true"
-            (click)="comprarProducto()"></app-button-primary>
-          <h1 [ngStyle]="{'color': primaryColor }">¿Qué cubre el seguro?</h1>
-          <ng-container *ngFor="let cobertura of temaProducto.coberturas">
-            <app-card-items [icon]="cobertura.url_icono" [body]="cobertura.descripcion"
-              [textColor]="dashboardService.temaSocio.boton.primario_rgba" [MODEL]="'MODEL-2'"
-              [bgColor]="dashboardService.temaSocio.boton.primario_rgba"></app-card-items>
-          </ng-container>
-          <app-plan-list *ngIf="primaryColor" [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
-          <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
-          <div >
-            <div style="    display: flex;
+            <app-button-primary [text]="'Contratarlo ahora'" [mostrarColorFondo]="true"
+                                (click)="comprarProducto()"></app-button-primary>
+            <h1 [ngStyle]="{'color': primaryColor }">¿Qué cubre el seguro?</h1>
+            <ng-container *ngFor="let cobertura of coberturas">
+              <app-card-items [icon]="cobertura.url_icono" [body]="cobertura.descripcion"
+                              [textColor]="dashboardService.temaSocio.boton.primario_rgba" [MODEL]="'MODEL-2'"
+                              [bgColor]="dashboardService.temaSocio.boton.primario_rgba"></app-card-items>
+
+            </ng-container>
+            <app-plan-list *ngIf="primaryColor" [plans]="plans" (emitPlanSelected)="showRisk($event)"></app-plan-list>
+            <app-risk-list [riskCopia]="riskCopia" [risks]="risks"></app-risk-list>
+            <div>
+              <div style="    display: flex;
             position: absolute;
             left: 50%;
             margin-top: 2vh;
             transform: translate(-50%, -50%);">
-              <p class="ml-1 small-desde"></p>
+                <p class="ml-1 small-desde"></p>
+              </div>
+              <app-button-primary [text]="'Comprar'" [title]="getTextInside()" [mostrarColorFondo]="true"
+                                  (click)="comprarProducto()"></app-button-primary>
             </div>
-            <app-button-primary [text]="'Comprar'" [title] = "getTextInside()" [mostrarColorFondo]="true"
-              (click)="comprarProducto()"></app-button-primary>
           </div>
-
         </div>
       </div>
-    </div>
+    </ng-container>
   </section>
 </div>
 
@@ -53,14 +56,17 @@
          [ngStyle]="{'border-color': getBorderColer('detalles'), 'color': getBorderColer('detalles')}"
          [ngClass]="{'selected': !mostrarmeLasDescargas, 'unselect': mostrarmeLasDescargas}">
       <p>Más detalles del producto</p>
-      <img class="p-1" [src]="mostrarmeLasDescargas ? './assets/icons/Detalles_bn.png' : './assets/icons/Detalles.png'" alt="img">
+      <img class="p-1" [src]="mostrarmeLasDescargas ? './assets/icons/Detalles_bn.png' : './assets/icons/Detalles.png'"
+           alt="img">
     </div>
     <div class="option-buttons button-download text-center font-bold"
-      (click)="mostrarmeLasDescargas = !mostrarmeLasDescargas"
-      [ngStyle]="{'border-color': getBorderColer('descargas'), 'color': getBorderColer('descargas') }"
-      [ngClass]="{'selected': mostrarmeLasDescargas, 'unselect': !mostrarmeLasDescargas}">
+         (click)="mostrarmeLasDescargas = !mostrarmeLasDescargas"
+         [ngStyle]="{'border-color': getBorderColer('descargas'), 'color': getBorderColer('descargas') }"
+         [ngClass]="{'selected': mostrarmeLasDescargas, 'unselect': !mostrarmeLasDescargas}">
       <p>Descarga de documentacíon</p>
-      <img class="p-1" [src]="mostrarmeLasDescargas ? './assets/icons/Documentos.png' : './assets/icons/Documentos_bn.png'" alt="img">
+      <img class="p-1"
+           [src]="mostrarmeLasDescargas ? './assets/icons/Documentos.png' : './assets/icons/Documentos_bn.png'"
+           alt="img">
     </div>
   </div>
 
@@ -69,28 +75,28 @@
       <div class="flex items-center">
         <p class="text-center text-white mr-4"> Datos de la Cobertura </p>
         <svg class="text-white" (click)="getCoberturas()" xmlns="http://www.w3.org/2000/svg" width="45px" height="45px"
-          preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+             preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
           <path fill="currentColor"
-            d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4l4-4h-2.55z" />
+                d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4l4-4h-2.55z"/>
         </svg>
       </div>
       <div class="flex items-center">
         <p class="text-center text-white mr-4"> Bases y condiciones </p>
         <svg class="text-white" (click)="getCoberturas()" xmlns="http://www.w3.org/2000/svg" width="45px" height="45px"
-          preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+             preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
           <path fill="currentColor"
-            d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4l4-4h-2.55z" />
+                d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4l4-4h-2.55z"/>
         </svg>
       </div>
     </div>
-    <div id="detalles" *ngIf="!mostrarmeLasDescargas && detalleProducto">
+    <div id="detalles" *ngIf="!mostrarmeLasDescargas && detalleProducto && itemsProducto">
       <h1 class="title py-4 text-white">{{detalleProducto.titulo}}</h1>
       <p class="text-white">{{detalleProducto.descripcion}}</p>
 
       <h2 class="py-4 text-white">{{detalleProducto.sub_titulo}}</h2>
       <ul>
-        <li class="lista text-white" *ngFor="let item of itemsProducto.descripcion">
-          • {{item}}
+        <li class="lista text-white" *ngFor="let item of itemsProducto">
+          • {{item.descripcion}}
         </li>
       </ul>
     </div>

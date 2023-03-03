@@ -27,6 +27,15 @@ export interface Cobertura {
   prioridad: number;
 }
 
+export interface Items {
+  id: number;
+  id_producto: string;
+  cuit_socio: string;
+  descripcion: string;
+  prioridad: number;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +55,7 @@ export class DashboardService {
   public secondaryColor: string | undefined = '';
   private productos: Producto[] = [];
   private coberturas: Cobertura[] | undefined;
+  private items: Items[] | undefined;
   public cuitSocio: string | undefined = '';
   public cambiarColorChanged!: BehaviorSubject<any>;
   public products$: BehaviorSubject<Producto[] | null> = new BehaviorSubject<Producto[] | null>( null );
@@ -97,7 +107,7 @@ export class DashboardService {
     }
   }
 
-  getProducts(): void {
+  getProductsObs(): void {
     if (this.productos.length !== 0) {
       this.products$.next(this.productos);
       return;
@@ -108,6 +118,15 @@ export class DashboardService {
         this.products$.next(products);
       }
     );
+  }
+
+  async getProducts(): Promise<Producto[]> {
+    if (this.productos.length !== 0) {
+      return this.productos;
+    }
+    const URL = ENDPOINTS_API.PRODUCTS + '/' + this.cuitSocio + '/productos';
+    this.productos = await this.httpWrapperService.get<Producto[]>(URL).toPromise();
+    return this.productos;
   }
 
   getFilteredProducts(filter?: string[]): void {
@@ -125,12 +144,10 @@ export class DashboardService {
       }
     ));
   }
-  getProductItemsCoberturaByIdProducto(id: string): Observable<GlobalResponse> {
-    const URL = `${ENDPOINTS_API.ITEMS_PRODUCTO}/cuit-socio/${this.cuitSocio}/id-producto/${id}`;
-    return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
-        this.productItemsCoberturas = response.body;
-      }
-    ));
+ async getProductItemsCoberturaByIdProducto(id: string): Promise<Items[]> {
+   const URL = `${ENDPOINTS_API.ITEMS_PRODUCTO}/cuit-socio/${this.cuitSocio}/id-producto/${id}`;
+   this.items = await this.httpWrapperService.get<Items[]>(URL).toPromise();
+   return this.items;
   }
 
   addPersonalData(data: any, tipo: any) {
@@ -155,13 +172,19 @@ export class DashboardService {
     return porcentaje;
   }
 
-  getCoberturasByCuitSocioAndIdProducto(idProducto: string): Observable<GlobalResponse> {
+  getItemsDeCoberturasByCuitSocioAndIdProducto(idProducto: string): Observable<GlobalResponse> {
     const URL = `${ENDPOINTS_API.COBERTURAS}/obtener-coberturas/cuit-socio/${this.cuitSocio}/id-producto/${idProducto}`;
     return this.httpWrapperService.get<GlobalResponse>(URL).pipe(tap((response: GlobalResponse) => {
         this.coberturas = response.body;
       }
     ));
   }
+  async getItemsDeCoberturasByCuitSocioAndIdProductoAwait(idProducto: string): Promise<Cobertura[]> {
+    const URL = `${ENDPOINTS_API.COBERTURAS}/obtener-coberturas/cuit-socio/${this.cuitSocio}/id-producto/${idProducto}`;
+    this.coberturas = await this.httpWrapperService.get<Cobertura[]>(URL).toPromise();
+    return this.coberturas;
+  }
+
 
 
   getProductDetailByIdProductoAndCuit(id: string): Observable<GlobalResponse> {
@@ -286,7 +309,7 @@ export class DashboardService {
 
   getIdProductsToFilter(textFilter: string) {
     if(textFilter === ""){
-      this.getProducts();
+      this.getProductsObs();
       return;
     }
     const URL = `${ENDPOINTS_API.PRODUCTOS_FILTRO}?params=${textFilter}`;
