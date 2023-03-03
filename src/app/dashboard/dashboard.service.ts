@@ -54,7 +54,7 @@ export class DashboardService {
   public primaryColor: string | undefined = '';
   public secondaryColor: string | undefined = '';
   private productos: Producto[] = [];
-  private coberturas: Cobertura[] | undefined;
+  private coberturas: Cobertura[] = [];
   private items: Items[] | undefined;
   public cuitSocio: string | undefined = '';
   public cambiarColorChanged!: BehaviorSubject<any>;
@@ -181,7 +181,8 @@ export class DashboardService {
   }
   async getItemsDeCoberturasByCuitSocioAndIdProductoAwait(idProducto: string): Promise<Cobertura[]> {
     const URL = `${ENDPOINTS_API.COBERTURAS}/obtener-coberturas/cuit-socio/${this.cuitSocio}/id-producto/${idProducto}`;
-    this.coberturas = await this.httpWrapperService.get<Cobertura[]>(URL).toPromise();
+    let res:any = await this.httpWrapperService.get<Cobertura[]>(URL).toPromise();
+    this.coberturas = res.body;
     return this.coberturas;
   }
 
